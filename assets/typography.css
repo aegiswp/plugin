@@ -1,0 +1,25 @@
+@media (min-width: 1024px) {
+    .hide_for_desktop{
+        display: none;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .aegis-section {
+        font-size: var(--font-size-tablet)  !important;
+        color: var(--font-color-tablet);
+        background: var(--bgcolor-tablet);
+    }
+    .hide_for_tablet{
+        display: none;
+    }
+}
+@media (max-width: 768px) {
+    .aegis-section {
+        font-size: var(--font-size-mobile)!important;
+        color: var(--font-color-mobile);
+        background: var(--bgcolor-mobile);
+    }
+    .hide_for_mobile{
+        display: none;
+    }
+}

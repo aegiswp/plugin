@@ -1,0 +1,11 @@
+{
+    "name": "aegis-plugin/aegis-plugin",
+    "description": "Aegis plugin",
+    "type": "wordpress-plugin",
+    "autoload": {
+        "psr-4": {
+          "Aegis\\Plugin\\": "includes/"
+        }
+      }
+  }
+  
