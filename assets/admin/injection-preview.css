@@ -1,0 +1,104 @@
+/**
+ * Frontend injection position preview markers.
+ *
+ * @package Aegis
+ * @since   1.0.0
+ */
+
+body.aegis-injection-preview-active,
+#wpadminbar {
+	--aegis-accent: var(--wpds-color-background-interactive-brand-strong, var(--wp-admin-theme-color, #3858e9));
+	--aegis-accent-soft: var(--wpds-color-background-surface-brand, #ecf0fa);
+	--aegis-text: var(--wpds-color-foreground-content-neutral, #1e1e1e);
+	--aegis-text-secondary: var(--wpds-color-foreground-content-neutral-weak, #707070);
+	--aegis-success-bg: var(--wpds-color-background-surface-success, #c6f7cd);
+	--aegis-success-text: var(--wpds-color-foreground-content-success-weak, #008030);
+}
+
+body.aegis-injection-preview-active {
+	scroll-padding-top: 48px;
+}
+
+.aegis-injection-marker {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin: 4px 0;
+	padding: 8px 14px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	font-size: 12px;
+	line-height: 1.35;
+	border-radius: 6px;
+	border: 2px dashed transparent;
+	background: rgba(255, 255, 255, 0.96);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+	pointer-events: none;
+	position: relative;
+	z-index: 99990;
+}
+
+.aegis-injection-marker--hooks-on {
+	border-color: var(--aegis-accent);
+	background: var(--aegis-accent-soft);
+}
+
+.aegis-injection-marker--snippets-on.aegis-injection-marker--hooks-on {
+	border-image: linear-gradient(90deg, var(--aegis-accent) 50%, var(--aegis-success-text) 50%) 1;
+}
+
+.aegis-injection-marker--snippets-on:not(.aegis-injection-marker--hooks-on) {
+	border-color: var(--aegis-success-text);
+	background: var(--aegis-success-bg);
+}
+
+.aegis-injection-marker--has-hooks .aegis-injection-marker__hook {
+	color: var(--aegis-accent);
+}
+
+.aegis-injection-marker--has-snippets .aegis-injection-marker__hook {
+	color: var(--aegis-success-text);
+}
+
+.aegis-injection-marker__hook {
+	font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+	font-size: 11px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	white-space: nowrap;
+}
+
+.aegis-injection-marker__meta {
+	color: var(--aegis-text-secondary);
+	font-size: 11px;
+	text-align: right;
+}
+
+/*
+ * Admin bar: keep WordPress toolbar metrics (13px, 400, 32px row).
+ * Only size the brand SVG to match Dashicons; color follows core hover.
+ */
+#wpadminbar #wp-admin-bar-aegis-injection-preview > .ab-item .ab-icon {
+	color: rgba(240, 246, 252, 0.6);
+}
+
+#wpadminbar #wp-admin-bar-aegis-injection-preview:hover > .ab-item .ab-icon,
+#wpadminbar #wp-admin-bar-aegis-injection-preview.hover > .ab-item .ab-icon,
+#wpadminbar #wp-admin-bar-aegis-injection-preview > .ab-item:focus .ab-icon {
+	color: #72aee6;
+}
+
+#wpadminbar.mobile #wp-admin-bar-aegis-injection-preview > .ab-item .ab-icon {
+	color: #c3c4c7;
+}
+
+#wpadminbar.mobile #wp-admin-bar-aegis-injection-preview.hover > .ab-item .ab-icon {
+	color: #72aee6;
+}
+
+#wpadminbar #wp-admin-bar-aegis-injection-preview > .ab-item .ab-icon svg {
+	display: block;
+	width: 20px;
+	height: 20px;
+	margin-top: 2px;
+}

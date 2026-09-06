@@ -1,0 +1,2117 @@
+/**
+ * Hook Patterns Admin Styles
+ *
+ * Styles for the hook patterns admin interface.
+ *
+ * @package Aegis\Admin
+ */
+
+:root {
+	--aegis-accent: var(--wpds-color-background-interactive-brand-strong, var(--wp-admin-theme-color, #3858e9));
+	--aegis-accent-hover: var(--wpds-color-background-interactive-brand-strong-active, var(--wp-admin-theme-color-darker-10, #2c4bdb));
+	--aegis-accent-soft: var(--wpds-color-background-surface-brand, #ecf0fa);
+	--aegis-on-accent: var(--wpds-color-foreground-interactive-brand-strong, #fff);
+	--aegis-text: var(--wpds-color-foreground-content-neutral, #1e1e1e);
+	--aegis-text-secondary: var(--wpds-color-foreground-content-neutral-weak, #707070);
+	--aegis-text-muted: var(--wpds-color-foreground-content-neutral-weak, #707070);
+	--aegis-border: var(--wpds-color-stroke-surface-neutral, #dbdbdb);
+	--aegis-border-subtle: var(--wpds-color-stroke-surface-neutral-weak, #f0f0f0);
+	--aegis-surface: var(--wpds-color-background-surface-neutral-strong, #fff);
+	--aegis-surface-muted: var(--wpds-color-background-surface-neutral-weak, #f4f4f4);
+	--aegis-success-bg: var(--wpds-color-background-surface-success, #c6f7cd);
+	--aegis-success-text: var(--wpds-color-foreground-content-success, #002900);
+	--aegis-error-bg: var(--wpds-color-background-surface-error, #f6e6e3);
+	--aegis-error-text: var(--wpds-color-foreground-content-error, #470000);
+	--aegis-error-border: var(--wpds-color-stroke-surface-error, #dab1aa);
+}
+
+/* ==========================================================================
+   Meta Box (Edit Screen)
+   ========================================================================== */
+
+.aegis-hook-pattern-settings {
+	padding: 0;
+}
+
+.aegis-hook-pattern-settings .aegis-field {
+	margin-bottom: 16px;
+}
+
+.aegis-hook-pattern-settings .aegis-field:last-child {
+	margin-bottom: 0;
+}
+
+.aegis-hook-pattern-settings > .aegis-field > label {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	margin-bottom: 4px;
+}
+
+.aegis-hook-pattern-settings select,
+.aegis-hook-pattern-settings input[type="number"] {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.aegis-hook-pattern-settings select:focus,
+.aegis-hook-pattern-settings input[type="number"]:focus {
+	border-color: var(--aegis-accent);
+	box-shadow: 0 0 0 1px var(--aegis-accent);
+	outline: none;
+}
+
+.aegis-hook-pattern-settings .description {
+	font-size: 12px;
+	color: var(--aegis-text-muted);
+	margin-top: 8px;
+	font-style: normal;
+}
+
+/* Toggle field */
+.aegis-field--toggle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 12px;
+	border-top: 1px solid var(--aegis-border);
+}
+
+.aegis-toggle-label {
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--aegis-text);
+}
+
+/* Toggle switch — edit screen only (do not override settings-page sliders). */
+.aegis-hook-pattern-settings .aegis-field--toggle .aegis-toggle,
+.aegis-field--toggle .aegis-toggle {
+	position: relative;
+	display: inline-block;
+	width: 36px;
+	height: 20px;
+	flex-shrink: 0;
+	cursor: pointer;
+}
+
+.aegis-hook-pattern-settings .aegis-field--toggle .aegis-toggle input,
+.aegis-field--toggle .aegis-toggle input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+	position: absolute;
+}
+
+.aegis-hook-pattern-settings .aegis-field--toggle .aegis-toggle-track,
+.aegis-field--toggle .aegis-toggle-track {
+	position: absolute;
+	inset: 0;
+	background: var(--aegis-border);
+	border-radius: 10px;
+	transition: background-color 0.15s ease;
+}
+
+.aegis-hook-pattern-settings .aegis-field--toggle .aegis-toggle-track::before,
+.aegis-field--toggle .aegis-toggle-track::before {
+	content: '';
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	background: var(--aegis-surface);
+	border-radius: 50%;
+	transition: transform 0.15s ease;
+}
+
+.aegis-hook-pattern-settings .aegis-field--toggle .aegis-toggle input:checked + .aegis-toggle-track,
+.aegis-field--toggle .aegis-toggle input:checked + .aegis-toggle-track {
+	background: var(--aegis-accent);
+}
+
+.aegis-hook-pattern-settings .aegis-field--toggle .aegis-toggle input:checked + .aegis-toggle-track::before,
+.aegis-field--toggle .aegis-toggle input:checked + .aegis-toggle-track::before {
+	transform: translateX(16px);
+}
+
+.aegis-hook-pattern-settings .aegis-field--toggle .aegis-toggle input:focus-visible + .aegis-toggle-track,
+.aegis-field--toggle .aegis-toggle input:focus-visible + .aegis-toggle-track {
+	box-shadow: 0 0 0 2px var(--aegis-surface), 0 0 0 4px var(--aegis-accent);
+}
+
+/* ==========================================================================
+   List Table Columns
+   ========================================================================== */
+
+.wp-list-table .column-aegis_hook_name {
+	width: 25%;
+}
+
+.wp-list-table .column-aegis_priority {
+	width: 10%;
+	text-align: center;
+}
+
+.wp-list-table .column-aegis_enabled {
+	width: 10%;
+	text-align: center;
+}
+
+.aegis-hook-status {
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 10px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.3px;
+}
+
+.aegis-hook-status.enabled {
+	background: var(--aegis-success-bg);
+	color: var(--aegis-success-text);
+}
+
+.aegis-hook-status.disabled {
+	background: var(--aegis-error-bg);
+	color: var(--aegis-error-text);
+}
+
+/* ==========================================================================
+   Hooks Settings Page — Overview Bar
+   ========================================================================== */
+
+.aegis-hooks-overview {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px 24px;
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 8px;
+	margin-bottom: 24px;
+}
+
+.aegis-hooks-stats {
+	display: flex;
+	gap: 32px;
+}
+
+.aegis-hooks-stat {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.aegis-hooks-stat-value {
+	font-size: 28px;
+	font-weight: 700;
+	color: var(--aegis-text);
+	line-height: 1;
+}
+
+.aegis-hooks-stat-label {
+	font-size: 13px;
+	color: var(--aegis-text-muted);
+	font-weight: 500;
+}
+
+.aegis-hooks-actions {
+	display: flex;
+	gap: 10px;
+}
+
+/* ==========================================================================
+   Hooks Settings Page — Reference Card
+   ========================================================================== */
+
+.aegis-hooks-reference {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 8px;
+	overflow: hidden;
+	margin-bottom: 24px;
+}
+
+.aegis-hooks-reference-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 16px;
+	background: var(--aegis-lede-bg, #2c3338);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	color: var(--aegis-lede-heading, #f0f0f1);
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.aegis-hooks-reference-header .dashicons {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+	color: var(--aegis-lede-accent, #72aee6);
+}
+
+/* Group header */
+.aegis-hooks-group-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 20px;
+	background: var(--aegis-lede-bg, #2c3338);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--aegis-lede-heading, #f0f0f1);
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.aegis-hooks-group-header .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	color: var(--aegis-lede-accent, #72aee6);
+}
+
+.aegis-hooks-group-title {
+	flex: 1;
+}
+
+.aegis-hooks-group-count {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 22px;
+	height: 22px;
+	padding: 0 6px;
+	background: rgba(255, 255, 255, 0.12);
+	color: var(--aegis-lede-heading, #f0f0f1);
+	font-size: 11px;
+	font-weight: 600;
+	border-radius: 11px;
+}
+
+/* Hook rows */
+.aegis-hooks-row {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 12px 20px;
+	border-bottom: 1px solid var(--aegis-surface-muted);
+	transition: background-color 0.15s ease;
+}
+
+.aegis-hooks-row:hover {
+	background-color: var(--aegis-surface-muted);
+}
+
+.aegis-hooks-group:last-child .aegis-hooks-row:last-child {
+	border-bottom: none;
+}
+
+.aegis-hooks-row-name {
+	flex: 0 0 auto;
+	font-family: ui-monospace, 'SF Mono', 'Cascadia Code', 'Segoe UI Mono', Menlo, Monaco, Consolas, monospace;
+	font-size: 12px;
+	color: var(--aegis-text);
+	background: var(--aegis-surface-muted);
+	padding: 4px 10px;
+	border-radius: 4px;
+	border: 1px solid var(--aegis-border);
+	white-space: nowrap;
+}
+
+.aegis-hooks-row-desc {
+	font-size: 13px;
+	color: var(--aegis-text-muted);
+	line-height: 1.4;
+}
+
+/* ==========================================================================
+   Hooks Settings Page — Info Callout
+   ========================================================================== */
+
+.aegis-hooks-info {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 16px 20px;
+	background: var(--aegis-info-bg);
+	border: 1px solid var(--aegis-info-border);
+	border-radius: 8px;
+}
+
+.aegis-hooks-info > .dashicons {
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
+	color: var(--aegis-accent);
+	flex-shrink: 0;
+	margin-top: 1px;
+}
+
+.aegis-hooks-info strong {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	margin-bottom: 4px;
+}
+
+.aegis-hooks-info p {
+	font-size: 13px;
+	color: var(--aegis-text-secondary);
+	margin: 0;
+	line-height: 1.5;
+}
+
+/* ==========================================================================
+   Conditional Logic Meta Box
+   ========================================================================== */
+
+.aegis-conditions-ui {
+	margin: 0 -12px -12px;
+	overflow: hidden;
+}
+
+.edit-post-sidebar .aegis-conditions-ui {
+	margin: 0 -16px -16px;
+}
+
+.aegis-conditions-ui > .description {
+	font-size: 12px;
+	color: var(--aegis-text-muted);
+	font-style: italic;
+	margin: 0;
+	padding: 12px 16px;
+}
+
+/* Section — matches WP components-panel__body */
+.aegis-cond-section {
+	border-top: 1px solid var(--aegis-border);
+}
+
+.aegis-cond-section-header {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	padding: 12px 16px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--aegis-text);
+	text-align: left;
+	line-height: 1.4;
+}
+
+.aegis-cond-section-header:hover {
+	color: var(--aegis-accent);
+}
+
+.aegis-cond-section-header:hover .aegis-cond-chevron {
+	fill: currentColor;
+}
+
+.aegis-cond-section-title {
+	flex: 1;
+}
+
+.aegis-cond-chevron {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	min-width: 24px;
+	min-height: 24px;
+	fill: currentColor;
+	flex-shrink: 0;
+	transition: transform 0.1s ease;
+}
+
+.aegis-cond-chevron.is-open {
+	transform: rotate(180deg);
+}
+
+.aegis-cond-section-body {
+	padding: 0 16px 16px;
+	box-sizing: border-box;
+}
+
+.aegis-cond-section-body.hidden {
+	display: none;
+}
+
+/* Fields */
+.aegis-cond-field {
+	margin-bottom: 12px;
+}
+
+.aegis-cond-field:last-child {
+	margin-bottom: 0;
+}
+
+.aegis-cond-field > label {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	margin-bottom: 4px;
+}
+
+.aegis-cond-field select,
+.aegis-cond-field input[type="text"] {
+	width: 100%;
+	max-width: 100%;
+	font-size: 13px;
+	min-height: 36px;
+	padding: 4px 8px;
+	border: 1px solid var(--aegis-border);
+	border-radius: 2px;
+	background: var(--aegis-surface);
+	color: var(--aegis-text);
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+	box-sizing: border-box;
+}
+
+.aegis-cond-field select:focus,
+.aegis-cond-field input[type="text"]:focus {
+	border-color: var(--aegis-accent);
+	box-shadow: 0 0 0 1px var(--aegis-accent);
+	outline: none;
+}
+
+.aegis-cond-field--checkbox label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 13px;
+	font-weight: 400;
+	color: var(--aegis-text);
+	text-transform: none;
+	letter-spacing: normal;
+	cursor: pointer;
+}
+
+.aegis-cond-field--checkbox input[type="checkbox"] {
+	margin: 0;
+}
+
+/* Date & Time picker (WP Publish style) */
+.aegis-dt-picker > label {
+	margin-bottom: 8px;
+}
+
+.aegis-dt-label {
+	font-size: 11px;
+	font-weight: 500;
+	color: var(--aegis-text-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	margin-bottom: 4px;
+}
+
+.aegis-dt-time-row {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	margin-bottom: 12px;
+}
+
+.aegis-dt-input {
+	font-size: 13px;
+	min-height: 32px;
+	padding: 4px 6px;
+	border: 1px solid var(--aegis-border);
+	border-radius: 2px;
+	background: var(--aegis-surface);
+	color: var(--aegis-text);
+	box-shadow: none;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.aegis-dt-input:focus {
+	border-color: var(--aegis-accent);
+	box-shadow: 0 0 0 1px var(--aegis-accent);
+	outline: none;
+}
+
+.aegis-dt-hours,
+.aegis-dt-minutes {
+	width: 44px;
+}
+
+.aegis-dt-colon {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	line-height: 1;
+}
+
+.aegis-dt-ampm-group {
+	display: inline-flex;
+	border: 1px solid var(--aegis-border);
+	border-radius: 2px;
+	overflow: hidden;
+	margin-left: 4px;
+}
+
+.aegis-dt-ampm {
+	padding: 4px 8px;
+	font-size: 12px;
+	font-weight: 500;
+	border: none;
+	background: var(--aegis-surface);
+	color: var(--aegis-text-muted);
+	cursor: pointer;
+	line-height: 1.5;
+}
+
+.aegis-dt-ampm + .aegis-dt-ampm {
+	border-left: 1px solid var(--aegis-border);
+}
+
+.aegis-dt-ampm.is-active {
+	background: var(--aegis-text);
+	color: var(--aegis-on-accent);
+}
+
+.aegis-dt-date-row {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.aegis-dt-day {
+	width: 44px;
+}
+
+.aegis-dt-month {
+	flex: 1;
+	min-width: 0;
+	font-size: 13px;
+	min-height: 32px;
+	padding: 4px 6px;
+	border: 1px solid var(--aegis-border);
+	border-radius: 2px;
+	background: var(--aegis-surface);
+	color: var(--aegis-text);
+	box-shadow: none;
+	box-sizing: border-box;
+}
+
+.aegis-dt-month:focus {
+	border-color: var(--aegis-accent);
+	box-shadow: 0 0 0 1px var(--aegis-accent);
+	outline: none;
+}
+
+.aegis-dt-year {
+	width: 56px;
+}
+
+/* Rule rows */
+.aegis-cond-rules {
+	margin: 8px 0;
+}
+
+.aegis-cond-rule-row {
+	display: flex;
+	gap: 4px;
+	align-items: center;
+	margin-bottom: 6px;
+}
+
+.aegis-cond-rule-row:last-child {
+	margin-bottom: 0;
+}
+
+.aegis-cond-rule-input {
+	flex: 1;
+	min-width: 0;
+	font-size: 12px !important;
+	min-height: 32px;
+	padding: 2px 6px !important;
+	border: 1px solid var(--aegis-border) !important;
+	border-radius: 2px !important;
+	box-shadow: none !important;
+	box-sizing: border-box;
+}
+
+.aegis-cond-rule-input:focus {
+	border-color: var(--aegis-accent) !important;
+	box-shadow: 0 0 0 1px var(--aegis-accent) !important;
+	outline: none;
+}
+
+.aegis-cond-rule-remove {
+	flex-shrink: 0;
+	width: 24px;
+	height: 24px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: none;
+	border: none;
+	border-radius: 2px;
+	color: var(--aegis-text-muted);
+	font-size: 18px;
+	line-height: 1;
+	cursor: pointer;
+	padding: 0;
+}
+
+.aegis-cond-rule-remove:hover {
+	color: var(--aegis-error-text);
+}
+
+.aegis-cond-add-rule {
+	margin-top: 8px;
+	font-size: 12px !important;
+	padding: 4px 12px !important;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 782px) {
+	.aegis-hooks-overview {
+		flex-direction: column;
+		gap: 16px;
+		align-items: flex-start;
+	}
+
+	.aegis-hooks-actions {
+		width: 100%;
+	}
+
+	.aegis-hooks-actions .button {
+		flex: 1;
+		justify-content: center;
+		text-align: center;
+	}
+
+	.aegis-hooks-row {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 6px;
+	}
+}
+
+/* ==========================================================================
+   Code Snippets Admin
+   ========================================================================== */
+
+.aegis-snippets-header,
+.aegis-hooks-header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.aegis-snippets-header-text,
+.aegis-hooks-header-text {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.aegis-snippets-header-actions,
+.aegis-hooks-header-actions {
+	flex: 0 0 auto;
+	padding-top: 4px;
+}
+
+.aegis-snippets-header-actions .button .dashicons,
+.aegis-hooks-header-actions .button .dashicons {
+	margin-top: 3px;
+}
+
+.aegis-snippets-tabs.nav-tab-wrapper,
+.aegis-hooks-tabs.nav-tab-wrapper {
+	margin: 0 0 20px;
+	padding: 0;
+	border-bottom: 1px solid var(--aegis-border);
+}
+
+.aegis-snippets-settings-screen {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	max-width: 880px;
+}
+
+.aegis-snippets-settings {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 8px;
+	overflow: hidden;
+	margin-bottom: 0;
+}
+
+.aegis-snippets-settings-screen .aegis-snippet-locations {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.aegis-snippets-settings-list {
+	display: flex;
+	flex-direction: column;
+}
+
+.aegis-snippets-settings-list .aegis-toggle-card {
+	border: 0;
+	border-bottom: 1px solid var(--aegis-border-subtle);
+	border-radius: 0;
+	box-shadow: none;
+	margin: 0;
+}
+
+.aegis-snippets-settings-list .aegis-toggle-card:last-child {
+	border-bottom: 0;
+}
+
+.aegis-hooks-row--toggle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.aegis-hooks-row--toggle .aegis-hooks-row-main {
+	flex: 1;
+	min-width: 0;
+}
+
+.aegis-snippet-locations .aegis-section-header {
+	margin: 0;
+	border-radius: 0;
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+}
+
+.aegis-snippets-settings .aegis-section-header {
+	margin: 0;
+	border-radius: 0;
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+}
+
+.aegis-snippets-settings-actions--page {
+	padding: 0 0 8px;
+}
+
+.aegis-snippets-settings-actions--page .button-primary {
+	float: none;
+}
+
+.aegis-safe-mode-panel-body {
+	padding: 0 16px 16px;
+	border-top: 1px solid var(--aegis-border-subtle);
+}
+
+.aegis-safe-mode-url-field {
+	padding-top: 16px;
+}
+
+.aegis-safe-mode-url-field label {
+	display: block;
+	margin-bottom: 4px;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.aegis-safe-mode-url-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	margin-top: 8px;
+}
+
+.aegis-safe-mode-url-row code {
+	flex: 1 1 240px;
+	padding: 8px 10px;
+	word-break: break-all;
+	background: var(--aegis-surface-muted);
+}
+
+.aegis-safe-mode-constant {
+	margin-top: 16px;
+}
+
+.aegis-safe-mode-constant p {
+	margin: 0 0 8px;
+}
+
+.aegis-safe-mode-constant pre {
+	margin: 0 0 8px;
+	padding: 10px 12px;
+	background: var(--aegis-surface-muted);
+	border-radius: 4px;
+	overflow-x: auto;
+}
+
+.aegis-safe-mode-constant code {
+	font-size: 13px;
+}
+
+.aegis-snippets-page .aegis-notice {
+	margin-bottom: 16px;
+}
+
+.aegis-snippets-preview-status {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 8px !important;
+}
+
+.aegis-badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 3px 10px;
+	border-radius: 999px;
+	font-size: 11px;
+	font-weight: 600;
+	background: var(--aegis-surface-muted);
+	color: var(--aegis-text-secondary);
+}
+
+.aegis-badge.is-on {
+	background: var(--aegis-info-bg);
+	color: var(--aegis-info-text);
+}
+
+.aegis-badge.is-off {
+	background: var(--aegis-surface-muted);
+	color: var(--aegis-text-muted);
+}
+
+.aegis-badge-type {
+	background: var(--aegis-accent-soft);
+	color: var(--aegis-accent);
+}
+
+.aegis-snippets-empty {
+	text-align: center;
+	padding: 32px 24px 8px;
+}
+
+.aegis-snippets-empty h2 {
+	margin: 0 0 8px;
+	font-size: 18px;
+}
+
+.aegis-snippets-empty p {
+	margin: 0;
+	color: var(--aegis-text-muted, #707070);
+}
+
+.aegis-snippets-empty-action {
+	margin-top: 16px !important;
+}
+
+.aegis-snippets-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 14px 20px;
+	border-bottom: 1px solid var(--aegis-surface-muted);
+}
+
+.aegis-snippets-item:last-child {
+	border-bottom: none;
+}
+
+.aegis-snippets-item-title {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 6px;
+}
+
+.aegis-snippets-item-meta code {
+	font-size: 11px;
+	background: var(--aegis-surface-muted);
+	padding: 2px 8px;
+	border-radius: 4px;
+}
+
+.aegis-snippets-error {
+	display: block;
+	margin-top: 4px;
+	color: var(--aegis-error-text);
+	font-size: 12px;
+}
+
+.aegis-snippets-item-actions {
+	display: flex;
+	gap: 8px;
+	flex-shrink: 0;
+}
+
+.aegis-snippet-locations .aegis-hooks-group-header {
+	cursor: pointer;
+}
+
+.aegis-snippet-locations .aegis-hooks-group.is-collapsed .aegis-hooks-row {
+	display: none;
+}
+
+.aegis-snippet-locations .aegis-hooks-group-header::after {
+	content: "\f347";
+	font-family: dashicons;
+	margin-left: auto;
+	color: var(--aegis-lede-fg, #c3c4c7);
+}
+
+.aegis-snippet-locations .aegis-hooks-group.is-collapsed .aegis-hooks-group-header::after {
+	content: "\f343";
+}
+
+.aegis-snippet-editor {
+	margin-bottom: 24px;
+}
+
+.aegis-snippet-editor-topbar {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	margin: 0 0 20px;
+}
+
+.aegis-snippet-editor-title {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.aegis-snippet-editor-title .regular-text {
+	width: 100%;
+	max-width: 100%;
+	font-size: 14px;
+	padding: 6px 12px;
+	min-height: 36px;
+}
+
+.aegis-snippet-editor-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex: 0 0 auto;
+}
+
+.aegis-snippet-enabled {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin-right: 4px;
+	font-size: 13px;
+	white-space: nowrap;
+}
+
+.aegis-snippet-type-tabs {
+	margin: 0 0 16px;
+	padding-top: 0;
+	border-bottom: 1px solid var(--aegis-border);
+}
+
+.aegis-snippet-type-tabs .nav-tab {
+	cursor: pointer;
+	margin-left: 0;
+	margin-right: 4px;
+}
+
+.aegis-snippet-type-tabs .nav-tab input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.aegis-snippet-editor-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 280px;
+	gap: 24px;
+	align-items: start;
+}
+
+.aegis-snippet-editor-main {
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.aegis-snippet-code-panel {
+	border: 1px solid var(--aegis-border);
+	border-radius: 4px;
+	overflow: hidden;
+	background: #1e1e1e;
+}
+
+.aegis-snippet-code-toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 8px 12px;
+	border-bottom: 1px solid #2d2d2d;
+	background: #252526;
+	color: #cccccc;
+}
+
+.aegis-snippet-code-label {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #cccccc;
+}
+
+.aegis-snippet-type-badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 2px 8px;
+	border-radius: 999px;
+	font-size: 11px;
+	font-weight: 600;
+	background: #1b4332;
+	color: #b7f7c8;
+}
+
+.aegis-snippet-code-toolbar .button {
+	background: #3c3c3c;
+	border-color: #555;
+	color: #f3f3f3;
+}
+
+.aegis-snippet-code-toolbar .button:hover,
+.aegis-snippet-code-toolbar .button:focus {
+	background: #505050;
+	border-color: #777;
+	color: #fff;
+}
+
+.aegis-snippet-type-hint {
+	margin: 0;
+	padding: 8px 12px;
+}
+
+.aegis-snippet-section h2,
+.aegis-snippet-editor-sidebar h2 {
+	margin: 0 0 10px;
+	padding: 0;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.4;
+	color: var(--aegis-text);
+}
+
+.aegis-snippet-run select.widefat {
+	width: 100%;
+	max-width: 100%;
+	margin: 0 0 12px;
+}
+
+.aegis-snippet-location-cards {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: 16px 24px;
+	padding: 16px 18px;
+	background: var(--aegis-surface-muted);
+	border-radius: 8px;
+}
+
+.aegis-snippet-location-card,
+.wp-core-ui button.aegis-snippet-location-card {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 4px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	box-shadow: none;
+	min-height: 0;
+	height: auto;
+	text-align: left;
+	cursor: pointer;
+	color: inherit;
+	font-family: inherit;
+	line-height: inherit;
+	appearance: none;
+}
+
+.aegis-snippet-location-card.is-wide {
+	grid-column: 1 / -1;
+}
+
+.aegis-snippet-location-card strong {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.4;
+	color: var(--aegis-text);
+}
+
+.aegis-snippet-location-card span {
+	display: block;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 1.5;
+	color: var(--aegis-text-muted);
+}
+
+.aegis-snippet-location-card:hover strong,
+.aegis-snippet-location-card.is-selected strong {
+	color: var(--aegis-accent);
+}
+
+.aegis-snippet-location-card:focus-visible {
+	outline: 2px solid var(--aegis-accent);
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+.aegis-snippet-shortcode-row {
+	margin-top: 12px;
+	padding: 16px 18px;
+	background: var(--aegis-surface-muted);
+	border-radius: 8px;
+}
+
+.aegis-snippet-shortcode-row p {
+	margin: 0 0 10px;
+	font-size: 13px;
+	color: var(--aegis-text);
+}
+
+.aegis-snippet-shortcode-copy {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 12px;
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 6px;
+}
+
+.aegis-snippet-shortcode-copy code {
+	flex: 1 1 auto;
+	min-width: 0;
+	padding: 0;
+	background: transparent;
+	font-size: 13px;
+	color: var(--aegis-text);
+}
+
+.aegis-snippet-shortcode-copy-button,
+.wp-core-ui button.aegis-snippet-shortcode-copy-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	padding: 4px;
+	border: 0;
+	border-radius: 4px;
+	background: transparent;
+	box-shadow: none;
+	min-height: 0;
+	cursor: pointer;
+	color: var(--aegis-text-muted);
+}
+
+.aegis-snippet-shortcode-copy-button:hover,
+.aegis-snippet-shortcode-copy-button:focus {
+	color: var(--aegis-accent);
+}
+
+.aegis-snippet-shortcode-error {
+	color: var(--aegis-error-text);
+}
+
+.aegis-snippet-shortcode-row label,
+.aegis-snippet-metabox-field label {
+	display: block;
+	margin: 0 0 6px;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--aegis-text);
+}
+
+.aegis-snippet-shortcode-row .description,
+.aegis-snippet-editor-sidebar .description {
+	display: block;
+	margin-top: 6px;
+	font-style: normal;
+}
+
+.aegis-snippet-editor-sidebar {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.aegis-snippet-editor-sidebar h2 {
+	margin: 0;
+	padding: 12px 16px;
+	border-bottom: 1px solid var(--aegis-border);
+	background: var(--aegis-surface-muted);
+}
+
+.aegis-snippet-sidebar-fields {
+	padding: 4px 0;
+}
+
+.aegis-snippet-metabox-field {
+	margin: 0;
+	padding: 12px 16px;
+}
+
+.aegis-snippet-metabox-field .widefat,
+.aegis-snippet-shortcode-row .widefat {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.aegis-snippet-conditions-box {
+	border: 1px solid var(--aegis-border);
+	border-radius: 4px;
+	background: var(--aegis-surface);
+	overflow: hidden;
+}
+
+.aegis-snippet-conditions-box > h2 {
+	margin: 0;
+	padding: 12px 16px;
+}
+
+.aegis-snippet-section-body {
+	padding: 0 16px 16px;
+	border-top: 1px solid var(--aegis-border-subtle);
+}
+
+.aegis-snippet-conditions-box .aegis-smart-conditions {
+	padding: 12px 0 0;
+	border: 0;
+}
+
+.aegis-snippet-conditions-box .aegis-smart-conditions-header {
+	display: none;
+}
+
+.aegis-snippet-fields .aegis-field label,
+.aegis-basic-info .aegis-field label {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	margin-bottom: 6px;
+}
+
+.aegis-snippet-fields .aegis-field input[type="text"],
+.aegis-snippet-fields .aegis-field input[type="number"],
+.aegis-snippet-fields .aegis-field select,
+.aegis-snippet-fields .aegis-field textarea {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.aegis-field-row {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 12px;
+}
+
+.aegis-snippets-filters {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px 16px;
+	padding: 10px 16px;
+	border-bottom: 1px solid var(--aegis-border);
+	background: var(--aegis-surface-muted, #f6f7f7);
+}
+
+.aegis-snippets-filters-primary,
+.aegis-snippets-filters-secondary {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px 16px;
+	min-width: 0;
+}
+
+.aegis-snippets-filters-secondary {
+	margin-left: auto;
+	gap: 8px;
+}
+
+.aegis-snippets-filters .subsubsub {
+	float: none;
+	margin: 0;
+	padding: 0;
+	font-size: 13px;
+	line-height: 1.4;
+	color: var(--aegis-text-muted, #646970);
+	list-style: none;
+}
+
+.aegis-snippets-filters .subsubsub li {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+}
+
+.aegis-snippets-filters .subsubsub li + li::before {
+	content: "|";
+	color: #a7aaad;
+	margin: 0 8px;
+}
+
+.aegis-snippets-filters .subsubsub button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--aegis-accent, #2271b1);
+	cursor: pointer;
+	font-size: 13px;
+	line-height: 1.4;
+	text-decoration: none;
+}
+
+.aegis-snippets-filters .subsubsub button:hover,
+.aegis-snippets-filters .subsubsub button:focus {
+	color: var(--aegis-accent-hover, #135e96);
+}
+
+.aegis-snippets-filters .subsubsub button:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.aegis-snippets-filters .subsubsub button:focus-visible {
+	outline: 1px solid transparent;
+	box-shadow: 0 0 0 var(--wp-admin-border-width-focus, 1.5px) var(--wp-admin-theme-color, #3858e9);
+	border-radius: 2px;
+}
+
+.aegis-snippets-filters .subsubsub .current,
+.aegis-snippets-filters .subsubsub .is-active {
+	font-weight: 600;
+	color: var(--aegis-text, #1d2327);
+}
+
+.aegis-snippets-filters .subsubsub .count {
+	color: var(--aegis-text-muted, #646970);
+	font-weight: 400;
+}
+
+.aegis-snippets-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px 12px;
+	padding: 12px 16px 0;
+}
+
+.aegis-snippets-hide-inactive {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+	padding-right: 16px;
+	border-right: 1px solid var(--aegis-border);
+	font-size: 13px;
+	color: var(--aegis-text, #1d2327);
+}
+
+.aegis-snippets-hide-inactive .aegis-toggle {
+	width: 36px;
+	height: 20px;
+}
+
+.aegis-snippets-hide-inactive .aegis-toggle-slider:before {
+	height: 14px;
+	width: 14px;
+	left: 3px;
+	bottom: 3px;
+}
+
+.aegis-snippets-hide-inactive .aegis-toggle input:checked + .aegis-toggle-slider:before {
+	transform: translateX(16px);
+}
+
+.aegis-snippets-toolbar .aegis-search-input {
+	flex: 1 1 220px;
+	min-width: 180px;
+	max-width: 360px;
+}
+
+.aegis-snippets-view-toggle {
+	display: inline-flex;
+}
+
+.aegis-snippets-view-toggle .button {
+	margin: 0 0 0 -1px;
+	border-radius: 0;
+}
+
+.aegis-snippets-view-toggle .button:first-child {
+	margin-left: 0;
+	border-radius: 4px 0 0 4px;
+}
+
+.aegis-snippets-view-toggle .button:last-child {
+	border-radius: 0 4px 4px 0;
+}
+
+.aegis-snippets-view-toggle .button.is-active {
+	position: relative;
+	z-index: 1;
+	color: var(--aegis-text, #1d2327);
+	background: var(--aegis-surface-muted, #f0f0f1);
+	border-color: var(--aegis-border, #c3c4c7);
+	box-shadow: none;
+}
+
+.aegis-snippets-filters-secondary select {
+	max-width: 180px;
+	min-height: 30px;
+	line-height: 2;
+}
+
+.aegis-snippet-item.has-error {
+	background: var(--aegis-error-bg);
+}
+
+.aegis-snippet-title-cell {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
+.aegis-snippet-status-badge {
+	display: inline-block;
+	padding: 1px 8px;
+	border-radius: 999px;
+	font-size: 11px;
+	font-weight: 600;
+}
+
+.aegis-snippet-status-badge.is-published {
+	background: var(--aegis-success-bg);
+	color: var(--aegis-success-text);
+}
+
+.aegis-snippet-status-badge.is-paused {
+	background: var(--aegis-error-bg);
+	color: var(--aegis-error-text);
+}
+
+.aegis-snippet-title-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 12px;
+	margin-top: 6px;
+	font-size: 12px;
+}
+
+.aegis-snippet-group-label {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	color: var(--aegis-text-muted);
+}
+
+.aegis-snippet-group-label .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.aegis-snippet-runs-at {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.aegis-snippet-runs-at .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	color: var(--aegis-text-muted);
+}
+
+.aegis-snippets-folder {
+	border-top: 1px solid var(--aegis-border-subtle);
+}
+
+.aegis-snippets-folder-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	margin: 0;
+	padding: 12px 16px;
+	border: 0;
+	background: var(--aegis-surface-muted);
+	cursor: pointer;
+	text-align: left;
+}
+
+.aegis-snippets-folder.is-collapsed .aegis-admin-table-wrap {
+	display: none;
+}
+
+.aegis-snippets-folder-count {
+	margin-left: auto;
+	color: var(--aegis-text-muted);
+	font-size: 12px;
+}
+
+.aegis-snippets-hidden-count {
+	padding: 0 16px 12px;
+	color: var(--aegis-text-muted);
+}
+
+.aegis-badge-type-php { background: #f3e8ff; color: #5b21b6; }
+.aegis-badge-type-content { background: #dcfce7; color: #166534; }
+.aegis-badge-type-css { background: #dbeafe; color: #1e40af; }
+.aegis-badge-type-js { background: #ffedd5; color: #9a3412; }
+
+.aegis-smart-logic-builder[hidden] {
+	display: none;
+}
+
+.aegis-code-editor {
+	position: relative;
+	min-height: 420px;
+	background: #1e1e1e;
+}
+
+.aegis-code-editor .CodeMirror {
+	height: calc(100vh - 320px);
+	min-height: 420px;
+	font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+	font-size: 13px;
+	line-height: 1.6;
+	border: 0;
+	background: #1e1e1e;
+	color: #d4d4d4;
+}
+
+.aegis-code-editor .CodeMirror-gutters {
+	background: #1e1e1e;
+	border-right: 1px solid #2d2d2d;
+	color: #858585;
+}
+
+.aegis-code-editor .CodeMirror-linenumber {
+	color: #858585;
+}
+
+.aegis-code-editor .CodeMirror-cursor {
+	border-left-color: #f3f3f3;
+}
+
+.aegis-code-editor .CodeMirror-selected {
+	background: #264f78;
+}
+
+.aegis-code-editor .CodeMirror-line::selection,
+.aegis-code-editor .CodeMirror-line > span::selection {
+	background: #264f78;
+}
+
+.aegis-code-editor .CodeMirror-activeline-background {
+	background: #252526;
+}
+
+.aegis-code-editor .cm-keyword { color: #569cd6; }
+.aegis-code-editor .cm-atom { color: #569cd6; }
+.aegis-code-editor .cm-number { color: #b5cea8; }
+.aegis-code-editor .cm-def { color: #dcdcaa; }
+.aegis-code-editor .cm-variable { color: #9cdcfe; }
+.aegis-code-editor .cm-variable-2 { color: #9cdcfe; }
+.aegis-code-editor .cm-variable-3 { color: #4ec9b0; }
+.aegis-code-editor .cm-property { color: #9cdcfe; }
+.aegis-code-editor .cm-operator { color: #d4d4d4; }
+.aegis-code-editor .cm-comment { color: #6a9955; }
+.aegis-code-editor .cm-string { color: #ce9178; }
+.aegis-code-editor .cm-string-2 { color: #ce9178; }
+.aegis-code-editor .cm-meta { color: #c586c0; }
+.aegis-code-editor .cm-qualifier { color: #4ec9b0; }
+.aegis-code-editor .cm-builtin { color: #dcdcaa; }
+.aegis-code-editor .cm-bracket { color: #ffd700; }
+.aegis-code-editor .cm-tag { color: #569cd6; }
+.aegis-code-editor .cm-attribute { color: #9cdcfe; }
+.aegis-code-editor .cm-error { color: #f44747; }
+.aegis-code-editor .CodeMirror-matchingbracket {
+	color: #fff !important;
+	background: #4b4b4b;
+}
+
+.aegis-code-editor .CodeMirror-lint-markers {
+	width: 16px;
+}
+
+.aegis-code-editor .CodeMirror-lint-tooltip {
+	background: #252526;
+	border-color: #3c3c3c;
+	color: #d4d4d4;
+}
+
+@media (max-width: 1100px) {
+	.aegis-snippet-editor-layout,
+	.aegis-snippets-settings-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.aegis-snippets-header,
+	.aegis-hooks-header {
+		flex-wrap: wrap;
+	}
+
+	.aegis-snippet-editor-topbar {
+		flex-wrap: wrap;
+	}
+
+	.aegis-snippet-location-cards {
+		grid-template-columns: 1fr;
+	}
+
+	.aegis-code-editor .CodeMirror {
+		height: 420px;
+	}
+
+	.aegis-snippets-item {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.aegis-snippets-item-actions {
+		width: 100%;
+	}
+}
+
+.aegis-smart-conditions {
+	padding: 0 20px 20px;
+	border-top: 1px solid var(--aegis-border-subtle);
+}
+
+.aegis-smart-conditions-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 14px 0;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--aegis-text);
+}
+
+.aegis-smart-conditions-body.hidden {
+	display: none;
+}
+
+.aegis-smart-conditions-enable {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 12px;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.aegis-smart-logic-action {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 12px;
+	font-size: 13px;
+}
+
+.aegis-smart-logic-action select {
+	min-width: 100px;
+}
+
+.aegis-smart-group {
+	background: var(--aegis-surface-muted);
+	border: 1px solid var(--aegis-border);
+	border-radius: 4px;
+	padding: 12px;
+	margin-bottom: 12px;
+}
+
+.aegis-smart-group-or {
+	text-align: center;
+	font-size: 11px;
+	font-weight: 700;
+	color: var(--aegis-text-muted);
+	margin: 8px 0;
+	text-transform: uppercase;
+	border-top: 1px dashed var(--aegis-border);
+	line-height: 0;
+}
+
+.aegis-smart-group-or::before {
+	content: none;
+}
+
+.aegis-smart-rule {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr auto;
+	gap: 8px;
+	margin-bottom: 8px;
+	align-items: center;
+}
+
+.aegis-smart-rule select,
+.aegis-smart-rule input {
+	width: 100%;
+	min-height: 32px;
+	font-size: 12px;
+}
+
+.aegis-smart-rule-remove {
+	border: 0;
+	background: transparent;
+	color: var(--aegis-text-muted);
+	cursor: pointer;
+	padding: 4px;
+	border-radius: 50%;
+	line-height: 1;
+}
+
+.aegis-smart-rule-remove:hover {
+	background: var(--aegis-border);
+	color: var(--aegis-error-text);
+}
+
+.aegis-smart-group-actions {
+	display: flex;
+	gap: 8px;
+	margin-top: 8px;
+}
+
+.aegis-smart-add-rule,
+.aegis-smart-add-group {
+	font-size: 12px !important;
+	padding: 4px 10px !important;
+	min-height: 28px !important;
+}
+
+.aegis-basic-info {
+	padding: 0 20px 16px;
+	border-top: 1px solid var(--aegis-border-subtle);
+}
+
+.aegis-basic-info .aegis-field {
+	margin-bottom: 12px;
+}
+
+.aegis-tag-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	align-items: center;
+	min-height: 36px;
+	padding: 6px 8px;
+	border: 1px solid var(--aegis-border);
+	border-radius: 2px;
+	background: var(--aegis-surface);
+	cursor: text;
+}
+
+.aegis-tag-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 2px 8px;
+	background: var(--aegis-page);
+	border-radius: 3px;
+	font-size: 12px;
+	color: var(--aegis-text);
+}
+
+.aegis-tag-chip-remove {
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	color: var(--aegis-text-muted);
+	padding: 0;
+	line-height: 1;
+	font-size: 14px;
+}
+
+.aegis-tag-chips-input {
+	border: 0;
+	outline: none;
+	flex: 1;
+	min-width: 80px;
+	font-size: 13px;
+	background: transparent;
+}
+
+.aegis-admin-table-wrap {
+	overflow-x: auto;
+}
+
+.aegis-admin-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 13px;
+}
+
+.aegis-admin-table th,
+.aegis-admin-table td {
+	padding: 10px 12px;
+	text-align: left;
+	border-bottom: 1px solid var(--aegis-surface-muted);
+	vertical-align: middle;
+}
+
+.aegis-admin-table th {
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	color: var(--aegis-lede-heading, #f0f0f1);
+	background: var(--aegis-lede-bg, #2c3338);
+	border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.aegis-admin-table tr:hover td {
+	background: var(--aegis-surface-muted);
+}
+
+.aegis-admin-table .aegis-tag-chip {
+	margin-right: 4px;
+}
+
+.aegis-safe-mode-banner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 12px 16px;
+	margin-bottom: 16px;
+	background: var(--aegis-error-bg);
+	border: 1px solid var(--aegis-error-border);
+	border-radius: 6px;
+	color: var(--aegis-error-text);
+}
+
+.aegis-safe-mode-banner strong {
+	display: block;
+	margin-bottom: 2px;
+}
+
+@media (max-width: 782px) {
+	.aegis-smart-rule {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ==========================================================================
+   Hooks instance dashboard
+   ========================================================================== */
+
+.aegis-hooks-empty {
+	text-align: center;
+	padding: 32px 24px 8px;
+}
+
+.aegis-hooks-empty h2 {
+	margin: 0 0 8px;
+	font-size: 18px;
+}
+
+.aegis-hooks-empty p {
+	margin: 0;
+	color: var(--aegis-text-muted, #707070);
+}
+
+.aegis-hooks-empty-action .button .dashicons {
+	margin-top: 3px;
+}
+
+.aegis-presets-page .aegis-hooks-info {
+	margin-bottom: 16px;
+}
+
+#visibility-presets .aegis-toolbar {
+	margin: 0 0 16px;
+}
+
+#visibility-presets .aegis-hooks-reference {
+	margin-bottom: 16px;
+}
+
+.aegis-preset-editor-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	padding: 12px 16px 16px;
+	border-top: 1px solid var(--aegis-border);
+}
+
+#visibility-presets .aegis-snippet-metabox-field label {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	margin-bottom: 6px;
+}
+
+#visibility-presets .aegis-snippet-metabox-field .description {
+	margin: 8px 0 0;
+}
+
+.aegis-hooks-meta {
+	display: block;
+	margin-top: 2px;
+	font-size: 12px;
+	color: var(--aegis-text-muted, #707070);
+}
+
+.aegis-hooks-row-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.aegis-hooks-copy {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	margin-top: 4px;
+	padding: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
+	font-size: 11px;
+	line-height: 1.4;
+	color: var(--aegis-text-muted, #707070);
+	max-width: 100%;
+}
+
+.aegis-hooks-copy code {
+	font-size: inherit;
+	background: none;
+	padding: 0;
+	color: inherit;
+	word-break: break-all;
+}
+
+.aegis-hooks-copy .dashicons {
+	font-size: 14px;
+	width: 14px;
+	height: 14px;
+	flex-shrink: 0;
+}
+
+.aegis-hooks-copy:hover,
+.aegis-hooks-copy:focus-visible {
+	color: var(--aegis-text, #1e1e1e);
+}
+
+.aegis-hooks-copy.is-copied {
+	color: var(--aegis-accent, #3858e9);
+}
+
+.aegis-hooks-copy--row {
+	margin-top: 0;
+	flex: 0 0 auto;
+	font-size: 12px;
+	color: var(--aegis-text);
+}
+
+.aegis-hooks-copy--row code {
+	font-family: ui-monospace, 'SF Mono', 'Cascadia Code', 'Segoe UI Mono', Menlo, Monaco, Consolas, monospace;
+	background: var(--aegis-surface-muted);
+	padding: 4px 10px;
+	border-radius: 4px;
+	border: 1px solid var(--aegis-border);
+	white-space: nowrap;
+}
+
+.aegis-hooks-header-actions .aegis-pro-badge,
+.aegis-hooks-actions .aegis-pro-badge,
+.aegis-hooks-page .aegis-toolbar .aegis-pro-badge,
+.aegis-hooks-empty-action .aegis-pro-badge {
+	margin-left: 4px;
+}
+
+.aegis-hooks-conditionals-hint {
+	margin: 12px 0 0;
+}
+
+.aegis-hooks-always {
+	color: var(--aegis-text-muted, #707070);
+}
+
+.aegis-hooks-conditional {
+	color: var(--aegis-accent, #3858e9);
+	text-decoration: none;
+	font-weight: 600;
+}
+
+a.aegis-hooks-conditional:hover,
+a.aegis-hooks-conditional:focus-visible {
+	text-decoration: underline;
+}
+
+.aegis-hooks-capabilities {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	margin: 0 0 24px;
+	padding: 16px 20px;
+	background: var(--aegis-surface, #fff);
+	border: 1px solid var(--aegis-border, #dbdbdb);
+}
+
+.aegis-hooks-capabilities p {
+	margin: 4px 0 0;
+	color: var(--aegis-text-muted, #707070);
+	font-size: 13px;
+}
+
+@media (max-width: 782px) {
+	.aegis-hooks-capabilities {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}

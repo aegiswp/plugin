@@ -1,0 +1,27 @@
+# Exclude from WordPress.org release zip (wp dist-archive / manual packaging).
+.git
+.github
+.gitignore
+.distignore
+.editorconfig
+.eslintrc.js
+.prettierrc
+BUILD.md
+scripts
+node_modules
+package.json
+package-lock.json
+composer.json
+composer.lock
+phpcs.xml
+phpcs.xml.dist
+.phpunit.result.cache
+phpunit.xml
+phpunit.xml.dist
+tests
+vendor
+*.md
+!readme.txt
+assets/admin/src
+assets/editor/src
+*.map

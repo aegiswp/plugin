@@ -1,0 +1,6173 @@
+# Copyright (C) 2026 Atmostfear Entertainment
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Aegis 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aegis\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-06T14:28:34+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: aegis\n"
+
+#. Plugin Name of the plugin
+#: aegis.php
+#: src/Admin/Menu.php:247
+#: src/Admin/Menu.php:248
+#: src/Admin/PageLoader.php:278
+#: src/Admin/Renderer.php:81
+msgid "Aegis"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: aegis.php
+msgid "https://www.atmostfear-entertaiment.com/aegis/plugin/"
+msgstr ""
+
+#. Description of the plugin
+#: aegis.php
+msgid "Companion plugin for the Aegis theme — Map and Modal blocks, settings dashboard, conditionals, hooks, analytics, and integrations. Requires the Aegis theme."
+msgstr ""
+
+#. Author of the plugin
+#: aegis.php
+msgid "Atmostfear Entertainment"
+msgstr ""
+
+#. Author URI of the plugin
+#: aegis.php
+msgid "https://www.atmostfear-entertainment.com/"
+msgstr ""
+
+#: aegis.php:60
+msgid "The Aegis plugin requires the Aegis theme. Install and activate the Aegis theme to use this plugin."
+msgstr ""
+
+#: aegis.php:74
+msgid "Aegis plugin recommends Aegis theme version"
+msgstr ""
+
+#: aegis.php:76
+msgid "or higher for the best experience."
+msgstr ""
+
+#: config/coauthors.php:59
+msgid "Author"
+msgstr ""
+
+#: config/patterns.php:28
+#: src/Blocks/AdminPage.php:146
+#: src/Modal/AdminPage.php:353
+#: templates/modals-admin-page.php:98
+msgid "Modal"
+msgstr ""
+
+#: config/patterns.php:29
+#: src/Modal/AdminPage.php:356
+msgid "Contact"
+msgstr ""
+
+#: config/patterns.php:33
+#: src/Blocks/AdminPage.php:162
+msgid "Slider"
+msgstr ""
+
+#: patterns/contact/form-map-overlay.php:18
+#: patterns/modal/modal-contact.php:16
+#: patterns/modal/modal-contact.php:18
+msgid "Get in Touch"
+msgstr ""
+
+#: patterns/contact/form-map-overlay.php:22
+#: patterns/contact/form-map.php:16
+#: patterns/modal/modal-contact.php:16
+msgid "Contact Us"
+msgstr ""
+
+#: patterns/contact/form-map-overlay.php:27
+#: patterns/contact/form-map.php:21
+#: src/Snippets/AdminPage.php:988
+#: templates/visibility-presets-admin-page.php:96
+#: templates/visibility-presets-admin-page.php:135
+msgid "Name"
+msgstr ""
+
+#: patterns/contact/form-map-overlay.php:29
+#: patterns/contact/form-map.php:23
+msgid "Email"
+msgstr ""
+
+#: patterns/contact/form-map-overlay.php:31
+#: patterns/contact/form-map.php:25
+msgid "Message"
+msgstr ""
+
+#: patterns/contact/form-map-overlay.php:34
+#: patterns/contact/form-map.php:28
+msgid "Send"
+msgstr ""
+
+#: patterns/modal/modal-contact.php:22
+msgid "Have a question? We'd love to hear from you."
+msgstr ""
+
+#: patterns/modal/modal-contact.php:27
+msgid "Your Name"
+msgstr ""
+
+#: patterns/modal/modal-contact.php:28
+msgid "Your Email"
+msgstr ""
+
+#: patterns/modal/modal-contact.php:29
+msgid "Your Message"
+msgstr ""
+
+#: patterns/modal/modal-contact.php:30
+msgid "Send Message"
+msgstr ""
+
+#: patterns/modal/modal-cookie-consent.php:16
+msgid "Cookie Consent"
+msgstr ""
+
+#: patterns/modal/modal-cookie-consent.php:22
+msgid "We use cookies to enhance your browsing experience and analyze site traffic. By clicking \"Accept\", you consent to our use of cookies."
+msgstr ""
+
+#: patterns/modal/modal-cookie-consent.php:32
+msgid "Accept"
+msgstr ""
+
+#: patterns/modal/modal-cookie-consent.php:36
+#: src/Admin/Renderer.php:104
+#: src/General/AdminPage.php:55
+#: src/General/AdminPage.php:65
+#: src/General/AdminPage.php:66
+#: src/General/AdminPage.php:77
+#: templates/general-settings-admin-page.php:29
+msgid "Settings"
+msgstr ""
+
+#: patterns/modal/modal-newsletter.php:16
+msgid "Subscribe to Our Newsletter"
+msgstr ""
+
+#: patterns/modal/modal-newsletter.php:18
+msgid "Don't Miss Out!"
+msgstr ""
+
+#: patterns/modal/modal-newsletter.php:22
+msgid "Subscribe to our newsletter and get exclusive updates, tips, and offers delivered straight to your inbox."
+msgstr ""
+
+#: patterns/modal/modal-newsletter.php:29
+msgid "Enter your email"
+msgstr ""
+
+#: patterns/modal/modal-newsletter.php:30
+msgid "Subscribe"
+msgstr ""
+
+#: patterns/modal/modal-newsletter.php:37
+msgid "We respect your privacy. Unsubscribe at any time."
+msgstr ""
+
+#: patterns/modal/modal-video.php:17
+msgid "Watch Video"
+msgstr ""
+
+#: patterns/slider/features.php:19
+msgid "Why Choose Us"
+msgstr ""
+
+#: patterns/slider/features.php:23
+msgid "Discover the features that set us apart from the competition."
+msgstr ""
+
+#: patterns/slider/features.php:41
+msgid "Lightning Fast"
+msgstr ""
+
+#: patterns/slider/features.php:45
+msgid "Optimized for speed with lazy loading, minimal JavaScript, and efficient CSS delivery."
+msgstr ""
+
+#: patterns/slider/features.php:61
+msgid "Fully Accessible"
+msgstr ""
+
+#: patterns/slider/features.php:65
+msgid "WCAG 2.1 compliant with keyboard navigation, screen reader support, and reduced motion."
+msgstr ""
+
+#: patterns/slider/features.php:81
+msgid "Secure by Design"
+msgstr ""
+
+#: patterns/slider/features.php:85
+msgid "Built with security best practices including proper escaping and sanitization."
+msgstr ""
+
+#: patterns/slider/features.php:101
+msgid "Fully Responsive"
+msgstr ""
+
+#: patterns/slider/features.php:105
+msgid "Looks perfect on every device with customizable breakpoints for desktop, tablet, and mobile."
+msgstr ""
+
+#: patterns/slider/features.php:121
+msgid "Easy to Customize"
+msgstr ""
+
+#: patterns/slider/features.php:125
+msgid "Intuitive block editor controls make customization a breeze without any coding required."
+msgstr ""
+
+#: patterns/slider/hero.php:21
+msgid "Modern office workspace"
+msgstr ""
+
+#: patterns/slider/hero.php:23
+msgid "Transform Your Digital Presence"
+msgstr ""
+
+#: patterns/slider/hero.php:27
+msgid "Create stunning websites with our powerful block-based design system."
+msgstr ""
+
+#: patterns/slider/hero.php:33
+msgid "Get Started"
+msgstr ""
+
+#: patterns/slider/hero.php:45
+msgid "Analytics dashboard"
+msgstr ""
+
+#: patterns/slider/hero.php:47
+msgid "Data-Driven Results"
+msgstr ""
+
+#: patterns/slider/hero.php:51
+msgid "Make informed decisions with powerful analytics and insights."
+msgstr ""
+
+#: patterns/slider/hero.php:57
+msgid "View Demo"
+msgstr ""
+
+#: patterns/slider/portfolio.php:19
+msgid "Our Latest Work"
+msgstr ""
+
+#: patterns/slider/portfolio.php:23
+msgid "Explore our portfolio of successful projects and creative solutions."
+msgstr ""
+
+#: patterns/slider/portfolio.php:35
+#: patterns/slider/portfolio.php:39
+msgid "E-commerce Platform"
+msgstr ""
+
+#: patterns/slider/portfolio.php:43
+#: patterns/slider/portfolio.php:123
+msgid "Web Development"
+msgstr ""
+
+#: patterns/slider/portfolio.php:55
+msgid "Brand Identity Design"
+msgstr ""
+
+#: patterns/slider/portfolio.php:59
+msgid "Brand Identity"
+msgstr ""
+
+#: patterns/slider/portfolio.php:63
+msgid "Branding & Design"
+msgstr ""
+
+#: patterns/slider/portfolio.php:75
+msgid "Mobile App Design"
+msgstr ""
+
+#: patterns/slider/portfolio.php:79
+msgid "Mobile App"
+msgstr ""
+
+#: patterns/slider/portfolio.php:83
+msgid "UI/UX Design"
+msgstr ""
+
+#: patterns/slider/portfolio.php:95
+#: patterns/slider/portfolio.php:99
+msgid "Marketing Campaign"
+msgstr ""
+
+#: patterns/slider/portfolio.php:103
+msgid "Digital Marketing"
+msgstr ""
+
+#: patterns/slider/portfolio.php:115
+#: patterns/slider/portfolio.php:119
+msgid "Corporate Website"
+msgstr ""
+
+#: patterns/slider/team.php:19
+msgid "Meet Our Team"
+msgstr ""
+
+#: patterns/slider/team.php:23
+msgid "The talented people behind our success."
+msgstr ""
+
+#: patterns/slider/team.php:37
+#: patterns/slider/team.php:41
+msgid "John Smith"
+msgstr ""
+
+#: patterns/slider/team.php:45
+msgid "CEO & Founder"
+msgstr ""
+
+#: patterns/slider/team.php:64
+#: patterns/slider/team.php:68
+#: patterns/slider/testimonials.php:33
+#: patterns/slider/testimonials.php:39
+msgid "Sarah Johnson"
+msgstr ""
+
+#: patterns/slider/team.php:72
+msgid "Creative Director"
+msgstr ""
+
+#: patterns/slider/team.php:91
+#: patterns/slider/team.php:95
+#: patterns/slider/testimonials.php:69
+#: patterns/slider/testimonials.php:75
+msgid "Michael Chen"
+msgstr ""
+
+#: patterns/slider/team.php:99
+msgid "Lead Developer"
+msgstr ""
+
+#: patterns/slider/team.php:118
+#: patterns/slider/team.php:122
+#: patterns/slider/testimonials.php:105
+#: patterns/slider/testimonials.php:111
+msgid "Emily Rodriguez"
+msgstr ""
+
+#: patterns/slider/team.php:126
+msgid "UX Designer"
+msgstr ""
+
+#: patterns/slider/team.php:145
+#: patterns/slider/team.php:149
+msgid "David Kim"
+msgstr ""
+
+#: patterns/slider/team.php:153
+msgid "Marketing Lead"
+msgstr ""
+
+#: patterns/slider/testimonials.php:27
+msgid "\"This theme has completely transformed how we build websites. The block-based approach is intuitive and the results are stunning. Highly recommended for any serious web project.\""
+msgstr ""
+
+#: patterns/slider/testimonials.php:43
+msgid "CEO, TechStart Inc."
+msgstr ""
+
+#: patterns/slider/testimonials.php:63
+msgid "\"The performance optimizations are incredible. Our page load times dropped by 40% after switching to this theme. The accessibility features are also top-notch.\""
+msgstr ""
+
+#: patterns/slider/testimonials.php:79
+msgid "Lead Developer, WebCraft"
+msgstr ""
+
+#: patterns/slider/testimonials.php:99
+msgid "\"Finally, a theme that takes accessibility seriously. Our clients love how inclusive their websites have become. The support team is also fantastic.\""
+msgstr ""
+
+#: patterns/slider/testimonials.php:115
+msgid "UX Designer, AccessibleWeb"
+msgstr ""
+
+#: patterns/wishlist/template/page-wishlist.php:20
+msgid "My Wishlist"
+msgstr ""
+
+#: patterns/wishlist/template/page-wishlist.php:24
+msgid "Save your favorite items and come back to them anytime."
+msgstr ""
+
+#: patterns/wishlist/template/page-wishlist.php:43
+#: patterns/woocommerce/page/funnel-thank-you.php:63
+#: patterns/woocommerce/template/order-confirmation.php:126
+msgid "Continue Shopping"
+msgstr ""
+
+#: patterns/woocommerce/commerce/recently-viewed.php:15
+#: patterns/woocommerce/page/product-landing-dynamic.php:50
+msgid "Recently Viewed"
+msgstr ""
+
+#: patterns/woocommerce/commerce/recently-viewed.php:19
+msgid "Pick up where you left off."
+msgstr ""
+
+#: patterns/woocommerce/header/store-default.php:33
+msgid "Search products…"
+msgstr ""
+
+#: patterns/woocommerce/page/funnel-thank-you.php:25
+msgid "Thank You for Your Purchase!"
+msgstr ""
+
+#: patterns/woocommerce/page/funnel-thank-you.php:29
+msgid "Your order has been confirmed and is being processed. You'll receive a confirmation email shortly with your order details."
+msgstr ""
+
+#: patterns/woocommerce/page/funnel-thank-you.php:35
+msgid "What Happens Next?"
+msgstr ""
+
+#: patterns/woocommerce/page/funnel-thank-you.php:41
+msgid "1. Check your email for order confirmation and receipt"
+msgstr ""
+
+#: patterns/woocommerce/page/funnel-thank-you.php:45
+msgid "2. Your order will be prepared and shipped within 24 hours"
+msgstr ""
+
+#: patterns/woocommerce/page/funnel-thank-you.php:49
+msgid "3. You'll receive a tracking number once your order ships"
+msgstr ""
+
+#: patterns/woocommerce/page/funnel-thank-you.php:59
+msgid "View My Orders"
+msgstr ""
+
+#: patterns/woocommerce/page/funnel-thank-you.php:75
+msgid "You Might Also Like"
+msgstr ""
+
+#: patterns/woocommerce/page/funnel-thank-you.php:79
+msgid "Customers who bought this also loved these products."
+msgstr ""
+
+#: patterns/woocommerce/page/funnel-thank-you.php:109
+msgid "Share Your Purchase"
+msgstr ""
+
+#: patterns/woocommerce/page/product-landing-dynamic.php:22
+msgid "Discover Our Collection"
+msgstr ""
+
+#: patterns/woocommerce/page/product-landing-dynamic.php:26
+msgid "Curated products designed to elevate your experience. Browse our latest arrivals, best sellers, and exclusive deals."
+msgstr ""
+
+#: patterns/woocommerce/page/product-landing-dynamic.php:32
+msgid "Shop All Products"
+msgstr ""
+
+#: patterns/woocommerce/page/product-landing-dynamic.php:54
+msgid "Pick up where you left off with products you've recently browsed."
+msgstr ""
+
+#: patterns/woocommerce/page/shop-full-width.php:18
+msgid "Our Store"
+msgstr ""
+
+#: patterns/woocommerce/page/shop-full-width.php:22
+#: patterns/woocommerce/template/search-product.php:157
+msgid "Browse All Products"
+msgstr ""
+
+#: patterns/woocommerce/page/shop-full-width.php:26
+msgid "Explore our full catalog of premium products."
+msgstr ""
+
+#: patterns/woocommerce/page/shop-full-width.php:35
+#: patterns/woocommerce/page/shop-full-width.php:37
+#: patterns/woocommerce/page/shop-full-width.php:38
+#: patterns/woocommerce/template/archive-product.php:42
+#: patterns/woocommerce/template/archive-product.php:45
+#: patterns/woocommerce/template/search-product.php:41
+#: patterns/woocommerce/template/search-product.php:44
+#: patterns/woocommerce/template/taxonomy-product_cat.php:43
+#: patterns/woocommerce/template/taxonomy-product_cat.php:46
+#: patterns/woocommerce/template/taxonomy-product_tag.php:43
+#: patterns/woocommerce/template/taxonomy-product_tag.php:46
+msgid "Price"
+msgstr ""
+
+#: patterns/woocommerce/page/shop-full-width.php:45
+#: patterns/woocommerce/page/shop-full-width.php:47
+#: patterns/woocommerce/page/shop-full-width.php:48
+#: patterns/woocommerce/template/archive-product.php:70
+#: patterns/woocommerce/template/archive-product.php:73
+#: patterns/woocommerce/template/search-product.php:69
+#: patterns/woocommerce/template/search-product.php:72
+#: patterns/woocommerce/template/taxonomy-product_cat.php:71
+#: patterns/woocommerce/template/taxonomy-product_cat.php:74
+#: patterns/woocommerce/template/taxonomy-product_tag.php:71
+#: patterns/woocommerce/template/taxonomy-product_tag.php:74
+msgid "Availability"
+msgstr ""
+
+#: patterns/woocommerce/page/shop-full-width.php:55
+#: patterns/woocommerce/page/shop-full-width.php:57
+#: patterns/woocommerce/page/shop-full-width.php:58
+#: patterns/woocommerce/template/archive-product.php:84
+#: patterns/woocommerce/template/archive-product.php:87
+#: patterns/woocommerce/template/search-product.php:83
+#: patterns/woocommerce/template/search-product.php:86
+#: patterns/woocommerce/template/taxonomy-product_cat.php:85
+#: patterns/woocommerce/template/taxonomy-product_cat.php:88
+#: patterns/woocommerce/template/taxonomy-product_tag.php:85
+#: patterns/woocommerce/template/taxonomy-product_tag.php:88
+msgid "Rating"
+msgstr ""
+
+#: patterns/woocommerce/page/shop-full-width.php:65
+#: patterns/woocommerce/template/archive-product.php:98
+#: patterns/woocommerce/template/archive-product.php:101
+#: patterns/woocommerce/template/search-product.php:97
+#: patterns/woocommerce/template/search-product.php:100
+#: patterns/woocommerce/template/taxonomy-product_cat.php:99
+#: patterns/woocommerce/template/taxonomy-product_cat.php:102
+#: patterns/woocommerce/template/taxonomy-product_tag.php:99
+#: patterns/woocommerce/template/taxonomy-product_tag.php:102
+msgid "Active Filters"
+msgstr ""
+
+#: patterns/woocommerce/page/shop-full-width.php:116
+#: patterns/woocommerce/template/search-product.php:147
+#: patterns/woocommerce/template/taxonomy-product_cat.php:149
+#: patterns/woocommerce/template/taxonomy-product_tag.php:149
+msgid "No products found"
+msgstr ""
+
+#: patterns/woocommerce/page/shop-full-width.php:120
+#: patterns/woocommerce/template/archive-product.php:152
+#: patterns/woocommerce/template/taxonomy-product_cat.php:153
+#: patterns/woocommerce/template/taxonomy-product_tag.php:153
+msgid "You can try"
+msgstr ""
+
+#: patterns/woocommerce/page/shop-full-width.php:120
+#: patterns/woocommerce/template/archive-product.php:152
+#: patterns/woocommerce/template/taxonomy-product_cat.php:153
+#: patterns/woocommerce/template/taxonomy-product_tag.php:153
+msgid "clearing any filters"
+msgstr ""
+
+#: patterns/woocommerce/page/shop-full-width.php:120
+#: patterns/woocommerce/template/archive-product.php:152
+#: patterns/woocommerce/template/taxonomy-product_cat.php:153
+#: patterns/woocommerce/template/taxonomy-product_tag.php:153
+msgid "or head to our"
+msgstr ""
+
+#: patterns/woocommerce/page/shop-full-width.php:120
+#: patterns/woocommerce/template/archive-product.php:152
+#: patterns/woocommerce/template/taxonomy-product_cat.php:153
+#: patterns/woocommerce/template/taxonomy-product_tag.php:153
+msgid "store's home"
+msgstr ""
+
+#: patterns/woocommerce/product/featured-grid.php:17
+msgid "Featured Products"
+msgstr ""
+
+#: patterns/woocommerce/product/featured-grid.php:23
+msgid "View All →"
+msgstr ""
+
+#: patterns/woocommerce/product/featured-grid.php:60
+msgid "No featured products found. Mark products as featured in WooCommerce to display them here."
+msgstr ""
+
+#: patterns/woocommerce/product/on-sale.php:19
+msgid "On Sale Now"
+msgstr ""
+
+#: patterns/woocommerce/product/on-sale.php:23
+msgid "Limited Time"
+msgstr ""
+
+#: patterns/woocommerce/product/on-sale.php:31
+msgid "View All Sales →"
+msgstr ""
+
+#: patterns/woocommerce/product/on-sale.php:66
+msgid "No products are currently on sale. Check back soon for deals!"
+msgstr ""
+
+#: patterns/woocommerce/template/archive-product.php:39
+#: patterns/woocommerce/template/taxonomy-product_cat.php:40
+#: patterns/woocommerce/template/taxonomy-product_tag.php:40
+msgid "Filter Products"
+msgstr ""
+
+#: patterns/woocommerce/template/archive-product.php:56
+#: patterns/woocommerce/template/archive-product.php:59
+#: patterns/woocommerce/template/search-product.php:55
+#: patterns/woocommerce/template/search-product.php:58
+#: patterns/woocommerce/template/taxonomy-product_cat.php:57
+#: patterns/woocommerce/template/taxonomy-product_cat.php:60
+#: patterns/woocommerce/template/taxonomy-product_tag.php:57
+#: patterns/woocommerce/template/taxonomy-product_tag.php:60
+msgid "Color"
+msgstr ""
+
+#: patterns/woocommerce/template/archive-product.php:148
+msgid "No results found"
+msgstr ""
+
+#: patterns/woocommerce/template/order-confirmation.php:26
+msgid "Thank You for Your Order"
+msgstr ""
+
+#: patterns/woocommerce/template/order-confirmation.php:30
+msgid "Your order has been received and is being processed. You will receive a confirmation email shortly."
+msgstr ""
+
+#: patterns/woocommerce/template/order-confirmation.php:46
+msgid "Order Details"
+msgstr ""
+
+#: patterns/woocommerce/template/order-confirmation.php:56
+msgid "Downloads"
+msgstr ""
+
+#: patterns/woocommerce/template/order-confirmation.php:70
+msgid "Shipping Address"
+msgstr ""
+
+#: patterns/woocommerce/template/order-confirmation.php:84
+msgid "Billing Address"
+msgstr ""
+
+#: patterns/woocommerce/template/order-confirmation.php:102
+msgid "You May Also Like"
+msgstr ""
+
+#: patterns/woocommerce/template/page-cart.php:20
+msgid "Your Cart"
+msgstr ""
+
+#: patterns/woocommerce/template/page-cart.php:36
+msgid "You may also like"
+msgstr ""
+
+#: patterns/woocommerce/template/page-cart.php:77
+msgid "Your cart is currently empty"
+msgstr ""
+
+#: patterns/woocommerce/template/page-cart.php:81
+msgid "Looks like you haven't added anything to your cart yet."
+msgstr ""
+
+#: patterns/woocommerce/template/page-cart.php:87
+msgid "Browse Products"
+msgstr ""
+
+#: patterns/woocommerce/template/page-checkout-multi-step.php:20
+#: patterns/woocommerce/template/page-checkout.php:20
+msgid "Checkout"
+msgstr ""
+
+#: patterns/woocommerce/template/page-checkout-multi-step.php:32
+msgid "Shipping"
+msgstr ""
+
+#: patterns/woocommerce/template/page-checkout-multi-step.php:48
+msgid "Payment"
+msgstr ""
+
+#: patterns/woocommerce/template/page-checkout-multi-step.php:64
+msgid "Review"
+msgstr ""
+
+#: patterns/woocommerce/template/page-checkout-multi-step.php:132
+msgid "← Previous Step"
+msgstr ""
+
+#: patterns/woocommerce/template/page-checkout-multi-step.php:140
+#: src/Integrations/WooCommerce/MultiStepCheckout.php:82
+msgid "Continue to Payment →"
+msgstr ""
+
+#: patterns/woocommerce/template/page-checkout-multi-step.php:150
+#: patterns/woocommerce/template/page-checkout.php:70
+msgid "Secure checkout powered by industry-standard encryption"
+msgstr ""
+
+#: patterns/woocommerce/template/page-my-account.php:20
+msgid "My Account"
+msgstr ""
+
+#: patterns/woocommerce/template/search-product.php:38
+msgid "Refine Results"
+msgstr ""
+
+#: patterns/woocommerce/template/search-product.php:151
+msgid "Sorry, we couldn't find any products matching your search. Try a different keyword or browse our store."
+msgstr ""
+
+#: patterns/woocommerce/template/single-product.php:56
+msgid "Category: "
+msgstr ""
+
+#: patterns/woocommerce/template/single-product.php:58
+msgid "Tags: "
+msgstr ""
+
+#: patterns/woocommerce/template/single-product.php:67
+msgid "Secure Checkout"
+msgstr ""
+
+#: patterns/woocommerce/template/single-product.php:74
+msgid "Free Shipping"
+msgstr ""
+
+#: patterns/woocommerce/template/single-product.php:81
+msgid "30-Day Returns"
+msgstr ""
+
+#: patterns/woocommerce/template/single-product.php:100
+msgid "Related Products"
+msgstr ""
+
+#: patterns/woocommerce/template/taxonomy-product_attribute.php:47
+#: patterns/woocommerce/template/taxonomy-product_cat-clothing.php:47
+#: patterns/woocommerce/template/taxonomy-product_cat-digital.php:47
+#: patterns/woocommerce/template/taxonomy-product_cat-outlet.php:47
+msgid "No products found."
+msgstr ""
+
+#: src/Admin/Menu.php:86
+#: src/Analytics/IntegrationsPanel.php:129
+#: src/Blocks/SettingsController.php:35
+#: src/Conditionals/SettingsController.php:35
+#: src/Integrations/Notices.php:149
+#: src/Integrations/SettingsController.php:39
+#: src/Integrations/SettingsController.php:65
+#: src/Integrations/SettingsController.php:95
+#: src/Map/IntegrationsPanel.php:213
+#: src/Map/IntegrationsPanel.php:244
+#: src/Settings/Controller.php:43
+#: src/Settings/Controller.php:63
+#: src/Settings/Controller.php:84
+#: src/Settings/Controller.php:130
+#: src/Settings/Controller.php:166
+#: src/Settings/Controller.php:186
+#: src/Snippets/SettingsController.php:39
+msgid "Security check failed."
+msgstr ""
+
+#: src/Admin/Menu.php:90
+#: src/Analytics/IntegrationsPanel.php:133
+#: src/Blocks/SettingsController.php:39
+#: src/Conditionals/SettingsController.php:39
+#: src/Integrations/Notices.php:153
+#: src/Integrations/SettingsController.php:43
+#: src/Integrations/SettingsController.php:69
+#: src/Integrations/SettingsController.php:99
+#: src/Map/IntegrationsPanel.php:217
+#: src/Map/IntegrationsPanel.php:248
+#: src/Settings/Controller.php:47
+#: src/Settings/Controller.php:67
+#: src/Settings/Controller.php:88
+#: src/Settings/Controller.php:134
+#: src/Settings/Controller.php:170
+#: src/Settings/Controller.php:190
+#: src/Snippets/SettingsController.php:43
+msgid "Permission denied."
+msgstr ""
+
+#: src/Admin/Menu.php:146
+#: src/Admin/Menu.php:180
+#: src/Admin/Menu.php:259
+#: src/Admin/Menu.php:260
+#: src/Admin/PageLoader.php:252
+#: src/Admin/Renderer.php:158
+#: src/Admin/Renderer.php:347
+#: src/Admin/Renderer.php:1189
+msgid "Dashboard"
+msgstr ""
+
+#: src/Admin/Menu.php:393
+msgid "Saving..."
+msgstr ""
+
+#: src/Admin/Menu.php:394
+#: src/Blocks/SettingsController.php:53
+#: src/Conditionals/SettingsController.php:53
+#: src/Integrations/SettingsController.php:57
+#: src/Integrations/SettingsController.php:87
+#: src/Map/IntegrationsPanel.php:236
+#: src/Settings/Controller.php:58
+#: src/Settings/Controller.php:197
+#: src/Snippets/SettingsController.php:55
+msgid "Settings saved."
+msgstr ""
+
+#: src/Admin/Menu.php:395
+msgid "Error saving settings."
+msgstr ""
+
+#: src/Admin/Menu.php:396
+msgid "This permanently deletes all Aegis data. Type DELETE to confirm."
+msgstr ""
+
+#: src/Admin/Menu.php:397
+msgid "Could not load that screen. Reloading…"
+msgstr ""
+
+#: src/Admin/PageLoader.php:67
+msgid "Forbidden."
+msgstr ""
+
+#: src/Admin/PageLoader.php:91
+#: src/Admin/PageLoader.php:98
+msgid "Invalid page."
+msgstr ""
+
+#: src/Admin/PageLoader.php:107
+msgid "Unknown page."
+msgstr ""
+
+#: src/Admin/PageLoader.php:119
+msgid "Empty page."
+msgstr ""
+
+#: src/Admin/Renderer.php:89
+#: src/Admin/Renderer.php:550
+#: src/Admin/Renderer.php:639
+#: src/Admin/Renderer.php:803
+#: src/Admin/Renderer.php:830
+#: src/Admin/Renderer.php:854
+#: src/Admin/Renderer.php:961
+#: templates/connectors-bunnycdn-section.php:47
+#: templates/connectors-bunnycdn-section.php:76
+#: templates/connectors-bunnycdn-section.php:105
+#: templates/connectors-bunnycdn-section.php:134
+#: templates/connectors-bunnycdn-section.php:163
+#: templates/connectors-bunnycdn-section.php:192
+#: templates/connectors-bunnycdn-section.php:219
+#: templates/hooks-admin-page.php:47
+#: templates/hooks-admin-page.php:79
+#: templates/integrations-analytics-section.php:82
+#: templates/integrations-analytics-section.php:149
+#: templates/integrations-analytics-section.php:417
+#: templates/integrations-analytics-section.php:557
+#: templates/modals-admin-page.php:222
+#: templates/visibility-presets-admin-page.php:52
+#: templates/visibility-presets-admin-page.php:81
+msgid "Pro"
+msgstr ""
+
+#: src/Admin/Renderer.php:95
+msgid "Get Pro"
+msgstr ""
+
+#: src/Admin/Renderer.php:110
+msgid "Resources"
+msgstr ""
+
+#: src/Admin/Renderer.php:115
+msgid "Documentation"
+msgstr ""
+
+#: src/Admin/Renderer.php:119
+msgid "Support Group"
+msgstr ""
+
+#: src/Admin/Renderer.php:123
+msgid "Changelog"
+msgstr ""
+
+#: src/Admin/Renderer.php:127
+msgid "GitHub"
+msgstr ""
+
+#: src/Admin/Renderer.php:132
+msgid "Donate"
+msgstr ""
+
+#: src/Admin/Renderer.php:195
+#: src/Snippets/AdminPage.php:665
+msgid "Edit Snippet"
+msgstr ""
+
+#: src/Admin/Renderer.php:196
+msgid "Write the code, choose a type, and pick where it should run."
+msgstr ""
+
+#: src/Admin/Renderer.php:198
+msgid "Control PHP snippets, Safe Mode, frontend previews, and custom injection locations."
+msgstr ""
+
+#: src/Admin/Renderer.php:202
+#: src/Admin/Renderer.php:323
+msgid "Inject block layouts at theme and WordPress hooks."
+msgstr ""
+
+#: src/Admin/Renderer.php:204
+msgid "Use a code snippet instead"
+msgstr ""
+
+#: src/Admin/Renderer.php:209
+#: src/Admin/Renderer.php:325
+msgid "Save reusable visibility rule sets for the block editor."
+msgstr ""
+
+#: src/Admin/Renderer.php:211
+msgid "Manage condition types"
+msgstr ""
+
+#: src/Admin/Renderer.php:320
+msgid "Overview of your Aegis setup, quick actions, and system status."
+msgstr ""
+
+#: src/Admin/Renderer.php:321
+msgid "Enable or disable blocks enhancements provided by the framework."
+msgstr ""
+
+#: src/Admin/Renderer.php:322
+msgid "Modals on this site. Feature flags stay on Blocks → Modal."
+msgstr ""
+
+#: src/Admin/Renderer.php:324
+msgid "Add CSS, JavaScript, HTML, or PHP at injection locations across your site."
+msgstr ""
+
+#: src/Admin/Renderer.php:326
+msgid "Enable or disable conditional logic features for the block editor."
+msgstr ""
+
+#: src/Admin/Renderer.php:327
+msgid "Enable or disable third-party plugin integrations."
+msgstr ""
+
+#: src/Admin/Renderer.php:328
+msgid "Connect BunnyCDN, Google Maps, and analytics providers."
+msgstr ""
+
+#: src/Admin/Renderer.php:329
+msgid "Site-wide frontend optimizations. WordPress already lazy-loads images and may prefetch in-viewport links."
+msgstr ""
+
+#: src/Admin/Renderer.php:330
+msgid "Configure general theme settings and features."
+msgstr ""
+
+#: src/Admin/Renderer.php:331
+msgid "Activate your license key to unlock Pro features and receive automatic updates."
+msgstr ""
+
+#: src/Admin/Renderer.php:332
+msgid "View video performance metrics, audience retention, and engagement data."
+msgstr ""
+
+#: src/Admin/Renderer.php:428
+#: src/Admin/Renderer.php:550
+msgid "Pro Feature"
+msgstr ""
+
+#: src/Admin/Renderer.php:635
+#: src/Blocks/AdminPage.php:531
+msgid "Video Sitemap"
+msgstr ""
+
+#. translators: %s: SEO plugin name
+#: src/Admin/Renderer.php:647
+#, php-format
+msgid "Let %s handle Video Sitemap instead of the Blocks → Video extra. When enabled, that extra is disabled; Aegis still adds videos to this plugin's sitemap."
+msgstr ""
+
+#: src/Admin/Renderer.php:666
+#: src/Blocks/AdminPage.php:199
+msgid "FAQ Schema"
+msgstr ""
+
+#. translators: %s: SEO plugin name
+#: src/Admin/Renderer.php:671
+#, php-format
+msgid "Let %s handle FAQ Schema for Accordion List. When enabled, built-in FAQPage markup is suppressed."
+msgstr ""
+
+#: src/Admin/Renderer.php:690
+msgid "Event Schema"
+msgstr ""
+
+#. translators: %s: SEO plugin name
+#: src/Admin/Renderer.php:695
+#, php-format
+msgid "Let %s handle Event Schema for the Countdown block. When enabled, built-in Event markup is suppressed."
+msgstr ""
+
+#: src/Admin/Renderer.php:714
+msgid "Local Business Schema"
+msgstr ""
+
+#. translators: %s: SEO plugin name
+#: src/Admin/Renderer.php:719
+#, php-format
+msgid "Let %s handle Local Business Schema for the Map block. When enabled, built-in LocalBusiness markup is suppressed."
+msgstr ""
+
+#: src/Admin/Renderer.php:738
+msgid "Video Schema"
+msgstr ""
+
+#. translators: %s: SEO plugin name
+#: src/Admin/Renderer.php:743
+#, php-format
+msgid "Let %s handle Video Schema for the Video block. When enabled, built-in VideoObject markup is suppressed."
+msgstr ""
+
+#: src/Admin/Renderer.php:773
+msgid "Co-Authors Plus integration is provided by the Aegis plugin with improved guest author support."
+msgstr ""
+
+#: src/Admin/Renderer.php:783
+msgid "Author Schema"
+msgstr ""
+
+#: src/Admin/Renderer.php:784
+msgid "Outputs JSON-LD Person schema for each co-author on singular posts."
+msgstr ""
+
+#: src/Admin/Renderer.php:799
+msgid "Social Links"
+msgstr ""
+
+#: src/Admin/Renderer.php:807
+msgid "Display social media links for each guest author (Facebook, LinkedIn, GitHub, Instagram, Bluesky, Website)."
+msgstr ""
+
+#: src/Admin/Renderer.php:826
+msgid "Role Badges"
+msgstr ""
+
+#: src/Admin/Renderer.php:834
+msgid "Show contribution role badges below author names (e.g., Researcher, Editor, Photographer)."
+msgstr ""
+
+#: src/Admin/Renderer.php:850
+msgid "Co-Authors Plus Patterns"
+msgstr ""
+
+#: src/Admin/Renderer.php:858
+msgid "Remove default Co-Authors Plus block patterns from the editor."
+msgstr ""
+
+#: src/Admin/Renderer.php:886
+msgid "WooCommerce Patterns"
+msgstr ""
+
+#: src/Admin/Renderer.php:887
+msgid "Remove default WooCommerce block patterns from the editor."
+msgstr ""
+
+#: src/Admin/Renderer.php:892
+msgid "WooCommerce Templates"
+msgstr ""
+
+#: src/Admin/Renderer.php:893
+msgid "Remove default WooCommerce block templates from the editor."
+msgstr ""
+
+#: src/Admin/Renderer.php:901
+msgid "LearnDash Patterns"
+msgstr ""
+
+#: src/Admin/Renderer.php:902
+msgid "Remove default LearnDash block patterns from the editor."
+msgstr ""
+
+#: src/Admin/Renderer.php:910
+msgid "LifterLMS Patterns"
+msgstr ""
+
+#: src/Admin/Renderer.php:911
+msgid "Remove default LifterLMS block patterns from the editor."
+msgstr ""
+
+#: src/Admin/Renderer.php:919
+msgid "Sensei LMS Patterns"
+msgstr ""
+
+#: src/Admin/Renderer.php:920
+msgid "Remove default Sensei LMS block patterns from the editor."
+msgstr ""
+
+#: src/Admin/Renderer.php:928
+msgid "Fluent Forms Patterns"
+msgstr ""
+
+#: src/Admin/Renderer.php:929
+msgid "Remove default Fluent Forms block patterns from the editor."
+msgstr ""
+
+#: src/Admin/Renderer.php:937
+msgid "Fluent Booking Patterns"
+msgstr ""
+
+#: src/Admin/Renderer.php:938
+msgid "Remove default Fluent Booking block patterns from the editor."
+msgstr ""
+
+#: src/Admin/Renderer.php:997
+#: src/Integrations/Registry.php:505
+#: src/Integrations/Registry.php:525
+#: templates/integrations-analytics-section.php:518
+msgid "Not Installed"
+msgstr ""
+
+#: src/Admin/Renderer.php:1045
+msgid "Reset Defaults"
+msgstr ""
+
+#: src/Admin/Renderer.php:1049
+#: src/Snippets/AdminPage.php:706
+#: templates/hooks-admin-page.php:51
+#: templates/modals-admin-page.php:62
+msgid "Export"
+msgstr ""
+
+#: src/Admin/Renderer.php:1052
+#: src/Snippets/AdminPage.php:708
+#: templates/hooks-admin-page.php:54
+#: templates/modals-admin-page.php:65
+msgid "Import"
+msgstr ""
+
+#: src/Admin/Renderer.php:1058
+msgid "Search settings"
+msgstr ""
+
+#. translators: %s: plugin name
+#: src/Admin/Renderer.php:1092
+#, php-format
+msgid "%s must be installed and active to enable these conditions."
+msgstr ""
+
+#: src/Admin/Renderer.php:1115
+msgid "Enable All"
+msgstr ""
+
+#: src/Admin/Renderer.php:1116
+msgid "Disable All"
+msgstr ""
+
+#: src/Admin/Renderer.php:1199
+msgid "Active Block"
+msgid_plural "Active Blocks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/Renderer.php:1208
+#: templates/hooks-admin-page.php:151
+msgid "Conditional"
+msgid_plural "Conditionals"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/Renderer.php:1217
+msgid "Integration"
+msgid_plural "Integrations"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/Renderer.php:1227
+msgid "Hook Pattern"
+msgid_plural "Hook Patterns"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/Renderer.php:1237
+msgid "Code Snippet"
+msgid_plural "Code Snippets"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/Renderer.php:1244
+msgid "Shortcuts"
+msgstr ""
+
+#: src/Admin/Renderer.php:1250
+msgid "Site Editor"
+msgstr ""
+
+#: src/Admin/Renderer.php:1251
+msgid "Edit your site visually"
+msgstr ""
+
+#: src/Admin/Renderer.php:1257
+msgid "Templates"
+msgstr ""
+
+#: src/Admin/Renderer.php:1258
+msgid "Manage page templates"
+msgstr ""
+
+#: src/Admin/Renderer.php:1264
+msgid "Patterns"
+msgstr ""
+
+#: src/Admin/Renderer.php:1265
+msgid "Browse block patterns"
+msgstr ""
+
+#: src/Admin/Renderer.php:1271
+msgid "Global Styles"
+msgstr ""
+
+#: src/Admin/Renderer.php:1272
+msgid "Customize colors & fonts"
+msgstr ""
+
+#: src/Admin/Renderer.php:1278
+#: src/Snippets/AdminPage.php:137
+#: src/Snippets/AdminPage.php:147
+#: src/Snippets/AdminPage.php:148
+#: src/Snippets/AdminPage.php:665
+#: templates/hooks-admin-page.php:33
+msgid "Code Snippets"
+msgstr ""
+
+#: src/Admin/Renderer.php:1279
+msgid "Custom CSS, JS, HTML, and PHP"
+msgstr ""
+
+#: src/Admin/Renderer.php:1286
+msgid "Hook Patterns"
+msgstr ""
+
+#: src/Admin/Renderer.php:1287
+msgid "Inject layouts at theme hooks"
+msgstr ""
+
+#: src/Admin/Renderer.php:1294
+#: src/Performance/AdminPage.php:48
+#: src/Performance/AdminPage.php:58
+#: src/Performance/AdminPage.php:59
+#: src/Performance/AdminPage.php:70
+#: templates/performance-admin-page.php:29
+msgid "Performance"
+msgstr ""
+
+#: src/Admin/Renderer.php:1295
+msgid "Frontend scripts, embeds, and Query Loop gates"
+msgstr ""
+
+#: src/Admin/Renderer.php:1301
+msgid "New Page"
+msgstr ""
+
+#: src/Admin/Renderer.php:1302
+msgid "Create a new page"
+msgstr ""
+
+#: src/Admin/Renderer.php:1310
+msgid "Getting Started"
+msgstr ""
+
+#: src/Admin/Renderer.php:1312
+#: src/Snippets/AdminPage.php:296
+msgid "Dismiss"
+msgstr ""
+
+#: src/Admin/Renderer.php:1320
+msgid "Customize Your Theme"
+msgstr ""
+
+#: src/Admin/Renderer.php:1321
+msgid "Use the Site Editor to customize templates, headers, footers, and global styles with full block control."
+msgstr ""
+
+#: src/Admin/Renderer.php:1327
+msgid "Manage Block Visibility"
+msgstr ""
+
+#: src/Admin/Renderer.php:1328
+msgid "Show or hide any block based on user roles, devices, schedules, and custom conditions."
+msgstr ""
+
+#: src/Admin/Renderer.php:1334
+msgid "Extend with Integrations"
+msgstr ""
+
+#: src/Admin/Renderer.php:1335
+msgid "Connect WooCommerce, LMS plugins, and other tools to enhance your block-powered site."
+msgstr ""
+
+#: src/Admin/Renderer.php:1341
+msgid "Add Code Snippets"
+msgstr ""
+
+#: src/Admin/Renderer.php:1342
+msgid "Inject custom CSS, JavaScript, HTML, or PHP at theme and integration hook locations."
+msgstr ""
+
+#: src/Admin/Renderer.php:1354
+msgid "System Info"
+msgstr ""
+
+#: src/Admin/Renderer.php:1358
+msgid "Theme Version"
+msgstr ""
+
+#: src/Admin/Renderer.php:1362
+msgid "Aegis Plugin"
+msgstr ""
+
+#: src/Admin/Renderer.php:1366
+#: templates/performance-admin-page.php:37
+msgid "WordPress"
+msgstr ""
+
+#: src/Admin/Renderer.php:1370
+msgid "PHP"
+msgstr ""
+
+#: src/Admin/Renderer.php:1375
+#: src/Admin/Renderer.php:1388
+msgid "Aegis Pro"
+msgstr ""
+
+#: src/Admin/Renderer.php:1406
+msgid "License Active"
+msgstr ""
+
+#: src/Admin/Renderer.php:1406
+msgid "License Inactive"
+msgstr ""
+
+#: src/Admin/Renderer.php:1410
+msgid "Enter your license key to activate Pro features."
+msgstr ""
+
+#: src/Admin/Renderer.php:1415
+msgid "Unlock advanced features, integrations, and professional tools."
+msgstr ""
+
+#: src/Admin/Renderer.php:1419
+msgid "Get Aegis Pro"
+msgstr ""
+
+#: src/Analytics/IntegrationsPanel.php:52
+#: templates/integrations-analytics-section.php:16
+msgid "Google Analytics"
+msgstr ""
+
+#: src/Analytics/IntegrationsPanel.php:57
+msgid "Tag Manager"
+msgstr ""
+
+#: src/Analytics/IntegrationsPanel.php:62
+msgid "Clarity"
+msgstr ""
+
+#: src/Analytics/IntegrationsPanel.php:67
+#: templates/integrations-analytics-section.php:212
+msgid "Plausible"
+msgstr ""
+
+#: src/Analytics/IntegrationsPanel.php:72
+#: templates/integrations-analytics-section.php:277
+msgid "Fathom"
+msgstr ""
+
+#: src/Analytics/IntegrationsPanel.php:77
+#: templates/integrations-analytics-section.php:323
+msgid "Matomo"
+msgstr ""
+
+#: src/Analytics/IntegrationsPanel.php:82
+#: templates/integrations-analytics-section.php:403
+msgid "Meta Pixel"
+msgstr ""
+
+#: src/Analytics/IntegrationsPanel.php:87
+#: templates/integrations-analytics-section.php:472
+msgid "Privacy"
+msgstr ""
+
+#: src/Analytics/IntegrationsPanel.php:144
+msgid "Analytics settings saved."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:66
+#: src/Blocks/AdminPage.php:76
+#: src/Blocks/AdminPage.php:77
+#: src/Blocks/AdminPage.php:103
+#: templates/performance-admin-page.php:48
+msgid "Blocks"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:114
+msgid "Accordion"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:118
+msgid "Countdown"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:122
+msgid "Counter"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:126
+#: src/Modal/InstanceRepository.php:192
+#: src/Blocks/modal/index.js:67
+msgid "Icon"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:130
+msgid "Image Compare"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:134
+#: src/Blocks/AdminPage.php:280
+msgid "Image Lightbox"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:138
+msgid "Map"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:142
+msgid "Marquee"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:150
+#: src/Modal/AdminPage.php:366
+msgid "Newsletter"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:154
+#: src/Blocks/AdminPage.php:383
+msgid "Query Loop"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:158
+msgid "Related Posts"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:166
+#: src/Blocks/AdminPage.php:452
+msgid "SVG"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:170
+msgid "Toggle"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:180
+#: src/Modal/AdminPage.php:377
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Video"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:187
+msgid "Accordion Block"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:187
+msgid "List block variation that transforms lists into semantic accordions."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:190
+msgid "Open First Item"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:190
+msgid "Automatically expand the first accordion item on load."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:191
+msgid "Open All Items"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:191
+msgid "Expand all accordion items by default."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:192
+msgid "Toggle Icon"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:192
+msgid "Show expand/collapse icon indicator."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:193
+msgid "Border Separator"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:193
+msgid "Show border separator between title and content."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:198
+msgid "Add FAQPage structured data markup for SEO."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:201
+msgid "Single Open Mode"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:201
+msgid "Close other items when one is opened."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:208
+msgid "Countdown Block"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:208
+msgid "Countdown timer block that counts down to a specific date and time."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:211
+msgid "Segment Toggles"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:211
+msgid "Show or hide individual segments (days, hours, minutes, seconds)."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:212
+#: src/Blocks/AdminPage.php:473
+msgid "Custom Labels"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:212
+msgid "Customize the text labels below each countdown segment."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:213
+msgid "Separator Style"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:213
+msgid "Choose separator between segments: colon, dot, dash, or none."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:214
+msgid "Layout Options"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:214
+msgid "Switch between inline and stacked layout modes."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:215
+msgid "Expiry Message"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:215
+msgid "Display a custom message when the countdown reaches zero."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:216
+msgid "Timezone Control"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:216
+msgid "Choose between UTC and visitor local timezone."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:221
+msgid "Add Schema.org Event structured data for search engines."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:222
+msgid "Schema.org Event"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:224
+msgid "Evergreen Countdown"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:224
+msgid "Each visitor gets their own countdown starting from their first visit."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:225
+msgid "Animation Styles"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:225
+msgid "Animate digit transitions when values change."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:226
+msgid "Auto-Restart"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:226
+msgid "Automatically restart the countdown after it expires."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:227
+msgid "Expiry Actions"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:227
+msgid "Perform actions when the countdown reaches zero (redirect, hide)."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:228
+msgid "Urgency Styling"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:228
+msgid "Change appearance when time is running low."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:235
+msgid "Counter Block"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:235
+msgid "Paragraph block variation that animates numbers with counting effects."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:238
+msgid "Prefix Text"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:238
+msgid "Display text before the counter number (e.g. currency symbol)."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:239
+msgid "Suffix Text"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:239
+msgid "Display text after the counter number (e.g. percentage sign)."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:240
+msgid "Start Delay"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:240
+msgid "Delay before the counting animation begins."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:241
+msgid "Custom Duration"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:241
+msgid "Control the speed of the counting animation."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:242
+msgid "Scroll Trigger"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:242
+msgid "Start animation when the counter scrolls into view."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:249
+msgid "Icon Block"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:249
+msgid "Enhancements for the WordPress Icon block: Core Icon library collections, gradients, animation, custom SVG, gallery, and responsive sizing."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:252
+msgid "Gradient Colors"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:252
+msgid "Apply gradient colors to icons using CSS mask technique."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:253
+#: src/Blocks/AdminPage.php:358
+#: src/Blocks/AdminPage.php:476
+msgid "Animations"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:253
+msgid "Add animation effects to icon elements."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:254
+msgid "Custom SVG"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:254
+msgid "Paste custom SVG markup on the Icon block."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:255
+msgid "Icon Gallery"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:255
+msgid "Display every icon from the selected library set in a grid."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:256
+msgid "Responsive Sizing"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:256
+msgid "Different icon sizes per breakpoint."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:257
+msgid "REST API Endpoint"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:257
+msgid "Expose Aegis icon sets via REST for the button/tab picker. On WordPress 7.0 this also merges sets into the editor; WordPress 7.1+ registers collections on the Core Icon library."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:264
+msgid "Image Compare Block"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:264
+msgid "Pro before/after image slider. Enabling any extra implies the block in the inserter. Saved blocks still render when extras are off."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:267
+msgid "Orientation"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:267
+msgid "Horizontal or vertical slider direction in the inspector."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:268
+msgid "Before/After Labels"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:268
+msgid "Show and customize labels on the comparison slider, including show-on-hover."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:269
+msgid "Starting Position"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:269
+msgid "Set where the comparison handle starts (0–100%)."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:270
+msgid "Slide on Hover"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:270
+msgid "Move the handle when the pointer enters the image."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:271
+msgid "Circle Handle"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:271
+msgid "Use a circular handle instead of the default line."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:272
+msgid "Smooth Motion"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:272
+msgid "Ease the handle as it moves. Off: library default (smooth, 100ms)."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:273
+msgid "Fluid Clip"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:273
+msgid "Clip the after image with CSS clip-path instead of a width crop."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:280
+msgid "Enhances the native WordPress Image lightbox (Expand on click). Enable extras for grouped navigation, pinch/wheel zoom, thumbnail strips, and swipe."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:283
+msgid "Gallery Navigation"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:283
+msgid "Navigate between images in the same group with prev/next arrows and keyboard."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:284
+#: src/Blocks/map/index.js:398
+#: src/Blocks/modal/index.js:89
+msgid "Zoom"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:284
+msgid "Double-click, scroll wheel, and pinch-to-zoom with pan support."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:285
+msgid "Thumbnail Strip"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:285
+msgid "Show a thumbnail navigation strip for galleries with 4+ images."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:286
+msgid "Swipe Gestures"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:286
+msgid "Navigate between images with touch swipe on mobile devices."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:293
+msgid "Map Block"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:293
+msgid "Google Maps and OpenStreetMap block with markers, styles, and interactive controls."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:296
+msgid "Multiple Markers"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:296
+msgid "Add multiple markers with title and description info windows."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:297
+msgid "Map Style Presets"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:297
+msgid "Silver, Dark, Retro, Night, and Aubergine styles, including the click-to-load preview."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:298
+msgid "Map Controls"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:298
+msgid "Zoom, map type, street view, fullscreen, scroll-wheel, and drag controls."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:299
+msgid "OpenStreetMap Fallback"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:299
+msgid "Use OpenStreetMap when no Google Maps API key is configured."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:300
+msgid "Directions"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:300
+msgid "Route directions with travel mode selector."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:301
+msgid "Store Locator"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:301
+msgid "Search box and radius circle for nearby locations."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:302
+msgid "Geolocation"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:302
+msgid "Show user current position on the map."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:303
+msgid "Heatmap Layer"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:303
+msgid "Visualize density data on the map."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:304
+msgid "Drawing Tools"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:304
+msgid "Polygon, circle, rectangle, and polyline overlays."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:305
+msgid "KML/GeoJSON Import"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:305
+msgid "Load external geographic data layers."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:310
+msgid "Auto-generate LocalBusiness structured data."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:311
+msgid "Schema.org Markup"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:313
+msgid "Dynamic CPT Markers"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:313
+msgid "Pull markers from custom post types with lat/lng fields."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:314
+msgid "Custom Style JSON"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:314
+msgid "Paste a Google Maps style JSON array. Overrides presets, including the click-to-load preview."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:315
+msgid "Custom Marker Icons"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:315
+msgid "Upload custom marker icons from the media library."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:316
+msgid "Marker Clustering"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:316
+msgid "Group nearby markers at lower zoom levels."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:320
+#: src/Map/IntegrationsPanel.php:135
+msgid "Google Maps API"
+msgstr ""
+
+#. translators: %s: link to Connectors page
+#: src/Blocks/AdminPage.php:324
+#, php-format
+msgid "Configure your Google Maps API key in %s."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:325
+msgid "Connectors → Google Maps"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:335
+msgid "Marquee Block"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:335
+msgid "Group block variation that creates CSS-powered infinite scrolling banners."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:338
+msgid "Pause on Hover"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:338
+msgid "Pause the scrolling animation on hover and focus. Off: animation keeps running."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:339
+msgid "Direction Control"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:339
+msgid "Set scroll direction (left-to-right or right-to-left). Off: always forwards."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:340
+msgid "Speed Control"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:340
+msgid "Set loop duration in seconds (lower is faster). Off: 60s mobile / 90s desktop."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:341
+msgid "Repeat Items"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:341
+msgid "Control how many times items are cloned for seamless looping. Off: clones twice."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:342
+msgid "Responsive Speed"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:342
+msgid "Separate desktop duration from the mobile speed control. Desktop is used from 782px wide."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:349
+msgid "Modal Block"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:349
+msgid "Popup/modal block with various trigger types."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:352
+msgid "Button Trigger"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:352
+msgid "Open modal on button click."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:353
+msgid "Icon Trigger"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:353
+msgid "Open modal on icon click."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:354
+msgid "Text Trigger"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:354
+msgid "Open modal on text link click."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:355
+msgid "Image Trigger"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:355
+msgid "Open modal on image click."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:356
+msgid "Off-Canvas Modes"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:356
+msgid "Left, right off-canvas and bottom sheet styles."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:357
+msgid "Fullscreen Mode"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:357
+msgid "Full viewport modal style."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:358
+msgid "Fade, slide, and zoom. Off: no enter animation."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:359
+#: src/Blocks/modal/index.js:76
+msgid "Exit Intent"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:359
+msgid "Open modal when user moves to leave the page."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:360
+msgid "Scroll Depth"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:360
+msgid "Open modal after scrolling a percentage of the page."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:361
+msgid "Time Delay"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:361
+msgid "Open modal after a specified time delay."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:362
+msgid "Auto Close"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:362
+msgid "Automatically close modal after delay."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:363
+msgid "Show Once"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:363
+msgid "Remember if user has seen this modal."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:364
+msgid "Device Visibility"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:364
+msgid "Show/hide on specific devices."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:371
+msgid "Newsletter Block"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:371
+msgid "Search block variation that transforms the search form into a newsletter signup."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:374
+msgid "Email Validation"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:374
+msgid "Validate email format on the input field before submission."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:375
+msgid "Success Message"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:375
+msgid "Display a confirmation message after successful signup."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:376
+msgid "Custom Placeholder"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:376
+msgid "Set custom placeholder text for the email input field."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:383
+msgid "Advanced query parameters and layout controls for the Query Loop block."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:386
+msgid "Multiple Post Types"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:386
+msgid "Query multiple post types in a single loop."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:387
+msgid "Taxonomy Filtering"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:387
+msgid "Filter by categories, tags, and custom taxonomies."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:388
+msgid "Include/Exclude Posts"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:388
+msgid "Manually select posts to include or exclude."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:389
+msgid "Custom Field Query"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:389
+msgid "Filter posts by custom field values."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:390
+msgid "Order by Custom Field"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:390
+msgid "Sort posts by custom field values."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:391
+msgid "Responsive Columns"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:391
+msgid "Different column counts per breakpoint."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:392
+msgid "Gap Controls"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:392
+msgid "Custom row and column gap settings."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:393
+msgid "Featured First Post"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:393
+msgid "Make the first post span multiple columns."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:394
+msgid "Equal Height Cards"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:394
+msgid "Force all cards to have equal height."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:395
+msgid "No Results Template"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:395
+msgid "Custom message when no posts match query."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:396
+msgid "Extended Ordering"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:396
+msgid "Random, comment count, modified date, etc."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:397
+msgid "Advanced Meta Query"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:397
+msgid "Multiple meta queries with AND/OR relation."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:398
+msgid "Date Query"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:398
+msgid "Filter by date ranges and relative dates."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:399
+msgid "Parent/Child Posts"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:399
+msgid "Query child pages of current or specific post."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:400
+msgid "ACF/MetaBox Integration"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:400
+msgid "Field picker for ACF and Meta Box plugins."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:401
+msgid "AJAX Pagination"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:401
+msgid "Load more, infinite scroll, AJAX page nav."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:402
+msgid "Frontend Filters"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:402
+msgid "Taxonomy, search, and sort filters."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:403
+msgid "Masonry Layout"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:403
+msgid "CSS and JS masonry grid with animations."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:404
+msgid "Carousel Layout"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:404
+msgid "Slider with navigation, pagination, autoplay."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:405
+msgid "WooCommerce Integration"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:405
+msgid "Product filtering, sorting, and display options."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:412
+msgid "Related Posts Block"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:412
+msgid "Display posts related to the current content by shared taxonomy terms."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:415
+msgid "Related By"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:415
+msgid "Choose category, tag, author, or auto-detect from the current post."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:416
+msgid "Order By"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:416
+msgid "Order related posts by date, title, or randomly."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:417
+msgid "Fallback Behavior"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:417
+msgid "Show latest posts or hide block when no related matches found."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:418
+msgid "Style Variants"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:418
+msgid "Grid, list, cards, and minimal layout options."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:419
+msgid "Excerpt Length"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:419
+msgid "Custom excerpt word count for related post summaries."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:420
+msgid "Image Aspect Ratio"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:420
+msgid "Custom featured image aspect ratio for related posts."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:427
+msgid "Slider Block"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:427
+msgid "Slider/carousel block with multiple navigation options."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:430
+msgid "Slide Effect"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:430
+msgid "Basic slide transition between slides."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:431
+msgid "Fade Effect"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:431
+msgid "Fade transition between slides."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:432
+msgid "Navigation Arrows"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:432
+msgid "Show previous/next navigation arrows."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:433
+msgid "Pagination Dots"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:433
+msgid "Show pagination dots below the slider."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:434
+msgid "Infinite Loop"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:434
+msgid "Loop slides infinitely."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:435
+msgid "Keyboard Navigation"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:435
+msgid "Navigate slides with arrow keys."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:436
+msgid "Responsive Slides"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:436
+msgid "Different slides per view on devices."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:437
+msgid "Autoplay"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:437
+msgid "Auto-advance slides with configurable delay."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:438
+msgid "Advanced Effects"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:438
+msgid "Cube, coverflow, flip, cards, creative effects."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:439
+msgid "Thumbnail Navigation"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:439
+msgid "Thumbnail strip for slide navigation."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:440
+msgid "Lightbox Mode"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:440
+msgid "Open slides in fullscreen lightbox."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:441
+msgid "Mousewheel Control"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:441
+msgid "Navigate slides with mouse scroll."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:442
+msgid "Aspect Ratio Lock"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:442
+msgid "Lock to specific aspect ratios."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:443
+msgid "Lazy Loading"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:443
+msgid "Performance optimization for images."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:444
+msgid "Custom Arrow Styles"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:444
+msgid "Minimal, rounded, square arrow styles."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:445
+msgid "Custom Dot Styles"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:445
+msgid "Line, dash, fraction pagination styles."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:452
+msgid "Image block variation for inline SVG logos and illustrations. Not the Icon block. Media Library SVG uploads are at Aegis → Settings."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:455
+msgid "Paste Markup"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:455
+msgid "Insert the SVG Image variation and paste inline SVG for logos and illustrations. Not the Icon block."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:456
+msgid "Mask Mode"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:456
+msgid "Render the pasted SVG as a CSS mask so it follows the text color."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:457
+msgid "Onclick Action"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:457
+msgid "Keep the Image onclick handler on the inlined SVG after the img tag is removed."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:458
+msgid "Inline SVG in Text"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:458
+msgid "Rich-text format: insert inline SVG into paragraphs. Converts CSS-masked images to real SVG on the front end."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:459
+msgid "Inline SVG Files"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:459
+msgid "Replace Image, Button, Site Logo, and Featured Image tags that point at .svg files with inline SVG markup."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:466
+msgid "Toggle Block"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:466
+msgid "Content switcher with two labeled views (not an accordion). Use Accordion List for FAQ sections."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:469
+msgid "Pill Style"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:469
+msgid "Rounded pill switcher between the two views."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:470
+msgid "Switch Style"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:470
+msgid "On/off switch between the two views."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:471
+msgid "Button Style"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:471
+msgid "Separate buttons for each view."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:472
+msgid "Position Control"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:472
+msgid "Align the switcher left, center, or right."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:473
+msgid "Edit the primary and secondary switcher labels."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:474
+msgid "URL Sync"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:474
+msgid "Sync the active view with a URL parameter."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:475
+msgid "State Persistence"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:475
+msgid "Remember the visitor’s last view."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:476
+msgid "Fade, slide, scale, or flip when switching views."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:477
+msgid "Nested Toggles"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:477
+msgid "Allow a Toggle switcher inside Toggle Content."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:478
+msgid "Conditional Visibility"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:478
+msgid "Show or hide other elements based on the active view."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:504
+msgid "Video Block"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:504
+msgid "Enhanced video player with modern controls and features."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:507
+msgid "Custom Player"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:507
+msgid "Modern player with custom controls."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:508
+msgid "Theater Mode"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:508
+msgid "Requires Custom Player. Expand video to viewport width."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:509
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:509
+msgid "Requires Custom Player. Space, arrows, M, F keyboard controls."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:514
+msgid "VideoObject SEO schema for search engines."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:515
+msgid "Schema Markup"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:517
+msgid "Ambient Light"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:517
+msgid "Glow effect behind video based on colors."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:518
+msgid "Thumbnail Preview"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:518
+msgid "Show preview when hovering progress bar."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:519
+msgid "Touch Gestures"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:519
+msgid "Double-tap seek, swipe volume controls."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:520
+msgid "Playlists"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:520
+msgid "Multi-video playlists with autoplay."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:527
+msgid "Adds videos to Rank Math, Yoast, AIOSEO, or SEOPress sitemaps. Enable an SEO plugin at Aegis → Integrations first."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:529
+msgid "Include core/video blocks in the active SEO plugin sitemap."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:533
+msgid "Sticky Player"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:533
+msgid "Floating video when scrolling past."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:534
+msgid "Focus Mode"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:534
+msgid "Dim background when video plays."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:535
+msgid "Save Progress"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:535
+msgid "Remember playback position."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:536
+msgid "Chapters"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:536
+msgid "Video chapters with navigation."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:537
+msgid "Email Capture"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:537
+msgid "Collect emails during playback."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:538
+msgid "Analytics"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:538
+msgid "Track video engagement metrics."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:539
+msgid "Multi-Audio"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:539
+msgid "Multiple audio track support."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:540
+msgid "Privacy Controls"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:540
+msgid "Private videos, watermarks, expiring URLs."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:544
+msgid "BunnyCDN Integration"
+msgstr ""
+
+#. translators: %s: link to Connectors page
+#: src/Blocks/AdminPage.php:548
+#, php-format
+msgid "Configure BunnyCDN features for cloud video hosting in %s."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:549
+msgid "Connectors → BunnyCDN"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:558
+#: src/Conditionals/AdminPage.php:219
+#: src/Snippets/AdminPage.php:752
+#: templates/connectors-admin-page.php:48
+#: templates/general-settings-admin-page.php:145
+#: templates/integrations-admin-page.php:75
+#: templates/performance-admin-page.php:69
+msgid "Save Settings"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:576
+msgid "your SEO plugin"
+msgstr ""
+
+#: src/Blocks/AdminPage.php:579
+#, php-format
+msgid "%s handles FAQ Schema. Disable in Integrations to use built-in schema."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:580
+#, php-format
+msgid "%s handles Event Schema. Disable in Integrations to use built-in schema."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:581
+#, php-format
+msgid "%s handles Local Business Schema. Disable in Integrations to use built-in schema."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:582
+#, php-format
+msgid "%s handles Video Schema. Disable in Integrations to use built-in schema."
+msgstr ""
+
+#: src/Blocks/AdminPage.php:583
+#, php-format
+msgid "Video sitemap is handled by %s. Disable Video Sitemap in Integrations to control it from this extra."
+msgstr ""
+
+#: src/Blocks/map/render.php:160
+msgid "Interactive map"
+msgstr ""
+
+#: src/Blocks/map/render.php:164
+msgid "Map preview"
+msgstr ""
+
+#: src/Blocks/map/render.php:172
+msgid "Load interactive map"
+msgstr ""
+
+#: src/Blocks/map/render.php:177
+msgid "Click to load map"
+msgstr ""
+
+#: src/Blocks/map/render.php:214
+#: src/Blocks/map/index.js:355
+#: src/Blocks/map/index.js:577
+msgid "OpenStreetMap"
+msgstr ""
+
+#. translators: %s: link to Connectors → Google Maps
+#: src/Blocks/map/render.php:234
+#, php-format
+msgid "This map needs a Google Maps API key. Configure it in %s."
+msgstr ""
+
+#: src/Blocks/map/render.php:235
+msgid "Aegis → Connectors → Google Maps"
+msgstr ""
+
+#: src/Blocks/map/render.php:245
+msgid "This map is unavailable because Google Maps is not configured."
+msgstr ""
+
+#: src/Blocks/modal/render.php:25
+#: src/Blocks/modal/index.js:401
+msgid "Open Modal"
+msgstr ""
+
+#: src/Blocks/modal/render.php:296
+#: src/Blocks/modal/render.php:309
+msgid "Close modal"
+msgstr ""
+
+#: src/Blocks/modal/render.php:323
+msgid "Modal dialog"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:83
+#: src/Conditionals/AdminPage.php:96
+#: src/Conditionals/AdminPage.php:97
+#: src/Conditionals/AdminPage.php:129
+#: src/Hooks/PatternsManager.php:206
+#: templates/visibility-presets-admin-page.php:33
+msgid "Conditionals"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:140
+msgid "Visibility"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:144
+#: src/Blocks/modal/index.js:311
+msgid "Accessibility"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:148
+msgid "User"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:152
+msgid "Schedule"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:156
+msgid "Image Source"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:162
+msgid "Visibility Controls"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:162
+msgid "Control block visibility based on screen size, request context, location, and post meta."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:164
+msgid "Screen Size"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:164
+msgid "Hide blocks on mobile, tablet, or desktop."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:165
+msgid "Custom Breakpoints"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:165
+msgid "Define custom min/max width breakpoints."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:166
+msgid "Browser & Device"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:166
+msgid "Target specific browsers and devices."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:167
+msgid "Lockdown"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:167
+msgid "Hide blocks from all users on the frontend (draft mode)."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:168
+msgid "URL Query String"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:168
+msgid "Show or hide blocks based on URL query parameters."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:169
+msgid "Specific Users"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:169
+msgid "Show or hide blocks for specific user IDs."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:170
+msgid "Cookie"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:170
+msgid "Show or hide blocks based on browser cookie values."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:171
+msgid "Referral Source"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:171
+msgid "Show or hide blocks based on the referring domain."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:172
+msgid "Advanced Location"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:172
+msgid "Show or hide blocks by post type, post IDs, taxonomy terms, URL path, or archive type."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:173
+msgid "Post Meta"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:173
+msgid "Show or hide blocks based on raw post meta key/value."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:178
+msgid "Accessibility Controls"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:178
+msgid "Respect user accessibility preferences."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:180
+msgid "Reduced Motion"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:180
+msgid "Hide content for users who prefer reduced motion."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:181
+msgid "Screen Reader Only"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:181
+msgid "Make content visible only to screen readers."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:182
+msgid "Color Scheme"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:182
+msgid "Show content only in light or dark mode."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:183
+msgid "High Contrast"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:183
+msgid "Hide content in high contrast mode."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:184
+msgid "Forced Colors"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:184
+msgid "Hide content in Windows High Contrast mode."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:189
+msgid "User Controls"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:189
+msgid "Control visibility based on user status, role, and user meta."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:191
+msgid "User Status"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:191
+msgid "Show content to logged-in or logged-out users."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:192
+msgid "User Role"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:192
+msgid "Show content to specific user roles."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:193
+msgid "User Meta"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:193
+msgid "Show or hide blocks based on current user meta key/value."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:198
+msgid "Schedule Controls"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:198
+msgid "Control visibility based on date and time."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:200
+msgid "Date & Time"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:200
+msgid "Show content during specific dates and times."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:201
+msgid "Days of Week"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:201
+msgid "Limit visibility to selected weekdays."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:202
+msgid "Daily Time Range"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:202
+msgid "Limit visibility to a daily start/end time."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:203
+msgid "Timezone"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:203
+msgid "Use a custom timezone for schedule rules."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:208
+msgid "Image Source Order"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:208
+msgid "Choose which image to display in Post Featured Image blocks instead of the default featured image."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:210
+msgid "Content Image"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:210
+msgid "Use an image from post content by position, with fallback chain support."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:211
+msgid "ACF Image Field"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:211
+msgid "Use an Advanced Custom Fields image field as the featured image source."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:212
+msgid "Meta Box Image Field"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:212
+msgid "Use a Meta Box image field as the featured image source."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:72
+#: src/Conditionals/IntegrationsPanel.php:95
+msgid "Cart Conditions"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:73
+msgid "Show or hide blocks based on cart contents, total value, item count, and product quantities."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:79
+#: src/Conditionals/IntegrationsPanel.php:102
+msgid "Customer History"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:80
+msgid "Show or hide blocks based on lifetime spend, order count, purchase history, and recency."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:86
+msgid "Product Context"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:87
+msgid "Show or hide blocks based on current product stock status, quantity, sale, or featured state."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:96
+msgid "Show or hide blocks based on cart contents and totals."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:103
+msgid "Show or hide blocks based on purchase history and lifetime value."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:109
+msgid "Download Context"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:110
+msgid "Show or hide blocks on single download pages."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:118
+#: src/Conditionals/IntegrationsPanel.php:155
+#: src/Conditionals/IntegrationsPanel.php:185
+msgid "Enrollment"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:119
+msgid "Show or hide blocks based on course or lesson enrollment status."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:125
+#: src/Conditionals/IntegrationsPanel.php:162
+#: src/Conditionals/IntegrationsPanel.php:192
+msgid "Completion"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:126
+msgid "Show or hide blocks based on course or lesson completion status."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:132
+#: src/Conditionals/IntegrationsPanel.php:169
+#: src/Conditionals/IntegrationsPanel.php:199
+msgid "Course Progress"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:133
+#: src/Conditionals/IntegrationsPanel.php:170
+#: src/Conditionals/IntegrationsPanel.php:200
+msgid "Show or hide blocks based on course progress percentage."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:139
+msgid "Quiz Results"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:140
+msgid "Show or hide blocks based on quiz pass/fail status or score."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:146
+msgid "Group Membership"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:147
+msgid "Show or hide blocks based on LearnDash group membership."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:156
+#: src/Conditionals/IntegrationsPanel.php:186
+msgid "Show or hide blocks based on course enrollment status."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:163
+#: src/Conditionals/IntegrationsPanel.php:193
+msgid "Show or hide blocks based on course or lesson completion."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:176
+msgid "Membership"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:177
+msgid "Show or hide blocks based on membership plan enrollment."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:206
+msgid "Quiz Grade"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:207
+msgid "Show or hide blocks based on quiz grade for a specific lesson."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:215
+msgid "Has Submitted"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:216
+msgid "Show or hide blocks based on whether the user has submitted a specific form."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:222
+msgid "Submission Count"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:223
+msgid "Show or hide blocks based on the number of submissions for a form."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:229
+msgid "Field Value"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:230
+msgid "Show or hide blocks based on a specific field value in a submission."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:238
+msgid "Has Booking"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:239
+msgid "Show or hide blocks based on whether the user has any booking."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:245
+msgid "Upcoming Count"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:246
+msgid "Show or hide blocks based on the number of upcoming bookings."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:252
+msgid "Past Count"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:253
+msgid "Show or hide blocks based on the number of past bookings."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:259
+msgid "Booking Status"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:260
+msgid "Show or hide blocks based on a specific booking status."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:268
+msgid "CRM Tags"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:269
+msgid "Show or hide content based on WP Fusion tags."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:275
+msgid "CRM Lists"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:276
+msgid "Show or hide content based on WP Fusion lists."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:284
+msgid "ACF Field"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:285
+msgid "Show or hide blocks based on Advanced Custom Fields values."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:293
+msgid "Meta Box Field"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:294
+msgid "Show or hide blocks based on Meta Box field values."
+msgstr ""
+
+#: src/Connectors/AdminPage.php:56
+#: src/Connectors/AdminPage.php:66
+#: src/Connectors/AdminPage.php:67
+#: src/Connectors/AdminPage.php:78
+#: templates/connectors-admin-page.php:21
+msgid "Connectors"
+msgstr ""
+
+#: src/Connectors/AdminPage.php:86
+#: src/Integrations/AdminPage.php:141
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: src/Hooks/AdminPage.php:63
+#: src/Hooks/AdminPage.php:73
+#: src/Hooks/AdminPage.php:74
+#: templates/hooks-admin-page.php:22
+msgid "Hooks"
+msgstr ""
+
+#: src/Hooks/AdminPage.php:118
+msgid "Move this hook pattern to Trash?"
+msgstr ""
+
+#: src/Hooks/AdminPage.php:119
+#: src/Modal/AdminPage.php:158
+#: src/Snippets/AdminPage.php:227
+msgid "Copied"
+msgstr ""
+
+#: src/Hooks/AdminPage.php:120
+#: templates/hooks-admin-page.php:133
+#: templates/hooks-admin-page.php:137
+msgid "Copy hook name"
+msgstr ""
+
+#: src/Hooks/AdminPage.php:121
+#: src/Modal/AdminPage.php:160
+#: src/Snippets/AdminPage.php:234
+#: src/Snippets/AdminPage.php:1150
+#: templates/hooks-admin-page.php:166
+#: templates/modals-admin-page.php:168
+msgid "Disabled"
+msgstr ""
+
+#: src/Hooks/AdminPage.php:150
+#: src/Hooks/AdminPage.php:171
+#: src/Modal/AdminPage.php:298
+#: src/Modal/AdminPage.php:321
+#: src/Snippets/AdminPage.php:342
+#: src/Snippets/AdminPage.php:359
+#: src/Snippets/AdminPage.php:386
+#: src/Snippets/AdminPage.php:403
+#: src/Snippets/AdminPage.php:424
+#: src/Snippets/AdminPage.php:526
+#: src/Snippets/AdminPage.php:595
+#: src/Snippets/AdminPage.php:612
+#: src/Snippets/AdminPage.php:625
+#: src/Snippets/AdminPage.php:636
+msgid "Unauthorized"
+msgstr ""
+
+#: src/Hooks/AdminPage.php:159
+msgid "You do not have permission to edit this hook pattern."
+msgstr ""
+
+#: src/Hooks/AdminPage.php:163
+msgid "Could not update the hook pattern."
+msgstr ""
+
+#: src/Hooks/AdminPage.php:179
+msgid "You do not have permission to delete this hook pattern."
+msgstr ""
+
+#: src/Hooks/AdminPage.php:183
+msgid "Could not delete the hook pattern."
+msgstr ""
+
+#: src/Hooks/InstanceRepository.php:84
+msgid "Not set"
+msgstr ""
+
+#: src/Hooks/PatternsManager.php:96
+msgid "JSON-encoded conditional logic rules."
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:34
+msgid "Before WooCommerce checkout"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:39
+msgid "After WooCommerce checkout"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:44
+msgid "Before WooCommerce cart"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:49
+msgid "After WooCommerce cart"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:54
+msgid "Before EDD download"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:59
+msgid "After EDD download"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:64
+msgid "Before AffiliateWP dashboard"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:69
+msgid "After AffiliateWP dashboard"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:74
+msgid "Before LifterLMS course"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:79
+msgid "After LifterLMS course"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:84
+msgid "Before Sensei lesson"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:89
+msgid "After Sensei lesson"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:94
+msgid "Before Fluent Form"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:99
+msgid "After Fluent Form"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:104
+msgid "Before Gravity Form"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:109
+msgid "After Gravity Form"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:114
+msgid "Before Ninja Form"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:119
+msgid "After Ninja Form"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:124
+msgid "Before bbPress forum"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:129
+msgid "After bbPress topic"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:134
+msgid "Before post author block"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:139
+msgid "After post author block"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:144
+msgid "Before map block"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:149
+msgid "After map block"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:154
+msgid "Before video block"
+msgstr ""
+
+#: src/Injection/IntegrationLocations.php:159
+msgid "After video block"
+msgstr ""
+
+#: src/Injection/LocationRegistry.php:180
+#: src/Injection/Preview.php:294
+msgid "Document head"
+msgstr ""
+
+#: src/Injection/LocationRegistry.php:185
+msgid "After body open"
+msgstr ""
+
+#: src/Injection/LocationRegistry.php:190
+msgid "Document footer"
+msgstr ""
+
+#: src/Injection/LocationRegistry.php:195
+msgid "Enqueue scripts (frontend)"
+msgstr ""
+
+#: src/Injection/LocationRegistry.php:208
+msgid "Admin head"
+msgstr ""
+
+#: src/Injection/LocationRegistry.php:213
+#: src/Snippets/Locations.php:117
+msgid "Admin footer"
+msgstr ""
+
+#: src/Injection/LocationRegistry.php:218
+msgid "Enqueue scripts (admin)"
+msgstr ""
+
+#: src/Injection/LocationRegistry.php:231
+msgid "Login head"
+msgstr ""
+
+#: src/Injection/LocationRegistry.php:236
+msgid "Login footer"
+msgstr ""
+
+#: src/Injection/LocationRegistry.php:249
+msgid "Block editor assets"
+msgstr ""
+
+#. translators: %s: template part slug
+#: src/Injection/LocationRegistry.php:269
+#, php-format
+msgid "Before %s template part"
+msgstr ""
+
+#. translators: %s: template part slug
+#: src/Injection/LocationRegistry.php:279
+#, php-format
+msgid "After %s template part"
+msgstr ""
+
+#: src/Injection/LocationRegistry.php:288
+msgid "Before post content"
+msgstr ""
+
+#: src/Injection/LocationRegistry.php:294
+msgid "After post content"
+msgstr ""
+
+#. translators: %s: number of active hook patterns and snippets
+#: src/Injection/Preview.php:132
+#, php-format
+msgid "%s Position"
+msgid_plural "%s Positions"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Injection/Preview.php:143
+msgid "Aegis Position"
+msgid_plural "Aegis Positions"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: number of active hook patterns
+#: src/Injection/Preview.php:151
+#, php-format
+msgid "%s Hook"
+msgid_plural "%s Hooks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Injection/Preview.php:154
+#: src/Injection/Preview.php:162
+msgid "On"
+msgstr ""
+
+#: src/Injection/Preview.php:154
+#: src/Injection/Preview.php:162
+msgid "Off"
+msgstr ""
+
+#. translators: %s: number of active snippets
+#: src/Injection/Preview.php:159
+#, php-format
+msgid "%s Snippet"
+msgid_plural "%s Snippets"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Injection/Preview.php:172
+msgid "Hide hook positions"
+msgstr ""
+
+#: src/Injection/Preview.php:173
+#: src/Snippets/AdminPage.php:809
+msgid "Show hook positions"
+msgstr ""
+
+#: src/Injection/Preview.php:186
+msgid "Hide snippet positions"
+msgstr ""
+
+#: src/Injection/Preview.php:187
+#: src/Snippets/AdminPage.php:825
+msgid "Show snippet positions"
+msgstr ""
+
+#: src/Injection/Preview.php:304
+msgid "Enqueue scripts (CSS/JS snippets)"
+msgstr ""
+
+#. translators: %d: number of hook patterns
+#: src/Injection/Preview.php:370
+#, php-format
+msgid "%d hook"
+msgid_plural "%d hooks"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of snippets
+#: src/Injection/Preview.php:380
+#, php-format
+msgid "%d snippet"
+msgid_plural "%d snippets"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Integrations/AdminPage.php:67
+#: src/Integrations/AdminPage.php:77
+#: src/Integrations/AdminPage.php:78
+#: src/Integrations/AdminPage.php:89
+#: templates/integrations-admin-page.php:28
+msgid "Integrations"
+msgstr ""
+
+#: src/Integrations/Notices.php:80
+msgid "Aegis Integrations"
+msgstr ""
+
+#. translators: %d: number of active plugins without integration enabled
+#: src/Integrations/Notices.php:85
+#, php-format
+msgid "%d active plugin is not connected to Aegis:"
+msgid_plural "%d active plugins are not connected to Aegis:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Integrations/Notices.php:107
+msgid "Manage integrations"
+msgstr ""
+
+#: src/Integrations/Notices.php:161
+msgid "No integrations specified."
+msgstr ""
+
+#: src/Integrations/Notices.php:174
+msgid "Notice dismissed."
+msgstr ""
+
+#: src/Integrations/Registry.php:47
+msgid "WooCommerce"
+msgstr ""
+
+#: src/Integrations/Registry.php:55
+msgid "Easy Digital Downloads"
+msgstr ""
+
+#: src/Integrations/Registry.php:63
+msgid "WP Fusion"
+msgstr ""
+
+#: src/Integrations/Registry.php:71
+msgid "AffiliateWP"
+msgstr ""
+
+#: src/Integrations/Registry.php:78
+msgid "LearnDash"
+msgstr ""
+
+#: src/Integrations/Registry.php:86
+msgid "LifterLMS"
+msgstr ""
+
+#: src/Integrations/Registry.php:94
+msgid "Sensei LMS"
+msgstr ""
+
+#: src/Integrations/Registry.php:102
+msgid "Fluent Forms"
+msgstr ""
+
+#: src/Integrations/Registry.php:110
+msgid "Fluent Booking"
+msgstr ""
+
+#: src/Integrations/Registry.php:118
+msgid "FluentCRM"
+msgstr ""
+
+#: src/Integrations/Registry.php:125
+msgid "Gravity Forms"
+msgstr ""
+
+#: src/Integrations/Registry.php:132
+msgid "Ninja Forms"
+msgstr ""
+
+#: src/Integrations/Registry.php:139
+msgid "Co-Authors Plus"
+msgstr ""
+
+#: src/Integrations/Registry.php:146
+msgid "bbPress"
+msgstr ""
+
+#: src/Integrations/Registry.php:153
+msgid "Rank Math"
+msgstr ""
+
+#: src/Integrations/Registry.php:160
+msgid "Yoast SEO"
+msgstr ""
+
+#: src/Integrations/Registry.php:167
+msgid "All in One SEO"
+msgstr ""
+
+#: src/Integrations/Registry.php:174
+msgid "SEOPress"
+msgstr ""
+
+#: src/Integrations/Registry.php:181
+msgid "Advanced Custom Fields"
+msgstr ""
+
+#: src/Integrations/Registry.php:192
+msgid "Meta Box"
+msgstr ""
+
+#: src/Integrations/Registry.php:200
+msgid "Code Block Pro"
+msgstr ""
+
+#: src/Integrations/Registry.php:207
+msgid "Syntax Highlighting Code Block"
+msgstr ""
+
+#: src/Integrations/Registry.php:214
+#: templates/connectors-admin-page.php:32
+#: templates/connectors-bunnycdn-section.php:22
+#: templates/connectors-bunnycdn-section.php:29
+msgid "BunnyCDN"
+msgstr ""
+
+#: src/Integrations/Registry.php:221
+#: src/Map/IntegrationsPanel.php:94
+#: src/Map/IntegrationsPanel.php:108
+#: src/Map/IntegrationsPanel.php:119
+#: src/Blocks/map/index.js:354
+msgid "Google Maps"
+msgstr ""
+
+#: src/Integrations/Registry.php:254
+msgid "E-commerce"
+msgstr ""
+
+#: src/Integrations/Registry.php:256
+msgid "WooCommerce, Easy Digital Downloads, and affiliate tools."
+msgstr ""
+
+#: src/Integrations/Registry.php:261
+msgid "LMS"
+msgstr ""
+
+#: src/Integrations/Registry.php:263
+msgid "LearnDash, LifterLMS, and Sensei LMS."
+msgstr ""
+
+#: src/Integrations/Registry.php:268
+msgid "Forms"
+msgstr ""
+
+#: src/Integrations/Registry.php:270
+msgid "Form builders, booking, and FluentCRM."
+msgstr ""
+
+#: src/Integrations/Registry.php:275
+#: src/Snippets/Locations.php:46
+msgid "Content"
+msgstr ""
+
+#: src/Integrations/Registry.php:277
+msgid "Co-Authors Plus and bbPress."
+msgstr ""
+
+#: src/Integrations/Registry.php:282
+msgid "SEO"
+msgstr ""
+
+#: src/Integrations/Registry.php:284
+msgid "Rank Math, Yoast, All in One SEO, and SEOPress."
+msgstr ""
+
+#: src/Integrations/Registry.php:289
+msgid "Developer"
+msgstr ""
+
+#: src/Integrations/Registry.php:291
+msgid "Custom fields and code highlighting."
+msgstr ""
+
+#: src/Integrations/Registry.php:296
+msgid "CRM"
+msgstr ""
+
+#: src/Integrations/Registry.php:298
+msgid "WP Fusion tags, lists, and automation."
+msgstr ""
+
+#: src/Integrations/Registry.php:361
+msgid "E-commerce platform for selling physical products and digital downloads."
+msgstr ""
+
+#: src/Integrations/Registry.php:365
+msgid "Digital commerce platform for selling downloads and subscriptions."
+msgstr ""
+
+#: src/Integrations/Registry.php:369
+msgid "Affiliate marketing and referral program management."
+msgstr ""
+
+#: src/Integrations/Registry.php:373
+msgid "Powerful LMS plugin for creating and selling courses."
+msgstr ""
+
+#: src/Integrations/Registry.php:377
+msgid "Complete LMS solution for course creation and membership."
+msgstr ""
+
+#: src/Integrations/Registry.php:381
+msgid "Learning management by WooCommerce."
+msgstr ""
+
+#: src/Integrations/Registry.php:385
+msgid "Fast and lightweight form builder plugin."
+msgstr ""
+
+#: src/Integrations/Registry.php:389
+msgid "Appointment and booking management system."
+msgstr ""
+
+#: src/Integrations/Registry.php:393
+msgid "CRM and email marketing automation for video events."
+msgstr ""
+
+#: src/Integrations/Registry.php:397
+msgid "Advanced form builder for WordPress."
+msgstr ""
+
+#: src/Integrations/Registry.php:401
+msgid "Drag-and-drop form builder plugin."
+msgstr ""
+
+#: src/Integrations/Registry.php:405
+msgid "Multiple bylines and guest authors for posts and pages."
+msgstr ""
+
+#: src/Integrations/Registry.php:409
+msgid "Forum software for WordPress communities."
+msgstr ""
+
+#: src/Integrations/Registry.php:413
+msgid "SEO plugin for optimizing your content."
+msgstr ""
+
+#: src/Integrations/Registry.php:417
+msgid "Popular SEO plugin with schema and readability tools."
+msgstr ""
+
+#: src/Integrations/Registry.php:421
+msgid "Comprehensive SEO toolkit for WordPress."
+msgstr ""
+
+#: src/Integrations/Registry.php:425
+msgid "Lightweight SEO plugin with schema support."
+msgstr ""
+
+#: src/Integrations/Registry.php:429
+msgid "Custom fields and meta boxes for WordPress."
+msgstr ""
+
+#: src/Integrations/Registry.php:433
+msgid "Lightweight custom fields framework for WordPress."
+msgstr ""
+
+#: src/Integrations/Registry.php:437
+msgid "Syntax highlighting for code blocks."
+msgstr ""
+
+#: src/Integrations/Registry.php:441
+msgid "Alternative syntax highlighting for code."
+msgstr ""
+
+#: src/Integrations/Registry.php:445
+msgid "CRM tags, lists, and automation via WP Fusion."
+msgstr ""
+
+#: src/Integrations/Registry.php:512
+#: templates/integrations-analytics-section.php:520
+msgid "Active"
+msgstr ""
+
+#: src/Integrations/Registry.php:519
+msgid "Inactive"
+msgstr ""
+
+#: src/Integrations/SettingsController.php:73
+#: src/Integrations/SettingsController.php:103
+msgid "BunnyCDN integration requires Aegis Pro and must be enabled."
+msgstr ""
+
+#: src/Integrations/SettingsController.php:109
+#: src/Integrations/SettingsController.php:124
+#: src/Map/IntegrationsPanel.php:258
+#: src/Map/IntegrationsPanel.php:273
+#: src/Map/IntegrationsPanel.php:282
+msgid "Connection test failed. Verify your API credentials."
+msgstr ""
+
+#: src/Integrations/SettingsController.php:127
+#: src/Map/IntegrationsPanel.php:279
+msgid "Connection successful."
+msgstr ""
+
+#: src/Integrations/WooCommerce/MultiStepCheckout.php:83
+msgid "Review Order →"
+msgstr ""
+
+#: src/Map/Block.php:249
+msgid "Geocoding failed. Check the address and API key configuration."
+msgstr ""
+
+#: src/Map/IntegrationsPanel.php:109
+msgid "Google Maps API configuration for the Map block. Use separate browser and server keys in Google Cloud Console."
+msgstr ""
+
+#: src/Map/IntegrationsPanel.php:120
+msgid "Enable Google Maps provider for the Map block. OpenStreetMap remains available when disabled."
+msgstr ""
+
+#: src/Map/IntegrationsPanel.php:137
+msgid "Browser and server keys from Google Cloud Console."
+msgstr ""
+
+#: src/Map/IntegrationsPanel.php:148
+msgid "Browser API Key"
+msgstr ""
+
+#: src/Map/IntegrationsPanel.php:149
+msgid "Used for Static Maps and Maps JavaScript on the frontend. Restrict by HTTP referrer in Google Cloud Console."
+msgstr ""
+
+#: src/Map/IntegrationsPanel.php:158
+msgid "Enter Browser API Key"
+msgstr ""
+
+#: src/Map/IntegrationsPanel.php:169
+msgid "Server API Key"
+msgstr ""
+
+#: src/Map/IntegrationsPanel.php:170
+msgid "Used for geocoding in the block editor. Restrict by IP address and never expose to visitors."
+msgstr ""
+
+#: src/Map/IntegrationsPanel.php:179
+msgid "Enter Server API Key"
+msgstr ""
+
+#: src/Map/IntegrationsPanel.php:186
+msgid "Security Recommendation"
+msgstr ""
+
+#: src/Map/IntegrationsPanel.php:187
+msgid "Create two separate keys: a browser key with HTTP referrer restrictions for frontend maps, and a server key with IP restrictions for geocoding. Enable only the Maps JavaScript, Static Maps, and Geocoding APIs."
+msgstr ""
+
+#: src/Map/IntegrationsPanel.php:195
+#: templates/connectors-bunnycdn-section.php:463
+msgid "Save API Settings"
+msgstr ""
+
+#: src/Map/IntegrationsPanel.php:199
+#: templates/connectors-bunnycdn-section.php:467
+msgid "Test Connection"
+msgstr ""
+
+#: src/Map/IntegrationsPanel.php:221
+#: src/Map/IntegrationsPanel.php:252
+msgid "Google Maps integration is disabled."
+msgstr ""
+
+#: src/Modal/AdminPage.php:92
+#: src/Modal/AdminPage.php:102
+#: src/Modal/AdminPage.php:103
+#: templates/modals-admin-page.php:29
+msgid "Modals"
+msgstr ""
+
+#: src/Modal/AdminPage.php:157
+msgid "Delete this modal from the page? If the page only contains this modal, the draft will also be moved to Trash."
+msgstr ""
+
+#: src/Modal/AdminPage.php:159
+#: templates/modals-admin-page.php:151
+#: templates/modals-admin-page.php:155
+msgid "Copy modal ID"
+msgstr ""
+
+#: src/Modal/AdminPage.php:161
+#: templates/modals-admin-page.php:170
+msgid "Trigger off"
+msgstr ""
+
+#: src/Modal/AdminPage.php:229
+msgid "You do not have permission to create pages."
+msgstr ""
+
+#: src/Modal/AdminPage.php:309
+msgid "You do not have permission to edit this modal."
+msgstr ""
+
+#: src/Modal/AdminPage.php:313
+msgid "Could not update the modal."
+msgstr ""
+
+#: src/Modal/AdminPage.php:331
+msgid "You do not have permission to delete this modal."
+msgstr ""
+
+#: src/Modal/AdminPage.php:335
+msgid "Could not delete the modal."
+msgstr ""
+
+#: src/Modal/AdminPage.php:347
+msgid "Blank modal"
+msgstr ""
+
+#: src/Modal/AdminPage.php:348
+msgid "Empty modal with a button trigger."
+msgstr ""
+
+#: src/Modal/AdminPage.php:357
+msgid "Form popup opened from a button."
+msgstr ""
+
+#: src/Modal/AdminPage.php:363
+msgid "Contact modal"
+msgstr ""
+
+#: src/Modal/AdminPage.php:367
+msgid "Subscribe popup on exit intent."
+msgstr ""
+
+#: src/Modal/AdminPage.php:374
+msgid "Newsletter modal"
+msgstr ""
+
+#: src/Modal/AdminPage.php:378
+msgid "Lightbox for an embedded video."
+msgstr ""
+
+#: src/Modal/AdminPage.php:384
+msgid "Video modal"
+msgstr ""
+
+#: src/Modal/AdminPage.php:387
+#: src/Modal/AdminPage.php:395
+msgid "Cookie consent"
+msgstr ""
+
+#: src/Modal/AdminPage.php:388
+msgid "Bottom sheet after a short delay."
+msgstr ""
+
+#: src/Modal/AdminPage.php:409
+msgid "New Modal"
+msgstr ""
+
+#: src/Modal/InstanceRepository.php:191
+#: src/Blocks/modal/index.js:61
+msgid "Button"
+msgstr ""
+
+#: src/Modal/InstanceRepository.php:193
+#: src/Blocks/modal/index.js:64
+msgid "Text"
+msgstr ""
+
+#: src/Modal/InstanceRepository.php:194
+#: src/Blocks/modal/index.js:70
+msgid "Image"
+msgstr ""
+
+#: src/Modal/InstanceRepository.php:195
+msgid "Scroll depth"
+msgstr ""
+
+#: src/Modal/InstanceRepository.php:196
+msgid "Exit intent"
+msgstr ""
+
+#: src/Modal/InstanceRepository.php:197
+msgid "Time delay"
+msgstr ""
+
+#: src/Modal/InstanceRepository.php:311
+msgid "Unpublished"
+msgstr ""
+
+#. translators: 1: Date, 2: Time.
+#: src/Modal/InstanceRepository.php:316
+#: src/Snippets/AdminPage.php:1201
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: src/Modal/InstanceRepository.php:317
+#: src/Snippets/AdminPage.php:1202
+msgid "Y/m/d"
+msgstr ""
+
+#: src/Modal/InstanceRepository.php:318
+#: src/Snippets/AdminPage.php:1203
+msgid "g:i a"
+msgstr ""
+
+#: src/Modal/InstanceRepository.php:322
+#: src/Snippets/AdminPage.php:233
+#: src/Snippets/AdminPage.php:1148
+msgid "Published"
+msgstr ""
+
+#: src/Modal/InstanceRepository.php:325
+msgid "Missed schedule"
+msgstr ""
+
+#: src/Modal/InstanceRepository.php:326
+msgid "Scheduled"
+msgstr ""
+
+#: src/Modal/InstanceRepository.php:328
+#: src/Snippets/AdminPage.php:1143
+#: templates/visibility-presets-admin-page.php:112
+msgid "Last Modified"
+msgstr ""
+
+#: src/Settings/Controller.php:95
+msgid "Invalid settings data."
+msgstr ""
+
+#: src/Settings/Controller.php:125
+msgid "Settings imported successfully."
+msgstr ""
+
+#: src/Settings/Controller.php:156
+msgid "Invalid settings group."
+msgstr ""
+
+#: src/Settings/Controller.php:161
+msgid "Settings reset to defaults."
+msgstr ""
+
+#: src/Settings/Controller.php:176
+msgid "Type DELETE to confirm."
+msgstr ""
+
+#: src/Settings/Controller.php:181
+msgid "All Aegis data has been deleted."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:226
+#: src/Snippets/AdminPage.php:1334
+msgid "Copy shortcode"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:228
+#: src/Snippets/AdminPage.php:892
+msgid "Copy"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:229
+msgid "Delete this snippet? There is no undo."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:230
+msgid "Regenerate the Safe Mode URL? The old URL will stop working."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:231
+#, php-format
+msgid "%d inactive snippets hidden."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:232
+msgid "Could not import snippets."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:292
+msgid "This looks like PHP. Switch to Functions (PHP)?"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:293
+msgid "This looks like CSS. Switch to CSS?"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:294
+msgid "This looks like HTML. Switch to Content?"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:295
+msgid "Switch type"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:320
+msgid "Safe Mode Active"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:324
+msgid "AEGIS_DISABLE_SNIPPETS is defined in wp-config.php. Remove that line to turn Safe Mode off."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:326
+msgid "All code snippets and hook pattern output is disabled. Fix the offending snippet before turning Safe Mode off."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:332
+msgid "Open Snippet Settings"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:334
+msgid "Turn off Safe Mode"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:351
+msgid "Could not update snippet."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:368
+msgid "Invalid snippet export."
+msgstr ""
+
+#. translators: %d: number of imported snippets
+#: src/Snippets/AdminPage.php:377
+#, php-format
+msgid "%d snippet imported."
+msgid_plural "%d snippets imported."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Snippets/AdminPage.php:395
+msgid "Snippet not found."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:442
+#: src/Snippets/AdminPage.php:449
+msgid "Could not write a temporary file."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:541
+msgid "PHP snippets are disabled in settings."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:668
+msgid "Snippet saved."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:670
+msgid "Snippet deleted."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:672
+msgid "Snippets imported."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:674
+msgid "Snippet settings saved."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:676
+msgid "Safe Mode URL regenerated. Update any copies you stored."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:704
+#: src/Snippets/AdminPage.php:731
+#: templates/hooks-admin-page.php:45
+#: templates/hooks-admin-page.php:77
+#: templates/modals-admin-page.php:59
+#: templates/modals-admin-page.php:84
+#: templates/modals-admin-page.php:199
+#: templates/visibility-presets-admin-page.php:46
+#: templates/visibility-presets-admin-page.php:51
+#: templates/visibility-presets-admin-page.php:75
+#: templates/visibility-presets-admin-page.php:80
+msgid "Add New"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:714
+#: templates/hooks-admin-page.php:60
+#: templates/modals-admin-page.php:71
+#: templates/visibility-presets-admin-page.php:58
+msgid "Search"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:726
+msgid "No snippets yet"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:727
+msgid "Click Add New to create one."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:768
+msgid "Snippet Settings"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:768
+msgid "Control PHP snippets, frontend previews, and admin bar shortcuts."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:777
+msgid "PHP snippets"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:778
+msgid "Allow trusted administrators to run PHP files from the protected snippets directory."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:793
+msgid "Auto Safe Mode on Fatal Error"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:794
+msgid "Enable site-wide safe mode when a PHP snippet triggers a fatal error."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:810
+msgid "Highlight available hook locations on the frontend, including wp_head and template parts."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:826
+msgid "Highlight snippet injection points and show how many snippets use each location."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:841
+msgid "Admin bar shortcuts"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:842
+msgid "Show the Aegis Positions menu in the frontend admin bar with the brand icon."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:863
+msgid "Safe Mode"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:863
+msgid "Turn every snippet and hook pattern off at once. The URL works without logging in."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:872
+msgid "Enable Safe Mode"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:873
+msgid "Temporarily disable all snippet and hook pattern output. Admin screens still work so you can fix the offending snippet first."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:875
+msgid "AEGIS_DISABLE_SNIPPETS is defined in wp-config.php, so Safe Mode stays on until you remove that line."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:888
+msgid "Safe Mode URL"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:889
+msgid "Copy this somewhere you can reach without your site. Anyone with the URL can disable custom code, so treat it like a password."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:893
+msgid "Regenerate"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:898
+msgid "If you cannot reach the site over HTTP, add this to wp-config.php:"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:900
+msgid "Remove the line to turn Safe Mode off. That cannot be undone from the admin."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:946
+msgid "Your Snippets"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:951
+msgid "Hide inactives"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:960
+msgid "All snippets"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:975
+msgid "View"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:976
+msgid "Grouped"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:977
+msgid "Table"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:979
+msgid "Filter by tag"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:981
+msgid "All tags"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:986
+msgid "Sort snippets"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:989
+msgid "Created (newest)"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:990
+msgid "Created (oldest)"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:991
+msgid "Updated (newest)"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:992
+msgid "Updated (oldest)"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:993
+msgid "Priority (low first)"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:994
+msgid "Priority (high first)"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1003
+#: src/Snippets/AdminPage.php:1279
+#: src/Blocks/map/index.js:424
+msgid "Title"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1004
+#: src/Snippets/AdminPage.php:1381
+#: src/Blocks/map/index.js:425
+msgid "Description"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1005
+msgid "Type"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1006
+msgid "Runs at"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1007
+#: src/Snippets/AdminPage.php:1377
+msgid "Tags"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1008
+#: templates/modals-admin-page.php:101
+#: templates/visibility-presets-admin-page.php:97
+msgid "Date"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1009
+#: templates/hooks-admin-page.php:98
+#: templates/modals-admin-page.php:102
+msgid "Status"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1010
+#: templates/hooks-admin-page.php:99
+#: templates/modals-admin-page.php:103
+#: templates/visibility-presets-admin-page.php:98
+msgid "Actions"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1057
+msgid "Ungrouped"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1155
+msgid "Enable or disable snippet"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1159
+#: templates/hooks-admin-page.php:178
+#: templates/modals-admin-page.php:182
+#: templates/visibility-presets-admin-page.php:117
+msgid "Edit"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1160
+msgid "Download"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1161
+#: templates/hooks-admin-page.php:180
+#: templates/modals-admin-page.php:183
+#: templates/visibility-presets-admin-page.php:118
+msgid "Delete"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1223
+msgid "Available Locations"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1223
+msgid "These hooks appear as custom run locations for Content and PHP snippets. Header, shortcode, CSS, and JavaScript locations are always available."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1239
+msgid "Enable this location for snippets"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1280
+msgid "Snippet title"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1285
+msgid "Enabled"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1287
+msgid "Create Snippet"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1287
+msgid "Update Snippet"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1288
+#: templates/visibility-presets-admin-page.php:145
+msgid "Cancel"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1293
+msgid "Snippet type"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1307
+#: src/Snippets/AdminPage.php:1313
+msgid "Code"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1310
+msgid "Format"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1318
+msgid "Where to run?"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1319
+msgid "Select snippet run location"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1327
+msgid "Use Shortcode to display the return or print content of this snippet:"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1342
+msgid "Advanced Conditional Logic"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1350
+msgid "Snippet"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1353
+msgid "Group"
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1370
+msgid "Optional folder-style label for the snippets list."
+msgstr ""
+
+#: src/Snippets/AdminPage.php:1373
+#: templates/hooks-admin-page.php:96
+msgid "Priority"
+msgstr ""
+
+#: src/Snippets/Locations.php:45
+msgid "Functions (PHP)"
+msgstr ""
+
+#: src/Snippets/Locations.php:47
+msgid "CSS"
+msgstr ""
+
+#: src/Snippets/Locations.php:48
+msgid "JavaScript"
+msgstr ""
+
+#: src/Snippets/Locations.php:76
+msgid "Everywhere"
+msgstr ""
+
+#: src/Snippets/Locations.php:77
+msgid "Frontend only"
+msgstr ""
+
+#: src/Snippets/Locations.php:78
+msgid "Admin only"
+msgstr ""
+
+#: src/Snippets/Locations.php:79
+#: src/Snippets/Locations.php:104
+#: src/Snippets/Locations.php:118
+msgid "Login screen"
+msgstr ""
+
+#: src/Snippets/Locations.php:88
+msgid "Shortcode"
+msgstr ""
+
+#: src/Snippets/Locations.php:89
+msgid "Site-wide header"
+msgstr ""
+
+#: src/Snippets/Locations.php:90
+msgid "Site-wide body open"
+msgstr ""
+
+#: src/Snippets/Locations.php:91
+msgid "Site-wide footer"
+msgstr ""
+
+#: src/Snippets/Locations.php:92
+msgid "Before content"
+msgstr ""
+
+#: src/Snippets/Locations.php:93
+msgid "After content"
+msgstr ""
+
+#: src/Snippets/Locations.php:102
+msgid "Frontend"
+msgstr ""
+
+#: src/Snippets/Locations.php:103
+msgid "Admin"
+msgstr ""
+
+#: src/Snippets/Locations.php:105
+#: src/Snippets/Locations.php:119
+msgid "Block editor"
+msgstr ""
+
+#: src/Snippets/Locations.php:114
+msgid "Frontend header"
+msgstr ""
+
+#: src/Snippets/Locations.php:115
+msgid "Frontend footer"
+msgstr ""
+
+#: src/Snippets/Locations.php:116
+msgid "Admin header"
+msgstr ""
+
+#: src/Snippets/Locations.php:128
+msgid "Runs on every request, like code in functions.php."
+msgstr ""
+
+#: src/Snippets/Locations.php:129
+msgid "Runs on the public site only."
+msgstr ""
+
+#: src/Snippets/Locations.php:130
+msgid "Runs in wp-admin only."
+msgstr ""
+
+#: src/Snippets/Locations.php:131
+msgid "Runs on the login screen."
+msgstr ""
+
+#: src/Snippets/Locations.php:132
+msgid "Insert snippet between the head tags of your website (frontend)."
+msgstr ""
+
+#: src/Snippets/Locations.php:133
+msgid "Insert snippet after the opening body tag of your website (frontend)."
+msgstr ""
+
+#: src/Snippets/Locations.php:134
+msgid "Insert snippet before the closing body tag of your website on all pages (frontend)."
+msgstr ""
+
+#: src/Snippets/Locations.php:135
+msgid "Insert snippet at the beginning of single post/page content."
+msgstr ""
+
+#: src/Snippets/Locations.php:136
+msgid "Insert snippet at the end of single post/page content."
+msgstr ""
+
+#: src/Snippets/Locations.php:137
+msgid "Only display when inserted into a post or page using shortcode."
+msgstr ""
+
+#: src/Snippets/Locations.php:138
+msgid "Load this CSS on the public site."
+msgstr ""
+
+#: src/Snippets/Locations.php:139
+msgid "Load this CSS in wp-admin."
+msgstr ""
+
+#: src/Snippets/Locations.php:140
+msgid "Load this CSS on the login screen."
+msgstr ""
+
+#: src/Snippets/Locations.php:141
+msgid "Load this CSS in the block editor."
+msgstr ""
+
+#: src/Snippets/Locations.php:142
+msgid "Print this script in the frontend head."
+msgstr ""
+
+#: src/Snippets/Locations.php:143
+msgid "Print this script in the frontend footer."
+msgstr ""
+
+#: src/Snippets/Locations.php:144
+msgid "Print this script in the admin head."
+msgstr ""
+
+#: src/Snippets/Locations.php:145
+msgid "Print this script in the admin footer."
+msgstr ""
+
+#: src/Snippets/Locations.php:146
+msgid "Print this script on the login screen."
+msgstr ""
+
+#: src/Snippets/Locations.php:147
+msgid "Print this script in the block editor."
+msgstr ""
+
+#: src/Snippets/Locations.php:154
+msgid "Runs at this WordPress hook."
+msgstr ""
+
+#: src/Snippets/Locations.php:217
+msgid "Custom hook"
+msgstr ""
+
+#: src/Snippets/Shortcode.php:47
+msgid "Snippets are disabled"
+msgstr ""
+
+#: src/Snippets/Shortcode.php:51
+#: src/Snippets/Shortcode.php:57
+msgid "Snippet not found"
+msgstr ""
+
+#: src/Snippets/Shortcode.php:61
+msgid "Snippet has an error"
+msgstr ""
+
+#: src/Snippets/Shortcode.php:67
+msgid "Snippet type is not PHP Content"
+msgstr ""
+
+#: src/Snippets/Shortcode.php:71
+msgid "Snippet run at is not shortcode"
+msgstr ""
+
+#: src/Snippets/Shortcode.php:75
+msgid "Snippet status is not published"
+msgstr ""
+
+#: src/Snippets/Shortcode.php:81
+msgid "Snippet condition is not valid"
+msgstr ""
+
+#: src/Snippets/Shortcode.php:87
+msgid "Return Data is not valid"
+msgstr ""
+
+#: src/VisibilityPresets/AdminPage.php:47
+#: src/VisibilityPresets/AdminPage.php:58
+msgid "Presets"
+msgstr ""
+
+#: src/VisibilityPresets/AdminPage.php:57
+#: templates/visibility-presets-admin-page.php:22
+msgid "Visibility Presets"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:22
+msgid "Stream hosting, CDN, and storage credentials for the Video block."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:29
+msgid "Enable BunnyCDN Stream integration for the Video block."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:43
+msgid "Stream Library"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:51
+msgid "Access and manage your BunnyCDN Stream video library directly from WordPress."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:72
+msgid "Direct Upload"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:80
+msgid "Upload videos directly to BunnyCDN Stream from the block editor."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:101
+msgid "HLS Streaming"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:109
+msgid "Enable adaptive bitrate HLS streaming for optimal playback quality."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:130
+msgid "AI Transcription"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:138
+msgid "Automatic video transcription and captions powered by AI."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:159
+msgid "Video Thumbnails"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:167
+msgid "Auto-generate video thumbnails and preview sprites from BunnyCDN."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:188
+msgid "Video Watermark"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:196
+msgid "Add watermarks to videos for branding and copyright protection."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:212
+msgid "BunnyCDN API"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:214
+msgid "Account credentials used to authenticate with BunnyCDN."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:232
+msgid "Account API Key"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:233
+msgid "Found in your BunnyCDN dashboard under Account → API."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:241
+msgid "Enter API Key"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:251
+msgid "CDN Settings"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:253
+msgid "Pull zone name and public CDN hostname."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:265
+msgid "Pull Zone Name"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:266
+msgid "The name of your CDN pull zone."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:274
+msgid "my-pullzone"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:286
+msgid "CDN Hostname"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:287
+msgid "Your CDN hostname or custom domain."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:295
+msgid "cdn.example.com"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:305
+msgid "Storage Settings"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:307
+msgid "Storage zone, API key, and region."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:319
+msgid "Storage Zone Name"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:320
+msgid "The name of your storage zone."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:328
+msgid "my-storage-zone"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:340
+msgid "Storage API Key"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:341
+msgid "Storage zone password/API key."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:349
+msgid "Enter Storage API Key"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:361
+msgid "Storage Region"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:362
+msgid "Select your storage zone region."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:369
+msgid "Falkenstein (DE)"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:370
+msgid "New York (US)"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:371
+msgid "Los Angeles (US)"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:372
+msgid "Singapore (SG)"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:373
+msgid "Sydney (AU)"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:374
+msgid "London (UK)"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:375
+msgid "Stockholm (SE)"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:376
+msgid "São Paulo (BR)"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:377
+msgid "Johannesburg (ZA)"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:387
+msgid "Stream Settings"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:389
+msgid "Stream library ID, API key, and webhook secret."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:401
+msgid "Stream Library ID"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:402
+msgid "Found in Stream → Library → API."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:410
+msgid "12345"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:422
+msgid "Stream API Key"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:423
+msgid "Stream library API key for authentication."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:431
+msgid "Enter Stream API Key"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:443
+msgid "Webhook Secret"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:444
+msgid "Required for transcoding webhooks. Set the same value in your BunnyCDN Stream library settings."
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:452
+msgid "Enter Webhook Secret"
+msgstr ""
+
+#: templates/connectors-bunnycdn-section.php:472
+msgid "BunnyCDN API configuration requires Aegis Pro."
+msgstr ""
+
+#: templates/general-settings-admin-page.php:39
+msgid "Media"
+msgstr ""
+
+#: templates/general-settings-admin-page.php:39
+msgid "Configure media upload and handling features."
+msgstr ""
+
+#: templates/general-settings-admin-page.php:48
+msgid "SVG Uploads"
+msgstr ""
+
+#: templates/general-settings-admin-page.php:49
+msgid "Allow SVG file uploads in the Media Library. Files are sanitized on upload to remove potentially harmful code."
+msgstr ""
+
+#: templates/general-settings-admin-page.php:65
+msgid "Strip Colors"
+msgstr ""
+
+#: templates/general-settings-admin-page.php:66
+msgid "Remove fill, stroke, and color attributes on upload and set fill to currentColor, allowing SVGs to inherit color from CSS."
+msgstr ""
+
+#: templates/general-settings-admin-page.php:81
+msgid "Strip Dimensions"
+msgstr ""
+
+#: templates/general-settings-admin-page.php:82
+msgid "Remove width and height attributes from the root SVG element on upload. The viewBox is preserved so the SVG scales responsively."
+msgstr ""
+
+#: templates/general-settings-admin-page.php:97
+msgid "Strip Styles"
+msgstr ""
+
+#: templates/general-settings-admin-page.php:98
+msgid "Remove inline style attributes from all SVG elements on upload. This helps ensure consistent styling through CSS classes."
+msgstr ""
+
+#: templates/general-settings-admin-page.php:111
+msgid "Data"
+msgstr ""
+
+#: templates/general-settings-admin-page.php:111
+msgid "Control what happens to Aegis settings, snippets, and Pro data when the plugins are removed."
+msgstr ""
+
+#: templates/general-settings-admin-page.php:120
+msgid "Delete data on uninstall"
+msgstr ""
+
+#: templates/general-settings-admin-page.php:121
+msgid "When enabled, deleting the Aegis plugin also deletes settings, snippets, hook patterns, analytics, and Pro license data. Leave this off if you may reinstall."
+msgstr ""
+
+#: templates/general-settings-admin-page.php:133
+msgid "Delete data now"
+msgstr ""
+
+#: templates/general-settings-admin-page.php:134
+msgid "Immediately remove all Aegis data from this site without deleting the plugins. This cannot be undone."
+msgstr ""
+
+#: templates/general-settings-admin-page.php:138
+msgid "Delete all Aegis data"
+msgstr ""
+
+#: templates/hooks-admin-page.php:27
+msgid "Hook patterns need Aegis Pro"
+msgstr ""
+
+#. translators: %s: link to Code Snippets
+#: templates/hooks-admin-page.php:32
+#, php-format
+msgid "Inject block layouts at theme and WordPress hooks. For PHP, CSS, or HTML, use %s."
+msgstr ""
+
+#: templates/hooks-admin-page.php:68
+msgid "No hook patterns yet"
+msgstr ""
+
+#: templates/hooks-admin-page.php:70
+msgid "Click Add New to create a pattern, pick a hook location, add blocks, and publish."
+msgstr ""
+
+#: templates/hooks-admin-page.php:72
+msgid "Install Aegis Pro to inject block patterns at hook locations."
+msgstr ""
+
+#: templates/hooks-admin-page.php:88
+msgid "Hook patterns on this site"
+msgstr ""
+
+#: templates/hooks-admin-page.php:94
+msgid "Pattern"
+msgstr ""
+
+#: templates/hooks-admin-page.php:95
+#: templates/modals-admin-page.php:99
+msgid "Location"
+msgstr ""
+
+#: templates/hooks-admin-page.php:97
+msgid "Conditions"
+msgstr ""
+
+#: templates/hooks-admin-page.php:115
+#: templates/modals-admin-page.php:127
+#: templates/visibility-presets-admin-page.php:109
+msgid "(no title)"
+msgstr ""
+
+#. translators: %d: number of condition rules
+#: templates/hooks-admin-page.php:148
+#, php-format
+msgid "%d rules"
+msgstr ""
+
+#: templates/hooks-admin-page.php:154
+msgid "Edit conditions in the pattern editor"
+msgstr ""
+
+#: templates/hooks-admin-page.php:161
+msgid "Always"
+msgstr ""
+
+#: templates/hooks-admin-page.php:174
+msgid "Enable or disable this hook pattern"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:17
+msgid "Basic page view tracking with Google Analytics 4."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:27
+msgid "Enable GA4"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:28
+msgid "Load the Google Analytics 4 tracking script on your site."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:44
+msgid "Measurement ID"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:45
+msgid "Your GA4 Measurement ID (e.g., G-XXXXXXXXXX)."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:63
+#: templates/integrations-analytics-section.php:388
+msgid "Anonymize IP"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:64
+msgid "Enable IP anonymization for GDPR compliance."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:80
+msgid "GA4 Consent Mode v2"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:85
+msgid "Set denied defaults for analytics_storage, ad_storage, ad_user_data, and ad_personalization until consent is granted."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:99
+msgid "Google Tag Manager"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:100
+msgid "Manage all your tags from a single container."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:110
+msgid "Enable GTM"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:111
+msgid "Load the Google Tag Manager container on your site."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:127
+msgid "Container ID"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:128
+msgid "Your GTM Container ID (e.g., GTM-XXXXXXX)."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:147
+msgid "GTM Data Layer"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:152
+msgid "Automatically populate the Data Layer with page type, post data, and user login status."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:166
+msgid "Microsoft Clarity"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:167
+msgid "Free heatmaps and session recordings."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:177
+msgid "Enable Clarity"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:178
+msgid "Load the Microsoft Clarity tracking script."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:194
+msgid "Project ID"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:195
+msgid "Your Clarity Project ID from the dashboard."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:213
+msgid "Privacy-friendly, cookie-free analytics."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:223
+msgid "Enable Plausible"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:224
+msgid "Load the Plausible Analytics script."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:240
+msgid "Domain"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:241
+msgid "The domain configured in your Plausible account."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:259
+msgid "Custom Script URL"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:260
+msgid "Optional. Use a self-hosted or proxied Plausible script URL."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:278
+msgid "Simple, privacy-first website analytics."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:288
+msgid "Enable Fathom"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:289
+msgid "Load the Fathom Analytics tracking script."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:305
+#: templates/integrations-analytics-section.php:369
+msgid "Site ID"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:306
+msgid "Your Fathom Site ID from the dashboard."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:324
+msgid "Self-hosted web analytics platform."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:334
+msgid "Enable Matomo"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:335
+msgid "Load the Matomo tracking script for self-hosted analytics."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:350
+msgid "Matomo URL"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:351
+msgid "Full URL to your Matomo instance."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:370
+msgid "Numeric Site ID from your Matomo dashboard."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:389
+msgid "Enable Do Not Track and IP anonymization."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:404
+msgid "Facebook/Instagram conversion tracking."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:415
+msgid "Enable Meta Pixel"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:420
+msgid "Load the Meta Pixel for Facebook and Instagram ad tracking."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:437
+msgid "Pixel ID"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:438
+msgid "Your Meta Pixel ID from the Events Manager."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:456
+msgid "WooCommerce Events"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:457
+msgid "Automatically track ViewContent, AddToCart, InitiateCheckout, and Purchase events."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:473
+msgid "Consent, Do Not Track, and script loading for all analytics providers."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:483
+msgid "Require Consent"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:484
+msgid "Require user consent before loading tracking scripts. Works with Complianz or any consent plugin."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:499
+msgid "Respect Do Not Track"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:500
+msgid "Skip all tracking for visitors with the DNT browser header enabled."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:516
+msgid "Complianz Integration"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:523
+msgid "Integrate with Complianz for automatic cookie consent management."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:538
+msgid "Local Script Loading"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:539
+msgid "Cache GA4 and GTM scripts locally for faster loading and ad-blocker bypass. Scripts refresh automatically every 24 hours."
+msgstr ""
+
+#: templates/integrations-analytics-section.php:555
+msgid "Debug Mode"
+msgstr ""
+
+#: templates/integrations-analytics-section.php:560
+msgid "Show active providers, consent state, and script loading info in the browser console. Admin users only."
+msgstr ""
+
+#: templates/modals-admin-page.php:33
+msgid "Could not create the modal. Try again or insert the Modal block from the editor."
+msgstr ""
+
+#: templates/modals-admin-page.php:41
+msgid "Modal features are off"
+msgstr ""
+
+#. translators: %s: link to Blocks → Modal
+#: templates/modals-admin-page.php:46
+#, php-format
+msgid "Turn on at least one trigger at %s so the Modal block is available in the editor."
+msgstr ""
+
+#: templates/modals-admin-page.php:47
+msgid "Aegis → Blocks → Modal"
+msgstr ""
+
+#: templates/modals-admin-page.php:79
+msgid "No modals yet"
+msgstr ""
+
+#: templates/modals-admin-page.php:80
+msgid "Click Add New to start from a blank modal or a pattern."
+msgstr ""
+
+#: templates/modals-admin-page.php:92
+msgid "Modals on this site"
+msgstr ""
+
+#: templates/modals-admin-page.php:100
+msgid "Trigger"
+msgstr ""
+
+#: templates/modals-admin-page.php:178
+msgid "Enable or disable this modal"
+msgstr ""
+
+#: templates/modals-admin-page.php:200
+msgid "Close"
+msgstr ""
+
+#: templates/modals-admin-page.php:205
+msgid "Start from a blank modal or a pattern."
+msgstr ""
+
+#: templates/performance-admin-page.php:37
+msgid "Optional script and stylesheet cuts on the public frontend. Image lazy-load and LCP fetchpriority are handled by WordPress core."
+msgstr ""
+
+#: templates/performance-admin-page.php:40
+msgid "Disable oEmbed Script"
+msgstr ""
+
+#: templates/performance-admin-page.php:40
+msgid "Remove wp-embed and oEmbed discovery links on the frontend."
+msgstr ""
+
+#: templates/performance-admin-page.php:41
+msgid "Disable Dashicons for Guests"
+msgstr ""
+
+#: templates/performance-admin-page.php:41
+msgid "Stop loading dashicons for visitors who are not logged in."
+msgstr ""
+
+#: templates/performance-admin-page.php:42
+msgid "Reduce Frontend Heartbeat"
+msgstr ""
+
+#: templates/performance-admin-page.php:42
+msgid "Disable Heartbeat API scripts for guests on the frontend."
+msgstr ""
+
+#: templates/performance-admin-page.php:43
+msgid "Remove Emoji Scripts"
+msgstr ""
+
+#: templates/performance-admin-page.php:43
+msgid "Strip WordPress emoji detection scripts, styles, and DNS prefetch."
+msgstr ""
+
+#: templates/performance-admin-page.php:48
+msgid "Gates for block-level performance features. Slider image lazy-load stays under Blocks → Slider."
+msgstr ""
+
+#: templates/performance-admin-page.php:51
+msgid "Query Loop Performance"
+msgstr ""
+
+#: templates/performance-admin-page.php:51
+msgid "Unlock Pro Query Loop caching, skeleton loading during AJAX pagination, and hover prefetch. WordPress already lazy-loads Query Loop images."
+msgstr ""
+
+#: templates/performance-admin-page.php:52
+msgid "Embed Facades"
+msgstr ""
+
+#: templates/performance-admin-page.php:52
+msgid "Load YouTube and Vimeo players only after click."
+msgstr ""
+
+#. translators: %s: link to Blocks → Slider
+#: templates/performance-admin-page.php:60
+#, php-format
+msgid "Slider lazy-load remains at %s."
+msgstr ""
+
+#: templates/performance-admin-page.php:61
+msgid "Aegis → Blocks → Slider"
+msgstr ""
+
+#: templates/visibility-presets-admin-page.php:27
+msgid "Visibility presets need Aegis Pro"
+msgstr ""
+
+#. translators: %s: link to Conditionals
+#: templates/visibility-presets-admin-page.php:32
+#, php-format
+msgid "Save reusable visibility rule sets and apply them from any block. Condition types are toggled at %s."
+msgstr ""
+
+#: templates/visibility-presets-admin-page.php:65
+msgid "No presets yet"
+msgstr ""
+
+#: templates/visibility-presets-admin-page.php:67
+msgid "Click Add New to create a reusable visibility rule set, then apply it from any block in the editor."
+msgstr ""
+
+#: templates/visibility-presets-admin-page.php:69
+msgid "Install Aegis Pro to save reusable visibility rule sets for the block editor."
+msgstr ""
+
+#: templates/visibility-presets-admin-page.php:90
+msgid "Your Presets"
+msgstr ""
+
+#: templates/visibility-presets-admin-page.php:132
+msgid "New Preset"
+msgstr ""
+
+#: templates/visibility-presets-admin-page.php:140
+msgid "Visibility rules"
+msgstr ""
+
+#: templates/visibility-presets-admin-page.php:142
+msgid "Applied in the block editor from Apply Preset. JSON matches the block visibility object."
+msgstr ""
+
+#: templates/visibility-presets-admin-page.php:146
+msgid "Save"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "YouTube"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Vimeo"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Audio"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Bunny.net"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Choose a video type to get started."
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "or"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Select media"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "YouTube Video"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Enter a YouTube video URL."
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Embed"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Back"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Vimeo Video"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Enter a Vimeo video URL."
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Bunny.net Stream"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Enter your Bunny.net Stream details."
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Library ID"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Video ID"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "YouTube video preview"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Vimeo video preview"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Bunny Stream video preview"
+msgstr ""
+
+#: assets/editor/build/video-editor.tsx.js:1
+msgid "Video (deprecated)"
+msgstr ""
+
+#: src/Blocks/map/index.js:349
+msgid "Map Settings"
+msgstr ""
+
+#: src/Blocks/map/index.js:351
+msgid "Map Provider"
+msgstr ""
+
+#: src/Blocks/map/index.js:360
+msgid "Configure your API key in Aegis → Connectors → Google Maps."
+msgstr ""
+
+#: src/Blocks/map/index.js:363
+#: src/Blocks/map/index.js:543
+msgid "Address"
+msgstr ""
+
+#: src/Blocks/map/index.js:367
+msgid "Enter an address and click Search to geocode."
+msgstr ""
+
+#: src/Blocks/map/index.js:368
+msgid "Configure a server API key in Aegis → Connectors → Google Maps to search addresses."
+msgstr ""
+
+#: src/Blocks/map/index.js:376
+msgid "Searching…"
+msgstr ""
+
+#: src/Blocks/map/index.js:376
+msgid "Search Address"
+msgstr ""
+
+#: src/Blocks/map/index.js:378
+#: src/Blocks/map/index.js:427
+msgid "Latitude"
+msgstr ""
+
+#: src/Blocks/map/index.js:388
+#: src/Blocks/map/index.js:437
+msgid "Longitude"
+msgstr ""
+
+#: src/Blocks/map/index.js:405
+#: src/Blocks/modal/index.js:354
+msgid "Height"
+msgstr ""
+
+#: src/Blocks/map/index.js:416
+msgid "Markers"
+msgstr ""
+
+#: src/Blocks/map/index.js:453
+msgid "Remove Marker"
+msgstr ""
+
+#: src/Blocks/map/index.js:464
+msgid "Add Marker at Center"
+msgstr ""
+
+#: src/Blocks/map/index.js:473
+msgid "Map Style"
+msgstr ""
+
+#: src/Blocks/map/index.js:479
+msgid "Map Type"
+msgstr ""
+
+#: src/Blocks/map/index.js:482
+msgid "Roadmap"
+msgstr ""
+
+#: src/Blocks/map/index.js:483
+msgid "Satellite"
+msgstr ""
+
+#: src/Blocks/map/index.js:484
+msgid "Hybrid"
+msgstr ""
+
+#: src/Blocks/map/index.js:485
+msgid "Terrain"
+msgstr ""
+
+#: src/Blocks/map/index.js:491
+msgid "Style Preset"
+msgstr ""
+
+#: src/Blocks/map/index.js:494
+msgid "Default"
+msgstr ""
+
+#: src/Blocks/map/index.js:495
+msgid "Silver"
+msgstr ""
+
+#: src/Blocks/map/index.js:496
+msgid "Dark"
+msgstr ""
+
+#: src/Blocks/map/index.js:497
+msgid "Retro"
+msgstr ""
+
+#: src/Blocks/map/index.js:498
+msgid "Night"
+msgstr ""
+
+#: src/Blocks/map/index.js:499
+msgid "Aubergine"
+msgstr ""
+
+#: src/Blocks/map/index.js:505
+msgid "Style presets are available with Google Maps provider."
+msgstr ""
+
+#: src/Blocks/map/index.js:514
+msgid "Controls"
+msgstr ""
+
+#: src/Blocks/map/index.js:515
+msgid "Zoom Control"
+msgstr ""
+
+#: src/Blocks/map/index.js:520
+msgid "Map Type Control"
+msgstr ""
+
+#: src/Blocks/map/index.js:521
+msgid "Street View Control"
+msgstr ""
+
+#: src/Blocks/map/index.js:522
+msgid "Fullscreen Control"
+msgstr ""
+
+#: src/Blocks/map/index.js:525
+msgid "Scroll Wheel Zoom"
+msgstr ""
+
+#: src/Blocks/map/index.js:525
+msgid "Allow zooming with the mouse scroll wheel."
+msgstr ""
+
+#: src/Blocks/map/index.js:526
+msgid "Draggable"
+msgstr ""
+
+#: src/Blocks/map/index.js:535
+msgid "Schema.org LocalBusiness"
+msgstr ""
+
+#: src/Blocks/map/index.js:536
+msgid "Enable Schema Markup"
+msgstr ""
+
+#: src/Blocks/map/index.js:536
+msgid "Add LocalBusiness structured data for search engines."
+msgstr ""
+
+#: src/Blocks/map/index.js:541
+msgid "Business Name"
+msgstr ""
+
+#: src/Blocks/map/index.js:542
+msgid "Phone"
+msgstr ""
+
+#: src/Blocks/map/index.js:552
+msgid "Google Maps API key not configured. Using OpenStreetMap fallback. Configure your key in Aegis → Connectors → Google Maps."
+msgstr ""
+
+#: src/Blocks/map/index.js:554
+msgid "This map needs a Google Maps API key. Configure it in Aegis → Connectors → Google Maps."
+msgstr ""
+
+#: src/Blocks/map/index.js:566
+msgid "Loading map…"
+msgstr ""
+
+#: src/Blocks/modal/index.js:50
+#: src/Blocks/modal/index.js:428
+msgid "Popup"
+msgstr ""
+
+#: src/Blocks/modal/index.js:52
+#: src/Blocks/modal/index.js:440
+msgid "Off-Canvas"
+msgstr ""
+
+#: src/Blocks/modal/index.js:53
+#: src/Blocks/modal/index.js:446
+msgid "Bottom Sheet"
+msgstr ""
+
+#: src/Blocks/modal/index.js:56
+#: src/Blocks/modal/index.js:456
+msgid "Fullscreen"
+msgstr ""
+
+#: src/Blocks/modal/index.js:73
+msgid "Scroll Position"
+msgstr ""
+
+#: src/Blocks/modal/index.js:79
+msgid "Timed Delay"
+msgstr ""
+
+#: src/Blocks/modal/index.js:84
+msgid "Fade"
+msgstr ""
+
+#: src/Blocks/modal/index.js:85
+msgid "Slide Up"
+msgstr ""
+
+#: src/Blocks/modal/index.js:86
+msgid "Slide Down"
+msgstr ""
+
+#: src/Blocks/modal/index.js:87
+msgid "Slide Left"
+msgstr ""
+
+#: src/Blocks/modal/index.js:88
+msgid "Slide Right"
+msgstr ""
+
+#: src/Blocks/modal/index.js:90
+#: src/Blocks/modal/index.js:92
+msgid "None"
+msgstr ""
+
+#: src/Blocks/modal/index.js:104
+msgid "Modal Settings"
+msgstr ""
+
+#: src/Blocks/modal/index.js:106
+msgid "Modal Type"
+msgstr ""
+
+#: src/Blocks/modal/index.js:114
+msgid "Modal Title"
+msgstr ""
+
+#: src/Blocks/modal/index.js:119
+msgid "Used for accessibility. Can be visually hidden."
+msgstr ""
+
+#: src/Blocks/modal/index.js:122
+msgid "Modal ID"
+msgstr ""
+
+#: src/Blocks/modal/index.js:127
+msgid "Unique identifier. Auto-generated if empty."
+msgstr ""
+
+#: src/Blocks/modal/index.js:136
+msgid "Trigger Settings"
+msgstr ""
+
+#: src/Blocks/modal/index.js:138
+msgid "Trigger Type"
+msgstr ""
+
+#: src/Blocks/modal/index.js:147
+msgid "Trigger Text"
+msgstr ""
+
+#: src/Blocks/modal/index.js:156
+msgid "Trigger Icon HTML"
+msgstr ""
+
+#: src/Blocks/modal/index.js:161
+msgid "Inline SVG or HTML for the icon trigger. Empty uses a default icon."
+msgstr ""
+
+#: src/Blocks/modal/index.js:166
+msgid "Scroll Percentage (%)"
+msgstr ""
+
+#: src/Blocks/modal/index.js:177
+msgid "Trigger Only Once"
+msgstr ""
+
+#: src/Blocks/modal/index.js:182
+msgid "Only trigger once per page load."
+msgstr ""
+
+#: src/Blocks/modal/index.js:187
+msgid "Sensitivity (px)"
+msgstr ""
+
+#: src/Blocks/modal/index.js:194
+msgid "Distance from the top of the viewport to trigger."
+msgstr ""
+
+#: src/Blocks/modal/index.js:199
+msgid "Delay (ms)"
+msgstr ""
+
+#: src/Blocks/modal/index.js:207
+msgid "Wait this long after exit intent before opening."
+msgstr ""
+
+#: src/Blocks/modal/index.js:212
+msgid "Delay (seconds)"
+msgstr ""
+
+#: src/Blocks/modal/index.js:238
+msgid "Replace Image"
+msgstr ""
+
+#: src/Blocks/modal/index.js:239
+msgid "Select Image"
+msgstr ""
+
+#: src/Blocks/modal/index.js:252
+msgid "Behavior"
+msgstr ""
+
+#: src/Blocks/modal/index.js:254
+msgid "Animation"
+msgstr ""
+
+#: src/Blocks/modal/index.js:263
+msgid "Animation Duration (ms)"
+msgstr ""
+
+#: src/Blocks/modal/index.js:274
+msgid "Close on Escape"
+msgstr ""
+
+#: src/Blocks/modal/index.js:281
+msgid "Close on Overlay Click"
+msgstr ""
+
+#: src/Blocks/modal/index.js:288
+msgid "Show Close Button"
+msgstr ""
+
+#: src/Blocks/modal/index.js:296
+msgid "Close Button Position"
+msgstr ""
+
+#: src/Blocks/modal/index.js:299
+msgid "On dialog"
+msgstr ""
+
+#: src/Blocks/modal/index.js:300
+msgid "Top right of screen"
+msgstr ""
+
+#: src/Blocks/modal/index.js:305
+msgid "On dialog pins the control to the panel. Top right of screen matches the Image lightbox."
+msgstr ""
+
+#: src/Blocks/modal/index.js:313
+msgid "Prevent Body Scroll"
+msgstr ""
+
+#: src/Blocks/modal/index.js:320
+msgid "Focus Trap"
+msgstr ""
+
+#: src/Blocks/modal/index.js:325
+msgid "Keep focus within the modal when open."
+msgstr ""
+
+#: src/Blocks/modal/index.js:328
+msgid "Return Focus"
+msgstr ""
+
+#: src/Blocks/modal/index.js:333
+msgid "Return focus to trigger when modal closes."
+msgstr ""
+
+#: src/Blocks/modal/index.js:338
+msgid "Size & Styling"
+msgstr ""
+
+#: src/Blocks/modal/index.js:340
+msgid "Width"
+msgstr ""
+
+#: src/Blocks/modal/index.js:347
+msgid "Max Width"
+msgstr ""
+
+#: src/Blocks/modal/index.js:361
+msgid "Max Height"
+msgstr ""
+
+#: src/Blocks/modal/index.js:368
+msgid "Border Radius"
+msgstr ""
+
+#: src/Blocks/modal/index.js:375
+msgid "Padding"
+msgstr ""
+
+#: src/Blocks/modal/index.js:382
+msgid "Overlay Blur (px)"
+msgstr ""
+
+#: src/Blocks/modal/index.js:416
+msgid "Modal Content"
+msgstr ""
+
+#: src/Blocks/modal/index.js:429
+msgid "A centered popup modal."
+msgstr ""
+
+#: src/Blocks/modal/index.js:441
+msgid "A side panel that slides in."
+msgstr ""
+
+#: src/Blocks/modal/index.js:447
+msgid "A panel that slides up from the bottom."
+msgstr ""
+
+#: src/Blocks/modal/index.js:457
+msgid "A fullscreen overlay."
+msgstr ""

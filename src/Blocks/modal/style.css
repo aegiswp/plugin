@@ -1,0 +1,325 @@
+/**
+ * Modal block frontend and editor styles.
+ *
+ * @package Aegis\Plugin
+ */
+
+.wp-block-aegis-modal,
+.aegis-modal-wrapper {
+	display: inline-block;
+	max-width: 100%;
+}
+
+.aegis-modal-trigger {
+	cursor: pointer;
+}
+
+.aegis-modal-trigger--text {
+	background: none;
+	border: 0;
+	padding: 0;
+	color: inherit;
+	font: inherit;
+	text-decoration: underline;
+}
+
+.aegis-modal-trigger--icon,
+.aegis-modal-trigger--image {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	border: 0;
+	background: none;
+}
+
+.aegis-modal-trigger__image {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+.aegis-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 100000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1.5rem;
+}
+
+.aegis-modal[hidden] {
+	display: none;
+}
+
+.aegis-modal__overlay {
+	position: absolute;
+	inset: 0;
+	background: var(--aegis-modal-overlay-color, color-mix(in srgb, #000 55%, transparent));
+	backdrop-filter: blur(var(--aegis-modal-overlay-blur, 0px));
+	-webkit-backdrop-filter: blur(var(--aegis-modal-overlay-blur, 0px));
+}
+
+.aegis-modal__container {
+	position: relative;
+	z-index: 1;
+	width: var(--aegis-modal-width, 500px);
+	max-width: var(--aegis-modal-max-width, 90vw);
+	height: var(--aegis-modal-height, auto);
+	max-height: var(--aegis-modal-max-height, 90vh);
+}
+
+.aegis-modal__content {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	max-height: var(--aegis-modal-max-height, 90vh);
+	overflow: auto;
+	padding: var(--aegis-modal-padding, 24px);
+	background: var(--aegis-modal-bg, var(--wp--custom--body--background, var(--wp--preset--color--neutral-0, #fff)));
+	border-radius: var(--aegis-modal-radius, 8px);
+	color: var(--wp--custom--body--color, var(--wp--preset--color--neutral-950, #111));
+	box-shadow: 0 16px 48px color-mix(in srgb, #000 24%, transparent);
+}
+
+.aegis-modal__title {
+	margin: 0 0 0.75rem;
+}
+
+.aegis-modal__container:has(.aegis-modal__close--inside) .aegis-modal__title {
+	margin-right: 2.5rem;
+}
+
+.aegis-modal__body {
+	min-height: 0;
+}
+
+.aegis-modal__close {
+	position: absolute;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.5rem;
+	height: 2.5rem;
+	padding: 0;
+	border: 0;
+	border-radius: 999px;
+	background: var(--wp--custom--body--background, var(--wp--preset--color--neutral-0, #fff));
+	color: var(--wp--custom--body--color, var(--wp--preset--color--neutral-950, #111));
+	box-shadow: 0 1px 6px color-mix(in srgb, #000 20%, transparent);
+	cursor: pointer;
+	z-index: 2;
+}
+
+.aegis-modal__close:hover,
+.aegis-modal__close:focus-visible {
+	background: var(--wp--preset--color--neutral-100, #f5f5f5);
+}
+
+.aegis-modal__close svg {
+	display: block;
+	fill: currentColor;
+}
+
+.aegis-modal__close--inside {
+	top: 0.5rem;
+	right: 0.5rem;
+}
+
+.aegis-modal__close--outside {
+	position: fixed;
+	top: calc(env(safe-area-inset-top, 0px) + 16px);
+	right: calc(env(safe-area-inset-right, 0px) + 16px);
+	z-index: 100001;
+}
+
+.aegis-modal--fullscreen .aegis-modal__container {
+	width: 100%;
+	max-width: 100%;
+	height: 100%;
+	max-height: 100%;
+}
+
+.aegis-modal--fullscreen .aegis-modal__content {
+	max-height: 100%;
+	border-radius: 0;
+}
+
+.aegis-modal--off-canvas {
+	align-items: stretch;
+	justify-content: flex-end;
+	padding: 0;
+}
+
+.aegis-modal--off-canvas .aegis-modal__container {
+	width: min(var(--aegis-modal-width, 400px), 100%);
+	max-width: 100%;
+	height: 100%;
+	max-height: 100%;
+}
+
+.aegis-modal--off-canvas .aegis-modal__content {
+	height: 100%;
+	max-height: 100%;
+	border-radius: 0;
+}
+
+.aegis-modal--bottom-sheet {
+	align-items: flex-end;
+	padding: 0;
+}
+
+.aegis-modal--bottom-sheet .aegis-modal__container {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+
+.aegis-modal--bottom-sheet .aegis-modal__content {
+	border-radius: var(--aegis-modal-radius, 8px) var(--aegis-modal-radius, 8px) 0 0;
+}
+
+.aegis-modal--fade .aegis-modal__overlay,
+.aegis-modal--fade .aegis-modal__container {
+	animation: aegis-modal-fade var(--aegis-modal-duration, 200ms) ease;
+}
+
+.aegis-modal--zoom .aegis-modal__container {
+	animation: aegis-modal-zoom var(--aegis-modal-duration, 200ms) ease;
+}
+
+.aegis-modal--slide-up .aegis-modal__container {
+	animation: aegis-modal-slide-up var(--aegis-modal-duration, 200ms) ease;
+}
+
+.aegis-modal--slide-down .aegis-modal__container {
+	animation: aegis-modal-slide-down var(--aegis-modal-duration, 200ms) ease;
+}
+
+.aegis-modal--slide-left .aegis-modal__container {
+	animation: aegis-modal-slide-left var(--aegis-modal-duration, 200ms) ease;
+}
+
+.aegis-modal--slide-right .aegis-modal__container {
+	animation: aegis-modal-slide-right var(--aegis-modal-duration, 200ms) ease;
+}
+
+@keyframes aegis-modal-fade {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes aegis-modal-zoom {
+	from {
+		opacity: 0;
+		transform: scale(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes aegis-modal-slide-up {
+	from {
+		opacity: 0;
+		transform: translateY(1.5rem);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes aegis-modal-slide-down {
+	from {
+		opacity: 0;
+		transform: translateY(-1.5rem);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes aegis-modal-slide-left {
+	from {
+		opacity: 0;
+		transform: translateX(1.5rem);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes aegis-modal-slide-right {
+	from {
+		opacity: 0;
+		transform: translateX(-1.5rem);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.aegis-modal--fade .aegis-modal__overlay,
+	.aegis-modal--fade .aegis-modal__container,
+	.aegis-modal--zoom .aegis-modal__container,
+	.aegis-modal--slide-up .aegis-modal__container,
+	.aegis-modal--slide-down .aegis-modal__container,
+	.aegis-modal--slide-left .aegis-modal__container,
+	.aegis-modal--slide-right .aegis-modal__container {
+		animation: none;
+	}
+}
+
+.aegis-modal-editor {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.aegis-modal-editor__trigger-preview {
+	display: flex;
+	align-items: center;
+}
+
+.aegis-modal-editor__content-preview {
+	padding: 1rem;
+	border: 1px dashed var(--wp--preset--color--neutral-200, #ddd);
+	border-radius: 8px;
+	background: var(--wp--custom--body--background, var(--wp--preset--color--neutral-0, #fff));
+	color: var(--wp--custom--body--color, inherit);
+}
+
+.aegis-modal-editor__content-label {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 0.75rem;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--wp--custom--body--color, var(--wp--preset--color--neutral-700, #757575));
+	opacity: 0.72;
+}
+
+.aegis-modal-editor__type-badge {
+	padding: 0.15rem 0.45rem;
+	border-radius: 999px;
+	background: var(--wp--preset--color--neutral-100, #f0f0f0);
+	font-size: 11px;
+	text-transform: none;
+	letter-spacing: 0;
+}

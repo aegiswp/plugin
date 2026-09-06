@@ -1,0 +1,168 @@
+/**
+ * Modals admin page.
+ *
+ * @package Aegis\Admin
+ */
+
+.aegis-modals-page .aegis-hooks-info {
+	margin-bottom: 24px;
+}
+
+.aegis-modals-empty {
+	text-align: center;
+	padding: 32px 24px 8px;
+}
+
+.aegis-modals-empty h2 {
+	margin: 0 0 8px;
+	font-size: 18px;
+}
+
+.aegis-modals-empty p {
+	margin: 0;
+	color: var(--aegis-text-muted, #707070);
+}
+
+.aegis-modals-empty-action {
+	margin-top: 16px !important;
+}
+
+.aegis-modals-chooser {
+	width: min(1080px, calc(100vw - 48px));
+	max-width: calc(100vw - 48px);
+	max-height: calc(100vh - 64px);
+	margin: auto;
+	padding: 0;
+	border: 1px solid var(--aegis-border, #c3c4c7);
+	border-radius: 8px;
+	background: var(--aegis-surface, #fff);
+	color: var(--aegis-text, #1e1e1e);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.aegis-modals-chooser[open] {
+	display: flex;
+	flex-direction: column;
+}
+
+.aegis-modals-chooser::backdrop {
+	background: rgba(0, 0, 0, 0.55);
+}
+
+.aegis-modals-chooser-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 14px 16px 14px 20px;
+	color: var(--aegis-lede-heading, #f0f0f1);
+	background: var(--aegis-lede-bg, #2c3338);
+}
+
+.aegis-modals-chooser-header h2 {
+	margin: 0;
+	font-size: 15px;
+	font-weight: 600;
+	color: inherit;
+}
+
+.aegis-modals-chooser-close {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	border: 0;
+	border-radius: 4px;
+	background: transparent;
+	color: var(--aegis-lede-fg, #c3c4c7);
+	cursor: pointer;
+}
+
+.aegis-modals-chooser-close:hover,
+.aegis-modals-chooser-close:focus {
+	color: #fff;
+	background: rgba(255, 255, 255, 0.08);
+}
+
+.aegis-modals-chooser-close .dashicons {
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+}
+
+.aegis-modals-chooser-body {
+	padding: 20px 24px 24px;
+	overflow: auto;
+}
+
+.aegis-modals-chooser-intro {
+	margin: 0 0 16px;
+	color: var(--aegis-text-muted, #707070);
+}
+
+.aegis-modals-starters {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+	gap: 12px;
+}
+
+.aegis-modals-starter {
+	text-decoration: none;
+	color: inherit;
+	margin: 0;
+}
+
+.aegis-modals-starter h3 {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.aegis-modals-id {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	margin-top: 4px;
+	padding: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
+	font-size: 11px;
+	line-height: 1.4;
+	color: var(--aegis-text-muted, #707070);
+	max-width: 100%;
+}
+
+.aegis-modals-id code {
+	font-size: inherit;
+	background: none;
+	padding: 0;
+	color: inherit;
+	word-break: break-all;
+}
+
+.aegis-modals-id .dashicons {
+	font-size: 14px;
+	width: 14px;
+	height: 14px;
+	flex-shrink: 0;
+}
+
+.aegis-modals-id:hover,
+.aegis-modals-id:focus-visible {
+	color: var(--aegis-text, #1e1e1e);
+}
+
+.aegis-modals-id.is-copied {
+	color: var(--aegis-accent, #3858e9);
+}
+
+.aegis-modals-meta {
+	display: block;
+	margin-top: 2px;
+	font-size: 12px;
+	color: var(--aegis-text-muted, #707070);
+}

@@ -1,0 +1,19 @@
+{
+  "name": "aegis-plugin",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:admin && npm run build:editor",
+    "build:blocks": "wp-scripts build --webpack-copy-php --blocks-manifest --webpack-src-dir=src/Blocks --output-path=src/Blocks",
+    "build:admin": "wp-scripts build assets/admin/src/index.js --output-path=assets/admin/build",
+    "build:editor": "wp-scripts build assets/editor/video-editor.tsx --output-path=assets/editor/build",
+    "start": "wp-scripts start",
+    "start:admin": "wp-scripts start assets/admin/src/index.js --output-path=assets/admin/build",
+    "start:editor": "wp-scripts start assets/editor/video-editor.tsx --output-path=assets/editor/build",
+    "translate": "wp i18n make-pot . languages/aegis.pot --domain=aegis --skip-block-json --exclude=node_modules,vendor,.git,tests,docs,assets/admin/build",
+    "translate:studio": "studio wp --path ../../.. i18n make-pot wp-content/plugins/aegis wp-content/plugins/aegis/languages/aegis.pot --domain=aegis --skip-block-json --exclude=node_modules,vendor,.git,tests,docs,assets/admin/build"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0",
+    "typescript": "^5.0.0"
+  }
+}
