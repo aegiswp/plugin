@@ -15,6 +15,7 @@ use function add_action;
 use function add_filter;
 use function add_submenu_page;
 use function admin_url;
+use function class_exists;
 use function do_action;
 use function esc_html_e;
 use function register_setting;
@@ -68,6 +69,8 @@ final class AdminPage {
 	public function init(): void {
 		add_action( 'admin_menu', [ $this, 'register_menu' ] );
 		add_action( 'admin_init', [ $this, 'register_settings' ] );
+		add_action( 'update_option_' . Settings::OPTION, [ $this, 'flush_dependent_caches' ] );
+		add_action( 'add_option_' . Settings::OPTION, [ $this, 'flush_dependent_caches' ] );
 		add_action( 'wp_ajax_aegis_save_settings', [ $this->controller, 'ajax_save_settings' ] );
 		add_filter( 'aegis_admin_tabs', [ $this, 'register_admin_tab' ] );
 	}
@@ -117,6 +120,17 @@ final class AdminPage {
 	}
 
 	/**
+	 * Drop in-request settings and hook-pattern HTML caches after extras change.
+	 */
+	public function flush_dependent_caches(): void {
+		Settings::flush_cache();
+
+		if ( class_exists( '\Aegis\Pro\HookPatternsRenderer' ) ) {
+			( new \Aegis\Pro\HookPatternsRenderer() )->clear_all_caches();
+		}
+	}
+
+	/**
 	 * Render the Conditionals admin page.
 	 */
 	public function render(): void {
@@ -162,11 +176,11 @@ final class AdminPage {
 							<?php $this->renderer()->render_section_header( __( 'Visibility Controls', 'aegis' ), __( 'Control block visibility based on screen size, request context, location, and post meta.', 'aegis' ) ); ?>
 							<div class="aegis-settings-grid">
 								<?php $this->renderer()->render_toggle( 'visibility', 'screen_size', __( 'Screen Size', 'aegis' ), __( 'Hide blocks on mobile, tablet, or desktop.', 'aegis' ), $options, 'smartphone', Settings::OPTION ); ?>
-								<?php $this->renderer()->render_toggle( 'visibility', 'custom_breakpoints', __( 'Custom Breakpoints', 'aegis' ), __( 'Define custom min/max width breakpoints.', 'aegis' ), $options, 'editor-expand', Settings::OPTION ); ?>
+								<?php $this->renderer()->render_toggle( 'visibility', 'custom_breakpoints', __( 'Custom Breakpoints', 'aegis' ), __( 'Hide blocks below or above a custom pixel width.', 'aegis' ), $options, 'editor-expand', Settings::OPTION ); ?>
+								<?php $this->renderer()->render_toggle( 'visibility', 'page_type', __( 'Page Type', 'aegis' ), __( 'Show or hide blocks on the front page, blog, singular, archive, search, or 404.', 'aegis' ), $options, 'admin-home', Settings::OPTION ); ?>
 								<?php $this->renderer()->render_toggle( 'visibility', 'browser_device', __( 'Browser & Device', 'aegis' ), __( 'Target specific browsers and devices.', 'aegis' ), $options, 'desktop', Settings::OPTION ); ?>
 								<?php $this->renderer()->render_toggle( 'visibility', 'lockdown', __( 'Lockdown', 'aegis' ), __( 'Hide blocks from all users on the frontend (draft mode).', 'aegis' ), $options, 'lock', Settings::OPTION ); ?>
 								<?php $this->renderer()->render_toggle( 'visibility', 'query_string', __( 'URL Query String', 'aegis' ), __( 'Show or hide blocks based on URL query parameters.', 'aegis' ), $options, 'admin-links', Settings::OPTION ); ?>
-								<?php $this->renderer()->render_toggle( 'visibility', 'specific_users', __( 'Specific Users', 'aegis' ), __( 'Show or hide blocks for specific user IDs.', 'aegis' ), $options, 'admin-users', Settings::OPTION ); ?>
 								<?php $this->renderer()->render_toggle( 'pro_conditions', 'cookie', __( 'Cookie', 'aegis' ), __( 'Show or hide blocks based on browser cookie values.', 'aegis' ), $options, 'info-outline', Settings::OPTION ); ?>
 								<?php $this->renderer()->render_toggle( 'pro_conditions', 'referral', __( 'Referral Source', 'aegis' ), __( 'Show or hide blocks based on the referring domain.', 'aegis' ), $options, 'share', Settings::OPTION ); ?>
 								<?php $this->renderer()->render_toggle( 'pro_conditions', 'advanced_location', __( 'Advanced Location', 'aegis' ), __( 'Show or hide blocks by post type, post IDs, taxonomy terms, URL path, or archive type.', 'aegis' ), $options, 'location-alt', Settings::OPTION ); ?>
@@ -179,28 +193,30 @@ final class AdminPage {
 							<div class="aegis-settings-grid">
 								<?php $this->renderer()->render_toggle( 'accessibility', 'reduced_motion', __( 'Reduced Motion', 'aegis' ), __( 'Hide content for users who prefer reduced motion.', 'aegis' ), $options, 'controls-pause', Settings::OPTION ); ?>
 								<?php $this->renderer()->render_toggle( 'accessibility', 'screen_reader_only', __( 'Screen Reader Only', 'aegis' ), __( 'Make content visible only to screen readers.', 'aegis' ), $options, 'megaphone', Settings::OPTION ); ?>
-								<?php $this->renderer()->render_toggle( 'accessibility', 'color_scheme', __( 'Color Scheme', 'aegis' ), __( 'Show content only in light or dark mode.', 'aegis' ), $options, 'art', Settings::OPTION ); ?>
-								<?php $this->renderer()->render_toggle( 'accessibility', 'high_contrast', __( 'High Contrast', 'aegis' ), __( 'Hide content in high contrast mode.', 'aegis' ), $options, 'admin-appearance', Settings::OPTION ); ?>
-								<?php $this->renderer()->render_toggle( 'accessibility', 'forced_colors', __( 'Forced Colors', 'aegis' ), __( 'Hide content in Windows High Contrast mode.', 'aegis' ), $options, 'color-picker', Settings::OPTION ); ?>
+								<?php $this->renderer()->render_toggle( 'accessibility', 'color_scheme', __( 'Color Scheme', 'aegis' ), __( 'Hide blocks when the site toggle, theme default, or operating system is in light or dark mode.', 'aegis' ), $options, 'art', Settings::OPTION ); ?>
+								<?php $this->renderer()->render_toggle( 'accessibility', 'high_contrast', __( 'High Contrast', 'aegis' ), __( 'Hide content when the user prefers more contrast.', 'aegis' ), $options, 'admin-appearance', Settings::OPTION ); ?>
+								<?php $this->renderer()->render_toggle( 'accessibility', 'forced_colors', __( 'Forced Colors', 'aegis' ), __( 'Hide content when forced colors are active, including Windows High Contrast.', 'aegis' ), $options, 'color-picker', Settings::OPTION ); ?>
 							</div>
 						</section>
 
 						<section id="user" class="aegis-settings-section">
-							<?php $this->renderer()->render_section_header( __( 'User Controls', 'aegis' ), __( 'Control visibility based on user status, role, and user meta.', 'aegis' ) ); ?>
+							<?php $this->renderer()->render_section_header( __( 'User Controls', 'aegis' ), __( 'Control visibility based on login state, role, capability, specific users, and user meta.', 'aegis' ) ); ?>
 							<div class="aegis-settings-grid">
 								<?php $this->renderer()->render_toggle( 'user', 'user_status', __( 'User Status', 'aegis' ), __( 'Show content to logged-in or logged-out users.', 'aegis' ), $options, 'admin-users', Settings::OPTION ); ?>
 								<?php $this->renderer()->render_toggle( 'user', 'user_role', __( 'User Role', 'aegis' ), __( 'Show content to specific user roles.', 'aegis' ), $options, 'groups', Settings::OPTION ); ?>
+								<?php $this->renderer()->render_toggle( 'user', 'user_capability', __( 'User Capability', 'aegis' ), __( 'Match a primitive capability slug such as edit_posts (is / is not). Object caps like edit_post need a post ID and will not match.', 'aegis' ), $options, 'unlock', Settings::OPTION ); ?>
+								<?php $this->renderer()->render_toggle( 'visibility', 'specific_users', __( 'Specific Users', 'aegis' ), __( 'Show or hide blocks for specific user IDs.', 'aegis' ), $options, 'id', Settings::OPTION ); ?>
 								<?php $this->renderer()->render_toggle( 'pro_conditions', 'user_meta', __( 'User Meta', 'aegis' ), __( 'Show or hide blocks based on current user meta key/value.', 'aegis' ), $options, 'id-alt', Settings::OPTION ); ?>
 							</div>
 						</section>
 
 						<section id="schedule" class="aegis-settings-section">
-							<?php $this->renderer()->render_section_header( __( 'Schedule Controls', 'aegis' ), __( 'Control visibility based on date and time.', 'aegis' ) ); ?>
+							<?php $this->renderer()->render_section_header( __( 'Schedule Controls', 'aegis' ), __( 'Control visibility based on date, time, weekdays, and timezone.', 'aegis' ) ); ?>
 							<div class="aegis-settings-grid">
-								<?php $this->renderer()->render_toggle( 'schedule', 'date_time', __( 'Date & Time', 'aegis' ), __( 'Show content during specific dates and times.', 'aegis' ), $options, 'clock', Settings::OPTION ); ?>
+								<?php $this->renderer()->render_toggle( 'schedule', 'date_time', __( 'Date & Time', 'aegis' ), __( 'Show content between a start and end date/time.', 'aegis' ), $options, 'clock', Settings::OPTION ); ?>
 								<?php $this->renderer()->render_toggle( 'schedule', 'days_of_week', __( 'Days of Week', 'aegis' ), __( 'Limit visibility to selected weekdays.', 'aegis' ), $options, 'calendar-alt', Settings::OPTION ); ?>
-								<?php $this->renderer()->render_toggle( 'schedule', 'time_range', __( 'Daily Time Range', 'aegis' ), __( 'Limit visibility to a daily start/end time.', 'aegis' ), $options, 'clock', Settings::OPTION ); ?>
-								<?php $this->renderer()->render_toggle( 'schedule', 'timezone', __( 'Timezone', 'aegis' ), __( 'Use a custom timezone for schedule rules.', 'aegis' ), $options, 'admin-site-alt3', Settings::OPTION ); ?>
+								<?php $this->renderer()->render_toggle( 'schedule', 'time_range', __( 'Daily Time Range', 'aegis' ), __( 'Limit visibility to a daily start/end time. Overnight ranges (end before start) are supported.', 'aegis' ), $options, 'clock', Settings::OPTION ); ?>
+								<?php $this->renderer()->render_toggle( 'schedule', 'timezone', __( 'Timezone', 'aegis' ), __( 'Evaluate Date & Time, daily range, and weekdays in a chosen timezone. The site timezone is used when the field is empty.', 'aegis' ), $options, 'admin-site-alt3', Settings::OPTION ); ?>
 							</div>
 						</section>
 

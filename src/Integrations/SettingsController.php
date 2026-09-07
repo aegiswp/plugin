@@ -48,6 +48,14 @@ final class SettingsController {
 		$sanitized = Settings::sanitize( is_array( $settings ) ? $settings : [] );
 
 		update_option( Settings::OPTION, $sanitized );
+
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		$pattern = isset( $_POST['pattern_control'] ) ? wp_unslash( $_POST['pattern_control'] ) : [];
+		update_option(
+			Settings::PATTERN_CONTROL_OPTION,
+			Settings::sanitize_pattern_control( is_array( $pattern ) ? $pattern : [] )
+		);
+
 		Settings::flush_cache();
 
 		if ( class_exists( '\Aegis\Plugin\Settings\Repository' ) ) {

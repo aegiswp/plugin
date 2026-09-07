@@ -10,7 +10,9 @@ declare( strict_types=1 );
 
 namespace Aegis\Plugin\Conditionals;
 
+use Aegis\Plugin\Integrations\Settings as IntegrationsSettings;
 use function __;
+use function class_exists;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -34,7 +36,8 @@ final class IntegrationsPanel {
 			return;
 		}
 
-		$options = Settings::get_settings();
+		$options   = Settings::get_settings();
+		$parent_on = class_exists( IntegrationsSettings::class ) && IntegrationsSettings::is_integration_enabled( $integration_key );
 
 		foreach ( $toggles as $toggle ) {
 			$renderer->render_toggle(
@@ -44,7 +47,9 @@ final class IntegrationsPanel {
 				$toggle['desc'],
 				$options,
 				$toggle['icon'],
-				Settings::OPTION
+				Settings::OPTION,
+				'',
+				! $parent_on
 			);
 		}
 	}
@@ -109,6 +114,29 @@ final class IntegrationsPanel {
 					'label' => __( 'Download Context', 'aegis' ),
 					'desc'  => __( 'Show or hide blocks on single download pages.', 'aegis' ),
 					'icon'  => 'download',
+				),
+			),
+			'affiliate_wp'           => array(
+				array(
+					'group' => 'affiliate_wp',
+					'key'   => 'affwp_referral',
+					'label' => __( 'Referral Visit', 'aegis' ),
+					'desc'  => __( 'Show or hide blocks based on whether the visitor was referred by an affiliate.', 'aegis' ),
+					'icon'  => 'randomize',
+				),
+				array(
+					'group' => 'affiliate_wp',
+					'key'   => 'affwp_affiliate',
+					'label' => __( 'Affiliate Account', 'aegis' ),
+					'desc'  => __( 'Show or hide blocks based on whether the logged-in user is an affiliate and their status.', 'aegis' ),
+					'icon'  => 'id',
+				),
+				array(
+					'group' => 'affiliate_wp',
+					'key'   => 'affwp_earnings',
+					'label' => __( 'Earnings', 'aegis' ),
+					'desc'  => __( 'Show or hide blocks based on affiliate lifetime earnings, unpaid earnings, or referral count.', 'aegis' ),
+					'icon'  => 'chart-bar',
 				),
 			),
 			'learndash'              => array(

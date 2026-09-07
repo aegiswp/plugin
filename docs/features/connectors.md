@@ -19,7 +19,7 @@ Service credentials and API connections live at **Aegis → Connectors** (`admin
 
 Option keys are unchanged: `aegis_integrations` (toggles), `aegis_bunnycdn`, `aegis_google_maps`, `aegis_analytics`.
 
-Export, import, and reset on this screen use the **integrations** settings group (the same `aegis_integrations` option as **Aegis → Integrations**). API credentials remain excluded from the global export bundle.
+Export, import, and reset on this screen use the **integrations** settings group (the same `aegis_integrations` option as **Aegis → Integrations**). Reset also clears `aegis_pattern_control`. API credentials remain excluded from the global export bundle.
 
 ## BunnyCDN
 

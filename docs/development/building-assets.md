@@ -56,7 +56,7 @@ npm run translate             # Requires `wp` on PATH
 npm run translate:studio      # WordPress Studio (Windows)
 ```
 
-`wp i18n make-pot` scans PHP and JavaScript (`--skip-block-json`, same as the theme). It does not scan TypeScript, so run `npm run build:editor` first if you changed `assets/editor/video-editor.tsx` — those strings come from `assets/editor/build/video-editor.tsx.js`.
+`wp i18n make-pot` scans PHP and JavaScript (`--skip-block-json`, same as the theme). Admin Smart Logic strings live in `assets/admin/smart-conditions.js`. The post/hook-pattern extras UI (`assets/admin/hook-patterns-conditions.js`) is scanned for wrapped `wp.i18n` strings. It does not scan TypeScript, so run `npm run build:editor` first if you changed `assets/editor/video-editor.tsx` — those strings come from `assets/editor/build/video-editor.tsx.js`.
 
 Theme strings: `wp-content/themes/aegis/languages/aegis.pot`. Pro strings: `wp-content/plugins/aegis-pro/languages/aegis-pro.pot`.
 

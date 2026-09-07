@@ -9,7 +9,7 @@
 - **Your Presets** table with name, last modified date, **Edit**, and **Delete**
 - Create and edit open an editor card on the same page
 
-Without Pro, Add New links to License. Condition types available in presets are toggled at **Aegis → Conditionals**.
+Without Pro, Add New links to License. Condition types available in presets are toggled at **Aegis → Conditionals** (including **User Status**, **User Role**, **User Capability**, **Specific Users**, and **Schedule**).
 
 Apply a preset from the block editor **Apply Preset** control.
 

@@ -14,7 +14,7 @@
 
 Status **Disabled** means the instance toggle is off. Otherwise status is the post status (Draft, Published, …).
 
-**Conditions** **Always** means the pattern has no visibility rules. **Conditional** (or a rule count) means `_aegis_conditions` is active; click it to edit rules in the pattern editor. Which condition types are available is toggled at **Aegis → Conditionals**.
+**Conditions** **Always** means the pattern has no visibility rules. **Conditional** (or a rule count) means `_aegis_conditions` is active; click it to edit rules in the pattern editor. Which condition types are available is toggled at **Aegis → Conditionals** (including **Page Type**, **User Status**, **User Role**, **User Capability**, **Specific Users**, **Schedule**, and Accessibility) and **Aegis → Integrations**. Saved rules for a disabled extra are ignored. Viewport and accessibility classes wrap the pattern output. Smart Logic on the pattern is evaluated on the front end with the same extras gating as posts. User Capability is a typed slug such as `edit_posts` (**is** / **is not**); object caps like `edit_post` will not match. Schedule extras (Date & Time, weekdays, daily range, timezone) use the dedicated extras UI, not Smart Logic. Naive start/end datetimes are interpreted in the IANA schedule timezone when that extra is on, otherwise the site timezone; non-IANA saved zones stay in the dropdown labeled invalid and evaluate as the site timezone. Daily ranges whose end is before start wrap overnight.
 
 **Delete** moves the hook pattern to Trash. Enable/Disable sets `_aegis_enabled` without changing publish status.
 

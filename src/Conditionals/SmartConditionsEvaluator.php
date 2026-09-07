@@ -17,8 +17,10 @@ use function function_exists;
 use function get_post_type;
 use function in_array;
 use function is_user_logged_in;
+use function current_user_can;
 use function sanitize_text_field;
 use function strtolower;
+use function trim;
 use function wp_get_current_user;
 use function wp_unslash;
 
@@ -58,7 +60,8 @@ final class SmartConditionsEvaluator {
 			return true;
 		}
 
-		$any_group_matches = false;
+		$any_group_matches  = false;
+		$had_enabled_rules  = false;
 
 		foreach ( $groups as $group ) {
 			if ( ! is_array( $group ) ) {
@@ -80,6 +83,12 @@ final class SmartConditionsEvaluator {
 					continue;
 				}
 
+				$field = (string) ( $rule['field'] ?? '' );
+
+				if ( $field === '' || ! $this->field_extra_enabled( $field ) ) {
+					continue;
+				}
+
 				++$total;
 
 				if ( $this->match_rule( $rule ) ) {
@@ -91,12 +100,18 @@ final class SmartConditionsEvaluator {
 				continue;
 			}
 
+			$had_enabled_rules = true;
+
 			$group_met = ( $relation === 'any' ) ? ( $passes > 0 ) : ( $passes === $total );
 
 			if ( $group_met ) {
 				$any_group_matches = true;
 				break;
 			}
+		}
+
+		if ( ! $had_enabled_rules ) {
+			return true;
 		}
 
 		if ( $action === 'hide' ) {
@@ -126,16 +141,21 @@ final class SmartConditionsEvaluator {
 				$want_in   = in_array( $value, array( 'logged-in', 'true', '1', 'yes' ), true );
 				$want_out  = in_array( $value, array( 'logged-out', 'false', '0', 'no' ), true );
 				if ( $want_in ) {
-					return $operator === 'is' ? $logged_in : ! $logged_in;
+					return $this->compare_bool( $logged_in, $operator );
 				}
 				if ( $want_out ) {
-					return $operator === 'is' ? ! $logged_in : $logged_in;
+					return $this->compare_bool( ! $logged_in, $operator );
 				}
 				return false;
 
 			case 'user_role':
 				$user = wp_get_current_user();
 				$has  = in_array( $value, $user->roles, true );
+				return $this->compare_bool( $has, $operator );
+
+			case 'user_capability':
+				$cap = Evaluator::normalize_capability( $value );
+				$has = $cap !== '' && current_user_can( $cap );
 				return $this->compare_bool( $has, $operator );
 
 			case 'post_type':
@@ -166,16 +186,51 @@ final class SmartConditionsEvaluator {
 				$has = wpf_has_tag( $value );
 				return $this->compare_bool( $has, $operator );
 
+			case 'wp_fusion_list':
+				if ( ! function_exists( 'wpf_has_tag' ) ) {
+					return false;
+				}
+				$has = wpf_has_tag( $value );
+				return $this->compare_bool( $has, $operator );
+
 			default:
 				return false;
 		}
+	}
+
+	/**
+	 * Whether the Conditionals extra for a smart-logic field is on.
+	 *
+	 * post_type is the core builder field and is always available.
+	 */
+	private function field_extra_enabled( string $field ): bool {
+		$extra = match ( $field ) {
+			'user_status'     => array( 'user', 'user_status' ),
+			'user_role'       => array( 'user', 'user_role' ),
+			'user_capability' => array( 'user', 'user_capability' ),
+			'page_url'       => array( 'pro_conditions', 'advanced_location' ),
+			'query_string'   => array( 'visibility', 'query_string' ),
+			'wp_fusion_tag'  => array( 'wp_fusion', 'tags' ),
+			'wp_fusion_list' => array( 'wp_fusion', 'lists' ),
+			default          => array(),
+		};
+
+		if ( $extra === array() ) {
+			return true;
+		}
+
+		if ( ! class_exists( Settings::class ) ) {
+			return true;
+		}
+
+		return Settings::is_enabled( $extra[0], $extra[1] );
 	}
 
 	private function compare_bool( bool $actual, string $operator ): bool {
 		return match ( $operator ) {
 			'is'    => $actual,
 			'isNot' => ! $actual,
-			default => $actual,
+			default => false,
 		};
 	}
 

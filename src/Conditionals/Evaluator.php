@@ -21,8 +21,13 @@ use Aegis\Plugin\Utilities\UserAgent;
 use function get_post_meta;
 use function is_user_logged_in;
 use function wp_get_current_user;
+use function current_user_can;
 use function current_datetime;
-use function strtotime;
+use function preg_match;
+use function preg_replace;
+use function sprintf;
+use function str_replace;
+use function wp_timezone;
 use function is_front_page;
 use function is_home;
 use function is_singular;
@@ -49,6 +54,10 @@ use function wp_parse_url;
 use function sanitize_text_field;
 use function wp_unslash;
 use function is_array;
+use function is_string;
+use function sanitize_key;
+use function strtolower;
+use function trim;
 
 /**
  * Conditions Evaluator Class
@@ -60,8 +69,8 @@ class Evaluator {
 	/**
 	 * Check document-level conditional logic for a pattern.
 	 *
-	 * Reads the JSON `_aegis_conditions` meta field and evaluates every
-	 * active condition. All non-empty conditions must pass (AND logic).
+	 * Reads `_aegis_conditions` (JSON string or array) and evaluates every
+	 * active condition, including Smart Logic when it is enabled.
 	 *
 	 * @since 1.0.0
 	 *
@@ -75,12 +84,19 @@ class Evaluator {
 			return true;
 		}
 
-		$c = json_decode( $raw, true );
-		if ( ! is_array( $c ) || empty( $c ) ) {
+		if ( is_array( $raw ) ) {
+			$c = $raw;
+		} elseif ( is_string( $raw ) ) {
+			$c = json_decode( $raw, true );
+		} else {
 			return true;
 		}
 
-		return $this->evaluate_conditions( $c );
+		if ( ! is_array( $c ) || $c === array() ) {
+			return true;
+		}
+
+		return $this->should_render_conditions( $c );
 	}
 
 	/**
@@ -120,23 +136,24 @@ class Evaluator {
 	 * @param array<string, mixed> $c Conditions data.
 	 */
 	private function evaluate_conditions( array $c ): bool {
-		if ( ! empty( $c['lockdown'] ) ) {
+		if ( ! empty( $c['lockdown'] ) && $this->extra_enabled( 'visibility', 'lockdown' ) ) {
 			return false;
 		}
 
 		// User status.
-		if ( ! empty( $c['userStatus'] ) ) {
+		if ( ! empty( $c['userStatus'] ) && $this->extra_enabled( 'user', 'user_status' ) ) {
+			$status    = $c['userStatus'];
 			$logged_in = is_user_logged_in();
-			if ( $c['userStatus'] === 'logged-in' && ! $logged_in ) {
+			if ( $status === 'logged-in' && ! $logged_in ) {
 				return false;
 			}
-			if ( $c['userStatus'] === 'logged-out' && $logged_in ) {
+			if ( $status === 'logged-out' && $logged_in ) {
 				return false;
 			}
 		}
 
 		// User role rules.
-		if ( ! empty( $c['userRoleRules'] ) && is_array( $c['userRoleRules'] ) ) {
+		if ( ! empty( $c['userRoleRules'] ) && is_array( $c['userRoleRules'] ) && $this->extra_enabled( 'user', 'user_role' ) ) {
 			$hide = $this->evaluate_rules(
 				$c['userRoleRules'],
 				$c['userRoleLogic'] ?? 'show',
@@ -152,13 +169,29 @@ class Evaluator {
 			}
 		}
 
+		// User capability rules.
+		if ( ! empty( $c['userCapabilityRules'] ) && is_array( $c['userCapabilityRules'] ) && $this->extra_enabled( 'user', 'user_capability' ) ) {
+			$hide = $this->evaluate_rules(
+				$c['userCapabilityRules'],
+				$c['userCapabilityLogic'] ?? 'show',
+				$c['userCapabilityRelation'] ?? 'all',
+				function ( array $rule ): bool {
+					$cap = self::normalize_capability( (string) ( $rule['capability'] ?? '' ) );
+					$has = $cap !== '' && current_user_can( $cap );
+					return ( $rule['operator'] ?? 'is' ) === 'is' ? $has : ! $has;
+				}
+			);
+			if ( $hide ) {
+				return false;
+			}
+		}
+
 		// Schedule.
 		if ( ! $this->evaluate_schedule( $c ) ) {
 			return false;
 		}
 
-		// Location.
-		if ( ! empty( $c['location'] ) ) {
+		if ( ! empty( $c['location'] ) && $this->extra_enabled( 'visibility', 'page_type' ) ) {
 			$match = $this->check_location( $c['location'] );
 			$logic = $c['locationLogic'] ?? 'show';
 			if ( $logic === 'show' && ! $match ) {
@@ -170,7 +203,7 @@ class Evaluator {
 		}
 
 		// Specific users.
-		if ( ! empty( $c['specificUserIds'] ) ) {
+		if ( ! empty( $c['specificUserIds'] ) && $this->extra_enabled( 'visibility', 'specific_users' ) ) {
 			$ids   = array_map( 'intval', array_filter( explode( ',', $c['specificUserIds'] ) ) );
 			$match = in_array( get_current_user_id(), $ids, true );
 			$logic = $c['specificUsersLogic'] ?? 'show';
@@ -183,7 +216,7 @@ class Evaluator {
 		}
 
 		// URL query string rules.
-		if ( ! empty( $c['queryStringRules'] ) && is_array( $c['queryStringRules'] ) ) {
+		if ( ! empty( $c['queryStringRules'] ) && is_array( $c['queryStringRules'] ) && $this->extra_enabled( 'visibility', 'query_string' ) ) {
 			$hide = $this->evaluate_rules(
 				$c['queryStringRules'],
 				$c['queryStringLogic'] ?? 'show',
@@ -203,7 +236,7 @@ class Evaluator {
 		}
 
 		// Browser & device rules (server-side UA sniffing — best effort).
-		if ( ! empty( $c['deviceRules'] ) && is_array( $c['deviceRules'] ) ) {
+		if ( ! empty( $c['deviceRules'] ) && is_array( $c['deviceRules'] ) && $this->extra_enabled( 'visibility', 'browser_device' ) ) {
 			$hide = $this->evaluate_rules(
 				$c['deviceRules'],
 				$c['deviceLogic'] ?? 'show',
@@ -221,7 +254,7 @@ class Evaluator {
 		}
 
 		// Cookie rules (pro).
-		if ( ! empty( $c['cookieRules'] ) && is_array( $c['cookieRules'] ) ) {
+		if ( ! empty( $c['cookieRules'] ) && is_array( $c['cookieRules'] ) && $this->extra_enabled( 'pro_conditions', 'cookie' ) ) {
 			$hide = $this->evaluate_rules(
 				$c['cookieRules'],
 				$c['cookieLogic'] ?? 'show',
@@ -241,7 +274,7 @@ class Evaluator {
 		}
 
 		// Referral source rules (pro).
-		if ( ! empty( $c['referralRules'] ) && is_array( $c['referralRules'] ) ) {
+		if ( ! empty( $c['referralRules'] ) && is_array( $c['referralRules'] ) && $this->extra_enabled( 'pro_conditions', 'referral' ) ) {
 			$hide = $this->evaluate_rules(
 				$c['referralRules'],
 				$c['referralLogic'] ?? 'show',
@@ -267,7 +300,7 @@ class Evaluator {
 		}
 
 		// ACF field rules (pro).
-		if ( ! empty( $c['acfRules'] ) && is_array( $c['acfRules'] ) && function_exists( 'get_field' ) ) {
+		if ( ! empty( $c['acfRules'] ) && is_array( $c['acfRules'] ) && function_exists( 'get_field' ) && $this->extra_enabled( 'pro_conditions', 'acf_field' ) ) {
 			$hide = $this->evaluate_rules(
 				$c['acfRules'],
 				$c['acfLogic'] ?? 'show',
@@ -287,7 +320,7 @@ class Evaluator {
 		}
 
 		// MetaBox field rules (pro).
-		if ( ! empty( $c['metaboxRules'] ) && is_array( $c['metaboxRules'] ) && function_exists( 'rwmb_meta' ) ) {
+		if ( ! empty( $c['metaboxRules'] ) && is_array( $c['metaboxRules'] ) && function_exists( 'rwmb_meta' ) && $this->extra_enabled( 'pro_conditions', 'metabox_field' ) ) {
 			$hide = $this->evaluate_rules(
 				$c['metaboxRules'],
 				$c['metaboxLogic'] ?? 'show',
@@ -307,7 +340,7 @@ class Evaluator {
 		}
 
 		// Post meta rules (pro).
-		if ( ! empty( $c['postMetaRules'] ) && is_array( $c['postMetaRules'] ) ) {
+		if ( ! empty( $c['postMetaRules'] ) && is_array( $c['postMetaRules'] ) && $this->extra_enabled( 'pro_conditions', 'post_meta' ) ) {
 			$hide = $this->evaluate_rules(
 				$c['postMetaRules'],
 				$c['postMetaLogic'] ?? 'show',
@@ -333,31 +366,29 @@ class Evaluator {
 			}
 		}
 
-		// User meta rules (pro).
-		if ( ! empty( $c['userMetaRules'] ) && is_array( $c['userMetaRules'] ) ) {
-			$uid = get_current_user_id();
-			if ( $uid ) {
-				$hide = $this->evaluate_rules(
-					$c['userMetaRules'],
-					$c['userMetaLogic'] ?? 'show',
-					$c['userMetaRelation'] ?? 'all',
-					function ( array $rule ) use ( $uid ): bool {
-						$key = $rule['key'] ?? '';
-						if ( $key === '' ) {
-							return false;
-						}
-						$actual = (string) get_user_meta( $uid, $key, true );
-						return $this->compare( $actual, $rule['operator'] ?? 'is', $rule['value'] ?? '' );
+		// User meta rules (pro). Logged-out visitors have no meta: treat as empty.
+		if ( ! empty( $c['userMetaRules'] ) && is_array( $c['userMetaRules'] ) && $this->extra_enabled( 'pro_conditions', 'user_meta' ) ) {
+			$uid  = get_current_user_id();
+			$hide = $this->evaluate_rules(
+				$c['userMetaRules'],
+				$c['userMetaLogic'] ?? 'show',
+				$c['userMetaRelation'] ?? 'all',
+				function ( array $rule ) use ( $uid ): bool {
+					$key = $rule['key'] ?? '';
+					if ( $key === '' ) {
+						return false;
 					}
-				);
-				if ( $hide ) {
-					return false;
+					$actual = $uid ? (string) get_user_meta( $uid, $key, true ) : null;
+					return $this->compare( $actual, $rule['operator'] ?? 'is', $rule['value'] ?? '' );
 				}
+			);
+			if ( $hide ) {
+				return false;
 			}
 		}
 
 		// Advanced location rules (pro).
-		if ( ! empty( $c['advancedLocationRules'] ) && is_array( $c['advancedLocationRules'] ) ) {
+		if ( ! empty( $c['advancedLocationRules'] ) && is_array( $c['advancedLocationRules'] ) && $this->extra_enabled( 'pro_conditions', 'advanced_location' ) ) {
 			$hide = $this->evaluate_rules(
 				$c['advancedLocationRules'],
 				$c['advancedLocationLogic'] ?? 'show',
@@ -373,41 +404,46 @@ class Evaluator {
 	}
 
 	/**
+	 * Whether an admin extra is on.
+	 *
+	 * When Settings is unavailable (theme without plugin), extras are treated as on
+	 * so saved rules still evaluate.
+	 */
+	private function extra_enabled( string $group, string $key ): bool {
+		if ( ! class_exists( Settings::class ) ) {
+			return true;
+		}
+
+		return Settings::is_enabled( $group, $key );
+	}
+
+	/**
 	 * Evaluate schedule conditions (datetime range, weekdays, daily time window).
 	 *
 	 * @param array<string, mixed> $c Conditions data.
 	 */
 	private function evaluate_schedule( array $c ): bool {
-		$has_range = ! empty( $c['scheduleStart'] ) || ! empty( $c['scheduleEnd'] );
-		$has_days  = ! empty( $c['scheduleDays'] ) && is_array( $c['scheduleDays'] );
-		$has_time  = ! empty( $c['scheduleTimeStart'] ) || ! empty( $c['scheduleTimeEnd'] );
+		$has_range = ( ! empty( $c['scheduleStart'] ) || ! empty( $c['scheduleEnd'] ) ) && $this->extra_enabled( 'schedule', 'date_time' );
+		$has_days  = ! empty( $c['scheduleDays'] ) && is_array( $c['scheduleDays'] ) && $this->extra_enabled( 'schedule', 'days_of_week' );
+		$has_time  = ( ! empty( $c['scheduleTimeStart'] ) || ! empty( $c['scheduleTimeEnd'] ) ) && $this->extra_enabled( 'schedule', 'time_range' );
 
 		if ( ! $has_range && ! $has_days && ! $has_time ) {
 			return true;
 		}
 
-		$timezone = wp_timezone();
-
-		if ( ! empty( $c['scheduleTimezone'] ) && is_string( $c['scheduleTimezone'] ) ) {
-			try {
-				$timezone = new \DateTimeZone( $c['scheduleTimezone'] );
-			} catch ( \Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
-				unset( $e );
-			}
-		}
-
-		$now = current_datetime()->setTimezone( $timezone );
+		$timezone = $this->resolve_schedule_timezone( $c );
+		$now      = current_datetime()->setTimezone( $timezone );
 
 		if ( $has_range ) {
 			$timestamp = $now->getTimestamp();
 			if ( ! empty( $c['scheduleStart'] ) ) {
-				$start_ts = strtotime( (string) $c['scheduleStart'] );
+				$start_ts = $this->parse_schedule_datetime( (string) $c['scheduleStart'], $timezone );
 				if ( $start_ts && $timestamp < $start_ts ) {
 					return false;
 				}
 			}
 			if ( ! empty( $c['scheduleEnd'] ) ) {
-				$end_ts = strtotime( (string) $c['scheduleEnd'] );
+				$end_ts = $this->parse_schedule_datetime( (string) $c['scheduleEnd'], $timezone );
 				if ( $end_ts && $timestamp > $end_ts ) {
 					return false;
 				}
@@ -415,7 +451,7 @@ class Evaluator {
 		}
 
 		if ( $has_days ) {
-			$day = (int) $now->format( 'w' );
+			$day     = (int) $now->format( 'w' );
 			$allowed = array_map( 'intval', $c['scheduleDays'] );
 			if ( ! in_array( $day, $allowed, true ) ) {
 				return false;
@@ -424,8 +460,8 @@ class Evaluator {
 
 		if ( $has_time ) {
 			$current = $now->format( 'H:i' );
-			$start   = (string) ( $c['scheduleTimeStart'] ?? '00:00' );
-			$end     = (string) ( $c['scheduleTimeEnd'] ?? '23:59' );
+			$start   = $this->normalize_schedule_time( (string) ( $c['scheduleTimeStart'] ?? '' ), '00:00' );
+			$end     = $this->normalize_schedule_time( (string) ( $c['scheduleTimeEnd'] ?? '' ), '23:59' );
 
 			if ( $start <= $end ) {
 				if ( $current < $start || $current > $end ) {
@@ -439,9 +475,88 @@ class Evaluator {
 		return true;
 	}
 
+	/**
+	 * Site timezone, or the custom schedule timezone when that extra is on.
+	 */
+	private function resolve_schedule_timezone( array $c ): \DateTimeZone {
+		$timezone = wp_timezone();
+
+		if ( empty( $c['scheduleTimezone'] ) || ! is_string( $c['scheduleTimezone'] ) || ! $this->extra_enabled( 'schedule', 'timezone' ) ) {
+			return $timezone;
+		}
+
+		if ( ! Settings::is_valid_timezone( $c['scheduleTimezone'] ) ) {
+			return $timezone;
+		}
+
+		try {
+			return new \DateTimeZone( $c['scheduleTimezone'] );
+		} catch ( \Exception $e ) {
+			unset( $e );
+			return $timezone;
+		}
+	}
+
+	/**
+	 * Parse a datetime-local value in the schedule timezone.
+	 */
+	private function parse_schedule_datetime( string $value, \DateTimeZone $timezone ): ?int {
+		$value = trim( str_replace( 'T', ' ', $value ) );
+		if ( $value === '' ) {
+			return null;
+		}
+
+		try {
+			return ( new \DateTimeImmutable( $value, $timezone ) )->getTimestamp();
+		} catch ( \Exception $e ) {
+			unset( $e );
+			return null;
+		}
+	}
+
+	/**
+	 * Normalize an HTML time value to H:i.
+	 */
+	private function normalize_schedule_time( string $value, string $fallback ): string {
+		$value = trim( $value );
+		if ( $value === '' ) {
+			return $fallback;
+		}
+
+		if ( preg_match( '/^(\d{1,2}):(\d{2})/', $value, $m ) ) {
+			$hour = (int) $m[1];
+			$min  = (int) $m[2];
+			if ( $hour > 23 || $min > 59 ) {
+				return $fallback;
+			}
+
+			return sprintf( '%02d:%02d', $hour, $min );
+		}
+
+		return $fallback;
+	}
+
 	// -------------------------------------------------------------------------
 	// Condition helpers
 	// -------------------------------------------------------------------------
+
+	/**
+	 * Normalize a typed capability to a WordPress capability slug.
+	 *
+	 * Spaces become underscores, then sanitize_key(). Empty input stays empty
+	 * so an empty rule matches the same way an empty User Role does: `is`
+	 * fails, `is not` matches everyone.
+	 */
+	public static function normalize_capability( string $raw ): string {
+		$cap = strtolower( trim( $raw ) );
+		if ( $cap === '' ) {
+			return '';
+		}
+
+		$replaced = preg_replace( '/\s+/', '_', $cap );
+
+		return sanitize_key( is_string( $replaced ) ? $replaced : $cap );
+	}
 
 	/**
 	 * Evaluate a set of rules with show/hide logic and all/any relation.

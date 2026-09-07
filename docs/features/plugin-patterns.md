@@ -25,6 +25,8 @@ The Aegis plugin registers block patterns from `patterns/` when loaded. Always-o
 
 Commerce patterns use the same slug convention as theme patterns (`template-page-cart`, `header-default`, etc.) via `\Aegis\Utilities\Pattern::register_from_file()` so FSE templates that reference pattern slugs continue to resolve.
 
+The theme does **not** ship copies of those WooCommerce patterns. The exception is a Woo-free `header/default` for `parts/header.html` when WooCommerce is inactive; the plugin overlays the mini-cart variant of `header-default` when WooCommerce is active.
+
 **FSE templates** (cart, checkout, wishlist, etc.) remain in the **theme** `templates/` directory. They are hidden from the Site Editor when dependencies are inactive; companion patterns register only when dependencies are active.
 
 Generic commerce marketing patterns without WooCommerce blocks (trust badges, category grids with core blocks) stay in the theme.
@@ -33,7 +35,7 @@ Generic commerce marketing patterns without WooCommerce blocks (trust badges, ca
 
 `src/Patterns/CommercePatternRegistrar.php` (`config/woocommerce-patterns.php`):
 
-- Hooks `init` at **priority 11** (after theme framework pattern scan)
+- Hooks `init` at **priority 12** (after the theme unregisters `woocommerce/` plugin patterns at priority 11)
 - **`is_woocommerce_active()`** — `class_exists( 'WooCommerce' )`
 - **`is_ti_wishlist_active()`** — `defined( 'TINVWL_VERSION' )` or `function_exists( 'tinvwl_get_wishlist' )`
 - Recursively scans `patterns/woocommerce/` when WooCommerce is active

@@ -12,6 +12,7 @@ namespace Aegis\Plugin\Integrations;
 
 use function array_filter;
 use function array_key_exists;
+use function defined;
 use function delete_option;
 use function filter_var;
 use function get_option;
@@ -164,7 +165,7 @@ final class Settings {
 			$merged[ $key ] = isset( $options[ $key ] ) ? (bool) $options[ $key ] : $default;
 		}
 
-		self::$integrations_cache = $merged;
+		self::$integrations_cache = self::apply_plugin_availability( $merged );
 
 		return self::$integrations_cache;
 	}
@@ -264,6 +265,11 @@ final class Settings {
 		$sanitized = [];
 
 		foreach ( self::INTEGRATION_DEFAULTS as $key => $default ) {
+			if ( self::requires_active_plugin( $key ) && ! Registry::is_plugin_active( $key ) ) {
+				$sanitized[ $key ] = false;
+				continue;
+			}
+
 			if ( array_key_exists( $key, $input ) ) {
 				$sanitized[ $key ] = self::to_bool( $input[ $key ] );
 			} elseif ( array_key_exists( $key, $stored ) ) {
@@ -297,9 +303,17 @@ final class Settings {
 	 */
 	public static function sanitize_pattern_control( array $input ): array {
 		$sanitized = [];
+		$has_pro   = defined( 'AEGIS_PRO_VERSION' );
 
 		foreach ( self::PATTERN_CONTROL_DEFAULTS as $key => $default ) {
-			$sanitized[ $key ] = isset( $input[ $key ] ) ? (bool) $input[ $key ] : false;
+			unset( $default );
+
+			if ( ! $has_pro || ! self::pattern_control_plugin_active( $key ) ) {
+				$sanitized[ $key ] = false;
+				continue;
+			}
+
+			$sanitized[ $key ] = isset( $input[ $key ] ) ? self::to_bool( $input[ $key ] ) : false;
 		}
 
 		return $sanitized;
@@ -378,5 +392,78 @@ final class Settings {
 		}
 
 		update_option( 'aegis_bunnycdn_migrated_v1', true, false );
+	}
+
+	/**
+	 * Force third-party integrations off when that plugin is not active.
+	 *
+	 * Connector keys (BunnyCDN, Google Maps) are not gated this way.
+	 *
+	 * @param array<string, bool> $settings Merged settings.
+	 * @return array<string, bool>
+	 */
+	private static function apply_plugin_availability( array $settings ): array {
+		foreach ( $settings as $key => $enabled ) {
+			if ( $enabled && self::requires_active_plugin( $key ) && ! Registry::is_plugin_active( $key ) ) {
+				$settings[ $key ] = false;
+			}
+		}
+
+		return $settings;
+	}
+
+	/**
+	 * Whether this option key is a third-party plugin integration that must be installed.
+	 */
+	private static function requires_active_plugin( string $key ): bool {
+		if ( $key === 'bunny_cdn' || $key === 'google_maps' ) {
+			return false;
+		}
+
+		return Registry::get( $key ) !== null;
+	}
+
+	/**
+	 * Whether the third-party plugin for a pattern-control extra is active.
+	 */
+	private static function pattern_control_plugin_active( string $key ): bool {
+		$map = array(
+			'woocommerce_keep_patterns'   => 'woocommerce',
+			'woocommerce_keep_templates'  => 'woocommerce',
+			'learndash_keep_patterns'     => 'learndash',
+			'lifterlms_keep_patterns'     => 'lifter_lms',
+			'sensei_keep_patterns'        => 'sensei_lms',
+			'fluentforms_keep_patterns'   => 'fluent_forms',
+			'fluentbooking_keep_patterns' => 'fluent_booking',
+			'coauthors_keep_patterns'     => 'co_authors_plus',
+		);
+
+		$plugin = $map[ $key ] ?? '';
+
+		return $plugin !== '' && Registry::is_plugin_active( $plugin ) && self::is_integration_enabled( $plugin );
+	}
+
+	/**
+	 * Persist inactive third-party integrations as off so leftover stored ons do not return when the plugin is installed later.
+	 */
+	public static function persist_inactive_plugin_toggles(): void {
+		if ( get_option( 'aegis_inactive_integrations_cleared_v1' ) ) {
+			return;
+		}
+
+		$stored = get_option( self::OPTION, [] );
+
+		if ( is_array( $stored ) && $stored !== [] ) {
+			update_option( self::OPTION, self::sanitize( $stored ) );
+			self::flush_cache();
+		}
+
+		$patterns = get_option( self::PATTERN_CONTROL_OPTION, [] );
+
+		if ( is_array( $patterns ) && $patterns !== [] ) {
+			update_option( self::PATTERN_CONTROL_OPTION, self::sanitize_pattern_control( $patterns ) );
+		}
+
+		update_option( 'aegis_inactive_integrations_cleared_v1', true, false );
 	}
 }

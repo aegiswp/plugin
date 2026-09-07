@@ -40,7 +40,7 @@ Commerce patterns use theme slug convention (`template-page-cart`, etc.) via `\A
 | `Admin/` | Menu, tabs, renderer, AJAX page loader |
 | `Analytics/` | Tracker, integrations panel |
 | `Blocks/` | Map, Modal registration |
-| `Conditionals/` | Visibility rules |
+| `Conditionals/` | Evaluator, post-content renderer, Smart Logic, Conditionals admin, IntegrationsPanel (plugin extras on Integrations) |
 | `Hooks/` | Hook patterns admin |
 | `Injection/` | Hook injection, preview |
 | `Integrations/` | Third-party toggles |

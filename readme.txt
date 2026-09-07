@@ -43,7 +43,7 @@ When an SEO plugin integration is enabled, you can delegate FAQ, Event, Local Bu
 = Other features =
 
 * **Code Snippets** — Add CSS, JavaScript, HTML, or PHP at theme and integration hook locations (stored in uploads/aegis-snippets/). PHP snippets require an explicit admin opt-in and auto-disable on fatal errors.
-* **Conditionals** — Show or hide blocks by user role, device, date, URL, and more
+* **Conditionals** — Show or hide blocks by user role, capability, device, date, URL, and more
 * **Hooks** — Inject block patterns at theme and integration hook points without editing templates
 * **Analytics** — Optional, opt-in analytics tags (Google Analytics 4, Google Tag Manager, Plausible, Fathom, Microsoft Clarity, Matomo, Meta Pixel)
 * **Co-Authors Plus** — Multi-author block rendering and schema when Co-Authors Plus is active

@@ -28,6 +28,7 @@ use function translate_user_role;
 use function update_post_meta;
 use function wp_enqueue_script;
 use function wp_enqueue_style;
+use function wp_set_script_translations;
 use function wp_is_post_autosave;
 use function wp_is_post_revision;
 use function wp_json_encode;
@@ -157,10 +158,20 @@ final class PatternsManager {
 		wp_enqueue_script(
 			'aegis-smart-conditions',
 			$this->admin_asset_url( 'smart-conditions.js' ),
-			array(),
+			array( 'wp-i18n' ),
 			\Aegis\Plugin\VERSION,
 			true
 		);
+		wp_set_script_translations( 'aegis-smart-conditions', 'aegis' );
+
+		wp_enqueue_script(
+			'aegis-hook-patterns-conditions',
+			$this->admin_asset_url( 'hook-patterns-conditions.js' ),
+			array( 'aegis-smart-conditions', 'wp-i18n' ),
+			\Aegis\Plugin\VERSION,
+			true
+		);
+		wp_set_script_translations( 'aegis-hook-patterns-conditions', 'aegis' );
 	}
 
 	/**
@@ -244,6 +255,7 @@ final class PatternsManager {
 			window.aegisConditionsConfig = {
 				conditions: <?php echo wp_json_encode( $conditions ); ?>,
 				roles: <?php echo wp_json_encode( $roles ); ?>,
+				timezones: <?php echo wp_json_encode( class_exists( \Aegis\Plugin\Conditionals\Settings::class ) ? \Aegis\Plugin\Conditionals\Settings::timezone_choices() : array() ); ?>,
 				hasPro: <?php echo $has_pro ? 'true' : 'false'; ?>,
 				settings: <?php echo wp_json_encode( $cl_settings ); ?>,
 				postType: <?php echo wp_json_encode( $post->post_type ); ?>,

@@ -7,12 +7,16 @@
  * @package Aegis\Admin
  * @since   1.0.0
  */
-( function () {
+( function ( wp ) {
 	'use strict';
 
-	var config = window.aegisConditionsConfig || {};
-	var conditions = config.conditions || {};
+	var __ = wp.i18n.__;
+	var sprintf = wp.i18n.sprintf;
+
+	var config = window.aegisConditionsConfig || window.aegisSnippetConditionsConfig || {};
+	var conditions = window.aegisActiveConditions || config.conditions || {};
 	var roles = config.roles || [];
+	var timezones = config.timezones || [];
 	var hasPro = config.hasPro || false;
 	var settings = config.settings || {};
 	var postType = config.postType || '';
@@ -26,6 +30,48 @@
 	 */
 	function isEnabled( group, feature ) {
 		return !! ( settings[ group ] && settings[ group ][ feature ] );
+	}
+
+	function isListedTimezone( value ) {
+		var zone = String( value || '' );
+		if ( zone === '' ) {
+			return true;
+		}
+		return timezones.some( function ( o ) {
+			return String( o.value ) === zone;
+		} );
+	}
+
+	function timezoneSelectOptions( current ) {
+		var opts = [ { value: '', label: __( 'Site timezone', 'aegis' ) } ].concat( timezones );
+		var value = String( current || '' );
+		if ( value !== '' && ! isListedTimezone( value ) ) {
+			opts.splice( 1, 0, {
+				value: value,
+				label: sprintf(
+					/* translators: %s: saved timezone string that is not IANA */
+					__( '%s (invalid, using site timezone)', 'aegis' ),
+					value
+				),
+			} );
+		}
+		return opts;
+	}
+
+	function timezoneHelp( current ) {
+		var base = __( 'Applies to Date & Time, daily range, and weekdays. Leave empty to use the site timezone.', 'aegis' );
+		if ( String( current || '' ) !== '' && ! isListedTimezone( current ) ) {
+			return base + ' ' + __( 'The saved value is not an IANA timezone, so the site timezone is used.', 'aegis' );
+		}
+		return base;
+	}
+
+	function normalizeCapability( value ) {
+		return String( value || '' )
+			.trim()
+			.toLowerCase()
+			.replace( /\s+/g, '_' )
+			.replace( /[^a-z0-9_\-]/g, '' );
 	}
 
 	var container = document.getElementById( 'aegis-conditions-ui' );
@@ -346,9 +392,9 @@
 		parent.appendChild(
 			el( 'div', { className: 'aegis-cond-field aegis-dt-picker' }, [
 				el( 'label', null, label ),
-				el( 'div', { className: 'aegis-dt-label' }, 'Time' ),
+				el( 'div', { className: 'aegis-dt-label' }, __( 'Time', 'aegis' ) ),
 				timeRow,
-				el( 'div', { className: 'aegis-dt-label' }, 'Date' ),
+				el( 'div', { className: 'aegis-dt-label' }, __( 'Date', 'aegis' ) ),
 				dateRow,
 			] )
 		);
@@ -408,7 +454,12 @@
 							value: rule[ col.key ] || '',
 						} );
 						inp.addEventListener( 'change', function () {
-							rule[ col.key ] = inp.value;
+							var next = inp.value;
+							if ( col.normalize === 'capability' ) {
+								next = normalizeCapability( next );
+								inp.value = next;
+							}
+							rule[ col.key ] = next;
 							set( rulesKey, rules );
 						} );
 						row.appendChild( inp );
@@ -477,11 +528,14 @@
 		{ value: 'firefox', label: 'Firefox' },
 		{ value: 'safari', label: 'Safari' },
 		{ value: 'edge', label: 'Edge' },
+		{ value: 'mobile', label: 'Mobile' },
+		{ value: 'tablet', label: 'Tablet' },
+		{ value: 'desktop', label: 'Desktop' },
 	];
 
 	var isIsNotOperators = [
-		{ value: 'is', label: 'Is' },
-		{ value: 'isNot', label: 'Is Not' },
+		{ value: 'is', label: __( 'Is', 'aegis' ) },
+		{ value: 'isNot', label: __( 'Is Not', 'aegis' ) },
 	];
 
 	// -------------------------------------------------------------------------
@@ -504,36 +558,93 @@
 
 	// --- User Status ---
 	if ( isEnabled( 'user', 'user_status' ) ) {
-	container.appendChild( buildSection( 'user-status', 'User Status', function ( body ) {
-		addSelect( body, 'Show to', 'userStatus', [
-			{ value: '', label: 'All Users' },
-			{ value: 'logged-in', label: 'Logged In Only' },
-			{ value: 'logged-out', label: 'Logged Out Only' },
+	container.appendChild( buildSection( 'user-status', __( 'User Status', 'aegis' ), function ( body ) {
+		addSelect( body, __( 'Show to', 'aegis' ), 'userStatus', [
+			{ value: '', label: __( 'All Users', 'aegis' ) },
+			{ value: 'logged-in', label: __( 'Logged In Only', 'aegis' ) },
+			{ value: 'logged-out', label: __( 'Logged Out Only', 'aegis' ) },
 		] );
 	}, { keys: [ 'userStatus' ] } ) );
 	}
 
 	// --- User Role ---
 	if ( isEnabled( 'user', 'user_role' ) ) {
-	container.appendChild( buildSection( 'user-role', 'User Role', function ( body ) {
-		var roleOpts = [ { value: '', label: 'Any Role' } ].concat( roles );
+	container.appendChild( buildSection( 'user-role', __( 'User Role', 'aegis' ), function ( body ) {
+		var roleOpts = [ { value: '', label: __( 'Any Role', 'aegis' ) } ].concat( roles );
 		buildRuleList( body, 'userRoleRules', 'userRoleLogic', 'userRoleRelation', [
-			{ key: 'role', type: 'select', label: 'Role', options: roleOpts },
-			{ key: 'operator', type: 'select', label: 'Operator', options: isIsNotOperators },
+			{ key: 'role', type: 'select', label: __( 'Role', 'aegis' ), options: roleOpts },
+			{ key: 'operator', type: 'select', label: __( 'Operator', 'aegis' ), options: isIsNotOperators },
 		], { role: '', operator: 'is' } );
 	}, { keys: [ 'userRoleRules' ] } ) );
 	}
 
-	// --- Schedule ---
-	if ( isEnabled( 'schedule', 'date_time' ) ) {
-	container.appendChild( buildSection( 'schedule', 'Date & Time', function ( body ) {
-		addDateTimePicker( body, 'Start', 'scheduleStart' );
-		addDateTimePicker( body, 'End', 'scheduleEnd' );
-	}, { keys: [ 'scheduleStart', 'scheduleEnd' ] } ) );
+	// --- User Capability ---
+	if ( isEnabled( 'user', 'user_capability' ) ) {
+	container.appendChild( buildSection( 'user-capability', __( 'User Capability', 'aegis' ), function ( body ) {
+		body.appendChild( el( 'p', { className: 'description' }, __( 'Use a primitive capability slug such as edit_posts. Object caps like edit_post need a post ID and will not match.', 'aegis' ) ) );
+		buildRuleList( body, 'userCapabilityRules', 'userCapabilityLogic', 'userCapabilityRelation', [
+			{ key: 'capability', type: 'text', label: __( 'Capability', 'aegis' ), placeholder: 'edit_posts', normalize: 'capability' },
+			{ key: 'operator', type: 'select', label: __( 'Operator', 'aegis' ), options: isIsNotOperators },
+		], { capability: '', operator: 'is' } );
+	}, { keys: [ 'userCapabilityRules' ] } ) );
 	}
 
-	// --- Location (Hook Patterns only) ---
-	if ( postType === 'aegis_hook_pattern' ) {
+	// --- Schedule ---
+	if ( isEnabled( 'schedule', 'date_time' ) || isEnabled( 'schedule', 'time_range' ) || isEnabled( 'schedule', 'timezone' ) ) {
+	container.appendChild( buildSection( 'schedule', __( 'Date & Time', 'aegis' ), function ( body ) {
+		if ( isEnabled( 'schedule', 'date_time' ) ) {
+			body.appendChild( el( 'p', { className: 'description' }, isEnabled( 'schedule', 'timezone' )
+				? __( 'Interpreted in the schedule timezone, or the site timezone if Timezone is empty.', 'aegis' )
+				: __( 'Interpreted in the site timezone.', 'aegis' ) ) );
+			addDateTimePicker( body, __( 'Start', 'aegis' ), 'scheduleStart' );
+			addDateTimePicker( body, __( 'End', 'aegis' ), 'scheduleEnd' );
+		}
+		if ( isEnabled( 'schedule', 'time_range' ) ) {
+			body.appendChild( el( 'p', { className: 'description' }, __( 'If end is before start, the window wraps overnight.', 'aegis' ) ) );
+			addInput( body, __( 'Daily Start Time', 'aegis' ), 'scheduleTimeStart', 'time' );
+			addInput( body, __( 'Daily End Time', 'aegis' ), 'scheduleTimeEnd', 'time' );
+		}
+		if ( isEnabled( 'schedule', 'timezone' ) ) {
+			addSelect( body, __( 'Timezone', 'aegis' ), 'scheduleTimezone', timezoneSelectOptions( get( 'scheduleTimezone', '' ) ), '' );
+			body.appendChild( el( 'p', { className: 'description' }, timezoneHelp( get( 'scheduleTimezone', '' ) ) ) );
+		}
+	}, { keys: [ 'scheduleStart', 'scheduleEnd', 'scheduleTimeStart', 'scheduleTimeEnd', 'scheduleTimezone' ] } ) );
+	}
+
+	if ( isEnabled( 'schedule', 'days_of_week' ) ) {
+	container.appendChild( buildSection( 'weekdays', __( 'Days of Week', 'aegis' ), function ( body ) {
+		var weekdayOptions = [
+			{ value: 0, label: __( 'Sunday', 'aegis' ) },
+			{ value: 1, label: __( 'Monday', 'aegis' ) },
+			{ value: 2, label: __( 'Tuesday', 'aegis' ) },
+			{ value: 3, label: __( 'Wednesday', 'aegis' ) },
+			{ value: 4, label: __( 'Thursday', 'aegis' ) },
+			{ value: 5, label: __( 'Friday', 'aegis' ) },
+			{ value: 6, label: __( 'Saturday', 'aegis' ) },
+		];
+		var selected = ( get( 'scheduleDays', [] ) || [] ).map( Number );
+		weekdayOptions.forEach( function ( day ) {
+			var wrap = el( 'div', { className: 'aegis-cond-field aegis-cond-field--checkbox' } );
+			var input = el( 'input', { type: 'checkbox' } );
+			input.checked = selected.indexOf( day.value ) !== -1;
+			input.addEventListener( 'change', function () {
+				var next = ( get( 'scheduleDays', [] ) || [] ).map( Number );
+				var idx = next.indexOf( day.value );
+				if ( input.checked && idx === -1 ) {
+					next.push( day.value );
+				} else if ( ! input.checked && idx !== -1 ) {
+					next.splice( idx, 1 );
+				}
+				set( 'scheduleDays', next );
+			} );
+			wrap.appendChild( el( 'label', null, [ input, ' ' + day.label ] ) );
+			body.appendChild( wrap );
+		} );
+	}, { keys: [ 'scheduleDays' ] } ) );
+	}
+
+	// --- Page Type ---
+	if ( isEnabled( 'visibility', 'page_type' ) ) {
 	container.appendChild( buildSection( 'location', 'Location', function ( body ) {
 		addSelect( body, 'Page Type', 'location', [
 			{ value: '', label: 'All Pages' },
@@ -552,9 +663,16 @@
 	if ( isEnabled( 'visibility', 'screen_size' ) ) {
 	container.appendChild( buildSection( 'screen-size', 'Screen Size', function ( body ) {
 		addCheckbox( body, 'Hide on Mobile (< 480px)', 'hideOnMobile' );
-		addCheckbox( body, 'Hide on Tablet (768–1023px)', 'hideOnTablet' );
+		addCheckbox( body, 'Hide on Tablet (480–1023px)', 'hideOnTablet' );
 		addCheckbox( body, 'Hide on Desktop (≥ 1024px)', 'hideOnDesktop' );
 	}, { keys: [ 'hideOnMobile', 'hideOnTablet', 'hideOnDesktop' ] } ) );
+	}
+
+	if ( isEnabled( 'visibility', 'custom_breakpoints' ) ) {
+	container.appendChild( buildSection( 'custom-breakpoints', 'Custom Breakpoints', function ( body ) {
+		addInput( body, 'Hide below width (px)', 'hideBelowWidth', 'number' );
+		addInput( body, 'Hide above width (px)', 'hideAboveWidth', 'number' );
+	}, { keys: [ 'hideBelowWidth', 'hideAboveWidth' ] } ) );
 	}
 
 	// --- Browser & Device ---
@@ -572,7 +690,7 @@
 	container.appendChild( buildSection( 'query-string', 'URL Query String', function ( body ) {
 		buildRuleList( body, 'queryStringRules', 'queryStringLogic', 'queryStringRelation', [
 			{ key: 'param', type: 'text', label: 'Parameter', placeholder: 'param' },
-			{ key: 'operator', type: 'select', label: 'Operator', options: basicOperators },
+			{ key: 'operator', type: 'select', label: 'Operator', options: extendedOperators },
 			{ key: 'value', type: 'text', label: 'Value', placeholder: 'value' },
 		], { param: '', operator: 'is', value: '' } );
 	}, { keys: [ 'queryStringRules' ] } ) );
@@ -584,6 +702,32 @@
 		addInput( body, 'User IDs (comma-separated)', 'specificUserIds', 'text' );
 		addSelect( body, 'Logic', 'specificUsersLogic', showHideOptions, 'show' );
 	}, { keys: [ 'specificUserIds' ] } ) );
+	}
+
+	// --- Accessibility ---
+	if ( isEnabled( 'accessibility', 'screen_reader_only' ) || isEnabled( 'accessibility', 'reduced_motion' ) || isEnabled( 'accessibility', 'color_scheme' ) || isEnabled( 'accessibility', 'high_contrast' ) || isEnabled( 'accessibility', 'forced_colors' ) ) {
+	container.appendChild( buildSection( 'accessibility', 'Accessibility', function ( body ) {
+		if ( isEnabled( 'accessibility', 'screen_reader_only' ) ) {
+			addCheckbox( body, 'Screen reader only', 'screenReaderOnly' );
+		}
+		if ( isEnabled( 'accessibility', 'reduced_motion' ) ) {
+			addCheckbox( body, 'Hide when reduced motion preferred', 'reducedMotion' );
+		}
+		if ( isEnabled( 'accessibility', 'color_scheme' ) ) {
+			addSelect( body, 'Hide for color scheme', 'colorScheme', [
+				{ value: '', label: 'None' },
+				{ value: 'dark', label: 'Dark' },
+				{ value: 'light', label: 'Light' },
+			] );
+			body.appendChild( el( 'p', { className: 'description' }, __( 'Hides the pattern when the Aegis dark/light toggle or the site default matches that scheme.', 'aegis' ) ) );
+		}
+		if ( isEnabled( 'accessibility', 'high_contrast' ) ) {
+			addCheckbox( body, 'Hide when high contrast preferred', 'highContrast' );
+		}
+		if ( isEnabled( 'accessibility', 'forced_colors' ) ) {
+			addCheckbox( body, 'Hide when forced colors active', 'forcedColors' );
+		}
+	}, { keys: [ 'screenReaderOnly', 'reducedMotion', 'colorScheme', 'highContrast', 'forcedColors' ] } ) );
 	}
 
 	// --- Cookie ---
@@ -655,8 +799,8 @@
 	}, { keys: [ 'userMetaRules' ] } ) );
 	}
 
-	// --- Advanced Location (Hook Patterns only) ---
-	if ( isEnabled( 'pro_conditions', 'advanced_location' ) && postType === 'aegis_hook_pattern' ) {
+	// --- Advanced Location ---
+	if ( isEnabled( 'pro_conditions', 'advanced_location' ) ) {
 	container.appendChild( buildSection( 'advanced-location', 'Advanced Location', function ( body ) {
 		var typeOptions = [
 			{ value: '', label: 'Select...' },
@@ -684,4 +828,4 @@
 
 	// Initial sync.
 	sync();
-} )();
+} )( window.wp );

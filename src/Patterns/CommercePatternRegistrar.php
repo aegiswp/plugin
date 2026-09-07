@@ -28,10 +28,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class CommercePatternRegistrar {
 
 	/**
-	 * Boot pattern registration on init (after theme framework pattern scan).
+	 * Hooks `init` at priority 12 (after theme unregistration of `woocommerce/` slugs).
 	 */
 	public static function init(): void {
-		add_action( 'init', array( self::class, 'register' ), 11 );
+		add_action( 'init', array( self::class, 'register' ), 12 );
 	}
 
 	/**

@@ -99,6 +99,7 @@ final class Uninstall {
 			'aegis_integrations_defaults_v2',
 			'aegis_blocks_defaults_v2',
 			'aegis_opt_in_defaults_v3',
+			'aegis_inactive_integrations_cleared_v1',
 			'aegis_map_pro_toggles_v1',
 			'aegis_marquee_pro_toggles_v1',
 			'aegis_modal_pro_toggles_v1',

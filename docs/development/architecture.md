@@ -46,7 +46,7 @@ On load, the plugin verifies the Aegis theme is active. Without it, bootstrap st
 | `Admin/` | Menu, Renderer, AdminTabs, PageLoader (AJAX screen fragments) |
 | `Analytics/` | Tracker, Connectors panel, Settings |
 | `Blocks/` | Registrar, AdminPage, Settings (Map/Modal metadata only) |
-| `Conditionals/` | Evaluator, AdminPage, SmartConditionsEvaluator |
+| `Conditionals/` | Evaluator, AdminPage, PostContentRenderer, SmartConditionsEvaluator, IntegrationsPanel (plugin extras on **Aegis → Integrations**). Posts and hook patterns share `should_render_conditions()`. User extras include status, role, capability (`current_user_can` on a normalized slug), specific users, and Pro user meta. Schedule extras parse naive datetimes with `DateTimeImmutable` in an IANA zone (or the site timezone); non-IANA saved zones fall back to the site timezone. Image Source extras are Pro (`AegisPro\Query\ImageSource`). Viewport/a11y classes go on the existing post-content root (`Visibility::apply_classes()`); hook patterns wrap (`Visibility::wrap()`). |
 | `Connectors/` | Connectors admin (BunnyCDN, Maps, Analytics panels) |
 | `General/` | General settings admin (SVG upload) |
 | `Hooks/` | Hook patterns admin (instance list) |

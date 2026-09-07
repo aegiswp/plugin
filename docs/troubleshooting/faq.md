@@ -36,7 +36,17 @@ No. The free plugin includes Map and Modal blocks, integration toggles, code sni
 
 ### Where is WP Fusion configured?
 
-Enable the plugin and its tag/list conditions at **Aegis → Integrations → WP Fusion**.
+Enable the plugin and its tag/list conditions at **Aegis → Integrations → CRM** (WP Fusion). **CRM Tags** and **CRM Lists** are separate extras.
+
+### Why don’t saved visibility rules apply?
+
+The matching extra must be on. **Aegis → Conditionals** gates core types (Visibility, Accessibility, User, Schedule, and Image Source). **Aegis → Integrations** gates plugin types (WooCommerce, EDD, LMS, Fluent Forms/Booking, WP Fusion tags/lists, and ACF/Meta Box *field* visibility). Turning an extra off hides its controls and ignores saved rules, including leftover viewport/accessibility CSS classes. Saving Conditionals also flushes hook-pattern caches.
+
+User Capability rules use a primitive slug such as `edit_posts` (**is** / **is not**). Typed values are normalized (`Edit Posts` → `edit_posts`). Object caps like `edit_post` need a post ID and will not match.
+
+Schedule Date & Time values are naive (no offset). They are interpreted in the IANA schedule timezone when **Timezone** is on, otherwise in the site timezone — not the browser's local zone. Abbreviations such as `EST` and offsets such as `UTC+2` stay in the dropdown labeled invalid and evaluation uses the site timezone. Daily ranges whose end is before start wrap overnight.
+
+**Image Source** extras are **Pro**. They change `core/post-featured-image` (not the Visibility panel). Turning a source off ignores that saved source and leaves the featured image as-is. ACF and Meta Box image-source toggles stay disabled unless that plugin is installed and active. To show or hide a block from an ACF or Meta Box *value*, use **Integrations → Developer** (**ACF Field** / **Meta Box Field**), not Image Source.
 
 ### How do I translate the plugin?
 

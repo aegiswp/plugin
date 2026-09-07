@@ -3,8 +3,10 @@
  *
  * @package Aegis\Admin
  */
-( function () {
+( function ( wp ) {
 	'use strict';
+
+	var __ = wp.i18n.__;
 
 	var configs = document.querySelectorAll( '[data-aegis-smart-conditions]' );
 
@@ -40,25 +42,67 @@
 		return node;
 	}
 
+	var clConfig = window.aegisConditionsConfig || window.aegisSnippetConditionsConfig || {};
+
+	function isEnabled( group, feature ) {
+		return !!( clConfig.settings && clConfig.settings[ group ] && clConfig.settings[ group ][ feature ] );
+	}
+
+	function normalizeCapability( value ) {
+		return String( value || '' )
+			.trim()
+			.toLowerCase()
+			.replace( /\s+/g, '_' )
+			.replace( /[^a-z0-9_\-]/g, '' );
+	}
+
+	var boolFields = [ 'user_status', 'user_role', 'user_capability' ];
+
 	var fieldOptions = [
-		{ value: 'post_type', label: 'Page / Post Type' },
-		{ value: 'user_status', label: 'User / Logged-in' },
-		{ value: 'user_role', label: 'User Role' },
-		{ value: 'page_url', label: 'Page / URL' },
-		{ value: 'query_string', label: 'Query Parameter' },
+		{ value: 'post_type', label: __( 'Page / Post Type', 'aegis' ) },
 	];
 
-	if ( window.aegisConditionsConfig && ( window.aegisConditionsConfig.hasPro || ( window.aegisConditionsConfig.settings && window.aegisConditionsConfig.settings.wp_fusion && window.aegisConditionsConfig.settings.wp_fusion.tags ) ) ) {
-		fieldOptions.push( { value: 'wp_fusion_tag', label: 'WP Fusion Tag' } );
+	if ( isEnabled( 'user', 'user_status' ) ) {
+		fieldOptions.push( { value: 'user_status', label: __( 'User / Logged-in', 'aegis' ) } );
+	}
+	if ( isEnabled( 'user', 'user_role' ) ) {
+		fieldOptions.push( { value: 'user_role', label: __( 'User Role', 'aegis' ) } );
+	}
+	if ( isEnabled( 'user', 'user_capability' ) ) {
+		fieldOptions.push( { value: 'user_capability', label: __( 'User Capability', 'aegis' ) } );
+	}
+	if ( isEnabled( 'pro_conditions', 'advanced_location' ) ) {
+		fieldOptions.push( { value: 'page_url', label: __( 'Page / URL', 'aegis' ) } );
+	}
+	if ( isEnabled( 'visibility', 'query_string' ) ) {
+		fieldOptions.push( { value: 'query_string', label: __( 'Query Parameter', 'aegis' ) } );
+	}
+	if ( isEnabled( 'wp_fusion', 'tags' ) ) {
+		fieldOptions.push( { value: 'wp_fusion_tag', label: __( 'WP Fusion Tag', 'aegis' ) } );
+	}
+	if ( isEnabled( 'wp_fusion', 'lists' ) ) {
+		fieldOptions.push( { value: 'wp_fusion_list', label: __( 'WP Fusion List', 'aegis' ) } );
 	}
 
 	var operatorOptions = [
-		{ value: 'is', label: 'Equal' },
-		{ value: 'isNot', label: 'Is not' },
-		{ value: 'contains', label: 'Includes' },
-		{ value: 'notContains', label: "Doesn't contain" },
-		{ value: 'startsWith', label: 'Starts with' },
+		{ value: 'is', label: __( 'Equal', 'aegis' ) },
+		{ value: 'isNot', label: __( 'Is not', 'aegis' ) },
+		{ value: 'contains', label: __( 'Includes', 'aegis' ) },
+		{ value: 'notContains', label: __( "Doesn't contain", 'aegis' ) },
+		{ value: 'startsWith', label: __( 'Starts with', 'aegis' ) },
 	];
+
+	var boolOperatorOptions = operatorOptions.filter( function ( o ) {
+		return o.value === 'is' || o.value === 'isNot';
+	} );
+
+	function operatorsFor( field ) {
+		return boolFields.indexOf( field ) !== -1 ? boolOperatorOptions : operatorOptions;
+	}
+
+	function defaultOperatorFor( field ) {
+		return boolFields.indexOf( field ) !== -1 ? 'is' : 'contains';
+	}
 
 	function defaultSmartLogic() {
 		return {
@@ -78,6 +122,7 @@
 		if ( ! conditions.smartLogic ) {
 			conditions.smartLogic = defaultSmartLogic();
 		}
+		window.aegisActiveConditions = conditions;
 
 		function sync() {
 			if ( textarea ) {
@@ -85,7 +130,7 @@
 			}
 		}
 
-		mount.className = 'aegis-smart-conditions';
+		mount.classList.add( 'aegis-smart-conditions' );
 
 		var body = el( 'div', { className: 'aegis-smart-conditions-body' } );
 		var isEmbedded = mount.id === 'aegis-smart-conditions-ui';
@@ -97,14 +142,14 @@
 				onClick: function () {
 					body.classList.toggle( 'hidden' );
 				},
-			}, 'Advanced Conditional Logic' );
+			}, __( 'Advanced Conditional Logic', 'aegis' ) );
 			mount.appendChild( headerBtn );
 		}
 
 		mount.appendChild( body );
 
 		var enableRow = el( 'div', { className: 'aegis-smart-conditions-enable' } );
-		enableRow.appendChild( el( 'span', null, 'Enable Conditional Logic' ) );
+		enableRow.appendChild( el( 'span', null, __( 'Enable Conditional Logic', 'aegis' ) ) );
 		var enableWrap = el( 'label', { className: 'aegis-toggle' } );
 		var enableToggle = el( 'input', { type: 'checkbox' } );
 		enableToggle.checked = !! conditions.smartLogic.enabled;
@@ -125,7 +170,10 @@
 
 		var actionRow = el( 'div', { className: 'aegis-smart-logic-action' } );
 		var actionSelect = el( 'select' );
-		[ { value: 'show', label: 'Show' }, { value: 'hide', label: 'Hide' } ].forEach( function ( opt ) {
+		[
+			{ value: 'show', label: __( 'Show', 'aegis' ) },
+			{ value: 'hide', label: __( 'Hide', 'aegis' ) },
+		].forEach( function ( opt ) {
 			var o = el( 'option', { value: opt.value }, opt.label );
 			if ( opt.value === conditions.smartLogic.action ) {
 				o.selected = true;
@@ -137,7 +185,7 @@
 			sync();
 		} );
 		actionRow.appendChild( actionSelect );
-		actionRow.appendChild( document.createTextNode( ' this snippet if' ) );
+		actionRow.appendChild( document.createTextNode( ' ' + __( 'this snippet if', 'aegis' ) ) );
 		builder.appendChild( actionRow );
 
 		var groupsWrap = el( 'div', { className: 'aegis-smart-groups' } );
@@ -150,25 +198,63 @@
 			if ( field === 'user_status' ) {
 				input = el( 'select' );
 				[
-					{ value: 'true', label: 'True' },
-					{ value: 'false', label: 'False' },
+					{ value: 'logged-in', label: __( 'Logged in', 'aegis' ) },
+					{ value: 'logged-out', label: __( 'Logged out', 'aegis' ) },
 				].forEach( function ( opt ) {
 					var o = el( 'option', { value: opt.value }, opt.label );
-					if ( String( rule.value ) === opt.value || ( opt.value === 'true' && rule.value === 'logged-in' ) || ( opt.value === 'false' && rule.value === 'logged-out' ) ) {
+					var current = String( rule.value );
+					if ( current === opt.value || ( opt.value === 'logged-in' && [ 'true', '1', 'yes' ].indexOf( current ) !== -1 ) || ( opt.value === 'logged-out' && [ 'false', '0', 'no' ].indexOf( current ) !== -1 ) ) {
 						o.selected = true;
 					}
 					input.appendChild( o );
 				} );
+			} else if ( field === 'user_role' ) {
+				var roleList = clConfig.roles || [];
+				if ( roleList.length ) {
+					input = el( 'select' );
+					input.appendChild( el( 'option', { value: '' }, __( 'Select role', 'aegis' ) ) );
+					roleList.forEach( function ( role ) {
+						var value = role.value || role;
+						var label = role.label || value;
+						var o = el( 'option', { value: value }, label );
+						if ( String( rule.value ) === String( value ) ) {
+							o.selected = true;
+						}
+						input.appendChild( o );
+					} );
+				} else {
+					input = el( 'input', {
+						type: 'text',
+						value: rule.value || '',
+						placeholder: __( 'administrator, editor', 'aegis' ),
+					} );
+				}
 			} else {
+				var placeholder = __( 'Value', 'aegis' );
+				if ( field === 'post_type' ) {
+					placeholder = __( 'post, page, product', 'aegis' );
+				} else if ( field === 'user_capability' ) {
+					placeholder = __( 'edit_posts', 'aegis' );
+				} else if ( field === 'wp_fusion_tag' ) {
+					placeholder = __( 'Tag ID or slug', 'aegis' );
+				} else if ( field === 'wp_fusion_list' ) {
+					placeholder = __( 'List ID or slug', 'aegis' );
+				}
+
 				input = el( 'input', {
 					type: 'text',
 					value: rule.value || '',
-					placeholder: field === 'post_type' ? 'post, page, product' : 'Value',
+					placeholder: placeholder,
 				} );
 			}
 
 			input.addEventListener( 'change', function () {
-				rule.value = input.value;
+				var next = input.value;
+				if ( field === 'user_capability' ) {
+					next = normalizeCapability( next );
+					input.value = next;
+				}
+				rule.value = next;
 				sync();
 			} );
 
@@ -179,7 +265,7 @@
 			groupsWrap.innerHTML = '';
 			conditions.smartLogic.groups.forEach( function ( group, groupIdx ) {
 				if ( groupIdx > 0 ) {
-					groupsWrap.appendChild( el( 'div', { className: 'aegis-smart-group-or' }, 'OR' ) );
+					groupsWrap.appendChild( el( 'div', { className: 'aegis-smart-group-or' }, __( 'OR', 'aegis' ) ) );
 				}
 
 				var groupEl = el( 'div', { className: 'aegis-smart-group' } );
@@ -198,13 +284,20 @@
 					fieldSel.addEventListener( 'change', function () {
 						rule.field = fieldSel.value;
 						rule.value = '';
+						if ( operatorsFor( rule.field ).every( function ( o ) { return o.value !== rule.operator; } ) ) {
+							rule.operator = defaultOperatorFor( rule.field );
+						}
 						renderGroups();
 						sync();
 					} );
 					row.appendChild( fieldSel );
 
 					var opSel = el( 'select' );
-					operatorOptions.forEach( function ( o ) {
+					var ops = operatorsFor( rule.field );
+					if ( ops.every( function ( o ) { return o.value !== rule.operator; } ) ) {
+						rule.operator = defaultOperatorFor( rule.field );
+					}
+					ops.forEach( function ( o ) {
 						var opt = el( 'option', { value: o.value }, o.label );
 						if ( o.value === rule.operator ) {
 							opt.selected = true;
@@ -222,7 +315,7 @@
 					var removeBtn = el( 'button', {
 						type: 'button',
 						className: 'aegis-smart-rule-remove',
-						title: 'Remove',
+						title: __( 'Remove', 'aegis' ),
 						onClick: function () {
 							group.rules.splice( ruleIdx, 1 );
 							renderGroups();
@@ -242,7 +335,7 @@
 						renderGroups();
 						sync();
 					},
-				}, '+ And' );
+				}, __( '+ And', 'aegis' ) );
 				actions.appendChild( addRule );
 				groupEl.appendChild( actions );
 				groupsWrap.appendChild( groupEl );
@@ -262,7 +355,7 @@
 				renderGroups();
 				sync();
 			},
-		}, '+ Add new group' );
+		}, __( '+ Add new group', 'aegis' ) );
 		builder.appendChild( addGroup );
 
 		sync();
@@ -272,7 +365,7 @@
 		var tags = Array.isArray( initialTags ) ? initialTags.slice() : [];
 
 		container.className = 'aegis-tag-chips';
-		var input = el( 'input', { type: 'text', className: 'aegis-tag-chips-input', placeholder: 'Add tag...' } );
+		var input = el( 'input', { type: 'text', className: 'aegis-tag-chips-input', placeholder: __( 'Add tag...', 'aegis' ) } );
 
 		function render() {
 			container.innerHTML = '';
@@ -345,4 +438,4 @@
 	if ( hookMount && hookTextarea && window.aegisSnippetConditionsConfig ) {
 		initMount( hookMount, hookTextarea, window.aegisSnippetConditionsConfig );
 	}
-}() );
+}( window.wp ) );

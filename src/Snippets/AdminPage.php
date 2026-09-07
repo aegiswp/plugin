@@ -38,6 +38,7 @@ use function file_exists;
 use function filemtime;
 use function file_put_contents;
 use function implode;
+use function translate_user_role;
 use function in_array;
 use function max;
 use function plugins_url;
@@ -77,6 +78,8 @@ use function wp_send_json_success;
 use function wp_create_nonce;
 use function wp_date;
 use function wp_localize_script;
+use function wp_roles;
+use function wp_set_script_translations;
 use function wp_unslash;
 use function wp_strip_all_tags;
 use function check_ajax_referer;
@@ -301,10 +304,11 @@ final class AdminPage {
 			wp_enqueue_script(
 				'aegis-smart-conditions',
 				plugins_url( 'assets/admin/smart-conditions.js', \Aegis\Plugin\FILE ),
-				array(),
+				array( 'wp-i18n' ),
 				\Aegis\Plugin\VERSION,
 				true
 			);
+			wp_set_script_translations( 'aegis-smart-conditions', 'aegis' );
 		}
 	}
 
@@ -1264,6 +1268,13 @@ final class AdminPage {
 		$cl_settings = class_exists( '\Aegis\Plugin\Conditionals\Settings' )
 			? \Aegis\Plugin\Conditionals\Settings::get_settings()
 			: array();
+		$roles       = array();
+		foreach ( wp_roles()->role_names as $slug => $name ) {
+			$roles[] = array(
+				'value' => $slug,
+				'label' => translate_user_role( $name ),
+			);
+		}
 		$groups      = Locations::for_editor( Locations::custom_hooks_for_editor( $locations ) );
 		$type_badges = Locations::type_badges();
 		?>
@@ -1395,6 +1406,7 @@ final class AdminPage {
 				tags: <?php echo wp_json_encode( $tags ); ?>,
 				hasPro: <?php echo $has_pro ? 'true' : 'false'; ?>,
 				settings: <?php echo wp_json_encode( $cl_settings ); ?>,
+				roles: <?php echo wp_json_encode( $roles ); ?>,
 				postTypes: <?php echo wp_json_encode( array_values( get_post_types( array( 'public' => true ), 'names' ) ) ); ?>
 			};
 		</script>

@@ -48,10 +48,10 @@ $sections        = Registry::get_integrations_admin_sections();
 								<?php $renderer->render_section_header( $section['label'], $section['description'], true, $section['icon'] ); ?>
 
 								<?php foreach ( $section['plugins'] as $tab ) : ?>
-								<div class="aegis-plugin-stack" id="<?php echo esc_attr( $tab['id'] ); ?>">
+								<div class="aegis-plugin-stack" id="<?php echo esc_attr( $tab['id'] ); ?>" data-integration-key="<?php echo esc_attr( $tab['key'] ); ?>">
 									<?php $renderer->render_stack_header( $tab['label'], $tab['description'], $tab['icon'] ); ?>
-									<div class="aegis-api-config-body">
-										<div class="aegis-settings-grid">
+									<div class="aegis-settings-section__content">
+										<div class="aegis-settings-grid aegis-settings-grid--features">
 											<?php
 											$renderer->render_integration_toggle(
 												$tab['key'],

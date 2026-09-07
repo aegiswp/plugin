@@ -11,14 +11,18 @@ declare( strict_types=1 );
 namespace Aegis\Plugin\Conditionals;
 
 use Aegis\Plugin\Integrations\Registry;
+use Aegis\Plugin\Integrations\Settings as IntegrationsSettings;
 use function defined;
 use function filter_var;
 use function get_option;
 use function is_array;
+use function array_fill_keys;
 use function array_key_exists;
 use function is_bool;
 use function is_numeric;
 use function is_string;
+use function timezone_identifiers_list;
+use function trim;
 use function update_option;
 use const FILTER_VALIDATE_BOOLEAN;
 
@@ -45,6 +49,7 @@ final class Settings {
 		'visibility'      => [
 			'screen_size'        => false,
 			'custom_breakpoints' => false,
+			'page_type'          => false,
 			'browser_device'     => false,
 			'lockdown'           => false,
 			'query_string'       => false,
@@ -58,8 +63,9 @@ final class Settings {
 			'forced_colors'       => false,
 		],
 		'user'            => [
-			'user_status' => false,
-			'user_role'   => false,
+			'user_status'     => false,
+			'user_role'       => false,
+			'user_capability' => false,
 		],
 		'schedule'        => [
 			'date_time'  => false,
@@ -120,6 +126,11 @@ final class Settings {
 			'edd_customer' => false,
 			'edd_download' => false,
 		],
+		'affiliate_wp'    => [
+			'affwp_referral'  => false,
+			'affwp_affiliate' => false,
+			'affwp_earnings'  => false,
+		],
 		'image_source'    => [
 			'image_source_order' => false,
 			'acf'                => false,
@@ -141,6 +152,7 @@ final class Settings {
 		'fluentbooking' => 'fluent_booking',
 		'wp_fusion'     => 'wp_fusion',
 		'edd'           => 'easy_digital_downloads',
+		'affiliate_wp'  => 'affiliate_wp',
 	];
 
 	/**
@@ -165,6 +177,13 @@ final class Settings {
 	 * @var array<string, array<string, bool>>|null
 	 */
 	private static ?array $cache = null;
+
+	/**
+	 * IANA timezone identifiers keyed for lookup.
+	 *
+	 * @var array<string, true>|null
+	 */
+	private static ?array $timezone_ids = null;
 
 	/**
 	 * Get settings merged with defaults.
@@ -240,6 +259,51 @@ final class Settings {
 	 */
 	public static function get_for_editor(): array {
 		return self::get_settings();
+	}
+
+	/**
+	 * IANA timezone options for the Schedule timezone extra.
+	 *
+	 * @return array<int, array{value: string, label: string}>
+	 */
+	public static function timezone_choices(): array {
+		$choices = array();
+
+		foreach ( timezone_identifiers_list() as $zone ) {
+			$choices[] = array(
+				'value' => $zone,
+				'label' => $zone,
+			);
+		}
+
+		return $choices;
+	}
+
+	/**
+	 * Whether a timezone string is a PHP IANA identifier.
+	 *
+	 * Abbreviations (EST) and offsets (UTC+2) are not IANA and return false.
+	 */
+	public static function is_valid_timezone( string $zone ): bool {
+		$zone = trim( $zone );
+		if ( $zone === '' ) {
+			return false;
+		}
+
+		if ( self::$timezone_ids === null ) {
+			self::$timezone_ids = array_fill_keys( timezone_identifiers_list(), true );
+		}
+
+		return isset( self::$timezone_ids[ $zone ] );
+	}
+
+	/**
+	 * Whether a nested extra is currently enabled.
+	 */
+	public static function is_enabled( string $group, string $key ): bool {
+		$settings = self::get_settings();
+
+		return ! empty( $settings[ $group ][ $key ] );
 	}
 
 	/**
@@ -323,6 +387,16 @@ final class Settings {
 		}
 
 		if ( self::is_pro_feature( $group, $key ) && ! self::is_pro_active() ) {
+			return false;
+		}
+
+		if ( $group === 'image_source' ) {
+			return true;
+		}
+
+		$plugin_check = self::plugin_check_for( $group, $key );
+
+		if ( $plugin_check !== '' && Registry::get( $plugin_check ) !== null && ! IntegrationsSettings::is_integration_enabled( $plugin_check ) ) {
 			return false;
 		}
 

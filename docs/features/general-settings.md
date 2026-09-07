@@ -21,7 +21,7 @@ The global export (`wp_ajax_aegis_export_settings`) includes these groups:
 | Group | Contents |
 |-------|----------|
 | `conditional_logic` | Conditionals feature toggles |
-| `integrations` | Integration toggle states |
+| `integrations` | Integration toggle states and pattern-control extras |
 | `blocks` | Block feature toggles |
 | `general` | General settings including SVG upload |
 
@@ -42,7 +42,7 @@ Export/import snippets and analytics separately through their respective admin p
 
 ### Reset
 
-Reset actions are scoped per group: `conditionals`, `integrations`, `blocks`, `performance`, `general`. Reset restores **all-off** defaults (features are opt-in). Blocks reset leaves Performance keys unchanged.
+Reset actions are scoped per group: `conditionals`, `integrations`, `blocks`, `performance`, `general`. Reset restores **all-off** defaults (features are opt-in). Integrations reset also clears `aegis_pattern_control`. Blocks reset leaves Performance keys unchanged.
 
 ## Data / Uninstall
 

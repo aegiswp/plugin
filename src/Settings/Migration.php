@@ -163,6 +163,7 @@ final class Migration {
 		$this->migrate_image_compare_toggles_v1();
 		$this->migrate_legacy_emoji_option();
 		IntegrationsSettings::migrate_legacy_bunnycdn_option();
+		IntegrationsSettings::persist_inactive_plugin_toggles();
 	}
 
 	/**

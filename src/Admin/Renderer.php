@@ -380,10 +380,11 @@ class Renderer {
 	 * @param array  $options Current options.
 	 * @param string $icon         Optional dashicon name.
 	 * @param string $option_name  Option key for input name (default: conditional logic).
-	 * @param string $plugin_check Optional Integrations Registry key. Auto-detected for plugin-dependent conditionals.
+	 * @param string $plugin_check    Optional Integrations Registry key. Auto-detected for plugin-dependent conditionals.
+	 * @param bool   $force_disabled  Extra lock (parent integration off).
 	 * @return void
 	 */
-	public function render_toggle( string $group, string $key, string $label, string $desc, array $options, string $icon = 'admin-generic', string $option_name = SettingsRepository::OPTION_NAME, string $plugin_check = '' ): void {
+	public function render_toggle( string $group, string $key, string $label, string $desc, array $options, string $icon = 'admin-generic', string $option_name = SettingsRepository::OPTION_NAME, string $plugin_check = '', bool $force_disabled = false ): void {
 		$name     = $option_name . "[{$group}][{$key}]";
 		$defaults = $this->get_conditional_defaults_for_option( $option_name );
 
@@ -397,7 +398,7 @@ class Renderer {
 			&& class_exists( '\Aegis\Plugin\Conditionals\Settings' )
 			&& \Aegis\Plugin\Conditionals\Settings::is_pro_feature( $group, $key );
 		$pro_locked    = $is_pro && ! $this->is_aegis_pro_active();
-		$is_disabled   = ! $plugin_active || $pro_locked;
+		$is_disabled   = ! $plugin_active || $pro_locked || $force_disabled;
 		$checked       = ! $is_disabled && ( $options[ $group ][ $key ] ?? $defaults[ $group ][ $key ] );
 		$classes       = 'aegis-toggle-card aegis-toggle-subcard';
 
@@ -613,7 +614,7 @@ class Renderer {
 				</div>
 			</div>
 			<label class="aegis-toggle">
-				<input type="checkbox" name="<?php echo esc_attr( $name ); ?>" value="1" <?php checked( $checked ); ?> <?php disabled( ! $is_installed ); ?>>
+				<input type="checkbox" name="<?php echo esc_attr( $name ); ?>" value="1" <?php checked( $is_enabled ); ?> <?php disabled( ! $is_installed ); ?>>
 				<span class="aegis-toggle-slider"></span>
 			</label>
 		</div>
@@ -623,9 +624,11 @@ class Renderer {
 		if ( in_array( $key, $seo_plugins, true ) && $is_installed ) :
 			$plugin_label = $label;
 			$pro_active   = $this->is_aegis_pro_active();
+			$seo_locked   = ! $is_enabled;
+			$sitemap_lock = $seo_locked || ! $pro_active;
 			?>
 		<div class="aegis-toggle-suboptions">
-			<div class="aegis-toggle-card aegis-toggle-subcard <?php echo ! $pro_active ? 'aegis-pro-feature aegis-toggle-disabled' : ''; ?>">
+			<div class="aegis-toggle-card aegis-toggle-subcard <?php echo $sitemap_lock ? ( ! $pro_active ? 'aegis-pro-feature aegis-toggle-disabled' : 'aegis-toggle-disabled' ) : ''; ?>">
 				<div class="aegis-toggle-info">
 					<div class="aegis-toggle-icon">
 						<span class="dashicons dashicons-video-alt3"></span>
@@ -652,12 +655,12 @@ class Renderer {
 					</div>
 				</div>
 				<label class="aegis-toggle">
-					<input type="checkbox" name="<?php echo esc_attr( $option_name . '[seo_video_sitemap]' ); ?>" value="1" <?php checked( $options['seo_video_sitemap'] ?? false ); ?> <?php disabled( ! $pro_active ); ?>>
+					<input type="checkbox" name="<?php echo esc_attr( $option_name . '[seo_video_sitemap]' ); ?>" value="1" <?php checked( $is_enabled && $pro_active && ! empty( $options['seo_video_sitemap'] ) ); ?> <?php disabled( $sitemap_lock ); ?>>
 					<span class="aegis-toggle-slider"></span>
 				</label>
 			</div>
 
-			<div class="aegis-toggle-card aegis-toggle-subcard">
+			<div class="aegis-toggle-card aegis-toggle-subcard<?php echo $seo_locked ? ' aegis-toggle-disabled' : ''; ?>">
 				<div class="aegis-toggle-info">
 					<div class="aegis-toggle-icon">
 						<span class="dashicons dashicons-editor-help"></span>
@@ -676,12 +679,12 @@ class Renderer {
 					</div>
 				</div>
 				<label class="aegis-toggle">
-					<input type="checkbox" name="<?php echo esc_attr( $option_name . '[seo_faq_schema]' ); ?>" value="1" <?php checked( $options['seo_faq_schema'] ?? false ); ?>>
+					<input type="checkbox" name="<?php echo esc_attr( $option_name . '[seo_faq_schema]' ); ?>" value="1" <?php checked( $is_enabled && ! empty( $options['seo_faq_schema'] ) ); ?> <?php disabled( $seo_locked ); ?>>
 					<span class="aegis-toggle-slider"></span>
 				</label>
 			</div>
 
-			<div class="aegis-toggle-card aegis-toggle-subcard">
+			<div class="aegis-toggle-card aegis-toggle-subcard<?php echo $seo_locked ? ' aegis-toggle-disabled' : ''; ?>">
 				<div class="aegis-toggle-info">
 					<div class="aegis-toggle-icon">
 						<span class="dashicons dashicons-calendar-alt"></span>
@@ -700,12 +703,12 @@ class Renderer {
 					</div>
 				</div>
 				<label class="aegis-toggle">
-					<input type="checkbox" name="<?php echo esc_attr( $option_name . '[seo_event_schema]' ); ?>" value="1" <?php checked( $options['seo_event_schema'] ?? false ); ?>>
+					<input type="checkbox" name="<?php echo esc_attr( $option_name . '[seo_event_schema]' ); ?>" value="1" <?php checked( $is_enabled && ! empty( $options['seo_event_schema'] ) ); ?> <?php disabled( $seo_locked ); ?>>
 					<span class="aegis-toggle-slider"></span>
 				</label>
 			</div>
 
-			<div class="aegis-toggle-card aegis-toggle-subcard">
+			<div class="aegis-toggle-card aegis-toggle-subcard<?php echo $seo_locked ? ' aegis-toggle-disabled' : ''; ?>">
 				<div class="aegis-toggle-info">
 					<div class="aegis-toggle-icon">
 						<span class="dashicons dashicons-location"></span>
@@ -724,12 +727,12 @@ class Renderer {
 					</div>
 				</div>
 				<label class="aegis-toggle">
-					<input type="checkbox" name="<?php echo esc_attr( $option_name . '[seo_local_schema]' ); ?>" value="1" <?php checked( $options['seo_local_schema'] ?? false ); ?>>
+					<input type="checkbox" name="<?php echo esc_attr( $option_name . '[seo_local_schema]' ); ?>" value="1" <?php checked( $is_enabled && ! empty( $options['seo_local_schema'] ) ); ?> <?php disabled( $seo_locked ); ?>>
 					<span class="aegis-toggle-slider"></span>
 				</label>
 			</div>
 
-			<div class="aegis-toggle-card aegis-toggle-subcard">
+			<div class="aegis-toggle-card aegis-toggle-subcard<?php echo $seo_locked ? ' aegis-toggle-disabled' : ''; ?>">
 				<div class="aegis-toggle-info">
 					<div class="aegis-toggle-icon">
 						<span class="dashicons dashicons-format-video"></span>
@@ -748,20 +751,21 @@ class Renderer {
 					</div>
 				</div>
 				<label class="aegis-toggle">
-					<input type="checkbox" name="<?php echo esc_attr( $option_name . '[seo_video_schema]' ); ?>" value="1" <?php checked( $options['seo_video_schema'] ?? false ); ?>>
+					<input type="checkbox" name="<?php echo esc_attr( $option_name . '[seo_video_schema]' ); ?>" value="1" <?php checked( $is_enabled && ! empty( $options['seo_video_schema'] ) ); ?> <?php disabled( $seo_locked ); ?>>
 					<span class="aegis-toggle-slider"></span>
 				</label>
 			</div>
 		</div>
 		<?php endif; ?>
 		<?php
-		// Co-Authors Plus sub-options â€” only show when the Aegis plugin is active.
+		// Co-Authors Plus extras — gated on the plugin and parent integration.
 		if ( $key === 'co_authors_plus' && defined( 'Aegis\\Plugin\\VERSION' ) ) :
 			$pro_active          = $this->is_aegis_pro_active();
-			$cap_social_checked  = $options['cap_social_links'] ?? false;
-			$cap_roles_checked   = $options['cap_role_badges'] ?? false;
+			$cap_locked          = ! $is_installed || ! $pro_active || ! $is_enabled;
+			$cap_social_checked  = ! $cap_locked && ( $options['cap_social_links'] ?? false );
+			$cap_roles_checked   = ! $cap_locked && ( $options['cap_role_badges'] ?? false );
 			$cap_pattern_options = get_option( 'aegis_pattern_control', array() );
-			$cap_keep_patterns   = $cap_pattern_options['coauthors_keep_patterns'] ?? false;
+			$cap_keep_patterns   = ! $cap_locked && ( $cap_pattern_options['coauthors_keep_patterns'] ?? false );
 			?>
 		<div class="aegis-toggle-suboptions">
 			<div class="aegis-toggle-card aegis-toggle-subcard aegis-toggle-subcard-accent">
@@ -789,7 +793,7 @@ class Renderer {
 			<?php
 			$cap_social_key = 'cap_social_links';
 			?>
-			<div class="aegis-toggle-card aegis-toggle-subcard <?php echo ! $pro_active ? 'aegis-pro-feature aegis-toggle-disabled' : ''; ?>">
+			<div class="aegis-toggle-card aegis-toggle-subcard <?php echo $cap_locked ? ( $pro_active ? 'aegis-toggle-disabled' : 'aegis-pro-feature aegis-toggle-disabled' ) : ''; ?>">
 				<div class="aegis-toggle-info">
 					<div class="aegis-toggle-icon">
 						<span class="dashicons dashicons-share"></span>
@@ -797,6 +801,11 @@ class Renderer {
 					<div class="aegis-toggle-text">
 						<h3>
 							<?php esc_html_e( 'Social Links', 'aegis' ); ?>
+							<?php if ( ! $is_installed ) : ?>
+							<span class="aegis-plugin-status <?php echo esc_attr( $plugin_status['class'] ); ?>">
+								<?php echo esc_html( $plugin_status['label'] ); ?>
+							</span>
+							<?php endif; ?>
 							<?php if ( ! $pro_active ) : ?>
 							<span class="aegis-pro-badge">
 								<span class="dashicons dashicons-star-filled"></span>
@@ -808,7 +817,7 @@ class Renderer {
 					</div>
 				</div>
 				<label class="aegis-toggle">
-					<input type="checkbox" name="<?php echo esc_attr( $option_name . "[{$cap_social_key}]" ); ?>" value="1" <?php checked( $cap_social_checked ); ?> <?php disabled( ! $pro_active ); ?>>
+					<input type="checkbox" name="<?php echo esc_attr( $option_name . "[{$cap_social_key}]" ); ?>" value="1" <?php checked( $cap_social_checked ); ?> <?php disabled( $cap_locked ); ?>>
 					<span class="aegis-toggle-slider"></span>
 				</label>
 			</div>
@@ -816,7 +825,7 @@ class Renderer {
 			<?php
 			$cap_roles_key = 'cap_role_badges';
 			?>
-			<div class="aegis-toggle-card aegis-toggle-subcard <?php echo ! $pro_active ? 'aegis-pro-feature aegis-toggle-disabled' : ''; ?>">
+			<div class="aegis-toggle-card aegis-toggle-subcard <?php echo $cap_locked ? ( $pro_active ? 'aegis-toggle-disabled' : 'aegis-pro-feature aegis-toggle-disabled' ) : ''; ?>">
 				<div class="aegis-toggle-info">
 					<div class="aegis-toggle-icon">
 						<span class="dashicons dashicons-nametag"></span>
@@ -824,6 +833,11 @@ class Renderer {
 					<div class="aegis-toggle-text">
 						<h3>
 							<?php esc_html_e( 'Role Badges', 'aegis' ); ?>
+							<?php if ( ! $is_installed ) : ?>
+							<span class="aegis-plugin-status <?php echo esc_attr( $plugin_status['class'] ); ?>">
+								<?php echo esc_html( $plugin_status['label'] ); ?>
+							</span>
+							<?php endif; ?>
 							<?php if ( ! $pro_active ) : ?>
 							<span class="aegis-pro-badge">
 								<span class="dashicons dashicons-star-filled"></span>
@@ -835,12 +849,12 @@ class Renderer {
 					</div>
 				</div>
 				<label class="aegis-toggle">
-					<input type="checkbox" name="<?php echo esc_attr( $option_name . "[{$cap_roles_key}]" ); ?>" value="1" <?php checked( $cap_roles_checked ); ?> <?php disabled( ! $pro_active ); ?>>
+					<input type="checkbox" name="<?php echo esc_attr( $option_name . "[{$cap_roles_key}]" ); ?>" value="1" <?php checked( $cap_roles_checked ); ?> <?php disabled( $cap_locked ); ?>>
 					<span class="aegis-toggle-slider"></span>
 				</label>
 			</div>
 
-			<div class="aegis-toggle-card aegis-toggle-subcard <?php echo ! $pro_active ? 'aegis-pro-feature aegis-toggle-disabled' : ''; ?>">
+			<div class="aegis-toggle-card aegis-toggle-subcard <?php echo $cap_locked ? ( $pro_active ? 'aegis-toggle-disabled' : 'aegis-pro-feature aegis-toggle-disabled' ) : ''; ?>">
 				<div class="aegis-toggle-info">
 					<div class="aegis-toggle-icon">
 						<span class="dashicons dashicons-layout"></span>
@@ -848,6 +862,11 @@ class Renderer {
 					<div class="aegis-toggle-text">
 						<h3>
 							<?php esc_html_e( 'Co-Authors Plus Patterns', 'aegis' ); ?>
+							<?php if ( ! $is_installed ) : ?>
+							<span class="aegis-plugin-status <?php echo esc_attr( $plugin_status['class'] ); ?>">
+								<?php echo esc_html( $plugin_status['label'] ); ?>
+							</span>
+							<?php endif; ?>
 							<?php if ( ! $pro_active ) : ?>
 							<span class="aegis-pro-badge">
 								<span class="dashicons dashicons-star-filled"></span>
@@ -859,7 +878,7 @@ class Renderer {
 					</div>
 				</div>
 				<label class="aegis-toggle">
-					<input type="checkbox" name="aegis_pattern_control[coauthors_keep_patterns]" value="1" <?php checked( $cap_keep_patterns ); ?> <?php disabled( ! $pro_active ); ?>>
+					<input type="checkbox" name="aegis_pattern_control[coauthors_keep_patterns]" value="1" <?php checked( $cap_keep_patterns ); ?> <?php disabled( $cap_locked ); ?>>
 					<span class="aegis-toggle-slider"></span>
 				</label>
 			</div>
@@ -884,7 +903,7 @@ class Renderer {
 					'key'   => 'woocommerce_keep_patterns',
 					'icon'  => 'layout',
 					'title' => __( 'WooCommerce Patterns', 'aegis' ),
-					'desc'  => __( 'Remove default WooCommerce block patterns from the editor.', 'aegis' ),
+					'desc'  => __( 'Keep WooCommerce\'s own block patterns in the inserter alongside Aegis patterns.', 'aegis' ),
 				),
 				array(
 					'key'   => 'woocommerce_keep_templates',
@@ -944,10 +963,25 @@ class Renderer {
 			return;
 		}
 
+		$plugin_status = $this->get_plugin_status( $integration_key );
+		$plugin_active = $plugin_status['class'] === 'active';
+		$parent_on     = class_exists( \Aegis\Plugin\Integrations\Settings::class )
+			&& \Aegis\Plugin\Integrations\Settings::is_integration_enabled( $integration_key );
+
 		foreach ( $cards as $card ) :
-			$checked = ! empty( $pattern_options[ $card['key'] ] );
+			$is_disabled = ! $has_pro || ! $plugin_active || ! $parent_on;
+			$checked     = ! $is_disabled && ! empty( $pattern_options[ $card['key'] ] );
+			$classes     = 'aegis-toggle-card aegis-toggle-subcard';
+
+			if ( ! $has_pro ) {
+				$classes .= ' aegis-pro-feature';
+			}
+
+			if ( $is_disabled ) {
+				$classes .= ' aegis-toggle-disabled';
+			}
 			?>
-		<div class="aegis-toggle-card aegis-toggle-subcard <?php echo ! $has_pro ? 'aegis-pro-feature aegis-toggle-disabled' : ''; ?>">
+		<div class="<?php echo esc_attr( $classes ); ?>">
 			<div class="aegis-toggle-info">
 				<div class="aegis-toggle-icon">
 					<span class="dashicons dashicons-<?php echo esc_attr( $card['icon'] ); ?>"></span>
@@ -955,6 +989,11 @@ class Renderer {
 				<div class="aegis-toggle-text">
 					<h3>
 						<?php echo esc_html( $card['title'] ); ?>
+						<?php if ( ! $plugin_active ) : ?>
+						<span class="aegis-plugin-status <?php echo esc_attr( $plugin_status['class'] ); ?>">
+							<?php echo esc_html( $plugin_status['label'] ); ?>
+						</span>
+						<?php endif; ?>
 						<?php if ( ! $has_pro ) : ?>
 						<span class="aegis-pro-badge">
 							<span class="dashicons dashicons-star-filled"></span>
@@ -966,7 +1005,7 @@ class Renderer {
 				</div>
 			</div>
 			<label class="aegis-toggle">
-				<input type="checkbox" name="<?php echo esc_attr( 'aegis_pattern_control[' . $card['key'] . ']' ); ?>" value="1" <?php checked( $checked ); ?> <?php disabled( ! $has_pro ); ?>>
+				<input type="checkbox" name="<?php echo esc_attr( 'aegis_pattern_control[' . $card['key'] . ']' ); ?>" value="1" <?php checked( $checked ); ?> <?php disabled( $is_disabled ); ?>>
 				<span class="aegis-toggle-slider"></span>
 			</label>
 		</div>
@@ -1325,7 +1364,7 @@ class Renderer {
 								<span class="dashicons dashicons-visibility"></span>
 							</div>
 							<h3><?php esc_html_e( 'Manage Block Visibility', 'aegis' ); ?></h3>
-							<p><?php esc_html_e( 'Show or hide any block based on user roles, devices, schedules, and custom conditions.', 'aegis' ); ?></p>
+							<p><?php esc_html_e( 'Show or hide any block based on user roles, capabilities, devices, schedules, and custom conditions.', 'aegis' ); ?></p>
 						</a>
 						<a href="<?php echo esc_url( admin_url( 'admin.php?page=aegis-integrations' ) ); ?>" class="aegis-license-feature-card">
 							<div class="aegis-license-feature-icon">

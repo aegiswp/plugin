@@ -142,6 +142,7 @@ final class Controller {
 				break;
 			case 'integrations':
 				delete_option( IntegrationsSettings::OPTION );
+				delete_option( IntegrationsSettings::PATTERN_CONTROL_OPTION );
 				break;
 			case 'blocks':
 				BlocksSettings::reset_block_features();

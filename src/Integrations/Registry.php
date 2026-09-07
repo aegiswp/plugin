@@ -17,6 +17,8 @@ use function defined;
 use function file_exists;
 use function function_exists;
 use function str_replace;
+use function strnatcasecmp;
+use function usort;
 use const WP_PLUGIN_DIR;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -55,7 +57,10 @@ final class Registry {
 				'label'            => __( 'Easy Digital Downloads', 'aegis' ),
 				'section'          => 'ecommerce',
 				'plugin_check'     => 'easy_digital_downloads',
-				'plugin_files'     => [ 'easy-digital-downloads/easy-digital-downloads.php' ],
+				'plugin_files'     => [
+				'easy-digital-downloads/easy-digital-downloads.php',
+				'easy-digital-downloads-pro/easy-digital-downloads.php',
+			],
 				'is_plugin_active' => static fn(): bool => class_exists( 'Easy_Digital_Downloads' ),
 			],
 			'wp_fusion' => [
@@ -71,6 +76,7 @@ final class Registry {
 				'label'            => __( 'AffiliateWP', 'aegis' ),
 				'section'          => 'ecommerce',
 				'plugin_check'     => 'affiliate_wp',
+				'plugin_files'     => [ 'affiliate-wp/affiliate-wp.php' ],
 				'is_plugin_active' => static fn(): bool => class_exists( 'Affiliate_WP' ),
 			],
 			'learndash' => [
@@ -116,8 +122,9 @@ final class Registry {
 			'fluent_crm' => [
 				'key'              => 'fluent_crm',
 				'label'            => __( 'FluentCRM', 'aegis' ),
-				'section'          => 'forms',
+				'section'          => 'crm',
 				'plugin_check'     => 'fluent_crm',
+				'plugin_files'     => [ 'fluent-crm/fluent-crm.php' ],
 				'is_plugin_active' => static fn(): bool => defined( 'FLUENTCRM' ),
 			],
 			'gravity_forms' => [
@@ -253,7 +260,7 @@ final class Registry {
 				'id'          => 'ecommerce',
 				'label'       => __( 'E-commerce', 'aegis' ),
 				'icon'        => 'cart',
-				'description' => __( 'WooCommerce, Easy Digital Downloads, and affiliate tools.', 'aegis' ),
+				'description' => __( 'AffiliateWP, Easy Digital Downloads, and WooCommerce.', 'aegis' ),
 				'keys'        => array( 'woocommerce', 'easy_digital_downloads', 'affiliate_wp' ),
 			),
 			array(
@@ -267,36 +274,36 @@ final class Registry {
 				'id'          => 'forms',
 				'label'       => __( 'Forms', 'aegis' ),
 				'icon'        => 'feedback',
-				'description' => __( 'Form builders, booking, and FluentCRM.', 'aegis' ),
-				'keys'        => array( 'fluent_forms', 'fluent_booking', 'fluent_crm', 'gravity_forms', 'ninja_forms' ),
+				'description' => __( 'Fluent Booking, Fluent Forms, Gravity Forms, and Ninja Forms.', 'aegis' ),
+				'keys'        => array( 'fluent_forms', 'fluent_booking', 'gravity_forms', 'ninja_forms' ),
 			),
 			array(
 				'id'          => 'content',
 				'label'       => __( 'Content', 'aegis' ),
 				'icon'        => 'admin-post',
-				'description' => __( 'Co-Authors Plus and bbPress.', 'aegis' ),
+				'description' => __( 'bbPress and Co-Authors Plus.', 'aegis' ),
 				'keys'        => array( 'co_authors_plus', 'bbpress' ),
 			),
 			array(
 				'id'          => 'seo',
 				'label'       => __( 'SEO', 'aegis' ),
 				'icon'        => 'chart-line',
-				'description' => __( 'Rank Math, Yoast, All in One SEO, and SEOPress.', 'aegis' ),
+				'description' => __( 'All in One SEO, Rank Math, SEOPress, and Yoast SEO.', 'aegis' ),
 				'keys'        => array( 'rank_math', 'yoast_seo', 'aioseo', 'seopress' ),
 			),
 			array(
 				'id'          => 'developer',
 				'label'       => __( 'Developer', 'aegis' ),
 				'icon'        => 'admin-generic',
-				'description' => __( 'Custom fields and code highlighting.', 'aegis' ),
+				'description' => __( 'Advanced Custom Fields, Code Block Pro, Meta Box, and Syntax Highlighting.', 'aegis' ),
 				'keys'        => array( 'advanced_custom_fields', 'meta_box', 'code_block_pro', 'syntax_highlighting' ),
 			),
 			array(
 				'id'          => 'crm',
 				'label'       => __( 'CRM', 'aegis' ),
 				'icon'        => 'tag',
-				'description' => __( 'WP Fusion tags, lists, and automation.', 'aegis' ),
-				'keys'        => array( 'wp_fusion' ),
+				'description' => __( 'FluentCRM and WP Fusion tags, lists, and automation.', 'aegis' ),
+				'keys'        => array( 'fluent_crm', 'wp_fusion' ),
 			),
 		);
 
@@ -311,10 +318,24 @@ final class Registry {
 				}
 			}
 
+			usort(
+				$plugins,
+				static function ( array $a, array $b ): int {
+					return strnatcasecmp( $a['label'], $b['label'] );
+				}
+			);
+
 			$section['plugins'] = $plugins;
 			unset( $section['keys'] );
 		}
 		unset( $section );
+
+		usort(
+			$sections,
+			static function ( array $a, array $b ): int {
+				return strnatcasecmp( $a['label'], $b['label'] );
+			}
+		);
 
 		return $sections;
 	}
@@ -390,7 +411,7 @@ final class Registry {
 			),
 			'fluent_crm'             => array(
 				'icon'        => 'email',
-				'description' => __( 'CRM and email marketing automation for video events.', 'aegis' ),
+				'description' => __( 'Email marketing CRM and automation.', 'aegis' ),
 			),
 			'gravity_forms'          => array(
 				'icon'        => 'feedback',

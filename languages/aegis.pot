@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-06T14:28:34+00:00\n"
+"POT-Creation-Date: 2026-09-07T12:40:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: aegis\n"
@@ -90,7 +90,7 @@ msgstr ""
 
 #: patterns/contact/form-map-overlay.php:27
 #: patterns/contact/form-map.php:21
-#: src/Snippets/AdminPage.php:988
+#: src/Snippets/AdminPage.php:992
 #: templates/visibility-presets-admin-page.php:96
 #: templates/visibility-presets-admin-page.php:135
 msgid "Name"
@@ -762,16 +762,16 @@ msgstr ""
 #: src/Conditionals/SettingsController.php:35
 #: src/Integrations/Notices.php:149
 #: src/Integrations/SettingsController.php:39
-#: src/Integrations/SettingsController.php:65
-#: src/Integrations/SettingsController.php:95
+#: src/Integrations/SettingsController.php:73
+#: src/Integrations/SettingsController.php:103
 #: src/Map/IntegrationsPanel.php:213
 #: src/Map/IntegrationsPanel.php:244
 #: src/Settings/Controller.php:43
 #: src/Settings/Controller.php:63
 #: src/Settings/Controller.php:84
 #: src/Settings/Controller.php:130
-#: src/Settings/Controller.php:166
-#: src/Settings/Controller.php:186
+#: src/Settings/Controller.php:167
+#: src/Settings/Controller.php:187
 #: src/Snippets/SettingsController.php:39
 msgid "Security check failed."
 msgstr ""
@@ -782,16 +782,16 @@ msgstr ""
 #: src/Conditionals/SettingsController.php:39
 #: src/Integrations/Notices.php:153
 #: src/Integrations/SettingsController.php:43
-#: src/Integrations/SettingsController.php:69
-#: src/Integrations/SettingsController.php:99
+#: src/Integrations/SettingsController.php:77
+#: src/Integrations/SettingsController.php:107
 #: src/Map/IntegrationsPanel.php:217
 #: src/Map/IntegrationsPanel.php:248
 #: src/Settings/Controller.php:47
 #: src/Settings/Controller.php:67
 #: src/Settings/Controller.php:88
 #: src/Settings/Controller.php:134
-#: src/Settings/Controller.php:170
-#: src/Settings/Controller.php:190
+#: src/Settings/Controller.php:171
+#: src/Settings/Controller.php:191
 #: src/Snippets/SettingsController.php:43
 msgid "Permission denied."
 msgstr ""
@@ -803,7 +803,7 @@ msgstr ""
 #: src/Admin/PageLoader.php:252
 #: src/Admin/Renderer.php:158
 #: src/Admin/Renderer.php:347
-#: src/Admin/Renderer.php:1189
+#: src/Admin/Renderer.php:1228
 msgid "Dashboard"
 msgstr ""
 
@@ -814,11 +814,11 @@ msgstr ""
 #: src/Admin/Menu.php:394
 #: src/Blocks/SettingsController.php:53
 #: src/Conditionals/SettingsController.php:53
-#: src/Integrations/SettingsController.php:57
-#: src/Integrations/SettingsController.php:87
+#: src/Integrations/SettingsController.php:65
+#: src/Integrations/SettingsController.php:95
 #: src/Map/IntegrationsPanel.php:236
 #: src/Settings/Controller.php:58
-#: src/Settings/Controller.php:197
+#: src/Settings/Controller.php:198
 #: src/Snippets/SettingsController.php:55
 msgid "Settings saved."
 msgstr ""
@@ -853,12 +853,12 @@ msgid "Empty page."
 msgstr ""
 
 #: src/Admin/Renderer.php:89
-#: src/Admin/Renderer.php:550
-#: src/Admin/Renderer.php:639
-#: src/Admin/Renderer.php:803
-#: src/Admin/Renderer.php:830
-#: src/Admin/Renderer.php:854
-#: src/Admin/Renderer.php:961
+#: src/Admin/Renderer.php:551
+#: src/Admin/Renderer.php:642
+#: src/Admin/Renderer.php:812
+#: src/Admin/Renderer.php:844
+#: src/Admin/Renderer.php:873
+#: src/Admin/Renderer.php:1000
 #: templates/connectors-bunnycdn-section.php:47
 #: templates/connectors-bunnycdn-section.php:76
 #: templates/connectors-bunnycdn-section.php:105
@@ -907,7 +907,7 @@ msgid "Donate"
 msgstr ""
 
 #: src/Admin/Renderer.php:195
-#: src/Snippets/AdminPage.php:665
+#: src/Snippets/AdminPage.php:669
 msgid "Edit Snippet"
 msgstr ""
 
@@ -981,287 +981,287 @@ msgstr ""
 msgid "View video performance metrics, audience retention, and engagement data."
 msgstr ""
 
-#: src/Admin/Renderer.php:428
-#: src/Admin/Renderer.php:550
+#: src/Admin/Renderer.php:429
+#: src/Admin/Renderer.php:551
 msgid "Pro Feature"
 msgstr ""
 
-#: src/Admin/Renderer.php:635
+#: src/Admin/Renderer.php:638
 #: src/Blocks/AdminPage.php:531
 msgid "Video Sitemap"
 msgstr ""
 
 #. translators: %s: SEO plugin name
-#: src/Admin/Renderer.php:647
+#: src/Admin/Renderer.php:650
 #, php-format
 msgid "Let %s handle Video Sitemap instead of the Blocks → Video extra. When enabled, that extra is disabled; Aegis still adds videos to this plugin's sitemap."
 msgstr ""
 
-#: src/Admin/Renderer.php:666
+#: src/Admin/Renderer.php:669
 #: src/Blocks/AdminPage.php:199
 msgid "FAQ Schema"
 msgstr ""
 
 #. translators: %s: SEO plugin name
-#: src/Admin/Renderer.php:671
+#: src/Admin/Renderer.php:674
 #, php-format
 msgid "Let %s handle FAQ Schema for Accordion List. When enabled, built-in FAQPage markup is suppressed."
 msgstr ""
 
-#: src/Admin/Renderer.php:690
+#: src/Admin/Renderer.php:693
 msgid "Event Schema"
 msgstr ""
 
 #. translators: %s: SEO plugin name
-#: src/Admin/Renderer.php:695
+#: src/Admin/Renderer.php:698
 #, php-format
 msgid "Let %s handle Event Schema for the Countdown block. When enabled, built-in Event markup is suppressed."
 msgstr ""
 
-#: src/Admin/Renderer.php:714
+#: src/Admin/Renderer.php:717
 msgid "Local Business Schema"
 msgstr ""
 
 #. translators: %s: SEO plugin name
-#: src/Admin/Renderer.php:719
+#: src/Admin/Renderer.php:722
 #, php-format
 msgid "Let %s handle Local Business Schema for the Map block. When enabled, built-in LocalBusiness markup is suppressed."
 msgstr ""
 
-#: src/Admin/Renderer.php:738
+#: src/Admin/Renderer.php:741
 msgid "Video Schema"
 msgstr ""
 
 #. translators: %s: SEO plugin name
-#: src/Admin/Renderer.php:743
+#: src/Admin/Renderer.php:746
 #, php-format
 msgid "Let %s handle Video Schema for the Video block. When enabled, built-in VideoObject markup is suppressed."
 msgstr ""
 
-#: src/Admin/Renderer.php:773
+#: src/Admin/Renderer.php:777
 msgid "Co-Authors Plus integration is provided by the Aegis plugin with improved guest author support."
 msgstr ""
 
-#: src/Admin/Renderer.php:783
+#: src/Admin/Renderer.php:787
 msgid "Author Schema"
 msgstr ""
 
-#: src/Admin/Renderer.php:784
+#: src/Admin/Renderer.php:788
 msgid "Outputs JSON-LD Person schema for each co-author on singular posts."
 msgstr ""
 
-#: src/Admin/Renderer.php:799
+#: src/Admin/Renderer.php:803
 msgid "Social Links"
 msgstr ""
 
-#: src/Admin/Renderer.php:807
+#: src/Admin/Renderer.php:816
 msgid "Display social media links for each guest author (Facebook, LinkedIn, GitHub, Instagram, Bluesky, Website)."
 msgstr ""
 
-#: src/Admin/Renderer.php:826
+#: src/Admin/Renderer.php:835
 msgid "Role Badges"
 msgstr ""
 
-#: src/Admin/Renderer.php:834
+#: src/Admin/Renderer.php:848
 msgid "Show contribution role badges below author names (e.g., Researcher, Editor, Photographer)."
 msgstr ""
 
-#: src/Admin/Renderer.php:850
+#: src/Admin/Renderer.php:864
 msgid "Co-Authors Plus Patterns"
 msgstr ""
 
-#: src/Admin/Renderer.php:858
+#: src/Admin/Renderer.php:877
 msgid "Remove default Co-Authors Plus block patterns from the editor."
 msgstr ""
 
-#: src/Admin/Renderer.php:886
+#: src/Admin/Renderer.php:905
 msgid "WooCommerce Patterns"
 msgstr ""
 
-#: src/Admin/Renderer.php:887
-msgid "Remove default WooCommerce block patterns from the editor."
-msgstr ""
-
-#: src/Admin/Renderer.php:892
-msgid "WooCommerce Templates"
-msgstr ""
-
-#: src/Admin/Renderer.php:893
-msgid "Remove default WooCommerce block templates from the editor."
-msgstr ""
-
-#: src/Admin/Renderer.php:901
-msgid "LearnDash Patterns"
-msgstr ""
-
-#: src/Admin/Renderer.php:902
-msgid "Remove default LearnDash block patterns from the editor."
-msgstr ""
-
-#: src/Admin/Renderer.php:910
-msgid "LifterLMS Patterns"
+#: src/Admin/Renderer.php:906
+msgid "Keep WooCommerce's own block patterns in the inserter alongside Aegis patterns."
 msgstr ""
 
 #: src/Admin/Renderer.php:911
-msgid "Remove default LifterLMS block patterns from the editor."
+msgid "WooCommerce Templates"
 msgstr ""
 
-#: src/Admin/Renderer.php:919
-msgid "Sensei LMS Patterns"
+#: src/Admin/Renderer.php:912
+msgid "Remove default WooCommerce block templates from the editor."
 msgstr ""
 
 #: src/Admin/Renderer.php:920
-msgid "Remove default Sensei LMS block patterns from the editor."
+msgid "LearnDash Patterns"
 msgstr ""
 
-#: src/Admin/Renderer.php:928
-msgid "Fluent Forms Patterns"
+#: src/Admin/Renderer.php:921
+msgid "Remove default LearnDash block patterns from the editor."
 msgstr ""
 
 #: src/Admin/Renderer.php:929
-msgid "Remove default Fluent Forms block patterns from the editor."
+msgid "LifterLMS Patterns"
 msgstr ""
 
-#: src/Admin/Renderer.php:937
-msgid "Fluent Booking Patterns"
+#: src/Admin/Renderer.php:930
+msgid "Remove default LifterLMS block patterns from the editor."
 msgstr ""
 
 #: src/Admin/Renderer.php:938
+msgid "Sensei LMS Patterns"
+msgstr ""
+
+#: src/Admin/Renderer.php:939
+msgid "Remove default Sensei LMS block patterns from the editor."
+msgstr ""
+
+#: src/Admin/Renderer.php:947
+msgid "Fluent Forms Patterns"
+msgstr ""
+
+#: src/Admin/Renderer.php:948
+msgid "Remove default Fluent Forms block patterns from the editor."
+msgstr ""
+
+#: src/Admin/Renderer.php:956
+msgid "Fluent Booking Patterns"
+msgstr ""
+
+#: src/Admin/Renderer.php:957
 msgid "Remove default Fluent Booking block patterns from the editor."
 msgstr ""
 
-#: src/Admin/Renderer.php:997
-#: src/Integrations/Registry.php:505
-#: src/Integrations/Registry.php:525
+#: src/Admin/Renderer.php:1036
+#: src/Integrations/Registry.php:526
+#: src/Integrations/Registry.php:546
 #: templates/integrations-analytics-section.php:518
 msgid "Not Installed"
 msgstr ""
 
-#: src/Admin/Renderer.php:1045
+#: src/Admin/Renderer.php:1084
 msgid "Reset Defaults"
 msgstr ""
 
-#: src/Admin/Renderer.php:1049
-#: src/Snippets/AdminPage.php:706
+#: src/Admin/Renderer.php:1088
+#: src/Snippets/AdminPage.php:710
 #: templates/hooks-admin-page.php:51
 #: templates/modals-admin-page.php:62
 msgid "Export"
 msgstr ""
 
-#: src/Admin/Renderer.php:1052
-#: src/Snippets/AdminPage.php:708
+#: src/Admin/Renderer.php:1091
+#: src/Snippets/AdminPage.php:712
 #: templates/hooks-admin-page.php:54
 #: templates/modals-admin-page.php:65
 msgid "Import"
 msgstr ""
 
-#: src/Admin/Renderer.php:1058
+#: src/Admin/Renderer.php:1097
 msgid "Search settings"
 msgstr ""
 
 #. translators: %s: plugin name
-#: src/Admin/Renderer.php:1092
+#: src/Admin/Renderer.php:1131
 #, php-format
 msgid "%s must be installed and active to enable these conditions."
 msgstr ""
 
-#: src/Admin/Renderer.php:1115
+#: src/Admin/Renderer.php:1154
 msgid "Enable All"
 msgstr ""
 
-#: src/Admin/Renderer.php:1116
+#: src/Admin/Renderer.php:1155
 msgid "Disable All"
 msgstr ""
 
-#: src/Admin/Renderer.php:1199
+#: src/Admin/Renderer.php:1238
 msgid "Active Block"
 msgid_plural "Active Blocks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Admin/Renderer.php:1208
+#: src/Admin/Renderer.php:1247
 #: templates/hooks-admin-page.php:151
 msgid "Conditional"
 msgid_plural "Conditionals"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Admin/Renderer.php:1217
+#: src/Admin/Renderer.php:1256
 msgid "Integration"
 msgid_plural "Integrations"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Admin/Renderer.php:1227
+#: src/Admin/Renderer.php:1266
 msgid "Hook Pattern"
 msgid_plural "Hook Patterns"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Admin/Renderer.php:1237
+#: src/Admin/Renderer.php:1276
 msgid "Code Snippet"
 msgid_plural "Code Snippets"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Admin/Renderer.php:1244
+#: src/Admin/Renderer.php:1283
 msgid "Shortcuts"
 msgstr ""
 
-#: src/Admin/Renderer.php:1250
+#: src/Admin/Renderer.php:1289
 msgid "Site Editor"
 msgstr ""
 
-#: src/Admin/Renderer.php:1251
+#: src/Admin/Renderer.php:1290
 msgid "Edit your site visually"
 msgstr ""
 
-#: src/Admin/Renderer.php:1257
+#: src/Admin/Renderer.php:1296
 msgid "Templates"
 msgstr ""
 
-#: src/Admin/Renderer.php:1258
+#: src/Admin/Renderer.php:1297
 msgid "Manage page templates"
 msgstr ""
 
-#: src/Admin/Renderer.php:1264
+#: src/Admin/Renderer.php:1303
 msgid "Patterns"
 msgstr ""
 
-#: src/Admin/Renderer.php:1265
+#: src/Admin/Renderer.php:1304
 msgid "Browse block patterns"
 msgstr ""
 
-#: src/Admin/Renderer.php:1271
+#: src/Admin/Renderer.php:1310
 msgid "Global Styles"
 msgstr ""
 
-#: src/Admin/Renderer.php:1272
+#: src/Admin/Renderer.php:1311
 msgid "Customize colors & fonts"
 msgstr ""
 
-#: src/Admin/Renderer.php:1278
-#: src/Snippets/AdminPage.php:137
-#: src/Snippets/AdminPage.php:147
-#: src/Snippets/AdminPage.php:148
-#: src/Snippets/AdminPage.php:665
+#: src/Admin/Renderer.php:1317
+#: src/Snippets/AdminPage.php:140
+#: src/Snippets/AdminPage.php:150
+#: src/Snippets/AdminPage.php:151
+#: src/Snippets/AdminPage.php:669
 #: templates/hooks-admin-page.php:33
 msgid "Code Snippets"
 msgstr ""
 
-#: src/Admin/Renderer.php:1279
+#: src/Admin/Renderer.php:1318
 msgid "Custom CSS, JS, HTML, and PHP"
 msgstr ""
 
-#: src/Admin/Renderer.php:1286
+#: src/Admin/Renderer.php:1325
 msgid "Hook Patterns"
 msgstr ""
 
-#: src/Admin/Renderer.php:1287
+#: src/Admin/Renderer.php:1326
 msgid "Inject layouts at theme hooks"
 msgstr ""
 
-#: src/Admin/Renderer.php:1294
+#: src/Admin/Renderer.php:1333
 #: src/Performance/AdminPage.php:48
 #: src/Performance/AdminPage.php:58
 #: src/Performance/AdminPage.php:59
@@ -1270,102 +1270,102 @@ msgstr ""
 msgid "Performance"
 msgstr ""
 
-#: src/Admin/Renderer.php:1295
+#: src/Admin/Renderer.php:1334
 msgid "Frontend scripts, embeds, and Query Loop gates"
 msgstr ""
 
-#: src/Admin/Renderer.php:1301
+#: src/Admin/Renderer.php:1340
 msgid "New Page"
 msgstr ""
 
-#: src/Admin/Renderer.php:1302
+#: src/Admin/Renderer.php:1341
 msgid "Create a new page"
 msgstr ""
 
-#: src/Admin/Renderer.php:1310
+#: src/Admin/Renderer.php:1349
 msgid "Getting Started"
 msgstr ""
 
-#: src/Admin/Renderer.php:1312
-#: src/Snippets/AdminPage.php:296
+#: src/Admin/Renderer.php:1351
+#: src/Snippets/AdminPage.php:299
 msgid "Dismiss"
 msgstr ""
 
-#: src/Admin/Renderer.php:1320
+#: src/Admin/Renderer.php:1359
 msgid "Customize Your Theme"
 msgstr ""
 
-#: src/Admin/Renderer.php:1321
+#: src/Admin/Renderer.php:1360
 msgid "Use the Site Editor to customize templates, headers, footers, and global styles with full block control."
 msgstr ""
 
-#: src/Admin/Renderer.php:1327
+#: src/Admin/Renderer.php:1366
 msgid "Manage Block Visibility"
 msgstr ""
 
-#: src/Admin/Renderer.php:1328
-msgid "Show or hide any block based on user roles, devices, schedules, and custom conditions."
+#: src/Admin/Renderer.php:1367
+msgid "Show or hide any block based on user roles, capabilities, devices, schedules, and custom conditions."
 msgstr ""
 
-#: src/Admin/Renderer.php:1334
+#: src/Admin/Renderer.php:1373
 msgid "Extend with Integrations"
 msgstr ""
 
-#: src/Admin/Renderer.php:1335
+#: src/Admin/Renderer.php:1374
 msgid "Connect WooCommerce, LMS plugins, and other tools to enhance your block-powered site."
 msgstr ""
 
-#: src/Admin/Renderer.php:1341
+#: src/Admin/Renderer.php:1380
 msgid "Add Code Snippets"
 msgstr ""
 
-#: src/Admin/Renderer.php:1342
+#: src/Admin/Renderer.php:1381
 msgid "Inject custom CSS, JavaScript, HTML, or PHP at theme and integration hook locations."
 msgstr ""
 
-#: src/Admin/Renderer.php:1354
+#: src/Admin/Renderer.php:1393
 msgid "System Info"
 msgstr ""
 
-#: src/Admin/Renderer.php:1358
+#: src/Admin/Renderer.php:1397
 msgid "Theme Version"
 msgstr ""
 
-#: src/Admin/Renderer.php:1362
+#: src/Admin/Renderer.php:1401
 msgid "Aegis Plugin"
 msgstr ""
 
-#: src/Admin/Renderer.php:1366
+#: src/Admin/Renderer.php:1405
 #: templates/performance-admin-page.php:37
 msgid "WordPress"
 msgstr ""
 
-#: src/Admin/Renderer.php:1370
+#: src/Admin/Renderer.php:1409
 msgid "PHP"
 msgstr ""
 
-#: src/Admin/Renderer.php:1375
-#: src/Admin/Renderer.php:1388
+#: src/Admin/Renderer.php:1414
+#: src/Admin/Renderer.php:1427
 msgid "Aegis Pro"
 msgstr ""
 
-#: src/Admin/Renderer.php:1406
+#: src/Admin/Renderer.php:1445
 msgid "License Active"
 msgstr ""
 
-#: src/Admin/Renderer.php:1406
+#: src/Admin/Renderer.php:1445
 msgid "License Inactive"
 msgstr ""
 
-#: src/Admin/Renderer.php:1410
+#: src/Admin/Renderer.php:1449
 msgid "Enter your license key to activate Pro features."
 msgstr ""
 
-#: src/Admin/Renderer.php:1415
+#: src/Admin/Renderer.php:1454
 msgid "Unlock advanced features, integrations, and professional tools."
 msgstr ""
 
-#: src/Admin/Renderer.php:1419
+#: src/Admin/Renderer.php:1458
 msgid "Get Aegis Pro"
 msgstr ""
 
@@ -2819,8 +2819,8 @@ msgid "Connectors → BunnyCDN"
 msgstr ""
 
 #: src/Blocks/AdminPage.php:558
-#: src/Conditionals/AdminPage.php:219
-#: src/Snippets/AdminPage.php:752
+#: src/Conditionals/AdminPage.php:235
+#: src/Snippets/AdminPage.php:756
 #: templates/connectors-admin-page.php:48
 #: templates/general-settings-admin-page.php:145
 #: templates/integrations-admin-page.php:75
@@ -2907,477 +2907,525 @@ msgstr ""
 msgid "Modal dialog"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:83
-#: src/Conditionals/AdminPage.php:96
-#: src/Conditionals/AdminPage.php:97
-#: src/Conditionals/AdminPage.php:129
-#: src/Hooks/PatternsManager.php:206
+#: src/Conditionals/AdminPage.php:86
+#: src/Conditionals/AdminPage.php:99
+#: src/Conditionals/AdminPage.php:100
+#: src/Conditionals/AdminPage.php:143
+#: src/Hooks/PatternsManager.php:217
 #: templates/visibility-presets-admin-page.php:33
 msgid "Conditionals"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:140
+#: src/Conditionals/AdminPage.php:154
 msgid "Visibility"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:144
+#: src/Conditionals/AdminPage.php:158
 #: src/Blocks/modal/index.js:311
 msgid "Accessibility"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:148
+#: src/Conditionals/AdminPage.php:162
 msgid "User"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:152
+#: src/Conditionals/AdminPage.php:166
 msgid "Schedule"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:156
+#: src/Conditionals/AdminPage.php:170
 msgid "Image Source"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:162
+#: src/Conditionals/AdminPage.php:176
 msgid "Visibility Controls"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:162
+#: src/Conditionals/AdminPage.php:176
 msgid "Control block visibility based on screen size, request context, location, and post meta."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:164
+#: src/Conditionals/AdminPage.php:178
 msgid "Screen Size"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:164
+#: src/Conditionals/AdminPage.php:178
 msgid "Hide blocks on mobile, tablet, or desktop."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:165
+#: src/Conditionals/AdminPage.php:179
 msgid "Custom Breakpoints"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:165
-msgid "Define custom min/max width breakpoints."
+#: src/Conditionals/AdminPage.php:179
+msgid "Hide blocks below or above a custom pixel width."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:166
+#: src/Conditionals/AdminPage.php:180
+msgid "Page Type"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:180
+msgid "Show or hide blocks on the front page, blog, singular, archive, search, or 404."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:181
 msgid "Browser & Device"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:166
+#: src/Conditionals/AdminPage.php:181
 msgid "Target specific browsers and devices."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:167
+#: src/Conditionals/AdminPage.php:182
 msgid "Lockdown"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:167
+#: src/Conditionals/AdminPage.php:182
 msgid "Hide blocks from all users on the frontend (draft mode)."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:168
+#: src/Conditionals/AdminPage.php:183
 msgid "URL Query String"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:168
+#: src/Conditionals/AdminPage.php:183
 msgid "Show or hide blocks based on URL query parameters."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:169
-msgid "Specific Users"
-msgstr ""
-
-#: src/Conditionals/AdminPage.php:169
-msgid "Show or hide blocks for specific user IDs."
-msgstr ""
-
-#: src/Conditionals/AdminPage.php:170
+#: src/Conditionals/AdminPage.php:184
 msgid "Cookie"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:170
+#: src/Conditionals/AdminPage.php:184
 msgid "Show or hide blocks based on browser cookie values."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:171
+#: src/Conditionals/AdminPage.php:185
 msgid "Referral Source"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:171
+#: src/Conditionals/AdminPage.php:185
 msgid "Show or hide blocks based on the referring domain."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:172
+#: src/Conditionals/AdminPage.php:186
 msgid "Advanced Location"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:172
+#: src/Conditionals/AdminPage.php:186
 msgid "Show or hide blocks by post type, post IDs, taxonomy terms, URL path, or archive type."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:173
+#: src/Conditionals/AdminPage.php:187
 msgid "Post Meta"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:173
+#: src/Conditionals/AdminPage.php:187
 msgid "Show or hide blocks based on raw post meta key/value."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:178
+#: src/Conditionals/AdminPage.php:192
 msgid "Accessibility Controls"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:178
+#: src/Conditionals/AdminPage.php:192
 msgid "Respect user accessibility preferences."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:180
+#: src/Conditionals/AdminPage.php:194
 msgid "Reduced Motion"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:180
+#: src/Conditionals/AdminPage.php:194
 msgid "Hide content for users who prefer reduced motion."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:181
+#: src/Conditionals/AdminPage.php:195
 msgid "Screen Reader Only"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:181
+#: src/Conditionals/AdminPage.php:195
 msgid "Make content visible only to screen readers."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:182
+#: src/Conditionals/AdminPage.php:196
 msgid "Color Scheme"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:182
-msgid "Show content only in light or dark mode."
+#: src/Conditionals/AdminPage.php:196
+msgid "Hide blocks when the site toggle, theme default, or operating system is in light or dark mode."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:183
+#: src/Conditionals/AdminPage.php:197
 msgid "High Contrast"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:183
-msgid "Hide content in high contrast mode."
+#: src/Conditionals/AdminPage.php:197
+msgid "Hide content when the user prefers more contrast."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:184
+#: src/Conditionals/AdminPage.php:198
 msgid "Forced Colors"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:184
-msgid "Hide content in Windows High Contrast mode."
+#: src/Conditionals/AdminPage.php:198
+msgid "Hide content when forced colors are active, including Windows High Contrast."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:189
+#: src/Conditionals/AdminPage.php:203
 msgid "User Controls"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:189
-msgid "Control visibility based on user status, role, and user meta."
+#: src/Conditionals/AdminPage.php:203
+msgid "Control visibility based on login state, role, capability, specific users, and user meta."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:191
+#: src/Conditionals/AdminPage.php:205
+#: assets/admin/hook-patterns-conditions.js:561
 msgid "User Status"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:191
+#: src/Conditionals/AdminPage.php:205
 msgid "Show content to logged-in or logged-out users."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:192
+#: src/Conditionals/AdminPage.php:206
+#: assets/admin/hook-patterns-conditions.js:572
+#: assets/admin/smart-conditions.js:69
 msgid "User Role"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:192
+#: src/Conditionals/AdminPage.php:206
 msgid "Show content to specific user roles."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:193
+#: src/Conditionals/AdminPage.php:207
+#: assets/admin/hook-patterns-conditions.js:583
+#: assets/admin/smart-conditions.js:72
+msgid "User Capability"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:207
+msgid "Match a primitive capability slug such as edit_posts (is / is not). Object caps like edit_post need a post ID and will not match."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:208
+msgid "Specific Users"
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:208
+msgid "Show or hide blocks for specific user IDs."
+msgstr ""
+
+#: src/Conditionals/AdminPage.php:209
 msgid "User Meta"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:193
+#: src/Conditionals/AdminPage.php:209
 msgid "Show or hide blocks based on current user meta key/value."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:198
+#: src/Conditionals/AdminPage.php:214
 msgid "Schedule Controls"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:198
-msgid "Control visibility based on date and time."
+#: src/Conditionals/AdminPage.php:214
+msgid "Control visibility based on date, time, weekdays, and timezone."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:200
+#: src/Conditionals/AdminPage.php:216
+#: assets/admin/hook-patterns-conditions.js:594
 msgid "Date & Time"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:200
-msgid "Show content during specific dates and times."
+#: src/Conditionals/AdminPage.php:216
+msgid "Show content between a start and end date/time."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:201
+#: src/Conditionals/AdminPage.php:217
+#: assets/admin/hook-patterns-conditions.js:615
 msgid "Days of Week"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:201
+#: src/Conditionals/AdminPage.php:217
 msgid "Limit visibility to selected weekdays."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:202
+#: src/Conditionals/AdminPage.php:218
 msgid "Daily Time Range"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:202
-msgid "Limit visibility to a daily start/end time."
+#: src/Conditionals/AdminPage.php:218
+msgid "Limit visibility to a daily start/end time. Overnight ranges (end before start) are supported."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:203
+#: src/Conditionals/AdminPage.php:219
+#: assets/admin/hook-patterns-conditions.js:608
 msgid "Timezone"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:203
-msgid "Use a custom timezone for schedule rules."
+#: src/Conditionals/AdminPage.php:219
+msgid "Evaluate Date & Time, daily range, and weekdays in a chosen timezone. The site timezone is used when the field is empty."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:208
+#: src/Conditionals/AdminPage.php:224
 msgid "Image Source Order"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:208
+#: src/Conditionals/AdminPage.php:224
 msgid "Choose which image to display in Post Featured Image blocks instead of the default featured image."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:210
+#: src/Conditionals/AdminPage.php:226
 msgid "Content Image"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:210
+#: src/Conditionals/AdminPage.php:226
 msgid "Use an image from post content by position, with fallback chain support."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:211
+#: src/Conditionals/AdminPage.php:227
 msgid "ACF Image Field"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:211
+#: src/Conditionals/AdminPage.php:227
 msgid "Use an Advanced Custom Fields image field as the featured image source."
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:212
+#: src/Conditionals/AdminPage.php:228
 msgid "Meta Box Image Field"
 msgstr ""
 
-#: src/Conditionals/AdminPage.php:212
+#: src/Conditionals/AdminPage.php:228
 msgid "Use a Meta Box image field as the featured image source."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:72
-#: src/Conditionals/IntegrationsPanel.php:95
+#: src/Conditionals/IntegrationsPanel.php:77
+#: src/Conditionals/IntegrationsPanel.php:100
 msgid "Cart Conditions"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:73
+#: src/Conditionals/IntegrationsPanel.php:78
 msgid "Show or hide blocks based on cart contents, total value, item count, and product quantities."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:79
-#: src/Conditionals/IntegrationsPanel.php:102
+#: src/Conditionals/IntegrationsPanel.php:84
+#: src/Conditionals/IntegrationsPanel.php:107
 msgid "Customer History"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:80
+#: src/Conditionals/IntegrationsPanel.php:85
 msgid "Show or hide blocks based on lifetime spend, order count, purchase history, and recency."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:86
+#: src/Conditionals/IntegrationsPanel.php:91
 msgid "Product Context"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:87
+#: src/Conditionals/IntegrationsPanel.php:92
 msgid "Show or hide blocks based on current product stock status, quantity, sale, or featured state."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:96
+#: src/Conditionals/IntegrationsPanel.php:101
 msgid "Show or hide blocks based on cart contents and totals."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:103
+#: src/Conditionals/IntegrationsPanel.php:108
 msgid "Show or hide blocks based on purchase history and lifetime value."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:109
+#: src/Conditionals/IntegrationsPanel.php:114
 msgid "Download Context"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:110
+#: src/Conditionals/IntegrationsPanel.php:115
 msgid "Show or hide blocks on single download pages."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:118
-#: src/Conditionals/IntegrationsPanel.php:155
-#: src/Conditionals/IntegrationsPanel.php:185
-msgid "Enrollment"
+#: src/Conditionals/IntegrationsPanel.php:123
+msgid "Referral Visit"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:119
-msgid "Show or hide blocks based on course or lesson enrollment status."
+#: src/Conditionals/IntegrationsPanel.php:124
+msgid "Show or hide blocks based on whether the visitor was referred by an affiliate."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:125
-#: src/Conditionals/IntegrationsPanel.php:162
-#: src/Conditionals/IntegrationsPanel.php:192
-msgid "Completion"
+#: src/Conditionals/IntegrationsPanel.php:130
+msgid "Affiliate Account"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:126
-msgid "Show or hide blocks based on course or lesson completion status."
+#: src/Conditionals/IntegrationsPanel.php:131
+msgid "Show or hide blocks based on whether the logged-in user is an affiliate and their status."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:132
-#: src/Conditionals/IntegrationsPanel.php:169
-#: src/Conditionals/IntegrationsPanel.php:199
-msgid "Course Progress"
+#: src/Conditionals/IntegrationsPanel.php:137
+msgid "Earnings"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:133
-#: src/Conditionals/IntegrationsPanel.php:170
-#: src/Conditionals/IntegrationsPanel.php:200
-msgid "Show or hide blocks based on course progress percentage."
-msgstr ""
-
-#: src/Conditionals/IntegrationsPanel.php:139
-msgid "Quiz Results"
-msgstr ""
-
-#: src/Conditionals/IntegrationsPanel.php:140
-msgid "Show or hide blocks based on quiz pass/fail status or score."
+#: src/Conditionals/IntegrationsPanel.php:138
+msgid "Show or hide blocks based on affiliate lifetime earnings, unpaid earnings, or referral count."
 msgstr ""
 
 #: src/Conditionals/IntegrationsPanel.php:146
-msgid "Group Membership"
+#: src/Conditionals/IntegrationsPanel.php:183
+#: src/Conditionals/IntegrationsPanel.php:213
+msgid "Enrollment"
 msgstr ""
 
 #: src/Conditionals/IntegrationsPanel.php:147
+msgid "Show or hide blocks based on course or lesson enrollment status."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:153
+#: src/Conditionals/IntegrationsPanel.php:190
+#: src/Conditionals/IntegrationsPanel.php:220
+msgid "Completion"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:154
+msgid "Show or hide blocks based on course or lesson completion status."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:160
+#: src/Conditionals/IntegrationsPanel.php:197
+#: src/Conditionals/IntegrationsPanel.php:227
+msgid "Course Progress"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:161
+#: src/Conditionals/IntegrationsPanel.php:198
+#: src/Conditionals/IntegrationsPanel.php:228
+msgid "Show or hide blocks based on course progress percentage."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:167
+msgid "Quiz Results"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:168
+msgid "Show or hide blocks based on quiz pass/fail status or score."
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:174
+msgid "Group Membership"
+msgstr ""
+
+#: src/Conditionals/IntegrationsPanel.php:175
 msgid "Show or hide blocks based on LearnDash group membership."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:156
-#: src/Conditionals/IntegrationsPanel.php:186
+#: src/Conditionals/IntegrationsPanel.php:184
+#: src/Conditionals/IntegrationsPanel.php:214
 msgid "Show or hide blocks based on course enrollment status."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:163
-#: src/Conditionals/IntegrationsPanel.php:193
+#: src/Conditionals/IntegrationsPanel.php:191
+#: src/Conditionals/IntegrationsPanel.php:221
 msgid "Show or hide blocks based on course or lesson completion."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:176
+#: src/Conditionals/IntegrationsPanel.php:204
 msgid "Membership"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:177
+#: src/Conditionals/IntegrationsPanel.php:205
 msgid "Show or hide blocks based on membership plan enrollment."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:206
+#: src/Conditionals/IntegrationsPanel.php:234
 msgid "Quiz Grade"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:207
+#: src/Conditionals/IntegrationsPanel.php:235
 msgid "Show or hide blocks based on quiz grade for a specific lesson."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:215
+#: src/Conditionals/IntegrationsPanel.php:243
 msgid "Has Submitted"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:216
+#: src/Conditionals/IntegrationsPanel.php:244
 msgid "Show or hide blocks based on whether the user has submitted a specific form."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:222
+#: src/Conditionals/IntegrationsPanel.php:250
 msgid "Submission Count"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:223
+#: src/Conditionals/IntegrationsPanel.php:251
 msgid "Show or hide blocks based on the number of submissions for a form."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:229
+#: src/Conditionals/IntegrationsPanel.php:257
 msgid "Field Value"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:230
+#: src/Conditionals/IntegrationsPanel.php:258
 msgid "Show or hide blocks based on a specific field value in a submission."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:238
+#: src/Conditionals/IntegrationsPanel.php:266
 msgid "Has Booking"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:239
+#: src/Conditionals/IntegrationsPanel.php:267
 msgid "Show or hide blocks based on whether the user has any booking."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:245
+#: src/Conditionals/IntegrationsPanel.php:273
 msgid "Upcoming Count"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:246
+#: src/Conditionals/IntegrationsPanel.php:274
 msgid "Show or hide blocks based on the number of upcoming bookings."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:252
+#: src/Conditionals/IntegrationsPanel.php:280
 msgid "Past Count"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:253
+#: src/Conditionals/IntegrationsPanel.php:281
 msgid "Show or hide blocks based on the number of past bookings."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:259
+#: src/Conditionals/IntegrationsPanel.php:287
 msgid "Booking Status"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:260
+#: src/Conditionals/IntegrationsPanel.php:288
 msgid "Show or hide blocks based on a specific booking status."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:268
+#: src/Conditionals/IntegrationsPanel.php:296
 msgid "CRM Tags"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:269
+#: src/Conditionals/IntegrationsPanel.php:297
 msgid "Show or hide content based on WP Fusion tags."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:275
+#: src/Conditionals/IntegrationsPanel.php:303
 msgid "CRM Lists"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:276
+#: src/Conditionals/IntegrationsPanel.php:304
 msgid "Show or hide content based on WP Fusion lists."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:284
+#: src/Conditionals/IntegrationsPanel.php:312
 msgid "ACF Field"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:285
+#: src/Conditionals/IntegrationsPanel.php:313
 msgid "Show or hide blocks based on Advanced Custom Fields values."
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:293
+#: src/Conditionals/IntegrationsPanel.php:321
 msgid "Meta Box Field"
 msgstr ""
 
-#: src/Conditionals/IntegrationsPanel.php:294
+#: src/Conditionals/IntegrationsPanel.php:322
 msgid "Show or hide blocks based on Meta Box field values."
 msgstr ""
 
@@ -3407,7 +3455,7 @@ msgstr ""
 
 #: src/Hooks/AdminPage.php:119
 #: src/Modal/AdminPage.php:158
-#: src/Snippets/AdminPage.php:227
+#: src/Snippets/AdminPage.php:230
 msgid "Copied"
 msgstr ""
 
@@ -3419,8 +3467,8 @@ msgstr ""
 
 #: src/Hooks/AdminPage.php:121
 #: src/Modal/AdminPage.php:160
-#: src/Snippets/AdminPage.php:234
-#: src/Snippets/AdminPage.php:1150
+#: src/Snippets/AdminPage.php:237
+#: src/Snippets/AdminPage.php:1154
 #: templates/hooks-admin-page.php:166
 #: templates/modals-admin-page.php:168
 msgid "Disabled"
@@ -3430,16 +3478,16 @@ msgstr ""
 #: src/Hooks/AdminPage.php:171
 #: src/Modal/AdminPage.php:298
 #: src/Modal/AdminPage.php:321
-#: src/Snippets/AdminPage.php:342
-#: src/Snippets/AdminPage.php:359
-#: src/Snippets/AdminPage.php:386
-#: src/Snippets/AdminPage.php:403
-#: src/Snippets/AdminPage.php:424
-#: src/Snippets/AdminPage.php:526
-#: src/Snippets/AdminPage.php:595
-#: src/Snippets/AdminPage.php:612
-#: src/Snippets/AdminPage.php:625
-#: src/Snippets/AdminPage.php:636
+#: src/Snippets/AdminPage.php:346
+#: src/Snippets/AdminPage.php:363
+#: src/Snippets/AdminPage.php:390
+#: src/Snippets/AdminPage.php:407
+#: src/Snippets/AdminPage.php:428
+#: src/Snippets/AdminPage.php:530
+#: src/Snippets/AdminPage.php:599
+#: src/Snippets/AdminPage.php:616
+#: src/Snippets/AdminPage.php:629
+#: src/Snippets/AdminPage.php:640
 msgid "Unauthorized"
 msgstr ""
 
@@ -3463,7 +3511,7 @@ msgstr ""
 msgid "Not set"
 msgstr ""
 
-#: src/Hooks/PatternsManager.php:96
+#: src/Hooks/PatternsManager.php:97
 msgid "JSON-encoded conditional logic rules."
 msgstr ""
 
@@ -3678,7 +3726,7 @@ msgid "Hide hook positions"
 msgstr ""
 
 #: src/Injection/Preview.php:173
-#: src/Snippets/AdminPage.php:809
+#: src/Snippets/AdminPage.php:813
 msgid "Show hook positions"
 msgstr ""
 
@@ -3687,7 +3735,7 @@ msgid "Hide snippet positions"
 msgstr ""
 
 #: src/Injection/Preview.php:187
-#: src/Snippets/AdminPage.php:825
+#: src/Snippets/AdminPage.php:829
 msgid "Show snippet positions"
 msgstr ""
 
@@ -3743,102 +3791,102 @@ msgstr ""
 msgid "Notice dismissed."
 msgstr ""
 
-#: src/Integrations/Registry.php:47
+#: src/Integrations/Registry.php:49
 msgid "WooCommerce"
 msgstr ""
 
-#: src/Integrations/Registry.php:55
+#: src/Integrations/Registry.php:57
 msgid "Easy Digital Downloads"
 msgstr ""
 
-#: src/Integrations/Registry.php:63
+#: src/Integrations/Registry.php:68
 msgid "WP Fusion"
 msgstr ""
 
-#: src/Integrations/Registry.php:71
+#: src/Integrations/Registry.php:76
 msgid "AffiliateWP"
 msgstr ""
 
-#: src/Integrations/Registry.php:78
+#: src/Integrations/Registry.php:84
 msgid "LearnDash"
 msgstr ""
 
-#: src/Integrations/Registry.php:86
+#: src/Integrations/Registry.php:92
 msgid "LifterLMS"
 msgstr ""
 
-#: src/Integrations/Registry.php:94
+#: src/Integrations/Registry.php:100
 msgid "Sensei LMS"
 msgstr ""
 
-#: src/Integrations/Registry.php:102
+#: src/Integrations/Registry.php:108
 msgid "Fluent Forms"
 msgstr ""
 
-#: src/Integrations/Registry.php:110
+#: src/Integrations/Registry.php:116
 msgid "Fluent Booking"
 msgstr ""
 
-#: src/Integrations/Registry.php:118
+#: src/Integrations/Registry.php:124
 msgid "FluentCRM"
 msgstr ""
 
-#: src/Integrations/Registry.php:125
+#: src/Integrations/Registry.php:132
 msgid "Gravity Forms"
 msgstr ""
 
-#: src/Integrations/Registry.php:132
+#: src/Integrations/Registry.php:139
 msgid "Ninja Forms"
 msgstr ""
 
-#: src/Integrations/Registry.php:139
+#: src/Integrations/Registry.php:146
 msgid "Co-Authors Plus"
 msgstr ""
 
-#: src/Integrations/Registry.php:146
+#: src/Integrations/Registry.php:153
 msgid "bbPress"
 msgstr ""
 
-#: src/Integrations/Registry.php:153
+#: src/Integrations/Registry.php:160
 msgid "Rank Math"
 msgstr ""
 
-#: src/Integrations/Registry.php:160
+#: src/Integrations/Registry.php:167
 msgid "Yoast SEO"
 msgstr ""
 
-#: src/Integrations/Registry.php:167
+#: src/Integrations/Registry.php:174
 msgid "All in One SEO"
 msgstr ""
 
-#: src/Integrations/Registry.php:174
+#: src/Integrations/Registry.php:181
 msgid "SEOPress"
 msgstr ""
 
-#: src/Integrations/Registry.php:181
+#: src/Integrations/Registry.php:188
 msgid "Advanced Custom Fields"
 msgstr ""
 
-#: src/Integrations/Registry.php:192
+#: src/Integrations/Registry.php:199
 msgid "Meta Box"
 msgstr ""
 
-#: src/Integrations/Registry.php:200
+#: src/Integrations/Registry.php:207
 msgid "Code Block Pro"
 msgstr ""
 
-#: src/Integrations/Registry.php:207
+#: src/Integrations/Registry.php:214
 msgid "Syntax Highlighting Code Block"
 msgstr ""
 
-#: src/Integrations/Registry.php:214
+#: src/Integrations/Registry.php:221
 #: templates/connectors-admin-page.php:32
 #: templates/connectors-bunnycdn-section.php:22
 #: templates/connectors-bunnycdn-section.php:29
 msgid "BunnyCDN"
 msgstr ""
 
-#: src/Integrations/Registry.php:221
+#: src/Integrations/Registry.php:228
 #: src/Map/IntegrationsPanel.php:94
 #: src/Map/IntegrationsPanel.php:108
 #: src/Map/IntegrationsPanel.php:119
@@ -3846,174 +3894,174 @@ msgstr ""
 msgid "Google Maps"
 msgstr ""
 
-#: src/Integrations/Registry.php:254
+#: src/Integrations/Registry.php:261
 msgid "E-commerce"
 msgstr ""
 
-#: src/Integrations/Registry.php:256
-msgid "WooCommerce, Easy Digital Downloads, and affiliate tools."
-msgstr ""
-
-#: src/Integrations/Registry.php:261
-msgid "LMS"
-msgstr ""
-
 #: src/Integrations/Registry.php:263
-msgid "LearnDash, LifterLMS, and Sensei LMS."
+msgid "AffiliateWP, Easy Digital Downloads, and WooCommerce."
 msgstr ""
 
 #: src/Integrations/Registry.php:268
-msgid "Forms"
+msgid "LMS"
 msgstr ""
 
 #: src/Integrations/Registry.php:270
-msgid "Form builders, booking, and FluentCRM."
+msgid "LearnDash, LifterLMS, and Sensei LMS."
 msgstr ""
 
 #: src/Integrations/Registry.php:275
+msgid "Forms"
+msgstr ""
+
+#: src/Integrations/Registry.php:277
+msgid "Fluent Booking, Fluent Forms, Gravity Forms, and Ninja Forms."
+msgstr ""
+
+#: src/Integrations/Registry.php:282
 #: src/Snippets/Locations.php:46
 msgid "Content"
 msgstr ""
 
-#: src/Integrations/Registry.php:277
-msgid "Co-Authors Plus and bbPress."
-msgstr ""
-
-#: src/Integrations/Registry.php:282
-msgid "SEO"
-msgstr ""
-
 #: src/Integrations/Registry.php:284
-msgid "Rank Math, Yoast, All in One SEO, and SEOPress."
+msgid "bbPress and Co-Authors Plus."
 msgstr ""
 
 #: src/Integrations/Registry.php:289
-msgid "Developer"
+msgid "SEO"
 msgstr ""
 
 #: src/Integrations/Registry.php:291
-msgid "Custom fields and code highlighting."
+msgid "All in One SEO, Rank Math, SEOPress, and Yoast SEO."
 msgstr ""
 
 #: src/Integrations/Registry.php:296
-msgid "CRM"
+msgid "Developer"
 msgstr ""
 
 #: src/Integrations/Registry.php:298
-msgid "WP Fusion tags, lists, and automation."
+msgid "Advanced Custom Fields, Code Block Pro, Meta Box, and Syntax Highlighting."
 msgstr ""
 
-#: src/Integrations/Registry.php:361
+#: src/Integrations/Registry.php:303
+msgid "CRM"
+msgstr ""
+
+#: src/Integrations/Registry.php:305
+msgid "FluentCRM and WP Fusion tags, lists, and automation."
+msgstr ""
+
+#: src/Integrations/Registry.php:382
 msgid "E-commerce platform for selling physical products and digital downloads."
 msgstr ""
 
-#: src/Integrations/Registry.php:365
+#: src/Integrations/Registry.php:386
 msgid "Digital commerce platform for selling downloads and subscriptions."
 msgstr ""
 
-#: src/Integrations/Registry.php:369
+#: src/Integrations/Registry.php:390
 msgid "Affiliate marketing and referral program management."
 msgstr ""
 
-#: src/Integrations/Registry.php:373
+#: src/Integrations/Registry.php:394
 msgid "Powerful LMS plugin for creating and selling courses."
 msgstr ""
 
-#: src/Integrations/Registry.php:377
+#: src/Integrations/Registry.php:398
 msgid "Complete LMS solution for course creation and membership."
 msgstr ""
 
-#: src/Integrations/Registry.php:381
+#: src/Integrations/Registry.php:402
 msgid "Learning management by WooCommerce."
 msgstr ""
 
-#: src/Integrations/Registry.php:385
+#: src/Integrations/Registry.php:406
 msgid "Fast and lightweight form builder plugin."
 msgstr ""
 
-#: src/Integrations/Registry.php:389
+#: src/Integrations/Registry.php:410
 msgid "Appointment and booking management system."
 msgstr ""
 
-#: src/Integrations/Registry.php:393
-msgid "CRM and email marketing automation for video events."
+#: src/Integrations/Registry.php:414
+msgid "Email marketing CRM and automation."
 msgstr ""
 
-#: src/Integrations/Registry.php:397
+#: src/Integrations/Registry.php:418
 msgid "Advanced form builder for WordPress."
 msgstr ""
 
-#: src/Integrations/Registry.php:401
+#: src/Integrations/Registry.php:422
 msgid "Drag-and-drop form builder plugin."
 msgstr ""
 
-#: src/Integrations/Registry.php:405
+#: src/Integrations/Registry.php:426
 msgid "Multiple bylines and guest authors for posts and pages."
 msgstr ""
 
-#: src/Integrations/Registry.php:409
+#: src/Integrations/Registry.php:430
 msgid "Forum software for WordPress communities."
 msgstr ""
 
-#: src/Integrations/Registry.php:413
+#: src/Integrations/Registry.php:434
 msgid "SEO plugin for optimizing your content."
 msgstr ""
 
-#: src/Integrations/Registry.php:417
+#: src/Integrations/Registry.php:438
 msgid "Popular SEO plugin with schema and readability tools."
 msgstr ""
 
-#: src/Integrations/Registry.php:421
+#: src/Integrations/Registry.php:442
 msgid "Comprehensive SEO toolkit for WordPress."
 msgstr ""
 
-#: src/Integrations/Registry.php:425
+#: src/Integrations/Registry.php:446
 msgid "Lightweight SEO plugin with schema support."
 msgstr ""
 
-#: src/Integrations/Registry.php:429
+#: src/Integrations/Registry.php:450
 msgid "Custom fields and meta boxes for WordPress."
 msgstr ""
 
-#: src/Integrations/Registry.php:433
+#: src/Integrations/Registry.php:454
 msgid "Lightweight custom fields framework for WordPress."
 msgstr ""
 
-#: src/Integrations/Registry.php:437
+#: src/Integrations/Registry.php:458
 msgid "Syntax highlighting for code blocks."
 msgstr ""
 
-#: src/Integrations/Registry.php:441
+#: src/Integrations/Registry.php:462
 msgid "Alternative syntax highlighting for code."
 msgstr ""
 
-#: src/Integrations/Registry.php:445
+#: src/Integrations/Registry.php:466
 msgid "CRM tags, lists, and automation via WP Fusion."
 msgstr ""
 
-#: src/Integrations/Registry.php:512
+#: src/Integrations/Registry.php:533
 #: templates/integrations-analytics-section.php:520
 msgid "Active"
 msgstr ""
 
-#: src/Integrations/Registry.php:519
+#: src/Integrations/Registry.php:540
 msgid "Inactive"
 msgstr ""
 
-#: src/Integrations/SettingsController.php:73
-#: src/Integrations/SettingsController.php:103
+#: src/Integrations/SettingsController.php:81
+#: src/Integrations/SettingsController.php:111
 msgid "BunnyCDN integration requires Aegis Pro and must be enabled."
 msgstr ""
 
-#: src/Integrations/SettingsController.php:109
-#: src/Integrations/SettingsController.php:124
+#: src/Integrations/SettingsController.php:117
+#: src/Integrations/SettingsController.php:132
 #: src/Map/IntegrationsPanel.php:258
 #: src/Map/IntegrationsPanel.php:273
 #: src/Map/IntegrationsPanel.php:282
 msgid "Connection test failed. Verify your API credentials."
 msgstr ""
 
-#: src/Integrations/SettingsController.php:127
+#: src/Integrations/SettingsController.php:135
 #: src/Map/IntegrationsPanel.php:279
 msgid "Connection successful."
 msgstr ""
@@ -4205,24 +4253,24 @@ msgstr ""
 
 #. translators: 1: Date, 2: Time.
 #: src/Modal/InstanceRepository.php:316
-#: src/Snippets/AdminPage.php:1201
+#: src/Snippets/AdminPage.php:1205
 #, php-format
 msgid "%1$s at %2$s"
 msgstr ""
 
 #: src/Modal/InstanceRepository.php:317
-#: src/Snippets/AdminPage.php:1202
+#: src/Snippets/AdminPage.php:1206
 msgid "Y/m/d"
 msgstr ""
 
 #: src/Modal/InstanceRepository.php:318
-#: src/Snippets/AdminPage.php:1203
+#: src/Snippets/AdminPage.php:1207
 msgid "g:i a"
 msgstr ""
 
 #: src/Modal/InstanceRepository.php:322
-#: src/Snippets/AdminPage.php:233
-#: src/Snippets/AdminPage.php:1148
+#: src/Snippets/AdminPage.php:236
+#: src/Snippets/AdminPage.php:1152
 msgid "Published"
 msgstr ""
 
@@ -4235,7 +4283,7 @@ msgid "Scheduled"
 msgstr ""
 
 #: src/Modal/InstanceRepository.php:328
-#: src/Snippets/AdminPage.php:1143
+#: src/Snippets/AdminPage.php:1147
 #: templates/visibility-presets-admin-page.php:112
 msgid "Last Modified"
 msgstr ""
@@ -4248,136 +4296,136 @@ msgstr ""
 msgid "Settings imported successfully."
 msgstr ""
 
-#: src/Settings/Controller.php:156
+#: src/Settings/Controller.php:157
 msgid "Invalid settings group."
 msgstr ""
 
-#: src/Settings/Controller.php:161
+#: src/Settings/Controller.php:162
 msgid "Settings reset to defaults."
 msgstr ""
 
-#: src/Settings/Controller.php:176
+#: src/Settings/Controller.php:177
 msgid "Type DELETE to confirm."
 msgstr ""
 
-#: src/Settings/Controller.php:181
+#: src/Settings/Controller.php:182
 msgid "All Aegis data has been deleted."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:226
-#: src/Snippets/AdminPage.php:1334
+#: src/Snippets/AdminPage.php:229
+#: src/Snippets/AdminPage.php:1345
 msgid "Copy shortcode"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:228
-#: src/Snippets/AdminPage.php:892
+#: src/Snippets/AdminPage.php:231
+#: src/Snippets/AdminPage.php:896
 msgid "Copy"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:229
+#: src/Snippets/AdminPage.php:232
 msgid "Delete this snippet? There is no undo."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:230
+#: src/Snippets/AdminPage.php:233
 msgid "Regenerate the Safe Mode URL? The old URL will stop working."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:231
+#: src/Snippets/AdminPage.php:234
 #, php-format
 msgid "%d inactive snippets hidden."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:232
+#: src/Snippets/AdminPage.php:235
 msgid "Could not import snippets."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:292
+#: src/Snippets/AdminPage.php:295
 msgid "This looks like PHP. Switch to Functions (PHP)?"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:293
+#: src/Snippets/AdminPage.php:296
 msgid "This looks like CSS. Switch to CSS?"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:294
+#: src/Snippets/AdminPage.php:297
 msgid "This looks like HTML. Switch to Content?"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:295
+#: src/Snippets/AdminPage.php:298
 msgid "Switch type"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:320
+#: src/Snippets/AdminPage.php:324
 msgid "Safe Mode Active"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:324
+#: src/Snippets/AdminPage.php:328
 msgid "AEGIS_DISABLE_SNIPPETS is defined in wp-config.php. Remove that line to turn Safe Mode off."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:326
+#: src/Snippets/AdminPage.php:330
 msgid "All code snippets and hook pattern output is disabled. Fix the offending snippet before turning Safe Mode off."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:332
+#: src/Snippets/AdminPage.php:336
 msgid "Open Snippet Settings"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:334
+#: src/Snippets/AdminPage.php:338
 msgid "Turn off Safe Mode"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:351
+#: src/Snippets/AdminPage.php:355
 msgid "Could not update snippet."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:368
+#: src/Snippets/AdminPage.php:372
 msgid "Invalid snippet export."
 msgstr ""
 
 #. translators: %d: number of imported snippets
-#: src/Snippets/AdminPage.php:377
+#: src/Snippets/AdminPage.php:381
 #, php-format
 msgid "%d snippet imported."
 msgid_plural "%d snippets imported."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Snippets/AdminPage.php:395
+#: src/Snippets/AdminPage.php:399
 msgid "Snippet not found."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:442
-#: src/Snippets/AdminPage.php:449
+#: src/Snippets/AdminPage.php:446
+#: src/Snippets/AdminPage.php:453
 msgid "Could not write a temporary file."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:541
+#: src/Snippets/AdminPage.php:545
 msgid "PHP snippets are disabled in settings."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:668
+#: src/Snippets/AdminPage.php:672
 msgid "Snippet saved."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:670
+#: src/Snippets/AdminPage.php:674
 msgid "Snippet deleted."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:672
+#: src/Snippets/AdminPage.php:676
 msgid "Snippets imported."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:674
+#: src/Snippets/AdminPage.php:678
 msgid "Snippet settings saved."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:676
+#: src/Snippets/AdminPage.php:680
 msgid "Safe Mode URL regenerated. Update any copies you stored."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:704
-#: src/Snippets/AdminPage.php:731
+#: src/Snippets/AdminPage.php:708
+#: src/Snippets/AdminPage.php:735
 #: templates/hooks-admin-page.php:45
 #: templates/hooks-admin-page.php:77
 #: templates/modals-admin-page.php:59
@@ -4390,306 +4438,308 @@ msgstr ""
 msgid "Add New"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:714
+#: src/Snippets/AdminPage.php:718
 #: templates/hooks-admin-page.php:60
 #: templates/modals-admin-page.php:71
 #: templates/visibility-presets-admin-page.php:58
 msgid "Search"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:726
+#: src/Snippets/AdminPage.php:730
 msgid "No snippets yet"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:727
+#: src/Snippets/AdminPage.php:731
 msgid "Click Add New to create one."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:768
+#: src/Snippets/AdminPage.php:772
 msgid "Snippet Settings"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:768
+#: src/Snippets/AdminPage.php:772
 msgid "Control PHP snippets, frontend previews, and admin bar shortcuts."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:777
+#: src/Snippets/AdminPage.php:781
 msgid "PHP snippets"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:778
+#: src/Snippets/AdminPage.php:782
 msgid "Allow trusted administrators to run PHP files from the protected snippets directory."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:793
+#: src/Snippets/AdminPage.php:797
 msgid "Auto Safe Mode on Fatal Error"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:794
+#: src/Snippets/AdminPage.php:798
 msgid "Enable site-wide safe mode when a PHP snippet triggers a fatal error."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:810
+#: src/Snippets/AdminPage.php:814
 msgid "Highlight available hook locations on the frontend, including wp_head and template parts."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:826
+#: src/Snippets/AdminPage.php:830
 msgid "Highlight snippet injection points and show how many snippets use each location."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:841
+#: src/Snippets/AdminPage.php:845
 msgid "Admin bar shortcuts"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:842
+#: src/Snippets/AdminPage.php:846
 msgid "Show the Aegis Positions menu in the frontend admin bar with the brand icon."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:863
+#: src/Snippets/AdminPage.php:867
 msgid "Safe Mode"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:863
+#: src/Snippets/AdminPage.php:867
 msgid "Turn every snippet and hook pattern off at once. The URL works without logging in."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:872
+#: src/Snippets/AdminPage.php:876
 msgid "Enable Safe Mode"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:873
+#: src/Snippets/AdminPage.php:877
 msgid "Temporarily disable all snippet and hook pattern output. Admin screens still work so you can fix the offending snippet first."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:875
+#: src/Snippets/AdminPage.php:879
 msgid "AEGIS_DISABLE_SNIPPETS is defined in wp-config.php, so Safe Mode stays on until you remove that line."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:888
+#: src/Snippets/AdminPage.php:892
 msgid "Safe Mode URL"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:889
+#: src/Snippets/AdminPage.php:893
 msgid "Copy this somewhere you can reach without your site. Anyone with the URL can disable custom code, so treat it like a password."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:893
+#: src/Snippets/AdminPage.php:897
 msgid "Regenerate"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:898
+#: src/Snippets/AdminPage.php:902
 msgid "If you cannot reach the site over HTTP, add this to wp-config.php:"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:900
+#: src/Snippets/AdminPage.php:904
 msgid "Remove the line to turn Safe Mode off. That cannot be undone from the admin."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:946
+#: src/Snippets/AdminPage.php:950
 msgid "Your Snippets"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:951
+#: src/Snippets/AdminPage.php:955
 msgid "Hide inactives"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:960
+#: src/Snippets/AdminPage.php:964
 msgid "All snippets"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:975
+#: src/Snippets/AdminPage.php:979
 msgid "View"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:976
+#: src/Snippets/AdminPage.php:980
 msgid "Grouped"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:977
+#: src/Snippets/AdminPage.php:981
 msgid "Table"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:979
+#: src/Snippets/AdminPage.php:983
 msgid "Filter by tag"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:981
+#: src/Snippets/AdminPage.php:985
 msgid "All tags"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:986
+#: src/Snippets/AdminPage.php:990
 msgid "Sort snippets"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:989
+#: src/Snippets/AdminPage.php:993
 msgid "Created (newest)"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:990
+#: src/Snippets/AdminPage.php:994
 msgid "Created (oldest)"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:991
+#: src/Snippets/AdminPage.php:995
 msgid "Updated (newest)"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:992
+#: src/Snippets/AdminPage.php:996
 msgid "Updated (oldest)"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:993
+#: src/Snippets/AdminPage.php:997
 msgid "Priority (low first)"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:994
+#: src/Snippets/AdminPage.php:998
 msgid "Priority (high first)"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1003
-#: src/Snippets/AdminPage.php:1279
+#: src/Snippets/AdminPage.php:1007
+#: src/Snippets/AdminPage.php:1290
 #: src/Blocks/map/index.js:424
 msgid "Title"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1004
-#: src/Snippets/AdminPage.php:1381
+#: src/Snippets/AdminPage.php:1008
+#: src/Snippets/AdminPage.php:1392
 #: src/Blocks/map/index.js:425
 msgid "Description"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1005
+#: src/Snippets/AdminPage.php:1009
 msgid "Type"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1006
+#: src/Snippets/AdminPage.php:1010
 msgid "Runs at"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1007
-#: src/Snippets/AdminPage.php:1377
+#: src/Snippets/AdminPage.php:1011
+#: src/Snippets/AdminPage.php:1388
 msgid "Tags"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1008
+#: src/Snippets/AdminPage.php:1012
 #: templates/modals-admin-page.php:101
 #: templates/visibility-presets-admin-page.php:97
+#: assets/admin/hook-patterns-conditions.js:397
 msgid "Date"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1009
+#: src/Snippets/AdminPage.php:1013
 #: templates/hooks-admin-page.php:98
 #: templates/modals-admin-page.php:102
 msgid "Status"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1010
+#: src/Snippets/AdminPage.php:1014
 #: templates/hooks-admin-page.php:99
 #: templates/modals-admin-page.php:103
 #: templates/visibility-presets-admin-page.php:98
 msgid "Actions"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1057
+#: src/Snippets/AdminPage.php:1061
 msgid "Ungrouped"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1155
+#: src/Snippets/AdminPage.php:1159
 msgid "Enable or disable snippet"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1159
+#: src/Snippets/AdminPage.php:1163
 #: templates/hooks-admin-page.php:178
 #: templates/modals-admin-page.php:182
 #: templates/visibility-presets-admin-page.php:117
 msgid "Edit"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1160
+#: src/Snippets/AdminPage.php:1164
 msgid "Download"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1161
+#: src/Snippets/AdminPage.php:1165
 #: templates/hooks-admin-page.php:180
 #: templates/modals-admin-page.php:183
 #: templates/visibility-presets-admin-page.php:118
 msgid "Delete"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1223
+#: src/Snippets/AdminPage.php:1227
 msgid "Available Locations"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1223
+#: src/Snippets/AdminPage.php:1227
 msgid "These hooks appear as custom run locations for Content and PHP snippets. Header, shortcode, CSS, and JavaScript locations are always available."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1239
+#: src/Snippets/AdminPage.php:1243
 msgid "Enable this location for snippets"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1280
+#: src/Snippets/AdminPage.php:1291
 msgid "Snippet title"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1285
+#: src/Snippets/AdminPage.php:1296
 msgid "Enabled"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1287
+#: src/Snippets/AdminPage.php:1298
 msgid "Create Snippet"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1287
+#: src/Snippets/AdminPage.php:1298
 msgid "Update Snippet"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1288
+#: src/Snippets/AdminPage.php:1299
 #: templates/visibility-presets-admin-page.php:145
 msgid "Cancel"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1293
+#: src/Snippets/AdminPage.php:1304
 msgid "Snippet type"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1307
-#: src/Snippets/AdminPage.php:1313
+#: src/Snippets/AdminPage.php:1318
+#: src/Snippets/AdminPage.php:1324
 msgid "Code"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1310
+#: src/Snippets/AdminPage.php:1321
 msgid "Format"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1318
+#: src/Snippets/AdminPage.php:1329
 msgid "Where to run?"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1319
+#: src/Snippets/AdminPage.php:1330
 msgid "Select snippet run location"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1327
+#: src/Snippets/AdminPage.php:1338
 msgid "Use Shortcode to display the return or print content of this snippet:"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1342
+#: src/Snippets/AdminPage.php:1353
+#: assets/admin/smart-conditions.js:145
 msgid "Advanced Conditional Logic"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1350
+#: src/Snippets/AdminPage.php:1361
 msgid "Snippet"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1353
+#: src/Snippets/AdminPage.php:1364
 msgid "Group"
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1370
+#: src/Snippets/AdminPage.php:1381
 msgid "Optional folder-style label for the snippets list."
 msgstr ""
 
-#: src/Snippets/AdminPage.php:1373
+#: src/Snippets/AdminPage.php:1384
 #: templates/hooks-admin-page.php:96
 msgid "Priority"
 msgstr ""
@@ -5661,6 +5711,249 @@ msgstr ""
 
 #: templates/visibility-presets-admin-page.php:146
 msgid "Save"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:46
+msgid "Site timezone"
+msgstr ""
+
+#. translators: %s: saved timezone string that is not IANA
+#: assets/admin/hook-patterns-conditions.js:53
+#, js-format
+msgid "%s (invalid, using site timezone)"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:62
+msgid "Applies to Date & Time, daily range, and weekdays. Leave empty to use the site timezone."
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:64
+msgid "The saved value is not an IANA timezone, so the site timezone is used."
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:395
+msgid "Time"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:537
+msgid "Is"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:538
+msgid "Is Not"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:562
+msgid "Show to"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:563
+msgid "All Users"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:564
+msgid "Logged In Only"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:565
+msgid "Logged Out Only"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:573
+msgid "Any Role"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:575
+msgid "Role"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:576
+#: assets/admin/hook-patterns-conditions.js:587
+msgid "Operator"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:584
+msgid "Use a primitive capability slug such as edit_posts. Object caps like edit_post need a post ID and will not match."
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:586
+msgid "Capability"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:597
+msgid "Interpreted in the schedule timezone, or the site timezone if Timezone is empty."
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:598
+msgid "Interpreted in the site timezone."
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:599
+msgid "Start"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:600
+msgid "End"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:603
+msgid "If end is before start, the window wraps overnight."
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:604
+msgid "Daily Start Time"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:605
+msgid "Daily End Time"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:617
+msgid "Sunday"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:618
+msgid "Monday"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:619
+msgid "Tuesday"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:620
+msgid "Wednesday"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:621
+msgid "Thursday"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:622
+msgid "Friday"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:623
+msgid "Saturday"
+msgstr ""
+
+#: assets/admin/hook-patterns-conditions.js:722
+msgid "Hides the pattern when the Aegis dark/light toggle or the site default matches that scheme."
+msgstr ""
+
+#: assets/admin/smart-conditions.js:62
+msgid "Page / Post Type"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:66
+msgid "User / Logged-in"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:75
+msgid "Page / URL"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:78
+msgid "Query Parameter"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:81
+msgid "WP Fusion Tag"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:84
+msgid "WP Fusion List"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:88
+msgid "Equal"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:89
+msgid "Is not"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:90
+msgid "Includes"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:91
+msgid "Doesn't contain"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:92
+msgid "Starts with"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:152
+msgid "Enable Conditional Logic"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:174
+msgid "Show"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:175
+msgid "Hide"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:188
+msgid "this snippet if"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:201
+msgid "Logged in"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:202
+msgid "Logged out"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:215
+msgid "Select role"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:229
+msgid "administrator, editor"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:233
+msgid "Value"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:235
+msgid "post, page, product"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:237
+msgid "edit_posts"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:239
+msgid "Tag ID or slug"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:241
+msgid "List ID or slug"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:268
+msgid "OR"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:318
+msgid "Remove"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:338
+msgid "+ And"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:358
+msgid "+ Add new group"
+msgstr ""
+
+#: assets/admin/smart-conditions.js:368
+msgid "Add tag..."
 msgstr ""
 
 #: assets/editor/build/video-editor.tsx.js:1
