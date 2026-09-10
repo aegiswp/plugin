@@ -49,7 +49,7 @@ Video is the WordPress **`core/video`** block (enhanced by the theme framework a
 - [[svg-upload]] — Secure SVG media upload settings
 - [[general-settings]] — Export, import, and reset
 - [[performance]] — Site-wide frontend optimizations and Query Loop Pro gating
-- [[woocommerce-checkout]] — Multi-step checkout integration
+- [[woocommerce-checkout]] — Multi-step checkout (integration on + multi-step template)
 - [[plugin-patterns]] — Plugin-shipped block patterns
 
 ### Development

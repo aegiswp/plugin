@@ -30,12 +30,13 @@ Manage third-party plugin compatibility from **Aegis → Integrations**. Each in
 
 Supported integrations include:
 
-* **E-commerce:** WooCommerce, Easy Digital Downloads, AffiliateWP
+* **E-commerce:** WooCommerce, Easy Digital Downloads, AffiliateWP (dashboard CSS, snippet locations, Pro conditions)
 * **LMS:** LearnDash, LifterLMS, Sensei LMS
 * **Forms:** Gravity Forms, Ninja Forms, Fluent Forms, Fluent Booking
-* **Content:** Co-Authors Plus, bbPress, FluentCRM
+* **Content:** Co-Authors Plus, bbPress
+* **CRM:** FluentCRM (Pro video events), WP Fusion (tags, lists, conditions)
 * **SEO:** Rank Math, Yoast SEO, All in One SEO, SEOPress
-* **Developer:** Advanced Custom Fields, Meta Box, Code Block Pro, Syntax Highlighting Code Block
+* **Developer:** Advanced Custom Fields, Meta Box (field extras, form CSS, bindings), Code Block Pro (theme overlay; no extras), Syntax Highlighting Code Block (theme overlay; no extras)
 * **Performance & maps:** Google Maps API settings (browser and server keys)
 
 When an SEO plugin integration is enabled, you can delegate FAQ, Event, Local Business, Video schema, and (with Aegis Pro) video sitemap handling to that plugin instead of the built-in block markup.
@@ -46,7 +47,7 @@ When an SEO plugin integration is enabled, you can delegate FAQ, Event, Local Bu
 * **Conditionals** — Show or hide blocks by user role, capability, device, date, URL, and more
 * **Hooks** — Inject block patterns at theme and integration hook points without editing templates
 * **Analytics** — Optional, opt-in analytics tags (Google Analytics 4, Google Tag Manager, Plausible, Fathom, Microsoft Clarity, Matomo, Meta Pixel)
-* **Co-Authors Plus** — Multi-author block rendering and schema when Co-Authors Plus is active
+* **Co-Authors Plus** — Multi-author block rendering when Co-Authors Plus is active. Optional Author Schema extra (off by default) for JSON-LD Person markup.
 * **WooCommerce** — Checkout enhancements when WooCommerce is active
 
 = Aegis Pro =

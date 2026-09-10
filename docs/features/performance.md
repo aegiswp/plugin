@@ -2,19 +2,23 @@
 
 Site-wide frontend optimizations live at **Aegis → Performance** (`admin.php?page=aegis-performance`).
 
+The page uses a sidebar with **WordPress** (core script cuts), **Core Blocks** (Query Loop gate, embed facades), and **WooCommerce** (storefront script cuts; brand mark icon, same sidebar color as the other items).
+
 WordPress already lazy-loads images and applies LCP `fetchpriority`. Speculative Loading (prefetch/prerender of in-viewport links) is built in since 6.8. Aegis does not duplicate those.
 
 ## Where to Configure
 
 | Location | Scope |
 |----------|-------|
-| **Aegis → Performance** | WordPress script cuts, embed facades, Query Loop Pro gate, emoji scripts (Pro) |
+| **Aegis → Performance → WordPress** | WordPress core script cuts and emoji scripts (Pro) |
+| **Aegis → Performance → Core Blocks** | Embed facades, Query Loop Pro gate |
+| **Aegis → Performance → WooCommerce** | Cart fragments, non-store assets, password strength meter |
 | **Aegis → Blocks → Slider → Lazy Loading** | Slider image lazy-load (Pro per-block Splide controls) |
 | **Aegis → Connectors → BunnyCDN** | BunnyCDN credentials and stream features |
 
 ## WordPress
 
-Enable at **Aegis → Performance → WordPress**:
+Enable at **Aegis → Performance → WordPress** (`#wordpress`):
 
 | Toggle | Default | Effect |
 |--------|---------|--------|
@@ -25,7 +29,9 @@ Enable at **Aegis → Performance → WordPress**:
 
 These apply on the public site only (not wp-admin, cron, or REST), except emoji removal which also runs in admin when Pro is active.
 
-## Blocks
+## Core Blocks
+
+Enable at **Aegis → Performance → Core Blocks** (`#core-blocks`):
 
 | Toggle | Default | Effect |
 |--------|---------|--------|
@@ -33,6 +39,16 @@ These apply on the public site only (not wp-admin, cron, or REST), except emoji 
 | Embed Facades | Off | Click-to-load YouTube/Vimeo embeds (theme framework) |
 
 Slider lazy-load stays under **Aegis → Blocks → Slider**. It uses Splide `data-src`, not native `loading="lazy"`.
+
+## WooCommerce
+
+Enable at **Aegis → Performance → WooCommerce** (`#woocommerce`). Detection uses `WooCommerce::is_plugin_active()` (same idea as Connectors extras), not the **Aegis → Integrations → WooCommerce** toggle. When WooCommerce is missing, the section shows **Not Installed** and the toggles are disabled.
+
+| Toggle | Default | Effect |
+|--------|---------|--------|
+| Disable Cart Fragments | Off | Dequeues `wc-cart-fragments` outside cart, checkout, and account. Keep off if a classic header mini-cart must refresh on every page. |
+| Disable Assets Elsewhere | Off | Dequeues WooCommerce scripts/styles on non-shop/product/cart/checkout/account pages |
+| Limit Password Strength Meter | Off | Loads password strength scripts only on account and checkout |
 
 ## Query Loop Performance (Pro)
 
@@ -42,7 +58,7 @@ When the toggle is off, Pro does not apply cache, skeleton, or prefetch. WordPre
 
 ## Export / Import / Reset
 
-Performance keys are stored in the `aegis_blocks` option (`embed_facades`, `perf_*`, `query_loop_performance`) and included in the global export `blocks` group.
+Performance keys are stored in the `aegis_blocks` option (`embed_facades`, `perf_*`, `perf_woo_*`, `query_loop_performance`) and included in the global export `blocks` group.
 
 **Reset Defaults** on this page turns only those keys off. Reset on **Aegis → Blocks** leaves Performance keys unchanged.
 
@@ -54,4 +70,5 @@ The theme uses a zero-base loading strategy — see [[../../themes/aegis/docs/fe
 
 - [[../../themes/aegis/docs/features/performance|Theme Performance]]
 - [[../../aegis-pro/docs/features/query-performance|Query Performance (Pro)]]
-- [[integrations-dashboard|Integrations Dashboard]] — BunnyCDN video delivery
+- [[connectors]] — BunnyCDN Stream credentials and extras
+- [[integrations-dashboard|Integrations Dashboard]] — Third-party plugin toggles

@@ -40,7 +40,7 @@ On plugin activation, a welcome redirect sends you to **Aegis → Dashboard** (`
 
 ## Export / Import Toolbar
 
-Blocks, Conditionals, Integrations, Connectors, Performance, Snippets, and Settings pages include a toolbar with **Export**, **Import**, and **Reset** actions. See [[general-settings]] for export scope. Performance reset only clears Performance keys; Blocks reset leaves them unchanged. **Modals**, **Hooks**, and **Presets** have no export toolbar — they list content instances.
+Blocks, Conditionals, Integrations, Connectors, Performance, Snippets, and Settings pages include a toolbar with **Export**, **Import**, and **Reset** actions. See [[general-settings]] for export scope. **Connectors** reset only clears Connectors-owned toggles/credentials and analytics (not the full Integrations dashboard). Performance reset only clears Performance keys; Blocks reset leaves them unchanged. **Modals**, **Hooks**, and **Presets** have no export toolbar — they list content instances.
 
 ## Modals Tab
 

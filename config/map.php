@@ -21,3 +21,5 @@ $map_block = new Block();
 $map_block->init();
 
 ( new IntegrationsPanel() )->init();
+
+\Aegis\Plugin\Map\Settings::migrate_legacy_options();

@@ -100,7 +100,6 @@ class ScriptProxy {
 	 */
 	public function init(): void {
 		add_action( self::CRON_HOOK, [ $this, 'refresh_scripts' ] );
-		add_action( 'switch_theme', [ $this, 'cleanup' ] );
 	}
 
 	/**
@@ -347,6 +346,27 @@ class ScriptProxy {
 		}
 
 		return $filesystem->is_writable( $dir );
+	}
+
+	/**
+	 * Public URL for a locally cached script file (with cache-bust query).
+	 *
+	 * Does not include provider measurement/container IDs — callers append those.
+	 *
+	 * @param string $provider 'gtag' or 'gtm'.
+	 */
+	public function get_local_file_url( string $provider ): string {
+		$file = self::LOCAL_FILES[ $provider ] ?? '';
+
+		if ( $file === '' || ! $this->has_local( $provider ) ) {
+			return '';
+		}
+
+		$upload = $this->get_upload_info();
+		$path   = $this->get_cache_dir() . $file;
+		$url    = trailingslashit( $upload['baseurl'] ) . self::CACHE_DIR . '/' . $file;
+
+		return $url . '?v=' . filemtime( $path );
 	}
 
 	/**

@@ -55,8 +55,8 @@ final class Settings {
 		'bunny_cdn_hls_streaming'    => false,
 		'bunny_cdn_ai_transcription' => false,
 		'bunny_cdn_video_thumbnails' => false,
-		'bunny_cdn_video_watermark'  => false,
 		'co_authors_plus'            => false,
+		'cap_author_schema'          => false,
 		'cap_social_links'           => false,
 		'cap_role_badges'            => false,
 		'code_block_pro'             => false,
@@ -92,21 +92,26 @@ final class Settings {
 	/**
 	 * BunnyCDN API settings defaults.
 	 *
+	 * Storage zone/key/region keys are retained for backward compatibility
+	 * (legacy UI / `aegis_pro_bunnycdn` migration) but have no Connectors UI
+	 * and are unused by Pro Stream video.
+	 *
 	 * @var array<string, string>
 	 */
 	public const BUNNYCDN_DEFAULTS = [
-		'api_key'            => '',
-		'cdn_pullzone'       => '',
-		'cdn_hostname'       => '',
-		'storage_zone'       => '',
-		'storage_api_key'    => '',
-		'storage_region'     => 'de',
-		'stream_library_id'  => '',
-		'stream_api_key'     => '',
-		'webhook_secret'     => '',
+		'api_key'             => '',
+		'cdn_pullzone'        => '',
+		'cdn_hostname'        => '',
+		'cdn_token_auth_key'  => '',
+		'storage_zone'        => '',
+		'storage_api_key'     => '',
+		'storage_region'      => 'de',
+		'stream_library_id'   => '',
+		'stream_api_key'      => '',
+		'webhook_secret'      => '',
 	];
 
-	/** @var array<int, string> */
+	/** @var array<int, string> Legacy storage regions kept for sanitize BC. */
 	private const BUNNYCDN_STORAGE_REGIONS = [
 		'de',
 		'ny',
@@ -123,6 +128,7 @@ final class Settings {
 	private const BUNNYCDN_SECRET_KEYS = [
 		'api_key',
 		'stream_api_key',
+		'cdn_token_auth_key',
 		'storage_api_key',
 		'webhook_secret',
 	];
@@ -165,7 +171,7 @@ final class Settings {
 			$merged[ $key ] = isset( $options[ $key ] ) ? (bool) $options[ $key ] : $default;
 		}
 
-		self::$integrations_cache = self::apply_plugin_availability( $merged );
+		self::$integrations_cache = self::apply_extra_parents( self::apply_plugin_availability( $merged ) );
 
 		return self::$integrations_cache;
 	}
@@ -196,10 +202,6 @@ final class Settings {
 	 * @param string $integration Integration key.
 	 */
 	public static function is_integration_enabled( string $integration ): bool {
-		if ( 'co_authors_plus' === $integration && defined( 'AegisCompanion\\VERSION' ) ) {
-			return false;
-		}
-
 		$settings = self::get_settings();
 
 		return $settings[ $integration ] ?? ( self::INTEGRATION_DEFAULTS[ $integration ] ?? false );
@@ -279,6 +281,12 @@ final class Settings {
 			}
 		}
 
+		foreach ( self::extra_parent_map() as $extra => $parent ) {
+			if ( empty( $sanitized[ $parent ] ) ) {
+				$sanitized[ $extra ] = false;
+			}
+		}
+
 		return $sanitized;
 	}
 
@@ -332,7 +340,10 @@ final class Settings {
 
 		foreach ( self::BUNNYCDN_DEFAULTS as $key => $default ) {
 			if ( ! isset( $merged[ $key ] ) ) {
-				$sanitized[ $key ] = $default;
+				// Partial AJAX payloads omit unchanged masked secrets — keep stored values.
+				$sanitized[ $key ] = in_array( $key, self::BUNNYCDN_SECRET_KEYS, true )
+					? ( $existing[ $key ] ?? $default )
+					: $default;
 				continue;
 			}
 
@@ -366,6 +377,7 @@ final class Settings {
 	 */
 	public static function migrate_legacy_bunnycdn_option(): void {
 		if ( get_option( 'aegis_bunnycdn_migrated_v1' ) ) {
+			self::migrate_bunnycdn_token_key_v2();
 			return;
 		}
 
@@ -377,11 +389,12 @@ final class Settings {
 
 			$mapped = array_filter(
 				[
-					'api_key'           => $legacy['api_key'] ?? '',
-					'stream_library_id' => $legacy['library_id'] ?? '',
-					'cdn_pullzone'      => $legacy['pull_zone'] ?? '',
-					'stream_api_key'    => $legacy['token_auth_key'] ?? '',
-					'webhook_secret'    => $legacy['webhook_secret'] ?? '',
+					'api_key'            => $legacy['api_key'] ?? '',
+					'stream_library_id'  => $legacy['library_id'] ?? '',
+					'cdn_pullzone'       => $legacy['pull_zone'] ?? '',
+					// Legacy Pro stored CDN URL token auth as token_auth_key — not the Stream library AccessKey.
+					'cdn_token_auth_key' => $legacy['token_auth_key'] ?? '',
+					'webhook_secret'     => $legacy['webhook_secret'] ?? '',
 				],
 				static fn( $value ): bool => is_string( $value ) && $value !== ''
 			);
@@ -392,6 +405,33 @@ final class Settings {
 		}
 
 		update_option( 'aegis_bunnycdn_migrated_v1', true, false );
+		self::migrate_bunnycdn_token_key_v2();
+	}
+
+	/**
+	 * Backfill CDN token auth for installs that ran the incorrect v1 map
+	 * (legacy token_auth_key → stream_api_key). Copies into cdn_token_auth_key
+	 * when that field is empty; does not clear stream_api_key (may already be a
+	 * real library AccessKey on newer installs).
+	 */
+	public static function migrate_bunnycdn_token_key_v2(): void {
+		if ( get_option( 'aegis_bunnycdn_token_key_v2' ) ) {
+			return;
+		}
+
+		$settings = get_option( self::BUNNYCDN_OPTION, [] );
+		$settings = is_array( $settings ) ? $settings : [];
+
+		$stream = (string) ( $settings['stream_api_key'] ?? '' );
+		$token  = (string) ( $settings['cdn_token_auth_key'] ?? '' );
+
+		if ( $token === '' && $stream !== '' ) {
+			$settings['cdn_token_auth_key'] = $stream;
+			update_option( self::BUNNYCDN_OPTION, $settings, false );
+			self::flush_cache();
+		}
+
+		update_option( 'aegis_bunnycdn_token_key_v2', true, false );
 	}
 
 	/**
@@ -406,6 +446,40 @@ final class Settings {
 		foreach ( $settings as $key => $enabled ) {
 			if ( $enabled && self::requires_active_plugin( $key ) && ! Registry::is_plugin_active( $key ) ) {
 				$settings[ $key ] = false;
+			}
+		}
+
+		return $settings;
+	}
+
+	/**
+	 * Integration extras that require their parent toggle to stay on.
+	 *
+	 * @return array<string, string> Extra key => parent integration key.
+	 */
+	private static function extra_parent_map(): array {
+		return [
+			'cap_author_schema'            => 'co_authors_plus',
+			'cap_social_links'             => 'co_authors_plus',
+			'cap_role_badges'              => 'co_authors_plus',
+			'bunny_cdn_stream_library'     => 'bunny_cdn',
+			'bunny_cdn_direct_upload'      => 'bunny_cdn',
+			'bunny_cdn_hls_streaming'      => 'bunny_cdn',
+			'bunny_cdn_ai_transcription'   => 'bunny_cdn',
+			'bunny_cdn_video_thumbnails'   => 'bunny_cdn',
+		];
+	}
+
+	/**
+	 * Force extras off when the parent integration is off.
+	 *
+	 * @param array<string, bool> $settings Merged settings.
+	 * @return array<string, bool>
+	 */
+	private static function apply_extra_parents( array $settings ): array {
+		foreach ( self::extra_parent_map() as $extra => $parent ) {
+			if ( empty( $settings[ $parent ] ) ) {
+				$settings[ $extra ] = false;
 			}
 		}
 
@@ -465,5 +539,38 @@ final class Settings {
 		}
 
 		update_option( 'aegis_inactive_integrations_cleared_v1', true, false );
+	}
+
+	/**
+	 * Integration keys owned by Aegis → Connectors (not the Integrations dashboard).
+	 *
+	 * @return array<int, string>
+	 */
+	public static function connector_toggle_keys(): array {
+		return [
+			'bunny_cdn',
+			'bunny_cdn_stream_library',
+			'bunny_cdn_direct_upload',
+			'bunny_cdn_hls_streaming',
+			'bunny_cdn_ai_transcription',
+			'bunny_cdn_video_thumbnails',
+			'google_maps',
+		];
+	}
+
+	/**
+	 * Reset Connectors toggles and BunnyCDN credentials without touching other integrations.
+	 */
+	public static function reset_connectors(): void {
+		$stored = get_option( self::OPTION, [] );
+		$stored = is_array( $stored ) ? $stored : [];
+
+		foreach ( self::connector_toggle_keys() as $key ) {
+			$stored[ $key ] = false;
+		}
+
+		update_option( self::OPTION, self::sanitize( $stored ), false );
+		delete_option( self::BUNNYCDN_OPTION );
+		self::flush_cache();
 	}
 }

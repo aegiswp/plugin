@@ -49,7 +49,7 @@ $sections        = Registry::get_integrations_admin_sections();
 
 								<?php foreach ( $section['plugins'] as $tab ) : ?>
 								<div class="aegis-plugin-stack" id="<?php echo esc_attr( $tab['id'] ); ?>" data-integration-key="<?php echo esc_attr( $tab['key'] ); ?>">
-									<?php $renderer->render_stack_header( $tab['label'], $tab['description'], $tab['icon'] ); ?>
+									<?php $renderer->render_stack_header( $tab['label'], $tab['description'], $tab['icon'], $tab['brand'] ?? '' ); ?>
 									<div class="aegis-settings-section__content">
 										<div class="aegis-settings-grid aegis-settings-grid--features">
 											<?php
@@ -59,7 +59,9 @@ $sections        = Registry::get_integrations_admin_sections();
 												$tab['description'],
 												$options,
 												$tab['plugin_check'],
-												$tab['icon']
+												$tab['icon'],
+												\Aegis\Plugin\Settings\Repository::INTEGRATIONS_OPTION,
+												$tab['brand'] ?? ''
 											);
 											$renderer->render_pattern_control_toggles( $tab['key'], $pattern_options );
 											\Aegis\Plugin\Conditionals\IntegrationsPanel::render( $renderer, $tab['key'] );

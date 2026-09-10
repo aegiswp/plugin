@@ -10,10 +10,13 @@ declare( strict_types=1 );
 
 namespace Aegis\Plugin\Settings;
 
+use Aegis\Plugin\Analytics\ScriptProxy;
+use Aegis\Plugin\Analytics\Settings as AnalyticsSettings;
 use Aegis\Plugin\Blocks\Settings as BlocksSettings;
 use Aegis\Plugin\Conditionals\Settings as ConditionalsSettings;
 use Aegis\Plugin\General\Settings as GeneralSettings;
 use Aegis\Plugin\Integrations\Settings as IntegrationsSettings;
+use Aegis\Plugin\Map\Settings as MapSettings;
 use Aegis\Plugin\Uninstall;
 use function __;
 use function check_ajax_referer;
@@ -73,6 +76,7 @@ final class Controller {
 				'integrations'      => Repository::get_integration_settings(),
 				'blocks'            => get_option( BlocksSettings::OPTION, BlocksSettings::DEFAULTS ),
 				'general'           => Repository::get_general_settings(),
+				'analytics'         => AnalyticsSettings::get_settings(),
 				'version'           => '1.0.0',
 				'exported_at'       => current_time( 'mysql' ),
 			)
@@ -120,6 +124,10 @@ final class Controller {
 			GeneralSettings::save( $this->sanitize_general_settings( $settings['general'] ) );
 		}
 
+		if ( isset( $settings['analytics'] ) && is_array( $settings['analytics'] ) ) {
+			AnalyticsSettings::save( $settings['analytics'] );
+		}
+
 		Repository::flush_cache();
 
 		wp_send_json_success( array( 'message' => __( 'Settings imported successfully.', 'aegis' ) ) );
@@ -143,6 +151,12 @@ final class Controller {
 			case 'integrations':
 				delete_option( IntegrationsSettings::OPTION );
 				delete_option( IntegrationsSettings::PATTERN_CONTROL_OPTION );
+				break;
+			case 'connectors':
+				IntegrationsSettings::reset_connectors();
+				MapSettings::reset();
+				delete_option( AnalyticsSettings::OPTION );
+				( new ScriptProxy() )->cleanup();
 				break;
 			case 'blocks':
 				BlocksSettings::reset_block_features();

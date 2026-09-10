@@ -10,8 +10,10 @@ declare( strict_types=1 );
 
 namespace Aegis\Plugin\Conditionals;
 
+use Aegis\Plugin\Integrations\WPFusion;
 use function array_filter;
 use function array_map;
+use function class_exists;
 use function explode;
 use function function_exists;
 use function get_post_type;
@@ -180,18 +182,28 @@ final class SmartConditionsEvaluator {
 				return $this->compare_string( $actual ?? '', $operator, (string) ( $rule['compareValue'] ?? '' ) );
 
 			case 'wp_fusion_tag':
-				if ( ! function_exists( 'wpf_has_tag' ) ) {
-					return false;
+				if ( $value === '' || ! function_exists( 'wpf_has_tag' ) ) {
+					return $this->compare_bool( false, $operator );
 				}
 				$has = wpf_has_tag( $value );
 				return $this->compare_bool( $has, $operator );
 
 			case 'wp_fusion_list':
-				if ( ! function_exists( 'wpf_has_tag' ) ) {
-					return false;
+				if ( $value === '' ) {
+					return $this->compare_bool( false, $operator );
 				}
-				$has = wpf_has_tag( $value );
-				return $this->compare_bool( $has, $operator );
+				$has = class_exists( WPFusion::class )
+					? WPFusion::user_has_list( $value )
+					: ( function_exists( 'wpf_has_tag' ) && wpf_has_tag( $value ) );
+				return $this->compare_bool( (bool) $has, $operator );
+
+			case 'wp_fusion_logged_in':
+				$has = class_exists( WPFusion::class )
+					? WPFusion::user_is_logged_in()
+					: ( function_exists( 'wpf_is_user_logged_in' )
+						? wpf_is_user_logged_in()
+						: is_user_logged_in() );
+				return $this->compare_bool( (bool) $has, $operator );
 
 			default:
 				return false;
@@ -204,6 +216,14 @@ final class SmartConditionsEvaluator {
 	 * post_type is the core builder field and is always available.
 	 */
 	private function field_extra_enabled( string $field ): bool {
+		if ( $field === 'wp_fusion_logged_in' ) {
+			if ( ! class_exists( Settings::class ) ) {
+				return true;
+			}
+
+			return Settings::is_enabled( 'wp_fusion', 'tags' ) || Settings::is_enabled( 'wp_fusion', 'lists' );
+		}
+
 		$extra = match ( $field ) {
 			'user_status'     => array( 'user', 'user_status' ),
 			'user_role'       => array( 'user', 'user_role' ),

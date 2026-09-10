@@ -16,6 +16,8 @@ declare( strict_types=1 );
 
 namespace Aegis\Plugin\Conditionals;
 
+use Aegis\Plugin\Integrations\ACF;
+use Aegis\Plugin\Integrations\MetaBox;
 use Aegis\Plugin\Utilities\UserAgent;
 
 use function get_post_meta;
@@ -54,7 +56,10 @@ use function wp_parse_url;
 use function sanitize_text_field;
 use function wp_unslash;
 use function is_array;
+use function is_bool;
+use function is_scalar;
 use function is_string;
+use function implode;
 use function sanitize_key;
 use function strtolower;
 use function trim;
@@ -300,7 +305,7 @@ class Evaluator {
 		}
 
 		// ACF field rules (pro).
-		if ( ! empty( $c['acfRules'] ) && is_array( $c['acfRules'] ) && function_exists( 'get_field' ) && $this->extra_enabled( 'pro_conditions', 'acf_field' ) ) {
+		if ( ! empty( $c['acfRules'] ) && is_array( $c['acfRules'] ) && ACF::is_enabled() && function_exists( 'get_field' ) && $this->extra_enabled( 'pro_conditions', 'acf_field' ) ) {
 			$hide = $this->evaluate_rules(
 				$c['acfRules'],
 				$c['acfLogic'] ?? 'show',
@@ -310,7 +315,8 @@ class Evaluator {
 					if ( $field === '' ) {
 						return false;
 					}
-					$actual = (string) get_field( $field, get_queried_object_id() );
+					$post_id = $this->condition_post_id();
+					$actual  = $this->normalize_field_value( get_field( $field, $post_id ) );
 					return $this->compare( $actual, $rule['operator'] ?? 'is', $rule['value'] ?? '' );
 				}
 			);
@@ -319,8 +325,8 @@ class Evaluator {
 			}
 		}
 
-		// MetaBox field rules (pro).
-		if ( ! empty( $c['metaboxRules'] ) && is_array( $c['metaboxRules'] ) && function_exists( 'rwmb_meta' ) && $this->extra_enabled( 'pro_conditions', 'metabox_field' ) ) {
+		// Meta Box field rules (pro).
+		if ( ! empty( $c['metaboxRules'] ) && is_array( $c['metaboxRules'] ) && MetaBox::is_enabled() && function_exists( 'rwmb_meta' ) && $this->extra_enabled( 'pro_conditions', 'metabox_field' ) ) {
 			$hide = $this->evaluate_rules(
 				$c['metaboxRules'],
 				$c['metaboxLogic'] ?? 'show',
@@ -330,7 +336,8 @@ class Evaluator {
 					if ( $field === '' ) {
 						return false;
 					}
-					$actual = (string) rwmb_meta( $field, array(), get_queried_object_id() );
+					$post_id = $this->condition_post_id();
+					$actual  = $this->normalize_field_value( rwmb_meta( $field, array(), $post_id ) );
 					return $this->compare( $actual, $rule['operator'] ?? 'is', $rule['value'] ?? '' );
 				}
 			);
@@ -401,6 +408,46 @@ class Evaluator {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Post ID for field conditions: loop post first, then the queried object.
+	 */
+	private function condition_post_id(): int {
+		$post_id = get_the_ID();
+
+		if ( $post_id ) {
+			return (int) $post_id;
+		}
+
+		return (int) get_queried_object_id();
+	}
+
+	/**
+	 * @param mixed $actual ACF get_field() or Meta Box rwmb_meta() return value.
+	 */
+	private function normalize_field_value( $actual ): string {
+		if ( is_bool( $actual ) ) {
+			return $actual ? '1' : '0';
+		}
+
+		if ( is_array( $actual ) ) {
+			$flat = array();
+
+			foreach ( $actual as $item ) {
+				if ( is_scalar( $item ) ) {
+					$flat[] = (string) $item;
+				}
+			}
+
+			return $flat === array() ? '' : implode( ', ', $flat );
+		}
+
+		if ( $actual === null ) {
+			return '';
+		}
+
+		return (string) $actual;
 	}
 
 	/**

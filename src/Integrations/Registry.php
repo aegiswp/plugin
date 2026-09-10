@@ -10,7 +10,6 @@ declare( strict_types=1 );
 
 namespace Aegis\Plugin\Integrations;
 
-use Aegis\Plugin\Map\Settings as MapSettings;
 use function __;
 use function class_exists;
 use function defined;
@@ -50,7 +49,7 @@ final class Registry {
 				'section'          => 'ecommerce',
 				'plugin_check'     => 'woocommerce',
 				'plugin_files'     => [ 'woocommerce/woocommerce.php' ],
-				'is_plugin_active' => static fn(): bool => class_exists( 'WooCommerce' ),
+				'is_plugin_active' => static fn(): bool => WooCommerce::is_plugin_active(),
 			],
 			'easy_digital_downloads' => [
 				'key'              => 'easy_digital_downloads',
@@ -58,18 +57,21 @@ final class Registry {
 				'section'          => 'ecommerce',
 				'plugin_check'     => 'easy_digital_downloads',
 				'plugin_files'     => [
-				'easy-digital-downloads/easy-digital-downloads.php',
-				'easy-digital-downloads-pro/easy-digital-downloads.php',
-			],
-				'is_plugin_active' => static fn(): bool => class_exists( 'Easy_Digital_Downloads' ),
+					'easy-digital-downloads/easy-digital-downloads.php',
+					'easy-digital-downloads-pro/easy-digital-downloads.php',
+				],
+				'is_plugin_active' => static fn(): bool => EasyDigitalDownloads::is_plugin_active(),
 			],
 			'wp_fusion' => [
 				'key'              => 'wp_fusion',
 				'label'            => __( 'WP Fusion', 'aegis' ),
 				'section'          => 'crm',
 				'plugin_check'     => 'wp_fusion',
-				'plugin_files'     => [ 'wp-fusion/wp-fusion.php' ],
-				'is_plugin_active' => static fn(): bool => function_exists( 'wpf_get_tag_id' ) || function_exists( 'wpf_has_tag' ),
+				'plugin_files'     => [
+					'wp-fusion/wp-fusion.php',
+					'wp-fusion-lite/wp-fusion-lite.php',
+				],
+				'is_plugin_active' => static fn(): bool => WPFusion::is_plugin_active(),
 			],
 			'affiliate_wp' => [
 				'key'              => 'affiliate_wp',
@@ -77,15 +79,18 @@ final class Registry {
 				'section'          => 'ecommerce',
 				'plugin_check'     => 'affiliate_wp',
 				'plugin_files'     => [ 'affiliate-wp/affiliate-wp.php' ],
-				'is_plugin_active' => static fn(): bool => class_exists( 'Affiliate_WP' ),
+				'is_plugin_active' => static fn(): bool => AffiliateWP::is_plugin_active(),
 			],
 			'learndash' => [
 				'key'              => 'learndash',
 				'label'            => __( 'LearnDash', 'aegis' ),
 				'section'          => 'lms',
 				'plugin_check'     => 'learndash',
-				'plugin_files'     => [ 'sfwd-lms/sfwd_lms.php' ],
-				'is_plugin_active' => static fn(): bool => defined( 'LEARNDASH_VERSION' ),
+				'plugin_files'     => [
+					'sfwd-lms/sfwd_lms.php',
+					'learndash/sfwd_lms.php',
+				],
+				'is_plugin_active' => static fn(): bool => LearnDash::is_plugin_active(),
 			],
 			'lifter_lms' => [
 				'key'              => 'lifter_lms',
@@ -93,31 +98,41 @@ final class Registry {
 				'section'          => 'lms',
 				'plugin_check'     => 'lifter_lms',
 				'plugin_files'     => [ 'lifterlms/lifterlms.php' ],
-				'is_plugin_active' => static fn(): bool => class_exists( 'LifterLMS' ),
+				'is_plugin_active' => static fn(): bool => LifterLMS::is_plugin_active(),
 			],
 			'sensei_lms' => [
 				'key'              => 'sensei_lms',
 				'label'            => __( 'Sensei LMS', 'aegis' ),
 				'section'          => 'lms',
 				'plugin_check'     => 'sensei_lms',
-				'plugin_files'     => [ 'sensei-lms/sensei-lms.php' ],
-				'is_plugin_active' => static fn(): bool => class_exists( 'Sensei_Main' ),
+				'plugin_files'     => [
+					'sensei-lms/sensei-lms.php',
+					'sensei/sensei.php',
+					'woothemes-sensei/woothemes-sensei.php',
+				],
+				'is_plugin_active' => static fn(): bool => SenseiLMS::is_plugin_active(),
 			],
 			'fluent_forms' => [
 				'key'              => 'fluent_forms',
 				'label'            => __( 'Fluent Forms', 'aegis' ),
 				'section'          => 'forms',
 				'plugin_check'     => 'fluent_forms',
-				'plugin_files'     => [ 'fluentform/fluentform.php' ],
-				'is_plugin_active' => static fn(): bool => defined( 'FLUENTFORM' ),
+				'plugin_files'     => [
+					'fluentform/fluentform.php',
+					'fluentformpro/fluentformpro.php',
+				],
+				'is_plugin_active' => static fn(): bool => FluentForms::is_plugin_active(),
 			],
 			'fluent_booking' => [
 				'key'              => 'fluent_booking',
 				'label'            => __( 'Fluent Booking', 'aegis' ),
 				'section'          => 'forms',
 				'plugin_check'     => 'fluent_booking',
-				'plugin_files'     => [ 'fluent-booking/fluent-booking.php' ],
-				'is_plugin_active' => static fn(): bool => class_exists( 'FluentBooking\\App\\App' ),
+				'plugin_files'     => [
+					'fluent-booking/fluent-booking.php',
+					'fluent-booking-pro/fluent-booking-pro.php',
+				],
+				'is_plugin_active' => static fn(): bool => FluentBooking::is_plugin_active(),
 			],
 			'fluent_crm' => [
 				'key'              => 'fluent_crm',
@@ -132,20 +147,23 @@ final class Registry {
 				'label'            => __( 'Gravity Forms', 'aegis' ),
 				'section'          => 'forms',
 				'plugin_check'     => 'gravity_forms',
-				'is_plugin_active' => static fn(): bool => class_exists( 'GFForms' ),
+				'plugin_files'     => [ 'gravityforms/gravityforms.php' ],
+				'is_plugin_active' => static fn(): bool => GravityForms::is_plugin_active(),
 			],
 			'ninja_forms' => [
 				'key'              => 'ninja_forms',
 				'label'            => __( 'Ninja Forms', 'aegis' ),
 				'section'          => 'forms',
 				'plugin_check'     => 'ninja_forms',
-				'is_plugin_active' => static fn(): bool => class_exists( 'Ninja_Forms' ),
+				'plugin_files'     => [ 'ninja-forms/ninja-forms.php' ],
+				'is_plugin_active' => static fn(): bool => NinjaForms::is_plugin_active(),
 			],
 			'co_authors_plus' => [
 				'key'              => 'co_authors_plus',
 				'label'            => __( 'Co-Authors Plus', 'aegis' ),
 				'section'          => 'content',
 				'plugin_check'     => 'co_authors_plus',
+				'plugin_files'     => [ 'co-authors-plus/co-authors-plus.php' ],
 				'is_plugin_active' => static fn(): bool => function_exists( 'get_coauthors' ),
 			],
 			'bbpress' => [
@@ -153,6 +171,7 @@ final class Registry {
 				'label'            => __( 'bbPress', 'aegis' ),
 				'section'          => 'content',
 				'plugin_check'     => 'bbpress',
+				'plugin_files'     => [ 'bbpress/bbpress.php' ],
 				'is_plugin_active' => static fn(): bool => class_exists( 'bbPress' ),
 			],
 			'rank_math' => [
@@ -160,28 +179,44 @@ final class Registry {
 				'label'            => __( 'Rank Math', 'aegis' ),
 				'section'          => 'seo',
 				'plugin_check'     => 'rank_math',
-				'is_plugin_active' => static fn(): bool => class_exists( 'RankMath' ),
+				'plugin_files'     => [
+					'seo-by-rank-math/rank-math.php',
+					'seo-by-rank-math-pro/rank-math-pro.php',
+				],
+				'is_plugin_active' => static fn(): bool => RankMath::is_plugin_active(),
 			],
 			'yoast_seo' => [
 				'key'              => 'yoast_seo',
 				'label'            => __( 'Yoast SEO', 'aegis' ),
 				'section'          => 'seo',
 				'plugin_check'     => 'yoast_seo',
-				'is_plugin_active' => static fn(): bool => class_exists( 'WPSEO_Options' ),
+				'plugin_files'     => [
+					'wordpress-seo/wp-seo.php',
+					'wordpress-seo-premium/wp-seo-premium.php',
+				],
+				'is_plugin_active' => static fn(): bool => Yoast::is_plugin_active(),
 			],
 			'aioseo' => [
 				'key'              => 'aioseo',
 				'label'            => __( 'All in One SEO', 'aegis' ),
 				'section'          => 'seo',
 				'plugin_check'     => 'aioseo',
-				'is_plugin_active' => static fn(): bool => defined( 'AIOSEO_VERSION' ) || class_exists( 'AIOSEO\\Plugin\\AIOSEO' ),
+				'plugin_files'     => [
+					'all-in-one-seo-pack/all_in_one_seo_pack.php',
+					'all-in-one-seo-pack-pro/all_in_one_seo_pack.php',
+				],
+				'is_plugin_active' => static fn(): bool => AllInOneSEO::is_plugin_active(),
 			],
 			'seopress' => [
 				'key'              => 'seopress',
 				'label'            => __( 'SEOPress', 'aegis' ),
 				'section'          => 'seo',
 				'plugin_check'     => 'seopress',
-				'is_plugin_active' => static fn(): bool => defined( 'SEOPRESS_VERSION' ),
+				'plugin_files'     => [
+					'wp-seopress/seopress.php',
+					'wp-seopress-pro/seopress-pro.php',
+				],
+				'is_plugin_active' => static fn(): bool => SEOPress::is_plugin_active(),
 			],
 			'advanced_custom_fields' => [
 				'key'              => 'advanced_custom_fields',
@@ -191,46 +226,51 @@ final class Registry {
 				'plugin_files'     => [
 					'advanced-custom-fields/acf.php',
 					'advanced-custom-fields-pro/acf.php',
+					'secure-custom-fields/secure-custom-fields.php',
+					'secure-custom-fields/acf.php',
 				],
-				'is_plugin_active' => static fn(): bool => class_exists( 'ACF' ),
+				'is_plugin_active' => static fn(): bool => ACF::is_plugin_active(),
 			],
 			'meta_box' => [
 				'key'              => 'meta_box',
 				'label'            => __( 'Meta Box', 'aegis' ),
 				'section'          => 'developer',
 				'plugin_check'     => 'meta_box',
-				'plugin_files'     => [ 'meta-box/meta-box.php' ],
-				'is_plugin_active' => static fn(): bool => class_exists( 'RWMB_Loader' ),
+				'plugin_files'     => [
+					'meta-box/meta-box.php',
+					'meta-box-aio/meta-box-aio.php',
+				],
+				'is_plugin_active' => static fn(): bool => MetaBox::is_plugin_active(),
 			],
 			'code_block_pro' => [
 				'key'              => 'code_block_pro',
 				'label'            => __( 'Code Block Pro', 'aegis' ),
 				'section'          => 'developer',
 				'plugin_check'     => 'code_block_pro',
-				'is_plugin_active' => static fn(): bool => defined( 'CODE_BLOCK_PRO_VERSION' ),
+				'plugin_files'     => [ 'code-block-pro/code-block-pro.php' ],
+				'is_plugin_active' => static fn(): bool => CodeBlockPro::is_plugin_active(),
 			],
 			'syntax_highlighting' => [
 				'key'              => 'syntax_highlighting',
 				'label'            => __( 'Syntax Highlighting Code Block', 'aegis' ),
 				'section'          => 'developer',
 				'plugin_check'     => 'syntax_highlighting',
-				'is_plugin_active' => static fn(): bool => class_exists( 'Developer_Starter_Starter' ) || function_exists( 'Developer_Starter_Starter' ),
+				'plugin_files'     => [ 'syntax-highlighting-code-block/syntax-highlighting-code-block.php' ],
+				'is_plugin_active' => static fn(): bool => SyntaxHighlighting::is_plugin_active(),
 			],
 			'bunny_cdn' => [
 				'key'              => 'bunny_cdn',
 				'label'            => __( 'BunnyCDN', 'aegis' ),
 				'section'          => 'bunnycdn',
 				'plugin_check'     => 'bunny_cdn',
-				'is_plugin_active' => static fn(): bool => false,
+				'is_plugin_active' => static fn(): bool => BunnyCDN::is_plugin_active(),
 			],
 			'google_maps' => [
 				'key'              => 'google_maps',
 				'label'            => __( 'Google Maps', 'aegis' ),
 				'section'          => 'maps',
 				'plugin_check'     => 'google_maps',
-				'is_plugin_active' => static function (): bool {
-					return class_exists( MapSettings::class ) && MapSettings::get_api_key() !== '';
-				},
+				'is_plugin_active' => static fn(): bool => true,
 			],
 		];
 
@@ -302,7 +342,7 @@ final class Registry {
 				'id'          => 'crm',
 				'label'       => __( 'CRM', 'aegis' ),
 				'icon'        => 'tag',
-				'description' => __( 'FluentCRM and WP Fusion tags, lists, and automation.', 'aegis' ),
+				'description' => __( 'FluentCRM video events and WP Fusion tags, lists, and automation.', 'aegis' ),
 				'keys'        => array( 'fluent_crm', 'wp_fusion' ),
 			),
 		);
@@ -350,7 +390,7 @@ final class Registry {
 	}
 
 	/**
-	 * @return array{key: string, id: string, label: string, icon: string, description: string, plugin_check: string}|null
+	 * @return array{key: string, id: string, label: string, icon: string, brand: string, description: string, plugin_check: string}|null
 	 */
 	private static function plugin_admin_row( string $key ): ?array {
 		$integration = self::get( $key );
@@ -367,59 +407,66 @@ final class Registry {
 			'id'           => self::tab_id( $key ),
 			'label'        => $integration['label'],
 			'icon'         => $row['icon'] ?? 'admin-plugins',
+			'brand'        => $row['brand'] ?? '',
 			'description'  => $row['description'] ?? '',
 			'plugin_check' => $integration['plugin_check'],
 		);
 	}
 
 	/**
-	 * @return array<string, array{icon: string, description: string}>
+	 * @return array<string, array{icon: string, brand?: string, description: string}>
 	 */
 	private static function plugin_admin_meta(): array {
 		return array(
 			'woocommerce'            => array(
 				'icon'        => 'cart',
-				'description' => __( 'E-commerce platform for selling physical products and digital downloads.', 'aegis' ),
+				'brand'       => 'woocommerce',
+				'description' => __( 'Shop styling, snippet locations, commerce patterns, and Pro cart, customer, and product conditions.', 'aegis' ),
 			),
 			'easy_digital_downloads' => array(
 				'icon'        => 'download',
-				'description' => __( 'Digital commerce platform for selling downloads and subscriptions.', 'aegis' ),
+				'brand'       => 'easy-digital-downloads',
+				'description' => __( 'Download and checkout styling, snippet locations, and Pro cart, customer, and download conditions.', 'aegis' ),
 			),
 			'affiliate_wp'           => array(
 				'icon'        => 'groups',
-				'description' => __( 'Affiliate marketing and referral program management.', 'aegis' ),
+				'brand'       => 'affiliate-wp',
+				'description' => __( 'Dashboard and login/register form styling, snippet locations, and Pro referral, account, and earnings conditions.', 'aegis' ),
 			),
 			'learndash'              => array(
 				'icon'        => 'welcome-learn-more',
-				'description' => __( 'Powerful LMS plugin for creating and selling courses.', 'aegis' ),
+				'description' => __( 'Course layouts, Focus Mode chrome, pattern control, and snippet locations for LearnDash.', 'aegis' ),
 			),
 			'lifter_lms'             => array(
 				'icon'        => 'awards',
-				'description' => __( 'Complete LMS solution for course creation and membership.', 'aegis' ),
+				'description' => __( 'Course and membership layouts, snippet locations, pattern control, and Pro video progression for LifterLMS.', 'aegis' ),
 			),
 			'sensei_lms'             => array(
 				'icon'        => 'book',
-				'description' => __( 'Learning management by WooCommerce.', 'aegis' ),
+				'brand'       => 'sensei-lms',
+				'description' => __( 'Course and lesson layouts, snippet locations, pattern control, and block conditions for Sensei LMS.', 'aegis' ),
 			),
 			'fluent_forms'           => array(
 				'icon'        => 'feedback',
-				'description' => __( 'Fast and lightweight form builder plugin.', 'aegis' ),
+				'brand'       => 'fluent-forms',
+				'description' => __( 'Form styling, pattern control, and Pro submission status, count, and field value conditions.', 'aegis' ),
 			),
 			'fluent_booking'         => array(
 				'icon'        => 'calendar-alt',
-				'description' => __( 'Appointment and booking management system.', 'aegis' ),
+				'brand'       => 'fluentbooking',
+				'description' => __( 'Calendar and appointment styling, pattern control, and Pro booking status, upcoming, and past booking conditions.', 'aegis' ),
 			),
 			'fluent_crm'             => array(
 				'icon'        => 'email',
-				'description' => __( 'Email marketing CRM and automation.', 'aegis' ),
+				'description' => __( 'Email marketing CRM. With Pro, video funnels, tags, and lists.', 'aegis' ),
 			),
 			'gravity_forms'          => array(
 				'icon'        => 'feedback',
-				'description' => __( 'Advanced form builder for WordPress.', 'aegis' ),
+				'description' => __( 'Form styling, default theme CSS reset, and snippet locations for Gravity Forms.', 'aegis' ),
 			),
 			'ninja_forms'            => array(
 				'icon'        => 'feedback',
-				'description' => __( 'Drag-and-drop form builder plugin.', 'aegis' ),
+				'description' => __( 'Form styling, default theme CSS reset, and snippet locations for Ninja Forms.', 'aegis' ),
 			),
 			'co_authors_plus'        => array(
 				'icon'        => 'groups',
@@ -427,43 +474,46 @@ final class Registry {
 			),
 			'bbpress'                => array(
 				'icon'        => 'groups',
-				'description' => __( 'Forum software for WordPress communities.', 'aegis' ),
+				'brand'       => 'bbpress',
+				'description' => __( 'Forum and topic styling, Page template wrapper, breadcrumb CSS, and snippet locations.', 'aegis' ),
 			),
 			'rank_math'              => array(
 				'icon'        => 'chart-line',
-				'description' => __( 'SEO plugin for optimizing your content.', 'aegis' ),
+				'brand'       => 'rankmath',
+				'description' => __( 'FAQ, Event, Local Business, and Video schema delegation, plus Pro video sitemaps.', 'aegis' ),
 			),
 			'yoast_seo'              => array(
 				'icon'        => 'chart-line',
-				'description' => __( 'Popular SEO plugin with schema and readability tools.', 'aegis' ),
+				'description' => __( 'FAQ, Event, Local Business, and Video schema delegation, plus Pro video sitemaps.', 'aegis' ),
 			),
 			'aioseo'                 => array(
 				'icon'        => 'chart-line',
-				'description' => __( 'Comprehensive SEO toolkit for WordPress.', 'aegis' ),
+				'description' => __( 'FAQ, Event, Local Business, and Video schema delegation, plus Pro video sitemaps.', 'aegis' ),
 			),
 			'seopress'               => array(
 				'icon'        => 'chart-line',
-				'description' => __( 'Lightweight SEO plugin with schema support.', 'aegis' ),
+				'description' => __( 'FAQ, Event, Local Business, and Video schema delegation, plus Pro video sitemaps.', 'aegis' ),
 			),
 			'advanced_custom_fields' => array(
 				'icon'        => 'admin-generic',
-				'description' => __( 'Custom fields and meta boxes for WordPress.', 'aegis' ),
+				'brand'       => 'acf',
+				'description' => __( 'Field visibility, Query Loop pickers, and featured-image sources.', 'aegis' ),
 			),
 			'meta_box'               => array(
 				'icon'        => 'admin-generic',
-				'description' => __( 'Lightweight custom fields framework for WordPress.', 'aegis' ),
+				'description' => __( 'Field visibility, Query Loop pickers, featured-image sources, and form styling.', 'aegis' ),
 			),
 			'code_block_pro'         => array(
 				'icon'        => 'editor-code',
-				'description' => __( 'Syntax highlighting for code blocks.', 'aegis' ),
+				'description' => __( 'Theme radius and monospace overlay for Kevin Batdorf’s code block.', 'aegis' ),
 			),
 			'syntax_highlighting'    => array(
 				'icon'        => 'editor-code',
-				'description' => __( 'Alternative syntax highlighting for code.', 'aegis' ),
+				'description' => __( 'Theme radius, padding, and line-number overlay for Weston Ruter’s highlighted Code block.', 'aegis' ),
 			),
 			'wp_fusion'              => array(
 				'icon'        => 'tag',
-				'description' => __( 'CRM tags, lists, and automation via WP Fusion.', 'aegis' ),
+				'description' => __( 'CRM tags and lists via WP Fusion.', 'aegis' ),
 			),
 		);
 	}

@@ -19,7 +19,7 @@ Plugin-specific extras are **not** on this page. They sit under the matching plu
 | **Integrations → LMS** | LearnDash, LifterLMS, Sensei enrollment/completion/progress (and quiz/group/membership where listed) |
 | **Integrations → Forms** | Fluent Forms submissions; Fluent Booking |
 | **Integrations → Developer** | **ACF Field** and **Meta Box Field** visibility rules (show/hide a block from a field value). Distinct from Image Source ACF/Meta Box image fields. |
-| **Integrations → CRM** | WP Fusion tags and lists |
+| **Integrations → CRM** | WP Fusion tags, lists, and CRM logged-in. FluentCRM has no condition extras (Pro video events only). |
 
 | Section | Purpose |
 |---------|---------|
@@ -75,7 +75,7 @@ These extras are **Pro**. They are not visibility rules and are not Smart Logic 
 
 Render uses the block’s `context.postId` so Query Loop items resolve the loop post. The editor preview prefers that context over the template’s post ID. Empty ACF/Meta Box URLs are treated as no image.
 
-ACF and Meta Box stay disabled unless that plugin is installed **and** active. Content Image does not need a third-party plugin. **ACF Field** / **Meta Box Field** *visibility* extras stay on **Integrations → Developer**; they do not belong on this tab.
+ACF and Meta Box stay disabled unless that plugin is installed **and** active **and** the matching **Integrations → Developer** parent is on. Content Image does not need a third-party plugin. **ACF Field** / **Meta Box Field** *visibility* extras stay on **Integrations → Developer**; they do not belong on this tab.
 
 | Extra | What it does |
 |-------|----------------|
@@ -99,7 +99,7 @@ These extras remove HTML on the server when the visitor does not match. Turning 
 
 Smart Logic on posts, hook patterns, and snippets can use **User / Logged-in**, **User Role**, and **User Capability** when those extras are on. Those user fields only offer **is** / **is not**. Role values use the site's role list. Capability is a typed slug (`edit_posts`); spaces become underscores. User Meta and Schedule stay on the dedicated extras UI (and the Pro Conditions inspector for User Meta), not in Smart Logic.
 
-Plugin-specific condition defaults (WooCommerce, EDD, AffiliateWP, LMS, Fluent Forms, Fluent Booking, WP Fusion, ACF, Meta Box) are on **Aegis → Integrations**, on the matching category (E-commerce, LMS, Forms, Developer, CRM). Toggles stay disabled unless that plugin is installed **and** active.
+Plugin-specific condition defaults (WooCommerce, EDD, AffiliateWP, LMS, Fluent Forms, Fluent Booking, WP Fusion, ACF, Meta Box) are on **Aegis → Integrations**, on the matching category (E-commerce, LMS, Forms, Developer, CRM). Toggles stay disabled unless that plugin is installed and active **and** the parent integration is on. Saving with the parent off clears those extras.
 
 Saved preset libraries live at **Aegis → Presets** (Pro). See [[visibility-presets]].
 
@@ -137,13 +137,13 @@ Block visibility uses the framework **Visibility** block setting plus the plugin
 | Timezone | IANA zone for schedule extras; empty or non-IANA values use the site timezone (**Schedule**) |
 | Image source | Featured Image block source: content image, ACF, or Meta Box (**Image Source**, **Pro**) |
 | WooCommerce | Cart, customer history, product context (**Integrations → E-commerce**) |
-| Integration conditions | EDD (cart, customer, download), AffiliateWP (referral visit, affiliate account, earnings), LearnDash, LifterLMS, Sensei, Fluent Forms, Fluent Booking (**Integrations** categories; only when that plugin is installed and active) |
+| Integration conditions | EDD (cart, customer, download ID / `default`·`bundle` type), AffiliateWP (referral visit, affiliate account, earnings), LearnDash, LifterLMS, Sensei, Fluent Forms, Fluent Booking (**Integrations** categories; only when that plugin is installed and active) |
 | ACF / Meta Box fields | Pro field conditions on **Integrations → Developer** |
-| WP Fusion | CRM tags (has / has all / has not) and lists (**Integrations → CRM**) |
+| WP Fusion | CRM tags (has / has all / has not), lists, and CRM logged-in (**Integrations → CRM**) |
 
 ## Pro Query Conditions
 
-Advanced block-level query conditions (cookies, ACF, Meta Box, referral URL, WooCommerce customer history, EDD customer/download, AffiliateWP referral/affiliate/earnings, WP Fusion lists, etc.) require **Aegis Pro**. See [[../../aegis-pro/docs/features/query-conditions|Query Conditions]].
+Advanced block-level query conditions (cookies, ACF, Meta Box, referral URL, WooCommerce customer history, EDD customer/download, AffiliateWP referral/affiliate/earnings, WP Fusion tags/lists/CRM logged-in, etc.) require **Aegis Pro**. See [[../../aegis-pro/docs/features/query-conditions|Query Conditions]].
 
 ## Page-Level Conditions
 
@@ -161,8 +161,9 @@ Post and page visibility uses `_aegis_conditions` post meta on `core/post-conten
 | User Capability | **User → User Capability** (**is** / **is not**; typed slug such as `edit_posts`) |
 | Page / URL | **Visibility → Advanced Location** (Pro) |
 | Query Parameter | **Visibility → URL Query String** |
-| WP Fusion Tag | **Integrations → CRM → CRM Tags** |
-| WP Fusion List | **Integrations → CRM → CRM Lists** |
+| WP Fusion Tag | **Integrations → CRM → CRM Tags** (**is** / **is not**; catalog select. A stored ID missing from the catalog still appears as **(saved)**. An empty tag with **is** matches nobody; with **is not** it matches everyone, same as an empty user role) |
+| WP Fusion List | **Integrations → CRM → CRM Lists** (**is** / **is not**; catalog select with the same **(saved)** and empty-value behavior. Membership uses CRM list APIs when WP Fusion exposes them, not `wpf_has_tag()` alone) |
+| WP Fusion Logged-in (CRM) | **Integrations → CRM → CRM Tags** or **CRM Lists** (**is** / **is not**; `wpf_is_user_logged_in()`, including auto-login. This is not WordPress **User / Logged-in**) |
 
 ## Performance
 

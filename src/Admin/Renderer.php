@@ -55,6 +55,55 @@ class Renderer {
 	}
 
 	/**
+	 * Absolute URL for a third-party brand SVG, or empty when missing.
+	 *
+	 * Files live in assets/admin/images/plugins/ or assets/admin/images/services/.
+	 */
+	public static function get_plugin_brand_icon_url( string $brand ): string {
+		$brand = sanitize_file_name( $brand );
+
+		if ( $brand === '' || $brand === '.' || $brand === '..' ) {
+			return '';
+		}
+
+		foreach ( array( 'plugins', 'services' ) as $folder ) {
+			$relative = 'assets/admin/images/' . $folder . '/' . $brand . '.svg';
+			$path     = \Aegis\Plugin\DIR . $relative;
+
+			if ( is_readable( $path ) ) {
+				return plugins_url( $relative, \Aegis\Plugin\FILE );
+			}
+		}
+
+		return '';
+	}
+
+	/**
+	 * Output a dashicon or masked plugin brand mark (currentColor).
+	 *
+	 * @param string $icon  Dashicon slug fallback.
+	 * @param string $brand Optional brand file slug (without .svg).
+	 */
+	public function render_ui_icon( string $icon = '', string $brand = '' ): void {
+		$url = $brand !== '' ? self::get_plugin_brand_icon_url( $brand ) : '';
+
+		if ( $url !== '' ) {
+			printf(
+				'<span class="aegis-plugin-icon" style="-webkit-mask-image:url(%1$s);mask-image:url(%1$s)" aria-hidden="true"></span>',
+				esc_url( $url )
+			);
+			return;
+		}
+
+		if ( $icon !== '' ) {
+			printf(
+				'<span class="dashicons dashicons-%s" aria-hidden="true"></span>',
+				esc_attr( $icon )
+			);
+		}
+	}
+
+	/**
 	 * Render the full-bleed Aegis header (identity, current screen, actions).
 	 *
 	 * @return void
@@ -582,9 +631,10 @@ class Renderer {
 	 * @param string $plugin_check Plugin check identifier.
 	 * @param string $icon         Dashicon name.
 	 * @param string $option_name  Option name to read defaults from.
+	 * @param string $brand        Optional brand SVG slug under assets/admin/images/plugins/.
 	 * @return void
 	 */
-	public function render_integration_toggle( string $key, string $label, string $desc, array $options, string $plugin_check = '', string $icon = 'admin-plugins', string $option_name = SettingsRepository::INTEGRATIONS_OPTION ): void {
+	public function render_integration_toggle( string $key, string $label, string $desc, array $options, string $plugin_check = '', string $icon = 'admin-plugins', string $option_name = SettingsRepository::INTEGRATIONS_OPTION, string $brand = '' ): void {
 		$defaults      = class_exists( '\Aegis\Plugin\Integrations\Settings' )
 			? \Aegis\Plugin\Integrations\Settings::INTEGRATION_DEFAULTS
 			: ( class_exists( \Aegis\Plugin\Settings\Repository::class )
@@ -599,7 +649,7 @@ class Renderer {
 		<div class="aegis-toggle-card <?php echo ! $is_installed ? 'aegis-toggle-disabled' : ''; ?>">
 			<div class="aegis-toggle-info">
 				<div class="aegis-toggle-icon">
-					<span class="dashicons dashicons-<?php echo esc_attr( $icon ); ?>"></span>
+					<?php $this->render_ui_icon( $icon, $brand ); ?>
 				</div>
 				<div class="aegis-toggle-text">
 					<h3>
@@ -759,35 +809,41 @@ class Renderer {
 		<?php endif; ?>
 		<?php
 		// Co-Authors Plus extras — gated on the plugin and parent integration.
-		if ( $key === 'co_authors_plus' && defined( 'Aegis\\Plugin\\VERSION' ) ) :
+		if ( $key === 'co_authors_plus' ) :
 			$pro_active          = $this->is_aegis_pro_active();
 			$cap_locked          = ! $is_installed || ! $pro_active || ! $is_enabled;
+			$cap_schema_locked   = ! $is_installed || ! $is_enabled;
+			$cap_schema_checked  = ! $cap_schema_locked && ( $options['cap_author_schema'] ?? false );
 			$cap_social_checked  = ! $cap_locked && ( $options['cap_social_links'] ?? false );
 			$cap_roles_checked   = ! $cap_locked && ( $options['cap_role_badges'] ?? false );
 			$cap_pattern_options = get_option( 'aegis_pattern_control', array() );
 			$cap_keep_patterns   = ! $cap_locked && ( $cap_pattern_options['coauthors_keep_patterns'] ?? false );
 			?>
 		<div class="aegis-toggle-suboptions">
-			<div class="aegis-toggle-card aegis-toggle-subcard aegis-toggle-subcard-accent">
-				<div class="aegis-toggle-info">
-					<div class="aegis-toggle-icon">
-						<span class="dashicons dashicons-info"></span>
-					</div>
-					<div class="aegis-toggle-text">
-						<p style="margin:0;"><?php esc_html_e( 'Co-Authors Plus integration is provided by the Aegis plugin with improved guest author support.', 'aegis' ); ?></p>
-					</div>
-				</div>
-			</div>
-			<div class="aegis-toggle-card aegis-toggle-subcard">
+			<?php
+			$cap_schema_key = 'cap_author_schema';
+			?>
+			<div class="aegis-toggle-card aegis-toggle-subcard aegis-toggle-skip-bulk <?php echo $cap_schema_locked ? 'aegis-toggle-disabled' : ''; ?>">
 				<div class="aegis-toggle-info">
 					<div class="aegis-toggle-icon">
 						<span class="dashicons dashicons-admin-site-alt3"></span>
 					</div>
 					<div class="aegis-toggle-text">
-						<h3><?php esc_html_e( 'Author Schema', 'aegis' ); ?></h3>
-						<p><?php esc_html_e( 'Outputs JSON-LD Person schema for each co-author on singular posts.', 'aegis' ); ?></p>
+						<h3>
+							<?php esc_html_e( 'Author Schema', 'aegis' ); ?>
+							<?php if ( ! $is_installed ) : ?>
+							<span class="aegis-plugin-status <?php echo esc_attr( $plugin_status['class'] ); ?>">
+								<?php echo esc_html( $plugin_status['label'] ); ?>
+							</span>
+							<?php endif; ?>
+						</h3>
+						<p><?php esc_html_e( 'Output JSON-LD Person schema for each co-author on singular Co-Authors Plus content. Leave this off if Yoast, Rank Math, or another SEO plugin already outputs author schema. Enable All does not turn this extra on.', 'aegis' ); ?></p>
 					</div>
 				</div>
+				<label class="aegis-toggle">
+					<input type="checkbox" name="<?php echo esc_attr( $option_name . "[{$cap_schema_key}]" ); ?>" value="1" <?php checked( $cap_schema_checked ); ?> <?php disabled( $cap_schema_locked ); ?>>
+					<span class="aegis-toggle-slider"></span>
+				</label>
 			</div>
 
 			<?php
@@ -813,7 +869,7 @@ class Renderer {
 							</span>
 							<?php endif; ?>
 						</h3>
-						<p><?php esc_html_e( 'Display social media links for each guest author (Facebook, LinkedIn, GitHub, Instagram, Bluesky, Website).', 'aegis' ); ?></p>
+						<p><?php esc_html_e( 'Display social media links for each co-author (Facebook, LinkedIn, GitHub, Instagram, Bluesky, Website). Guest authors and WordPress users both have profile fields.', 'aegis' ); ?></p>
 					</div>
 				</div>
 				<label class="aegis-toggle">
@@ -845,7 +901,7 @@ class Renderer {
 							</span>
 							<?php endif; ?>
 						</h3>
-						<p><?php esc_html_e( 'Show contribution role badges below author names (e.g., Researcher, Editor, Photographer).', 'aegis' ); ?></p>
+						<p><?php esc_html_e( 'Show contribution role badges below author names (e.g., Researcher, Editor, Photographer). Guest authors and WordPress users both have a role field.', 'aegis' ); ?></p>
 					</div>
 				</div>
 				<label class="aegis-toggle">
@@ -1110,9 +1166,10 @@ class Renderer {
 	 * @param bool   $show_bulk_actions Whether to show bulk action buttons.
 	 * @param string $icon             Optional dashicon name for the title.
 	 * @param string $plugin_check     Optional Integrations Registry key for a plugin-gated section.
+	 * @param string $brand            Optional brand SVG slug for the title icon.
 	 * @return void
 	 */
-	public function render_section_header( string $title, string $description, bool $show_bulk_actions = true, string $icon = '', string $plugin_check = '' ): void {
+	public function render_section_header( string $title, string $description, bool $show_bulk_actions = true, string $icon = '', string $plugin_check = '', string $brand = '' ): void {
 		$pro_installed = $this->is_aegis_pro_active() ? 'true' : 'false';
 		$plugin_status = $plugin_check !== '' ? $this->get_plugin_status( $plugin_check ) : array( 'class' => '', 'label' => '' );
 		$plugin_active = $plugin_check === '' || $plugin_status['class'] === 'active';
@@ -1137,9 +1194,7 @@ class Renderer {
 		<div class="aegis-section-header">
 			<div class="aegis-section-title">
 				<h2>
-					<?php if ( $icon ) : ?>
-					<span class="dashicons dashicons-<?php echo esc_attr( $icon ); ?>"></span>
-					<?php endif; ?>
+					<?php $this->render_ui_icon( $icon, $brand ); ?>
 					<?php echo esc_html( $title ); ?>
 					<?php if ( $plugin_check !== '' ) : ?>
 						<span class="aegis-plugin-status <?php echo esc_attr( $plugin_status['class'] ); ?>">
@@ -1162,16 +1217,19 @@ class Renderer {
 	/**
 	 * Dark stacked subheading used to split groups inside one settings tab.
 	 *
-	 * Matches Connectors → BunnyCDN API / CDN / Storage headers.
+	 * Matches Connectors → BunnyCDN API / CDN / Stream headers.
+	 *
+	 * @param string $title       Heading text.
+	 * @param string $description Supporting copy.
+	 * @param string $icon        Dashicon slug fallback.
+	 * @param string $brand       Optional brand SVG slug.
 	 */
-	public function render_stack_header( string $title, string $description, string $icon = '' ): void {
+	public function render_stack_header( string $title, string $description, string $icon = '', string $brand = '' ): void {
 		?>
 		<div class="aegis-api-section-header">
 			<div class="aegis-api-config-title">
 				<div class="aegis-api-config-heading">
-					<?php if ( $icon !== '' ) : ?>
-					<span class="dashicons dashicons-<?php echo esc_attr( $icon ); ?>"></span>
-					<?php endif; ?>
+					<?php $this->render_ui_icon( $icon, $brand ); ?>
 					<span><?php echo esc_html( $title ); ?></span>
 				</div>
 				<p><?php echo esc_html( $description ); ?></p>

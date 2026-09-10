@@ -576,10 +576,15 @@ final class AdminPage {
 		$plugin_name = $integration['label'] ?? esc_html__( 'your SEO plugin', 'aegis' );
 
 		$messages = [
+			/* translators: %s: SEO plugin name */
 			'faq'            => __( '%s handles FAQ Schema. Disable in Integrations to use built-in schema.', 'aegis' ),
+			/* translators: %s: SEO plugin name */
 			'event'          => __( '%s handles Event Schema. Disable in Integrations to use built-in schema.', 'aegis' ),
+			/* translators: %s: SEO plugin name */
 			'local_business' => __( '%s handles Local Business Schema. Disable in Integrations to use built-in schema.', 'aegis' ),
+			/* translators: %s: SEO plugin name */
 			'video'          => __( '%s handles Video Schema. Disable in Integrations to use built-in schema.', 'aegis' ),
+			/* translators: %s: SEO plugin name */
 			'video_sitemap'  => __( 'Video sitemap is handled by %s. Disable Video Sitemap in Integrations to control it from this extra.', 'aegis' ),
 		];
 

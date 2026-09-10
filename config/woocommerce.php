@@ -8,8 +8,8 @@
 
 declare( strict_types=1 );
 
+use Aegis\Plugin\Integrations\WooCommerce as WooCommerceHelper;
 use Aegis\Plugin\Integrations\WooCommerce\MultiStepCheckout;
-use Aegis\Plugin\Settings\Repository;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -18,15 +18,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action(
 	'init',
 	static function (): void {
-		if ( ! class_exists( 'WooCommerce' ) ) {
+		if ( ! WooCommerceHelper::is_enabled() ) {
 			return;
 		}
 
-		Repository::boot_if_enabled(
-			'woocommerce',
-			static function (): void {
-				( new MultiStepCheckout() )->init();
-			}
-		);
+		( new MultiStepCheckout() )->init();
 	}
 );

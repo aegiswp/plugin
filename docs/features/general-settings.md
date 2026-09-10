@@ -21,9 +21,10 @@ The global export (`wp_ajax_aegis_export_settings`) includes these groups:
 | Group | Contents |
 |-------|----------|
 | `conditional_logic` | Conditionals feature toggles |
-| `integrations` | Integration toggle states and pattern-control extras |
+| `integrations` | Integration toggle states (`aegis_integrations`) |
 | `blocks` | Block feature toggles |
 | `general` | General settings including SVG upload |
+| `analytics` | Connectors analytics providers (`aegis_analytics`) |
 
 **Version:** 1.0.0
 
@@ -32,17 +33,17 @@ The global export (`wp_ajax_aegis_export_settings`) includes these groups:
 The following are **excluded** from the global export bundle:
 
 - Code snippets (stored in `uploads/aegis-snippets/`)
-- Analytics credentials (`aegis_analytics` option)
-- BunnyCDN API keys (`aegis_bunnycdn` option)
-- Google Maps API keys
+- BunnyCDN API keys (`aegis_bunnycdn` option — Account / Stream / CDN token / webhook signing secrets)
+- BunnyCDN per-video transcribe intent (`aegis_bunny_transcribe_intent`)
+- Google Maps API keys (`aegis_google_maps`)
 - Pattern control options (`aegis_pattern_control`)
 - Per-location snippet enable flags
 
-Export/import snippets and analytics separately through their respective admin pages where available.
+Export/import snippets separately through their respective admin pages where available. Configure BunnyCDN credentials at **Aegis → Connectors → BunnyCDN** — see [[connectors#bunnycdn]]. **Reset Defaults** on Connectors clears those BunnyCDN/Maps credentials even though export omits them.
 
 ### Reset
 
-Reset actions are scoped per group: `conditionals`, `integrations`, `blocks`, `performance`, `general`. Reset restores **all-off** defaults (features are opt-in). Integrations reset also clears `aegis_pattern_control`. Blocks reset leaves Performance keys unchanged.
+Reset actions are scoped per group: `conditionals`, `integrations`, `connectors`, `blocks`, `performance`, `general`. Reset restores **all-off** defaults (features are opt-in). The `integrations` group is used on **Integrations** and also clears `aegis_pattern_control`. **Connectors** uses `connectors`: BunnyCDN/Maps toggles + extras, BunnyCDN/Maps credentials, and `aegis_analytics` (plus local script proxy cleanup). Blocks reset leaves Performance keys unchanged.
 
 ## Data / Uninstall
 

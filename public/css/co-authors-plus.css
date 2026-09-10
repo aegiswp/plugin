@@ -73,6 +73,11 @@
 	margin: 0;
 }
 
+/* CAP extras placeholder (Pro social links) */
+.aegis-coauthor-extras:empty {
+	display: none;
+}
+
 /* CAP block wrapper */
 .wp-block-co-authors-block {
 	display: flex;

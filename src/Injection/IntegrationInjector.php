@@ -15,6 +15,9 @@ use function add_action;
 use function add_filter;
 use function do_action;
 use function is_singular;
+use function is_string;
+use function ob_get_clean;
+use function ob_start;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -32,6 +35,7 @@ final class IntegrationInjector {
 		$this->register_woocommerce();
 		$this->register_edd();
 		$this->register_affiliate_wp();
+		$this->register_learndash();
 		$this->register_lifter_lms();
 		$this->register_sensei_lms();
 		$this->register_fluent_forms();
@@ -40,6 +44,7 @@ final class IntegrationInjector {
 		$this->register_bbpress();
 		$this->register_coauthors();
 		$this->register_map_block();
+		$this->register_video_block();
 	}
 
 	private function register_woocommerce(): void {
@@ -159,6 +164,107 @@ final class IntegrationInjector {
 		);
 	}
 
+	private function register_learndash(): void {
+		Repository::boot_if_enabled(
+			'learndash',
+			static function (): void {
+				add_action(
+					'learndash-course-before',
+					static function ( $post_id = 0, $course_id = 0, $user_id = 0 ): void {
+						do_action( 'aegis_before_learndash_course', $post_id, $course_id, $user_id );
+					},
+					5,
+					3
+				);
+
+				add_action(
+					'learndash-course-after',
+					static function ( $post_id = 0, $course_id = 0, $user_id = 0 ): void {
+						do_action( 'aegis_after_learndash_course', $post_id, $course_id, $user_id );
+					},
+					99,
+					3
+				);
+
+				add_action(
+					'learndash-lesson-before',
+					static function ( $post_id = 0, $course_id = 0, $user_id = 0 ): void {
+						do_action( 'aegis_before_learndash_lesson', $post_id, $course_id, $user_id );
+					},
+					5,
+					3
+				);
+
+				add_action(
+					'learndash-lesson-after',
+					static function ( $post_id = 0, $course_id = 0, $user_id = 0 ): void {
+						do_action( 'aegis_after_learndash_lesson', $post_id, $course_id, $user_id );
+					},
+					99,
+					3
+				);
+
+				add_action(
+					'learndash-topic-before',
+					static function ( $post_id = 0, $course_id = 0, $user_id = 0 ): void {
+						do_action( 'aegis_before_learndash_topic', $post_id, $course_id, $user_id );
+					},
+					5,
+					3
+				);
+
+				add_action(
+					'learndash-topic-after',
+					static function ( $post_id = 0, $course_id = 0, $user_id = 0 ): void {
+						do_action( 'aegis_after_learndash_topic', $post_id, $course_id, $user_id );
+					},
+					99,
+					3
+				);
+
+				add_action(
+					'learndash-quiz-before',
+					static function ( $quiz_id = 0, $course_id = 0, $user_id = 0 ): void {
+						do_action( 'aegis_before_learndash_quiz', $quiz_id, $course_id, $user_id );
+					},
+					5,
+					3
+				);
+
+				add_action(
+					'learndash-quiz-after',
+					static function ( $quiz_id = 0, $course_id = 0, $user_id = 0 ): void {
+						do_action( 'aegis_after_learndash_quiz', $quiz_id, $course_id, $user_id );
+					},
+					99,
+					3
+				);
+
+				add_action(
+					'learndash-focus-template-start',
+					static function ( $course_id = 0 ): void {
+						if ( ! did_action( 'aegis_learndash_focus_header' ) ) {
+							do_action( 'aegis_learndash_focus_header', $course_id );
+						}
+					},
+					5,
+					1
+				);
+
+				add_action(
+					'learndash-focus-template-end',
+					static function ( $course_id = 0 ): void {
+						if ( ! did_action( 'aegis_learndash_focus_footer' ) ) {
+							do_action( 'aegis_learndash_focus_footer', $course_id );
+						}
+					},
+					99,
+					1
+				);
+			}
+		);
+	}
+
 	private function register_lifter_lms(): void {
 		Repository::boot_if_enabled(
 			'lifter_lms',
@@ -166,8 +272,11 @@ final class IntegrationInjector {
 				add_action(
 					'lifterlms_before_main_content',
 					static function (): void {
+						$post_id = (int) ( get_the_ID() ?: 0 );
 						if ( is_singular( 'course' ) ) {
-							do_action( 'aegis_before_llms_course' );
+							do_action( 'aegis_before_llms_course', $post_id );
+						} elseif ( is_singular( 'lesson' ) ) {
+							do_action( 'aegis_before_llms_lesson', $post_id );
 						}
 					},
 					5
@@ -176,8 +285,11 @@ final class IntegrationInjector {
 				add_action(
 					'lifterlms_after_main_content',
 					static function (): void {
+						$post_id = (int) ( get_the_ID() ?: 0 );
 						if ( is_singular( 'course' ) ) {
-							do_action( 'aegis_after_llms_course' );
+							do_action( 'aegis_after_llms_course', $post_id );
+						} elseif ( is_singular( 'lesson' ) ) {
+							do_action( 'aegis_after_llms_lesson', $post_id );
 						}
 					},
 					99
@@ -193,8 +305,13 @@ final class IntegrationInjector {
 				add_action(
 					'sensei_before_main_content',
 					static function (): void {
-						if ( is_singular( 'lesson' ) ) {
-							do_action( 'aegis_before_sensei_lesson' );
+						$post_id = (int) ( get_the_ID() ?: 0 );
+						if ( is_singular( 'course' ) ) {
+							do_action( 'aegis_before_sensei_course', $post_id );
+						} elseif ( is_singular( 'lesson' ) ) {
+							do_action( 'aegis_before_sensei_lesson', $post_id );
+						} elseif ( is_singular( 'quiz' ) ) {
+							do_action( 'aegis_before_sensei_quiz', $post_id );
 						}
 					},
 					5
@@ -203,8 +320,13 @@ final class IntegrationInjector {
 				add_action(
 					'sensei_after_main_content',
 					static function (): void {
-						if ( is_singular( 'lesson' ) ) {
-							do_action( 'aegis_after_sensei_lesson' );
+						$post_id = (int) ( get_the_ID() ?: 0 );
+						if ( is_singular( 'course' ) ) {
+							do_action( 'aegis_after_sensei_course', $post_id );
+						} elseif ( is_singular( 'lesson' ) ) {
+							do_action( 'aegis_after_sensei_lesson', $post_id );
+						} elseif ( is_singular( 'quiz' ) ) {
+							do_action( 'aegis_after_sensei_quiz', $post_id );
 						}
 					},
 					99
@@ -241,24 +363,24 @@ final class IntegrationInjector {
 			'gravity_forms',
 			static function (): void {
 				add_filter(
-					'gform_pre_render',
-					static function ( $form ) {
-						do_action( 'aegis_before_gform' );
-						return $form;
-					},
-					5
-				);
-
-				add_filter(
 					'gform_get_form_filter',
-					static function ( string $markup ): string {
+					static function ( $markup, $form = null ) {
+						if ( ! is_string( $markup ) || $markup === '' ) {
+							return $markup;
+						}
+
 						ob_start();
-						do_action( 'aegis_after_gform' );
+						do_action( 'aegis_before_gform', $form );
+						$before = (string) ob_get_clean();
+
+						ob_start();
+						do_action( 'aegis_after_gform', $form );
 						$after = (string) ob_get_clean();
 
-						return $markup . $after;
+						return $before . $markup . $after;
 					},
-					99
+					99,
+					2
 				);
 			}
 		);
@@ -270,18 +392,20 @@ final class IntegrationInjector {
 			static function (): void {
 				add_action(
 					'ninja_forms_before_form_display',
-					static function (): void {
-						do_action( 'aegis_before_nf_form' );
+					static function ( $form_id = 0 ): void {
+						do_action( 'aegis_before_nf_form', $form_id );
 					},
-					5
+					5,
+					1
 				);
 
 				add_action(
 					'ninja_forms_after_form_display',
-					static function (): void {
-						do_action( 'aegis_after_nf_form' );
+					static function ( $form_id = 0 ): void {
+						do_action( 'aegis_after_nf_form', $form_id );
 					},
-					99
+					99,
+					1
 				);
 			}
 		);
@@ -295,6 +419,22 @@ final class IntegrationInjector {
 					'bbp_template_before_forums_loop',
 					static function (): void {
 						do_action( 'aegis_before_bbpress_forum' );
+					},
+					5
+				);
+
+				add_action(
+					'bbp_template_after_forums_loop',
+					static function (): void {
+						do_action( 'aegis_after_bbpress_forum' );
+					},
+					99
+				);
+
+				add_action(
+					'bbp_template_before_single_topic',
+					static function (): void {
+						do_action( 'aegis_before_bbpress_topic' );
 					},
 					5
 				);
@@ -314,22 +454,20 @@ final class IntegrationInjector {
 		Repository::boot_if_enabled(
 			'co_authors_plus',
 			static function (): void {
-				add_filter(
-					'render_block_core/post-author',
-					static function ( string $content ): string {
-						ob_start();
-						do_action( 'aegis_before_post_author' );
-						$before = (string) ob_get_clean();
+				$wrap = static function ( string $content ): string {
+					ob_start();
+					do_action( 'aegis_before_post_author' );
+					$before = (string) ob_get_clean();
 
-						ob_start();
-						do_action( 'aegis_after_post_author' );
-						$after = (string) ob_get_clean();
+					ob_start();
+					do_action( 'aegis_after_post_author' );
+					$after = (string) ob_get_clean();
 
-						return $before . $content . $after;
-					},
-					4,
-					1
-				);
+					return $before . $content . $after;
+				};
+
+				add_filter( 'render_block_core/post-author', $wrap, 99, 1 );
+				add_filter( 'render_block_co-authors/block', $wrap, 99, 1 );
 			}
 		);
 	}
@@ -352,6 +490,33 @@ final class IntegrationInjector {
 						return $before . $content . $after;
 					},
 					4
+				);
+			}
+		);
+	}
+
+	/**
+	 * Wrap core/video after BunnyCDN (and other video filters) so snippets
+	 * attach to the final player markup when Connectors → BunnyCDN is on.
+	 */
+	private function register_video_block(): void {
+		Repository::boot_if_enabled(
+			'bunny_cdn',
+			static function (): void {
+				add_filter(
+					'render_block_core/video',
+					static function ( string $content ): string {
+						ob_start();
+						do_action( 'aegis_before_video_block' );
+						$before = (string) ob_get_clean();
+
+						ob_start();
+						do_action( 'aegis_after_video_block' );
+						$after = (string) ob_get_clean();
+
+						return $before . $content . $after;
+					},
+					99
 				);
 			}
 		);

@@ -21,8 +21,12 @@ use function add_query_arg;
 use function class_exists;
 use function current_user_can;
 use function file_exists;
+use function floor;
 use function get_current_user_id;
 use function get_transient;
+use function home_url;
+use function is_array;
+use function is_string;
 use function is_wp_error;
 use function plugin_dir_path;
 use function register_block_type;
@@ -30,12 +34,16 @@ use function register_rest_route;
 use function rest_url;
 use function sanitize_text_field;
 use function set_transient;
+use function strlen;
+use function time;
+use function trim;
 use function wp_create_nonce;
 use function wp_json_encode;
 use function wp_localize_script;
-use function wp_script_is;
 use function wp_remote_get;
 use function wp_remote_retrieve_body;
+use function wp_remote_retrieve_response_code;
+use function wp_script_is;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -169,7 +177,13 @@ final class Block {
 				'args'                => array(
 					'address' => array(
 						'required'          => true,
+						'type'              => 'string',
 						'sanitize_callback' => 'sanitize_text_field',
+						'validate_callback' => static function ( $value ): bool {
+							$value = is_string( $value ) ? trim( $value ) : '';
+
+							return $value !== '' && strlen( $value ) <= 200;
+						},
 					),
 				),
 			)
@@ -186,7 +200,7 @@ final class Block {
 		if ( ! IntegrationsSettings::is_integration_enabled( 'google_maps' ) ) {
 			return new \WP_Error(
 				'integration_disabled',
-				'Google Maps integration is disabled.',
+				__( 'Google Maps integration is disabled.', 'aegis' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -196,26 +210,36 @@ final class Block {
 		if ( $api_key === '' ) {
 			return new \WP_Error(
 				'no_api_key',
-				'Google Maps server API key is not configured.',
+				__( 'Google Maps server API key is not configured.', 'aegis' ),
 				array( 'status' => 400 )
 			);
 		}
 
-		$user_id = get_current_user_id();
-		$limit_key = 'aegis_map_geocode_' . $user_id;
+		$address = trim( (string) $request->get_param( 'address' ) );
+
+		if ( $address === '' || strlen( $address ) > 200 ) {
+			return new \WP_Error(
+				'invalid_address',
+				__( 'Provide a valid address (max 200 characters).', 'aegis' ),
+				array( 'status' => 400 )
+			);
+		}
+
+		$user_id   = get_current_user_id();
+		$bucket    = (string) (int) floor( time() / MINUTE_IN_SECONDS );
+		$limit_key = 'aegis_map_geocode_' . $user_id . '_' . $bucket;
 		$count     = (int) get_transient( $limit_key );
 
-		if ( $count >= 60 ) {
+		if ( $count >= 20 ) {
 			return new \WP_Error(
 				'rate_limited',
-				'Geocoding rate limit exceeded. Please try again later.',
+				__( 'Geocoding rate limit exceeded. Please try again later.', 'aegis' ),
 				array( 'status' => 429 )
 			);
 		}
 
-		set_transient( $limit_key, $count + 1, 15 * MINUTE_IN_SECONDS );
+		set_transient( $limit_key, $count + 1, 2 * MINUTE_IN_SECONDS );
 
-		$address  = $request->get_param( 'address' );
 		$response = wp_remote_get(
 			add_query_arg(
 				array(
@@ -224,14 +248,32 @@ final class Block {
 				),
 				'https://maps.googleapis.com/maps/api/geocode/json'
 			),
-			array( 'timeout' => 10 )
+			array(
+				'timeout' => 10,
+				'headers' => array(
+					'Referer' => home_url( '/' ),
+				),
+			)
 		);
 
 		if ( is_wp_error( $response ) ) {
-			return $response;
+			return new \WP_Error(
+				'geocode_failed',
+				__( 'Geocoding failed. Check the address and API key configuration.', 'aegis' ),
+				array( 'status' => 400 )
+			);
 		}
 
+		$code = (int) wp_remote_retrieve_response_code( $response );
 		$body = json_decode( wp_remote_retrieve_body( $response ), true );
+
+		if ( $code >= 400 || ! is_array( $body ) ) {
+			return new \WP_Error(
+				'geocode_failed',
+				__( 'Geocoding failed. Check the address and API key configuration.', 'aegis' ),
+				array( 'status' => 400 )
+			);
+		}
 
 		if ( ! isset( $body['status'] ) || $body['status'] !== 'OK' ) {
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
@@ -256,16 +298,16 @@ final class Block {
 		if ( ! $location ) {
 			return new \WP_Error(
 				'no_results',
-				'No results found for the given address.',
+				__( 'No results found for the given address.', 'aegis' ),
 				array( 'status' => 404 )
 			);
 		}
 
 		return new \WP_REST_Response(
 			array(
-				'lat'               => $location['lat'],
-				'lng'               => $location['lng'],
-				'formatted_address' => $body['results'][0]['formatted_address'] ?? '',
+				'lat'               => (float) $location['lat'],
+				'lng'               => (float) $location['lng'],
+				'formatted_address' => sanitize_text_field( (string) ( $body['results'][0]['formatted_address'] ?? '' ) ),
 			)
 		);
 	}
@@ -292,14 +334,13 @@ final class Block {
 			$handle,
 			'aegisMapEditor',
 			array(
-				'restUrl'           => rest_url( 'aegis/v1/map/geocode' ),
-				'restNonce'         => wp_create_nonce( 'wp_rest' ),
-				'isPro'             => class_exists( 'Aegis\\Pro\\Blocks\\Map' ),
-				'hasBrowserKey'     => $browser_key !== '',
-				'browserKey'        => $browser_key,
-				'hasServerGeocode'  => $server_key !== '',
-				'googleMapsEnabled' => $google_enabled,
-				'features'          => array(
+				'restUrl'          => rest_url( 'aegis/v1/map/geocode' ),
+				'restNonce'        => wp_create_nonce( 'wp_rest' ),
+				'isPro'            => class_exists( 'Aegis\\Pro\\Blocks\\Map' ),
+				'hasBrowserKey'    => $browser_key !== '',
+				'browserKey'       => $browser_key,
+				'hasServerGeocode' => $server_key !== '',
+				'features'         => array(
 					'markers'         => ServiceProvider::is_block_enabled( 'map_markers' ),
 					'styles'          => ServiceProvider::is_block_enabled( 'map_styles' ),
 					'controls'        => ServiceProvider::is_block_enabled( 'map_controls' ),

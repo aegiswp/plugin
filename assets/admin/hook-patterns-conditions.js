@@ -757,22 +757,22 @@
 
 	// --- ACF Field ---
 	if ( isEnabled( 'pro_conditions', 'acf_field' ) ) {
-	container.appendChild( buildSection( 'acf-field', 'ACF Field', function ( body ) {
+	container.appendChild( buildSection( 'acf-field', __( 'ACF Field', 'aegis' ), function ( body ) {
 		buildRuleList( body, 'acfRules', 'acfLogic', 'acfRelation', [
-			{ key: 'field', type: 'text', label: 'Field Name', placeholder: 'field_name' },
-			{ key: 'operator', type: 'select', label: 'Operator', options: extendedOperators },
-			{ key: 'value', type: 'text', label: 'Value', placeholder: 'value' },
+			{ key: 'field', type: 'text', label: __( 'Field Name', 'aegis' ), placeholder: 'field_name' },
+			{ key: 'operator', type: 'select', label: __( 'Operator', 'aegis' ), options: extendedOperators },
+			{ key: 'value', type: 'text', label: __( 'Value', 'aegis' ), placeholder: 'value' },
 		], { field: '', operator: 'is', value: '' } );
 	}, { keys: [ 'acfRules' ] } ) );
 	}
 
 	// --- MetaBox Field ---
 	if ( isEnabled( 'pro_conditions', 'metabox_field' ) ) {
-	container.appendChild( buildSection( 'metabox-field', 'MetaBox Field', function ( body ) {
+	container.appendChild( buildSection( 'metabox-field', __( 'Meta Box Field', 'aegis' ), function ( body ) {
 		buildRuleList( body, 'metaboxRules', 'metaboxLogic', 'metaboxRelation', [
-			{ key: 'field', type: 'text', label: 'Field ID', placeholder: 'field_id' },
-			{ key: 'operator', type: 'select', label: 'Operator', options: extendedOperators },
-			{ key: 'value', type: 'text', label: 'Value', placeholder: 'value' },
+			{ key: 'field', type: 'text', label: __( 'Field ID', 'aegis' ), placeholder: 'field_id' },
+			{ key: 'operator', type: 'select', label: __( 'Operator', 'aegis' ), options: extendedOperators },
+			{ key: 'value', type: 'text', label: __( 'Value', 'aegis' ), placeholder: 'value' },
 		], { field: '', operator: 'is', value: '' } );
 	}, { keys: [ 'metaboxRules' ] } ) );
 	}

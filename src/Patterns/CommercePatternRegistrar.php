@@ -10,6 +10,7 @@ declare( strict_types=1 );
 
 namespace Aegis\Plugin\Patterns;
 
+use Aegis\Plugin\Integrations\WooCommerce as WooCommerceHelper;
 use Aegis\Utilities\Pattern;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -38,7 +39,7 @@ final class CommercePatternRegistrar {
 	 * Whether WooCommerce is active.
 	 */
 	public static function is_woocommerce_active(): bool {
-		return class_exists( 'WooCommerce' );
+		return WooCommerceHelper::is_plugin_active();
 	}
 
 	/**

@@ -47,12 +47,12 @@ Offset and sticky-post handling have no extra of their own. They apply whenever 
 | Advanced Meta Query | Multiple meta clauses with AND/OR. |
 | Date Query | Relative ranges, after/before dates, or a specific year/month/day. |
 | Parent/Child Posts | Query children of the current or a specific post. |
-| ACF/MetaBox Integration | Field picker in Advanced Meta Query when ACF or Meta Box is active and that integration is on. |
+| ACF/MetaBox Integration | Field picker in Advanced Meta Query when ACF or Meta Box is active **and** that **Integrations → Developer** toggle is on. |
 | AJAX Pagination | Load more, infinite scroll, or AJAX page numbers. |
 | Frontend Filters | Taxonomy, search, and sort filters on the frontend. |
 | Masonry Layout | CSS or JS masonry grid. |
 | Carousel Layout | Slider with navigation, dots, autoplay, and loop. |
-| WooCommerce Integration | Product query filters (also requires the WooCommerce integration). |
+| WooCommerce Integration | Product query filters (also requires **Aegis → Integrations → E-commerce → WooCommerce** and WooCommerce active). Attributes still register when those are off so saved settings are not stripped. |
 
 **Query Loop Performance** (caching, lazy-load, skeleton, prefetch) lives at **Aegis → Performance**, not on the Blocks page. See [[../features/performance]].
 

@@ -12,6 +12,7 @@ namespace Aegis\Plugin\Snippets;
 
 use Aegis\Plugin\Injection\LocationRegistry;
 use Aegis\Plugin\Injection\Preview;
+use Aegis\Plugin\Integrations\WPFusion;
 use function __;
 use function add_action;
 use function add_filter;
@@ -231,6 +232,7 @@ final class AdminPage {
 					'copyUrl'           => __( 'Copy', 'aegis' ),
 					'confirmDelete'     => __( 'Delete this snippet? There is no undo.', 'aegis' ),
 					'confirmRegenerate' => __( 'Regenerate the Safe Mode URL? The old URL will stop working.', 'aegis' ),
+					/* translators: %d: number of inactive snippets */
 					'hiddenInactive'    => __( '%d inactive snippets hidden.', 'aegis' ),
 					'importFailed'      => __( 'Could not import snippets.', 'aegis' ),
 					'publishedLabel'    => __( 'Published', 'aegis' ),
@@ -1407,7 +1409,9 @@ final class AdminPage {
 				hasPro: <?php echo $has_pro ? 'true' : 'false'; ?>,
 				settings: <?php echo wp_json_encode( $cl_settings ); ?>,
 				roles: <?php echo wp_json_encode( $roles ); ?>,
-				postTypes: <?php echo wp_json_encode( array_values( get_post_types( array( 'public' => true ), 'names' ) ) ); ?>
+				postTypes: <?php echo wp_json_encode( array_values( get_post_types( array( 'public' => true ), 'names' ) ) ); ?>,
+				wpFusionTags: <?php echo wp_json_encode( class_exists( WPFusion::class ) ? WPFusion::editor_tags() : array() ); ?>,
+				wpFusionLists: <?php echo wp_json_encode( class_exists( WPFusion::class ) ? WPFusion::editor_lists() : array() ); ?>
 			};
 		</script>
 		<?php

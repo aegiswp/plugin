@@ -88,9 +88,10 @@ final class IntegrationsPanel {
 	 * Output Maps sidebar nav link.
 	 */
 	public function render_nav_item(): void {
+		$renderer = new \Aegis\Plugin\Admin\Renderer();
 		?>
 		<a href="#maps" class="aegis-nav-item">
-			<span class="dashicons dashicons-location"></span>
+			<?php $renderer->render_ui_icon( 'location', 'google-maps' ); ?>
 			<?php esc_html_e( 'Google Maps', 'aegis' ); ?>
 		</a>
 		<?php
@@ -102,10 +103,14 @@ final class IntegrationsPanel {
 	public function render_section(): void {
 		$google_maps_settings = Settings::get_settings();
 		$integrations         = IntegrationsSettings::get_settings();
+		$renderer             = new \Aegis\Plugin\Admin\Renderer();
 		?>
 		<section id="maps" class="aegis-settings-section">
 			<div class="aegis-settings-section-header">
-				<h2><?php esc_html_e( 'Google Maps', 'aegis' ); ?></h2>
+				<h2>
+					<?php $renderer->render_ui_icon( 'location', 'google-maps' ); ?>
+					<?php esc_html_e( 'Google Maps', 'aegis' ); ?>
+				</h2>
 				<p><?php esc_html_e( 'Google Maps API configuration for the Map block. Use separate browser and server keys in Google Cloud Console.', 'aegis' ); ?></p>
 			</div>
 
@@ -113,7 +118,7 @@ final class IntegrationsPanel {
 				<div class="aegis-toggle-card">
 					<div class="aegis-toggle-info">
 						<div class="aegis-toggle-icon">
-							<span class="dashicons dashicons-location"></span>
+							<?php $renderer->render_ui_icon( 'location', 'google-maps' ); ?>
 						</div>
 						<div class="aegis-toggle-text">
 							<h3><?php esc_html_e( 'Google Maps', 'aegis' ); ?></h3>
@@ -131,7 +136,7 @@ final class IntegrationsPanel {
 				<div class="aegis-api-config-header">
 					<div class="aegis-api-config-title">
 						<div class="aegis-api-config-heading">
-							<span class="dashicons dashicons-location"></span>
+							<?php $renderer->render_ui_icon( 'location', 'google-maps' ); ?>
 							<span><?php esc_html_e( 'Google Maps API', 'aegis' ); ?></span>
 						</div>
 						<p><?php esc_html_e( 'Browser and server keys from Google Cloud Console.', 'aegis' ); ?></p>
@@ -184,13 +189,17 @@ final class IntegrationsPanel {
 				<div class="aegis-settings-notice">
 					<p>
 						<strong><?php esc_html_e( 'Security Recommendation', 'aegis' ); ?></strong><br>
-						<?php esc_html_e( 'Create two separate keys: a browser key with HTTP referrer restrictions for frontend maps, and a server key with IP restrictions for geocoding. Enable only the Maps JavaScript, Static Maps, and Geocoding APIs.', 'aegis' ); ?>
+						<?php esc_html_e( 'Create two separate keys: a browser key with HTTP referrer restrictions (Maps JavaScript and Static Maps; optionally Directions for Pro routes), and a server key with IP restrictions for Geocoding only. Never enable Geocoding on the browser key, and never reuse the same key for both fields.', 'aegis' ); ?>
 					</p>
 				</div>
 
 				<div class="aegis-api-config-footer">
-					<?php $has_server_key = ( $google_maps_settings['server_api_key'] ?? '' ) !== ''; ?>
-					<button type="button" class="button button-primary aegis-save-google-maps">
+					<?php
+					$has_browser_key = ( $google_maps_settings['browser_api_key'] ?? '' ) !== '';
+					$has_server_key  = ( $google_maps_settings['server_api_key'] ?? '' ) !== '';
+					$has_any_key     = $has_browser_key || $has_server_key;
+					?>
+					<button type="button" class="button button-primary aegis-save-google-maps" <?php disabled( ! $has_any_key ); ?>>
 						<span class="dashicons dashicons-saved"></span>
 						<span class="aegis-button-label"><?php esc_html_e( 'Save API Settings', 'aegis' ); ?></span>
 					</button>
@@ -215,10 +224,6 @@ final class IntegrationsPanel {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'aegis' ) ) );
-		}
-
-		if ( ! IntegrationsSettings::is_integration_enabled( 'google_maps' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Google Maps integration is disabled.', 'aegis' ) ) );
 		}
 
 		$settings = isset( $_POST['settings'] ) ? wp_unslash( $_POST['settings'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
@@ -246,10 +251,6 @@ final class IntegrationsPanel {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'aegis' ) ) );
-		}
-
-		if ( ! IntegrationsSettings::is_integration_enabled( 'google_maps' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Google Maps integration is disabled.', 'aegis' ) ) );
 		}
 
 		$api_key = Settings::get_server_api_key();

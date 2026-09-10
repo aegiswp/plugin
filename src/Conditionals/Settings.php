@@ -390,10 +390,6 @@ final class Settings {
 			return false;
 		}
 
-		if ( $group === 'image_source' ) {
-			return true;
-		}
-
 		$plugin_check = self::plugin_check_for( $group, $key );
 
 		if ( $plugin_check !== '' && Registry::get( $plugin_check ) !== null && ! IntegrationsSettings::is_integration_enabled( $plugin_check ) ) {

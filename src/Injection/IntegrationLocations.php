@@ -70,6 +70,56 @@ final class IntegrationLocations {
 				'scope'    => 'frontend',
 				'requires' => 'affiliate_wp',
 			),
+			'aegis_before_learndash_course' => array(
+				'label'    => __( 'Before LearnDash course', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'learndash',
+			),
+			'aegis_after_learndash_course' => array(
+				'label'    => __( 'After LearnDash course', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'learndash',
+			),
+			'aegis_before_learndash_lesson' => array(
+				'label'    => __( 'Before LearnDash lesson', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'learndash',
+			),
+			'aegis_after_learndash_lesson' => array(
+				'label'    => __( 'After LearnDash lesson', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'learndash',
+			),
+			'aegis_before_learndash_topic' => array(
+				'label'    => __( 'Before LearnDash topic', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'learndash',
+			),
+			'aegis_after_learndash_topic' => array(
+				'label'    => __( 'After LearnDash topic', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'learndash',
+			),
+			'aegis_before_learndash_quiz' => array(
+				'label'    => __( 'Before LearnDash quiz', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'learndash',
+			),
+			'aegis_after_learndash_quiz' => array(
+				'label'    => __( 'After LearnDash quiz', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'learndash',
+			),
+			'aegis_learndash_focus_header' => array(
+				'label'    => __( 'LearnDash Focus Mode header', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'learndash',
+			),
+			'aegis_learndash_focus_footer' => array(
+				'label'    => __( 'LearnDash Focus Mode footer', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'learndash',
+			),
 			'aegis_before_llms_course' => array(
 				'label'    => __( 'Before LifterLMS course', 'aegis' ),
 				'scope'    => 'frontend',
@@ -80,6 +130,26 @@ final class IntegrationLocations {
 				'scope'    => 'frontend',
 				'requires' => 'lifter_lms',
 			),
+			'aegis_before_llms_lesson' => array(
+				'label'    => __( 'Before LifterLMS lesson', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'lifter_lms',
+			),
+			'aegis_after_llms_lesson' => array(
+				'label'    => __( 'After LifterLMS lesson', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'lifter_lms',
+			),
+			'aegis_before_sensei_course' => array(
+				'label'    => __( 'Before Sensei course', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'sensei_lms',
+			),
+			'aegis_after_sensei_course' => array(
+				'label'    => __( 'After Sensei course', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'sensei_lms',
+			),
 			'aegis_before_sensei_lesson' => array(
 				'label'    => __( 'Before Sensei lesson', 'aegis' ),
 				'scope'    => 'frontend',
@@ -87,6 +157,16 @@ final class IntegrationLocations {
 			),
 			'aegis_after_sensei_lesson' => array(
 				'label'    => __( 'After Sensei lesson', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'sensei_lms',
+			),
+			'aegis_before_sensei_quiz' => array(
+				'label'    => __( 'Before Sensei quiz', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'sensei_lms',
+			),
+			'aegis_after_sensei_quiz' => array(
+				'label'    => __( 'After Sensei quiz', 'aegis' ),
 				'scope'    => 'frontend',
 				'requires' => 'sensei_lms',
 			),
@@ -125,18 +205,28 @@ final class IntegrationLocations {
 				'scope'    => 'frontend',
 				'requires' => 'bbpress',
 			),
+			'aegis_after_bbpress_forum' => array(
+				'label'    => __( 'After bbPress forum', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'bbpress',
+			),
+			'aegis_before_bbpress_topic' => array(
+				'label'    => __( 'Before bbPress topic', 'aegis' ),
+				'scope'    => 'frontend',
+				'requires' => 'bbpress',
+			),
 			'aegis_after_bbpress_topic' => array(
 				'label'    => __( 'After bbPress topic', 'aegis' ),
 				'scope'    => 'frontend',
 				'requires' => 'bbpress',
 			),
 			'aegis_before_post_author' => array(
-				'label'    => __( 'Before post author block', 'aegis' ),
+				'label'    => __( 'Before post author / Co-Authors block', 'aegis' ),
 				'scope'    => 'frontend',
 				'requires' => 'co_authors_plus',
 			),
 			'aegis_after_post_author' => array(
-				'label'    => __( 'After post author block', 'aegis' ),
+				'label'    => __( 'After post author / Co-Authors block', 'aegis' ),
 				'scope'    => 'frontend',
 				'requires' => 'co_authors_plus',
 			),

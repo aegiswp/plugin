@@ -10,6 +10,7 @@ declare( strict_types=1 );
 
 namespace Aegis\Plugin\Settings;
 
+use Aegis\Plugin\Analytics\Settings as AnalyticsSettings;
 use Aegis\Plugin\Blocks\Settings as BlocksSettings;
 use Aegis\Plugin\General\Settings as GeneralSettings;
 use Aegis\Plugin\Integrations\Settings as IntegrationsSettings;
@@ -164,6 +165,7 @@ final class Migration {
 		$this->migrate_legacy_emoji_option();
 		IntegrationsSettings::migrate_legacy_bunnycdn_option();
 		IntegrationsSettings::persist_inactive_plugin_toggles();
+		$this->migrate_matomo_privacy_mode_v1();
 	}
 
 	/**
@@ -356,5 +358,27 @@ final class Migration {
 		}
 
 		update_option( 'aegis_emoji_perf_migrated_v1', true, false );
+	}
+
+	/**
+	 * Rename Matomo Anonymize IP setting to Privacy Mode.
+	 */
+	private function migrate_matomo_privacy_mode_v1(): void {
+		if ( get_option( 'aegis_matomo_privacy_mode_v1' ) ) {
+			return;
+		}
+
+		$stored = get_option( AnalyticsSettings::OPTION, array() );
+		$stored = is_array( $stored ) ? $stored : array();
+
+		if ( array_key_exists( 'matomo_anonymize_ip', $stored ) ) {
+			if ( ! array_key_exists( 'matomo_privacy_mode', $stored ) ) {
+				$stored['matomo_privacy_mode'] = ! empty( $stored['matomo_anonymize_ip'] );
+			}
+			unset( $stored['matomo_anonymize_ip'] );
+			update_option( AnalyticsSettings::OPTION, $stored, false );
+		}
+
+		update_option( 'aegis_matomo_privacy_mode_v1', true, false );
 	}
 }

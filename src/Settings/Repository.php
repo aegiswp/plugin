@@ -15,7 +15,6 @@ use Aegis\Plugin\Blocks\Settings as BlocksSettings;
 use Aegis\Plugin\Conditionals\Settings as ConditionalsSettings;
 use Aegis\Plugin\General\Settings as GeneralSettings;
 use Aegis\Plugin\Integrations\Settings as IntegrationsSettings;
-use Aegis\Plugin\Map\Settings as MapSettings;
 use Aegis\Plugin\Seo\Manager as SeoManager;
 use function class_exists;
 use function get_option;
@@ -34,7 +33,6 @@ final class Repository {
 	public const INTEGRATIONS_OPTION = IntegrationsSettings::OPTION;
 	public const BLOCKS_OPTION       = BlocksSettings::OPTION;
 	public const BUNNYCDN_OPTION     = IntegrationsSettings::BUNNYCDN_OPTION;
-	public const GOOGLE_MAPS_OPTION  = MapSettings::OPTION_KEY;
 	public const SETTINGS_OPTION     = GeneralSettings::OPTION;
 	public const ANALYTICS_OPTION    = AnalyticsSettings::OPTION;
 
@@ -46,9 +44,6 @@ final class Repository {
 
 	/** @var array<string, string> */
 	public const BUNNYCDN_DEFAULTS = IntegrationsSettings::BUNNYCDN_DEFAULTS;
-
-	/** @var array<string, string> */
-	public const GOOGLE_MAPS_DEFAULTS = MapSettings::DEFAULTS;
 
 	/** @var array<string, bool> */
 	public const SETTINGS_DEFAULTS = GeneralSettings::DEFAULTS;

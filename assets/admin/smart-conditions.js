@@ -7,6 +7,7 @@
 	'use strict';
 
 	var __ = wp.i18n.__;
+	var sprintf = wp.i18n.sprintf;
 
 	var configs = document.querySelectorAll( '[data-aegis-smart-conditions]' );
 
@@ -56,7 +57,7 @@
 			.replace( /[^a-z0-9_\-]/g, '' );
 	}
 
-	var boolFields = [ 'user_status', 'user_role', 'user_capability' ];
+	var boolFields = [ 'user_status', 'user_role', 'user_capability', 'wp_fusion_tag', 'wp_fusion_list', 'wp_fusion_logged_in' ];
 
 	var fieldOptions = [
 		{ value: 'post_type', label: __( 'Page / Post Type', 'aegis' ) },
@@ -83,6 +84,9 @@
 	if ( isEnabled( 'wp_fusion', 'lists' ) ) {
 		fieldOptions.push( { value: 'wp_fusion_list', label: __( 'WP Fusion List', 'aegis' ) } );
 	}
+	if ( isEnabled( 'wp_fusion', 'tags' ) || isEnabled( 'wp_fusion', 'lists' ) ) {
+		fieldOptions.push( { value: 'wp_fusion_logged_in', label: __( 'WP Fusion Logged-in (CRM)', 'aegis' ) } );
+	}
 
 	var operatorOptions = [
 		{ value: 'is', label: __( 'Equal', 'aegis' ) },
@@ -102,6 +106,36 @@
 
 	function defaultOperatorFor( field ) {
 		return boolFields.indexOf( field ) !== -1 ? 'is' : 'contains';
+	}
+
+	function fusionSelectOptions( choices, current, emptyLabel ) {
+		var value = String( current || '' );
+		var listed = false;
+		var options = [ { value: '', label: emptyLabel } ];
+
+		( choices || [] ).forEach( function ( choice ) {
+			var choiceValue = String( choice.value || choice );
+			var choiceLabel = choice.label || choiceValue;
+
+			if ( choiceValue === value ) {
+				listed = true;
+			}
+
+			options.push( { value: choiceValue, label: choiceLabel } );
+		} );
+
+		if ( value !== '' && ! listed ) {
+			options.splice( 1, 0, {
+				value: value,
+				label: sprintf(
+					/* translators: %s: saved WP Fusion tag or list ID */
+					__( '%s (saved)', 'aegis' ),
+					value
+				),
+			} );
+		}
+
+		return options;
 	}
 
 	function defaultSmartLogic() {
@@ -195,6 +229,10 @@
 			var field = rule.field || 'post_type';
 			var input;
 
+			if ( field === 'wp_fusion_logged_in' ) {
+				return null;
+			}
+
 			if ( field === 'user_status' ) {
 				input = el( 'select' );
 				[
@@ -229,16 +267,36 @@
 						placeholder: __( 'administrator, editor', 'aegis' ),
 					} );
 				}
+			} else if ( field === 'wp_fusion_tag' || field === 'wp_fusion_list' ) {
+				var fusionChoices = field === 'wp_fusion_list'
+					? ( clConfig.wpFusionLists || [] )
+					: ( clConfig.wpFusionTags || [] );
+				if ( fusionChoices.length || String( rule.value || '' ) !== '' ) {
+					input = el( 'select' );
+					fusionSelectOptions(
+						fusionChoices,
+						rule.value,
+						field === 'wp_fusion_list' ? __( 'Select list', 'aegis' ) : __( 'Select tag', 'aegis' )
+					).forEach( function ( choice ) {
+						var o = el( 'option', { value: choice.value }, choice.label );
+						if ( String( rule.value || '' ) === String( choice.value ) ) {
+							o.selected = true;
+						}
+						input.appendChild( o );
+					} );
+				} else {
+					input = el( 'input', {
+						type: 'text',
+						value: rule.value || '',
+						placeholder: field === 'wp_fusion_list' ? __( 'List ID or slug', 'aegis' ) : __( 'Tag ID or slug', 'aegis' ),
+					} );
+				}
 			} else {
 				var placeholder = __( 'Value', 'aegis' );
 				if ( field === 'post_type' ) {
 					placeholder = __( 'post, page, product', 'aegis' );
 				} else if ( field === 'user_capability' ) {
 					placeholder = __( 'edit_posts', 'aegis' );
-				} else if ( field === 'wp_fusion_tag' ) {
-					placeholder = __( 'Tag ID or slug', 'aegis' );
-				} else if ( field === 'wp_fusion_list' ) {
-					placeholder = __( 'List ID or slug', 'aegis' );
 				}
 
 				input = el( 'input', {
@@ -310,7 +368,10 @@
 					} );
 					row.appendChild( opSel );
 
-					row.appendChild( valueInputFor( rule ) );
+					var valueInput = valueInputFor( rule );
+					if ( valueInput ) {
+						row.appendChild( valueInput );
+					}
 
 					var removeBtn = el( 'button', {
 						type: 'button',

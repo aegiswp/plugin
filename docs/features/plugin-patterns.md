@@ -9,7 +9,7 @@ The Aegis plugin registers block patterns from `patterns/` when loaded. Always-o
 | `patterns/slider/` | Slider demonstration patterns | Slider block implied on |
 | `patterns/modal/` | Modal demonstration patterns | Modal block enabled |
 | `patterns/contact/` | Contact form layouts (includes Map block) | Plugin + theme active |
-| `patterns/author/` | Co-authors layout patterns | Plugin + theme active |
+| `patterns/author/` | Co-authors layout patterns | Co-Authors Plus active **and** the integration on |
 | `patterns/woocommerce/` | Shop templates, product layouts, WC headers, checkout/cart patterns | **WooCommerce active** |
 | `patterns/wishlist/` | Wishlist page pattern (`template-page-wishlist`) | **WooCommerce + TI Wishlist active** |
 
@@ -20,6 +20,7 @@ The Aegis plugin registers block patterns from `patterns/` when loaded. Always-o
 | Slider | Aegis theme + Aegis plugin + Slider extras implied on |
 | Modal patterns | Above + Modal block enabled |
 | Map contact patterns | Above + Map block enabled |
+| `patterns/author/` | Co-Authors Plus active **and** the integration on |
 | `patterns/woocommerce/**` | Above + **WooCommerce** |
 | `patterns/wishlist/**` | Above + **TI WooCommerce Wishlist** |
 
@@ -36,7 +37,7 @@ Generic commerce marketing patterns without WooCommerce blocks (trust badges, ca
 `src/Patterns/CommercePatternRegistrar.php` (`config/woocommerce-patterns.php`):
 
 - Hooks `init` at **priority 12** (after the theme unregisters `woocommerce/` plugin patterns at priority 11)
-- **`is_woocommerce_active()`** — `class_exists( 'WooCommerce' )`
+- **`is_woocommerce_active()`** — `WooCommerce::is_plugin_active()` (`WooCommerce`, `WC()`, or `WC_VERSION`)
 - **`is_ti_wishlist_active()`** — `defined( 'TINVWL_VERSION' )` or `function_exists( 'tinvwl_get_wishlist' )`
 - Recursively scans `patterns/woocommerce/` when WooCommerce is active
 - Scans `patterns/wishlist/` when both WooCommerce and TI Wishlist are active

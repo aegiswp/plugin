@@ -6,9 +6,9 @@
  * patterns. Gated by: CAP plugin active + integration enabled in Aegis
  * Dashboard.
  *
- * The framework's built-in CoAuthorsPlus is prevented from loading by
- * SettingsRepository::is_integration_enabled(), which returns false for
- * 'co_authors_plus' when this plugin is active. No hook removal needed.
+ * The framework CoAuthorsPlus class skips itself when this plugin class
+ * exists (`condition()` returns false). The plugin owns block replacement,
+ * guest-author URLs/avatars, CSS, and the optional Author Schema extra.
  *
  * @package Aegis\Plugin\Config
  * @since   1.0.0
@@ -22,10 +22,8 @@ use Aegis\Plugin\CoAuthors\CoAuthorsPlus;
 use Aegis\Plugin\Patterns\FileRegistrar;
 use Aegis\Plugin\Settings\Repository;
 use function add_action;
-use function file_exists;
 use function function_exists;
 use function is_dir;
-use function register_block_pattern;
 use function register_block_pattern_category;
 use function __;
 

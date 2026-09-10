@@ -33,23 +33,19 @@ final class Secrets {
 	public const MASK_CHAR = '•';
 
 	/**
-	 * Mask a secret value, leaving the last few characters visible.
+	 * Mask a secret value for admin display (fully masked — no suffix leak).
 	 *
 	 * @param string $value   Raw secret value.
-	 * @param int    $visible Number of trailing characters to reveal.
+	 * @param int    $visible Unused; kept for signature compatibility (always fully masked).
 	 */
-	public static function mask( string $value, int $visible = 4 ): string {
+	public static function mask( string $value, int $visible = 0 ): string {
+		unset( $visible );
+
 		if ( $value === '' ) {
 			return '';
 		}
 
-		$length = strlen( $value );
-
-		if ( $length <= $visible ) {
-			return str_repeat( self::MASK_CHAR, $length );
-		}
-
-		return str_repeat( self::MASK_CHAR, $length - $visible ) . substr( $value, -$visible );
+		return str_repeat( self::MASK_CHAR, max( 8, min( 32, strlen( $value ) ) ) );
 	}
 
 	/**

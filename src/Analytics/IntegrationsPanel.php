@@ -43,7 +43,7 @@ final class IntegrationsPanel {
 	/**
 	 * Connectors sidebar items for each analytics provider.
 	 *
-	 * @return array<int, array{id: string, label: string, icon: string}>
+	 * @return array<int, array{id: string, label: string, icon: string, brand: string}>
 	 */
 	private function nav_items(): array {
 		return [
@@ -51,41 +51,49 @@ final class IntegrationsPanel {
 				'id'    => 'ga4',
 				'label' => __( 'Google Analytics', 'aegis' ),
 				'icon'  => 'chart-bar',
+				'brand' => 'google-analytics',
 			],
 			[
 				'id'    => 'gtm',
 				'label' => __( 'Tag Manager', 'aegis' ),
 				'icon'  => 'tag',
+				'brand' => 'google-tag-manager',
 			],
 			[
 				'id'    => 'clarity',
 				'label' => __( 'Clarity', 'aegis' ),
 				'icon'  => 'visibility',
+				'brand' => 'microsoft-clarity',
 			],
 			[
 				'id'    => 'plausible',
 				'label' => __( 'Plausible', 'aegis' ),
 				'icon'  => 'chart-line',
+				'brand' => 'plausible',
 			],
 			[
 				'id'    => 'fathom',
 				'label' => __( 'Fathom', 'aegis' ),
 				'icon'  => 'chart-area',
+				'brand' => 'fathom',
 			],
 			[
 				'id'    => 'matomo',
 				'label' => __( 'Matomo', 'aegis' ),
 				'icon'  => 'chart-pie',
+				'brand' => 'matomo',
 			],
 			[
 				'id'    => 'meta-pixel',
 				'label' => __( 'Meta Pixel', 'aegis' ),
 				'icon'  => 'megaphone',
+				'brand' => 'meta',
 			],
 			[
 				'id'    => 'privacy',
 				'label' => __( 'Privacy', 'aegis' ),
 				'icon'  => 'shield',
+				'brand' => '',
 			],
 		];
 	}
@@ -94,10 +102,12 @@ final class IntegrationsPanel {
 	 * Output Analytics sidebar nav links.
 	 */
 	public function render_nav_item(): void {
+		$renderer = new \Aegis\Plugin\Admin\Renderer();
+
 		foreach ( $this->nav_items() as $item ) {
 			?>
 		<a href="#<?php echo esc_attr( $item['id'] ); ?>" class="aegis-nav-item">
-			<span class="dashicons dashicons-<?php echo esc_attr( $item['icon'] ); ?>"></span>
+			<?php $renderer->render_ui_icon( $item['icon'], $item['brand'] ); ?>
 			<?php echo esc_html( $item['label'] ); ?>
 		</a>
 			<?php
@@ -111,6 +121,7 @@ final class IntegrationsPanel {
 		$options       = Settings::get_settings();
 		$pro_active    = defined( 'AEGIS_PRO_VERSION' );
 		$has_complianz = defined( 'CMPLZ_VERSION' );
+		$renderer      = new \Aegis\Plugin\Admin\Renderer();
 
 		$template = \Aegis\Plugin\DIR . 'templates/integrations-analytics-section.php';
 
@@ -139,8 +150,15 @@ final class IntegrationsPanel {
 			$settings = [];
 		}
 
-		Settings::save( $settings );
+		$warnings = Settings::save( $settings );
 
-		wp_send_json_success( [ 'message' => __( 'Analytics settings saved.', 'aegis' ) ] );
+		$response = [ 'message' => __( 'Analytics settings saved.', 'aegis' ) ];
+
+		if ( $warnings ) {
+			$response['warnings'] = $warnings;
+			$response['message']  = __( 'Analytics settings saved with warnings.', 'aegis' );
+		}
+
+		wp_send_json_success( $response );
 	}
 }

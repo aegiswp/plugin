@@ -12,6 +12,7 @@ namespace Aegis\Plugin\Integrations;
 
 use function __;
 use function check_ajax_referer;
+use function class_exists;
 use function current_user_can;
 use function defined;
 use function is_wp_error;
@@ -66,6 +67,15 @@ final class SettingsController {
 	}
 
 	/**
+	 * Whether Aegis Pro is available for BunnyCDN API actions.
+	 */
+	private function is_aegis_pro_active(): bool {
+		return defined( 'AEGIS_PRO_VERSION' )
+			|| defined( 'Aegis\\Pro\\VERSION' )
+			|| class_exists( '\\Aegis\\Pro\\Uninstall' );
+	}
+
+	/**
 	 * Handle AJAX save BunnyCDN settings.
 	 */
 	public function ajax_save_bunnycdn(): void {
@@ -77,8 +87,8 @@ final class SettingsController {
 			wp_send_json_error( [ 'message' => __( 'Permission denied.', 'aegis' ) ] );
 		}
 
-		if ( ! defined( 'AEGIS_PRO_VERSION' ) || ! Settings::is_integration_enabled( 'bunny_cdn' ) ) {
-			wp_send_json_error( [ 'message' => __( 'BunnyCDN integration requires Aegis Pro and must be enabled.', 'aegis' ) ] );
+		if ( ! $this->is_aegis_pro_active() ) {
+			wp_send_json_error( [ 'message' => __( 'BunnyCDN API configuration requires Aegis Pro.', 'aegis' ) ] );
 		}
 
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
@@ -107,8 +117,8 @@ final class SettingsController {
 			wp_send_json_error( [ 'message' => __( 'Permission denied.', 'aegis' ) ] );
 		}
 
-		if ( ! defined( 'AEGIS_PRO_VERSION' ) || ! Settings::is_integration_enabled( 'bunny_cdn' ) ) {
-			wp_send_json_error( [ 'message' => __( 'BunnyCDN integration requires Aegis Pro and must be enabled.', 'aegis' ) ] );
+		if ( ! $this->is_aegis_pro_active() ) {
+			wp_send_json_error( [ 'message' => __( 'BunnyCDN API configuration requires Aegis Pro.', 'aegis' ) ] );
 		}
 
 		$settings = Settings::get_bunnycdn_settings();

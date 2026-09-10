@@ -63,7 +63,7 @@ Each snippet can have an optional **group** (virtual folder) and **tags**. The l
 - Per-row status toggle, edit, download (JSON), and delete
 - Snippets with a fatal error are highlighted and marked Paused
 
-**Conditional logic** on the editor is off by default. Turn on **Enable Conditional Logic** to build AND groups separated by OR. **Page / Post Type** is always available. Logged-in, role (from the site's role list), capability (typed slug such as `edit_posts`; **is** / **is not** only), URL, query string, and WP Fusion tag/list fields appear only when their extras are on at **Aegis → Conditionals** or **Integrations**. Viewport, accessibility, and **Schedule** extras are not on the snippet editor (Schedule is a dedicated extras UI on blocks, posts, and hook patterns). See [[conditional-logic#smart-logic]].
+**Conditional logic** on the editor is off by default. Turn on **Enable Conditional Logic** to build AND groups separated by OR. **Page / Post Type** is always available. Logged-in, role (from the site's role list), capability (typed slug such as `edit_posts`; **is** / **is not** only), URL, query string, and WP Fusion tag/list/CRM-logged-in fields appear only when their extras are on at **Aegis → Conditionals** or **Integrations**. Viewport, accessibility, and **Schedule** extras are not on the snippet editor (Schedule is a dedicated extras UI on blocks, posts, and hook patterns). See [[conditional-logic#smart-logic]].
 
 ## PHP Snippets and Safe Mode
 

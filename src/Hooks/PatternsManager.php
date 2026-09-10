@@ -10,6 +10,7 @@ declare( strict_types=1 );
 
 namespace Aegis\Plugin\Hooks;
 
+use Aegis\Plugin\Integrations\WPFusion;
 use WP_Post;
 use function add_action;
 use function add_meta_box;
@@ -259,6 +260,8 @@ final class PatternsManager {
 				hasPro: <?php echo $has_pro ? 'true' : 'false'; ?>,
 				settings: <?php echo wp_json_encode( $cl_settings ); ?>,
 				postType: <?php echo wp_json_encode( $post->post_type ); ?>,
+				wpFusionTags: <?php echo wp_json_encode( class_exists( WPFusion::class ) ? WPFusion::editor_tags() : array() ); ?>,
+				wpFusionLists: <?php echo wp_json_encode( class_exists( WPFusion::class ) ? WPFusion::editor_lists() : array() ); ?>,
 			};
 		</script>
 		<?php

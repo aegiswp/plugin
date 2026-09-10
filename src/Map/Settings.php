@@ -11,7 +11,10 @@ declare( strict_types=1 );
 namespace Aegis\Plugin\Map;
 
 use Aegis\Plugin\Integrations\Secrets;
+use function array_intersect_key;
+use function array_key_exists;
 use function array_merge;
+use function delete_option;
 use function get_option;
 use function is_array;
 use function preg_match;
@@ -31,6 +34,11 @@ final class Settings {
 	 * Option key (unchanged for existing sites).
 	 */
 	public const OPTION_KEY = 'aegis_google_maps';
+
+	/**
+	 * One-shot migration flag for legacy `api_key` / Fieldify leftovers.
+	 */
+	public const MIGRATION_FLAG = 'aegis_google_maps_migrated_v1';
 
 	/**
 	 * Default settings.
@@ -60,7 +68,10 @@ final class Settings {
 			is_array( $stored ) ? $stored : []
 		);
 
-		return self::migrate_legacy_api_key( $merged );
+		return array_intersect_key(
+			self::migrate_legacy_api_key( $merged ),
+			self::DEFAULTS
+		);
 	}
 
 	/**
@@ -78,13 +89,6 @@ final class Settings {
 	}
 
 	/**
-	 * @deprecated Use get_browser_api_key() instead.
-	 */
-	public static function get_api_key(): string {
-		return self::get_browser_api_key();
-	}
-
-	/**
 	 * Sanitize settings input.
 	 *
 	 * @param array<string, mixed> $input Raw input.
@@ -96,6 +100,12 @@ final class Settings {
 		$sanitized = [];
 
 		foreach ( self::DEFAULTS as $key => $default ) {
+			// Partial AJAX payloads omit unchanged masked secrets — keep stored values.
+			if ( ! array_key_exists( $key, $input ) && in_array( $key, self::SECRET_KEYS, true ) ) {
+				$sanitized[ $key ] = $existing[ $key ] ?? $default;
+				continue;
+			}
+
 			$value = isset( $merged[ $key ] ) ? sanitize_text_field( (string) $merged[ $key ] ) : $default;
 
 			if ( $value !== '' && ! preg_match( '/^[A-Za-z0-9_\-]+$/', $value ) ) {
@@ -103,6 +113,17 @@ final class Settings {
 			}
 
 			$sanitized[ $key ] = $value;
+		}
+
+		// Prevent accidental reuse of one Google key for both browser and server roles.
+		if (
+			$sanitized['browser_api_key'] !== ''
+			&& $sanitized['browser_api_key'] === $sanitized['server_api_key']
+		) {
+			$sanitized['server_api_key'] = $existing['server_api_key'] ?? '';
+			if ( $sanitized['server_api_key'] === $sanitized['browser_api_key'] ) {
+				$sanitized['server_api_key'] = '';
+			}
 		}
 
 		return $sanitized;
@@ -118,7 +139,61 @@ final class Settings {
 	}
 
 	/**
-	 * Migrate legacy single api_key to browser_api_key.
+	 * Clear Connectors Google Maps API credentials.
+	 */
+	public static function reset(): void {
+		delete_option( self::OPTION_KEY );
+	}
+
+	/**
+	 * Persist legacy `api_key` and Fieldify `aegis[googleMaps]` into Connectors keys once.
+	 */
+	public static function migrate_legacy_options(): void {
+		if ( get_option( self::MIGRATION_FLAG ) ) {
+			return;
+		}
+
+		$stored = get_option( self::OPTION_KEY, [] );
+		if ( ! is_array( $stored ) ) {
+			$stored = [];
+		}
+
+		$changed = false;
+
+		if ( ! empty( $stored['api_key'] ) && empty( $stored['browser_api_key'] ) ) {
+			$stored['browser_api_key'] = sanitize_text_field( (string) $stored['api_key'] );
+			$changed                  = true;
+		}
+
+		if ( array_key_exists( 'api_key', $stored ) ) {
+			unset( $stored['api_key'] );
+			$changed = true;
+		}
+
+		$aegis = get_option( 'aegis', [] );
+		if ( is_array( $aegis ) && array_key_exists( 'googleMaps', $aegis ) ) {
+			$legacy = sanitize_text_field( (string) $aegis['googleMaps'] );
+			if ( $legacy !== '' && empty( $stored['browser_api_key'] ) ) {
+				$stored['browser_api_key'] = $legacy;
+				$changed                  = true;
+			}
+			unset( $aegis['googleMaps'] );
+			update_option( 'aegis', $aegis, false );
+		}
+
+		if ( $changed ) {
+			$clean = array_intersect_key(
+				array_merge( self::DEFAULTS, $stored ),
+				self::DEFAULTS
+			);
+			update_option( self::OPTION_KEY, $clean, false );
+		}
+
+		update_option( self::MIGRATION_FLAG, true, false );
+	}
+
+	/**
+	 * Migrate legacy single api_key to browser_api_key (in-memory fallback).
 	 *
 	 * @param array<string, string> $settings Stored settings.
 	 * @return array<string, string>
@@ -127,6 +202,8 @@ final class Settings {
 		if ( ! empty( $settings['api_key'] ) && empty( $settings['browser_api_key'] ) ) {
 			$settings['browser_api_key'] = $settings['api_key'];
 		}
+
+		unset( $settings['api_key'] );
 
 		return $settings;
 	}

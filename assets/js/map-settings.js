@@ -19,11 +19,47 @@
 		}, 3000 );
 	}
 
+	function secretFilled( value ) {
+		return String( value || '' ).trim() !== '';
+	}
+
+	function syncGoogleMapsActionButtons() {
+		const browserFilled = secretFilled(
+			$( 'input[name="aegis_google_maps[browser_api_key]"]' ).val()
+		);
+		const serverFilled = secretFilled(
+			$( 'input[name="aegis_google_maps[server_api_key]"]' ).val()
+		);
+
+		$( '.aegis-save-google-maps' ).prop( 'disabled', ! ( browserFilled || serverFilled ) );
+		$( '.aegis-test-google-maps' ).prop( 'disabled', ! serverFilled );
+	}
+
+	$( document ).ready( syncGoogleMapsActionButtons );
+
+	$( document ).on(
+		'input change',
+		'input[name="aegis_google_maps[browser_api_key]"], input[name="aegis_google_maps[server_api_key]"]',
+		syncGoogleMapsActionButtons
+	);
+
 	$( document ).on( 'click', '.aegis-save-google-maps', function ( e ) {
 		e.preventDefault();
 		const $btn = $( this );
 
-		if ( typeof aegisAdmin === 'undefined' ) {
+		if ( typeof aegisAdmin === 'undefined' || $btn.prop( 'disabled' ) ) {
+			return;
+		}
+
+		const browserFilled = secretFilled(
+			$( 'input[name="aegis_google_maps[browser_api_key]"]' ).val()
+		);
+		const serverFilled = secretFilled(
+			$( 'input[name="aegis_google_maps[server_api_key]"]' ).val()
+		);
+
+		if ( ! browserFilled && ! serverFilled ) {
+			syncGoogleMapsActionButtons();
 			return;
 		}
 
@@ -38,7 +74,6 @@
 		}
 
 		const settings = {};
-		const maskChar = '\u2022';
 
 		$( '.aegis-google-maps-field' ).each( function () {
 			const name = $( this ).attr( 'name' );
@@ -47,15 +82,8 @@
 			if ( match ) {
 				const value = $( this ).val();
 
-				if (
-					$( this ).attr( 'type' ) === 'password' &&
-					value &&
-					value.indexOf( maskChar ) !== -1
-				) {
-					return;
-				}
-
-				settings[ match[ 1 ] ] = value;
+				// Always include the field so the server can preserve masked secrets.
+				settings[ match[ 1 ] ] = value || '';
 			}
 		} );
 
@@ -78,7 +106,8 @@
 				showNotice( aegisAdmin.error, 'error' );
 			},
 			complete() {
-				$btn.html( originalHtml ).prop( 'disabled', false );
+				$btn.html( originalHtml );
+				syncGoogleMapsActionButtons();
 			},
 		} );
 	} );
@@ -88,6 +117,15 @@
 		const $btn = $( this );
 
 		if ( typeof aegisAdmin === 'undefined' || $btn.prop( 'disabled' ) ) {
+			return;
+		}
+
+		if (
+			! secretFilled(
+				$( 'input[name="aegis_google_maps[server_api_key]"]' ).val()
+			)
+		) {
+			syncGoogleMapsActionButtons();
 			return;
 		}
 
@@ -120,23 +158,8 @@
 			},
 			complete() {
 				$btn.html( originalHtml );
-				const hasKey =
-					String(
-						$( 'input[name="aegis_google_maps[server_api_key]"]' ).val() ||
-							''
-					).trim() !== '';
-				$btn.prop( 'disabled', ! hasKey );
+				syncGoogleMapsActionButtons();
 			},
 		} );
 	} );
-
-	$( document ).on(
-		'input change',
-		'input[name="aegis_google_maps[server_api_key]"]',
-		function () {
-			const hasKey =
-				String( $( this ).val() || '' ).trim() !== '';
-			$( '.aegis-test-google-maps' ).prop( 'disabled', ! hasKey );
-		}
-	);
 }( jQuery ) );

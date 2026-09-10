@@ -65,6 +65,9 @@ final class Settings {
 		'perf_disable_dashicons' => false,
 		'perf_reduce_heartbeat' => false,
 		'perf_remove_emoji' => false,
+		'perf_woo_disable_cart_fragments' => false,
+		'perf_woo_disable_assets_elsewhere' => false,
+		'perf_woo_disable_password_strength' => false,
 		'slider_arrow_styles' => false,
 		'slider_dot_styles' => false,
 		'toggle' => false,
@@ -225,6 +228,9 @@ final class Settings {
 		'perf_disable_dashicons',
 		'perf_reduce_heartbeat',
 		'perf_remove_emoji',
+		'perf_woo_disable_cart_fragments',
+		'perf_woo_disable_assets_elsewhere',
+		'perf_woo_disable_password_strength',
 		'query_loop_performance',
 	];
 

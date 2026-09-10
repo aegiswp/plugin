@@ -112,7 +112,9 @@
 			return;
 		}
 
-		if ( document.querySelector( 'script[src="' + src + '"]' ) ) {
+		var unionSrc = buildUnionMapsSrc( src );
+
+		if ( document.querySelector( 'script[data-aegis-maps-api="1"]' ) ) {
 			var attempts = 0;
 			var timer = setInterval( function () {
 				attempts += 1;
@@ -127,11 +129,76 @@
 		}
 
 		var script = document.createElement( 'script' );
-		script.src = src;
+		script.src = unionSrc;
 		script.async = true;
 		script.defer = true;
+		script.dataset.aegisMapsApi = '1';
 		script.onload = onReady;
 		document.head.appendChild( script );
+	}
+
+	/**
+	 * Merge libraries from every map on the page so the first script load covers siblings.
+	 *
+	 * @param {string} preferredSrc Fallback src from the activating map.
+	 * @return {string}
+	 */
+	function buildUnionMapsSrc( preferredSrc ) {
+		var templates = document.querySelectorAll( '.aegis-map__api-src' );
+		var key = '';
+		var libs = {};
+		var i;
+
+		for ( i = 0; i < templates.length; i++ ) {
+			var raw = templates[ i ].getAttribute( 'data-src' ) || '';
+			if ( ! raw ) {
+				continue;
+			}
+
+			try {
+				var url = new URL( raw, window.location.href );
+				if ( ! key ) {
+					key = url.searchParams.get( 'key' ) || '';
+				}
+				( url.searchParams.get( 'libraries' ) || '' )
+					.split( ',' )
+					.forEach( function ( lib ) {
+						lib = String( lib || '' ).trim();
+						if ( lib ) {
+							libs[ lib ] = true;
+						}
+					} );
+			} catch ( e ) {
+				// Ignore invalid template URLs.
+			}
+		}
+
+		try {
+			var preferred = new URL( preferredSrc, window.location.href );
+			if ( ! key ) {
+				key = preferred.searchParams.get( 'key' ) || '';
+			}
+			( preferred.searchParams.get( 'libraries' ) || '' )
+				.split( ',' )
+				.forEach( function ( lib ) {
+					lib = String( lib || '' ).trim();
+					if ( lib ) {
+						libs[ lib ] = true;
+					}
+				} );
+
+			var libKeys = Object.keys( libs );
+			preferred.searchParams.delete( 'libraries' );
+			if ( key ) {
+				preferred.searchParams.set( 'key', key );
+			}
+			if ( libKeys.length ) {
+				preferred.searchParams.set( 'libraries', libKeys.sort().join( ',' ) );
+			}
+			return preferred.toString();
+		} catch ( err ) {
+			return preferredSrc;
+		}
 	}
 
 	function escapeHtml( value ) {

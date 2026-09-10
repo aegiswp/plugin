@@ -20,7 +20,14 @@ use function current_user_can;
 use function do_action;
 use function esc_html__;
 use function file_exists;
+use function filemtime;
+use function is_string;
+use function plugins_url;
+use function sanitize_text_field;
+use function str_starts_with;
 use function wp_die;
+use function wp_enqueue_script;
+use function wp_unslash;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -44,7 +51,38 @@ final class AdminPage {
 
 	public function init(): void {
 		add_action( 'admin_menu', array( $this, 'register_menu' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
 		add_filter( 'aegis_admin_tabs', array( $this, 'register_admin_tab' ) );
+	}
+
+	/**
+	 * Enqueue BunnyCDN connector script on Aegis admin pages.
+	 *
+	 * @param string $hook_suffix Current admin page hook.
+	 */
+	public function enqueue_admin_assets( string $hook_suffix ): void {
+		unset( $hook_suffix );
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( (string) $_GET['page'] ) ) : '';
+
+		if ( ! str_starts_with( $page, 'aegis-' ) ) {
+			return;
+		}
+
+		$script_path = \Aegis\Plugin\DIR . 'assets/js/bunnycdn-settings.js';
+
+		if ( ! file_exists( $script_path ) ) {
+			return;
+		}
+
+		wp_enqueue_script(
+			'aegis-bunnycdn-settings',
+			plugins_url( 'assets/js/bunnycdn-settings.js', \Aegis\Plugin\FILE ),
+			array( 'jquery', 'aegis-admin-settings' ),
+			(string) filemtime( $script_path ),
+			true
+		);
 	}
 
 	/**

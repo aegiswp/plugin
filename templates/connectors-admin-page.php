@@ -20,7 +20,7 @@ $bunnycdn_template = __DIR__ . '/connectors-bunnycdn-section.php';
 			<div class="aegis-settings-wrap">
 				<h1 class="screen-reader-text"><?php esc_html_e( 'Connectors', 'aegis' ); ?></h1>
 
-				<?php $renderer->render_toolbar( 'integrations' ); ?>
+				<?php $renderer->render_toolbar( 'connectors' ); ?>
 
 				<form method="post" action="#" class="aegis-settings-form aegis-integrations-form">
 					<?php settings_fields( 'aegis_integrations_group' ); ?>
@@ -28,7 +28,7 @@ $bunnycdn_template = __DIR__ . '/connectors-bunnycdn-section.php';
 					<div class="aegis-settings-layout">
 						<nav class="aegis-settings-nav">
 							<a href="#bunnycdn" class="aegis-nav-item active">
-								<span class="dashicons dashicons-cloud"></span>
+								<?php $renderer->render_ui_icon( 'cloud', 'bunnycdn' ); ?>
 								<?php esc_html_e( 'BunnyCDN', 'aegis' ); ?>
 							</a>
 							<?php do_action( 'aegis_connectors_nav_items' ); ?>

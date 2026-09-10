@@ -133,24 +133,25 @@ if ( $use_google ) :
 	$static_url = add_query_arg( $static_params, 'https://maps.googleapis.com/maps/api/staticmap' );
 	$static_url = Styles::append_to_static_url( $static_url, Styles::rules_for_block( $attributes ) );
 
-	$libraries = apply_filters( 'aegis_map_google_libraries', [ 'places' ], $attributes );
+	$libraries = apply_filters( 'aegis_map_google_libraries', [], $attributes );
 	$libraries = array_values(
 		array_unique(
 			array_filter(
-				array_map( 'sanitize_key', is_array( $libraries ) ? $libraries : [ 'places' ] )
+				array_map( 'sanitize_key', is_array( $libraries ) ? $libraries : [] )
 			)
 		)
 	);
 
-	if ( ! $libraries ) {
-		$libraries = [ 'places' ];
+	$api_query = [
+		'key' => $api_key,
+	];
+
+	if ( $libraries ) {
+		$api_query['libraries'] = implode( ',', $libraries );
 	}
 
 	$api_src = add_query_arg(
-		[
-			'key'       => $api_key,
-			'libraries' => implode( ',', $libraries ),
-		],
+		$api_query,
 		'https://maps.googleapis.com/maps/api/js'
 	);
 

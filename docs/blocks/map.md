@@ -20,9 +20,10 @@ The theme does not register this block. Enable it (or any Map extra) at **Aegis 
 
 | Setting | Purpose |
 |---------|---------|
-| Browser API key | Frontend map tiles, editor preview, and interactions |
-| Server API key | Server-side geocoding (address search in the editor) |
-| Test connection | Verify key validity |
+| Google Maps toggle | Enables Google as a Map block provider (Save Settings) |
+| Browser API key | Frontend map tiles, editor preview, and interactions (HTTP referrer; never enable Geocoding on this key) |
+| Server API key | Server-side geocoding (editor address search, Directions resolve, Test Connection) |
+| Save / Test | Save when either key is set (masked values preserved); Test requires the server key (toggle not required first) |
 
 See [[../features/connectors#maps]].
 
@@ -48,8 +49,8 @@ Enable extras at **Aegis → Blocks → Map**. They are off on new installs. Exi
 
 | Toggle | What it does |
 |--------|----------------|
-| Directions | Route between origin and destination. |
-| Store Locator | Search box and radius circle on the map. |
+| Directions | Route between origin and destination (addresses resolved with the server Geocoding key; frontend receives coordinates only). |
+| Store Locator | Search box matches marker titles or `lat,lng`, then draws a radius circle. |
 | Geolocation | Button to show the visitor’s location. |
 | Heatmap Layer | Density overlay (loads the Google visualization library). |
 | Drawing Tools | Polygon, circle, rectangle, and polyline overlays. |
@@ -80,7 +81,7 @@ Custom marker icons are not drawn on the static image; they apply after the inte
 
 ### Editor preview
 
-The block editor shows the Google Map when a browser API key is configured. Style presets and markers follow the free extras. With Pro extras on, custom icons, custom style JSON, and clustering apply in the editor. Directions, heatmap, and drawing stay frontend-only.
+The block editor shows the Google Map when a browser API key is configured. Style presets and markers follow the free extras. With Pro extras on, custom icons, custom style JSON, and clustering apply in the editor preview. Directions, heatmap, and drawing run on the frontend (Directions addresses are geocoded server-side first).
 
 ### Marker clustering (Pro)
 

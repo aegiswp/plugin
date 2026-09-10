@@ -85,10 +85,13 @@ final class Uninstall {
 	public static function option_names(): array {
 		return array(
 			'aegis_google_maps',
+			'aegis_google_maps_migrated_v1',
 			'aegis_analytics',
 			'aegis_integrations',
 			'aegis_bunnycdn',
 			'aegis_bunnycdn_migrated_v1',
+			'aegis_bunnycdn_token_key_v2',
+			'aegis_bunny_transcribe_intent',
 			'aegis_pro_bunnycdn',
 			'aegis_pattern_control',
 			'aegis_settings',
@@ -105,6 +108,7 @@ final class Uninstall {
 			'aegis_modal_pro_toggles_v1',
 			'aegis_image_compare_toggles_v1',
 			'aegis_emoji_perf_migrated_v1',
+			'aegis_matomo_privacy_mode_v1',
 			self::REMOVE_DATA_OPTION,
 		);
 	}
@@ -188,6 +192,7 @@ final class Uninstall {
 			'sensei_lms',
 			'syntax_highlighting',
 			'woocommerce',
+			'wp_fusion',
 			'yoast_seo',
 		) as $key ) {
 			delete_metadata( 'user', 0, 'aegis_integration_notice_dismissed_' . $key, '', true );

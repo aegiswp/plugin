@@ -8,7 +8,7 @@
  * Key fixes over the framework version:
  * - Properly handles guest authors (CPT posts) vs real WP users for avatars and URLs
  * - Uses explicit hook registration instead of annotation-based hooks
- * - Outputs JSON-LD Person schema for multi-author singular posts
+ * - Outputs JSON-LD Person schema when the Author Schema extra is on (CAP-supported singular types)
  *
  * @package Aegis\Plugin\CoAuthors
  * @since   1.0.0
@@ -19,23 +19,29 @@ declare( strict_types=1 );
 namespace Aegis\Plugin\CoAuthors;
 
 use WP_Block;
+use Aegis\Plugin\Settings\Repository;
 use function add_filter;
 use function add_action;
+use function apply_filters;
 use function get_the_ID;
 use function get_avatar;
 use function get_avatar_url;
+use function get_author_posts_url;
+use function get_post_type;
+use function get_user_by;
+use function in_array;
+use function is_array;
+use function is_singular;
+use function is_string;
+use function post_type_supports;
+use function esc_attr;
 use function esc_html;
 use function esc_url;
-use function get_author_posts_url;
-use function is_singular;
+use function function_exists;
+use function plugins_url;
+use function wp_enqueue_style;
 use function wp_json_encode;
 use function wp_kses_post;
-use function wp_enqueue_style;
-use function plugins_url;
-use function property_exists;
-use function home_url;
-use function get_user_by;
-use function function_exists;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -53,7 +59,11 @@ class CoAuthorsPlus {
 		add_filter( 'render_block_core/post-author-name', [ $this, 'render_post_author_name' ], 10, 3 );
 		add_filter( 'render_block_core/post-author-biography', [ $this, 'render_post_author_biography' ], 10, 3 );
 		add_filter( 'body_class', [ $this, 'add_body_class' ] );
-		add_action( 'wp_head', [ $this, 'output_author_schema' ], 5 );
+
+		if ( Repository::is_integration_enabled( 'cap_author_schema' ) ) {
+			add_action( 'wp_head', [ $this, 'output_author_schema' ], 5 );
+		}
+
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 	}
 
@@ -79,8 +89,8 @@ class CoAuthorsPlus {
 					return get_author_posts_url( (int) $linked_user->ID, $linked_user->user_nicename );
 				}
 			}
-			// Fallback: build author URL from the guest author slug.
-			return home_url( '/author/' . $coauthor->user_nicename . '/' );
+			// Fallback: author archive from the guest slug (not a user ID).
+			return get_author_posts_url( 0, $coauthor->user_nicename );
 		}
 
 		// Real WP user — safe to use ID directly.
@@ -164,7 +174,7 @@ class CoAuthorsPlus {
 			$name       = esc_html( $coauthor->display_name );
 			$author_url = $this->get_coauthor_url( $coauthor );
 
-			$output .= '<div class="aegis-coauthor">';
+			$output .= '<div class="aegis-coauthor" data-author="' . esc_attr( $coauthor->display_name ) . '">';
 
 			if ( $show_avatar ) {
 				$avatar  = $this->get_coauthor_avatar( $coauthor, (int) $avatar_size );
@@ -180,6 +190,7 @@ class CoAuthorsPlus {
 			}
 
 			$output .= '</div>';
+			$output .= '<div class="aegis-coauthor-extras" data-author="' . esc_attr( $coauthor->display_name ) . '"></div>';
 			$output .= '</div>';
 
 			if ( $i < count( $coauthors ) - 1 ) {
@@ -187,7 +198,7 @@ class CoAuthorsPlus {
 			}
 		}
 
-		$output .= '</div>';
+		$output .= '</div><!-- aegis-coauthors -->';
 
 		return $output;
 	}
@@ -280,10 +291,16 @@ class CoAuthorsPlus {
 	/**
 	 * Output JSON-LD Person schema for co-authors on singular posts.
 	 *
+	 * Gated by the Author Schema extra (`cap_author_schema`).
+	 *
 	 * @return void
 	 */
 	public function output_author_schema(): void {
-		if ( ! is_singular( 'post' ) || ! function_exists( 'get_coauthors' ) ) {
+		if ( ! Repository::is_integration_enabled( 'cap_author_schema' ) ) {
+			return;
+		}
+
+		if ( ! $this->is_cap_singular() || ! function_exists( 'get_coauthors' ) ) {
 			return;
 		}
 
@@ -308,7 +325,7 @@ class CoAuthorsPlus {
 				$person['image'] = $avatar_url;
 			}
 
-			$persons[] = $person;
+			$persons[] = apply_filters( 'aegis_coauthor_schema_person', $person, $coauthor );
 		}
 
 		$schema = [
@@ -342,7 +359,7 @@ class CoAuthorsPlus {
 	public function enqueue_styles(): void {
 		$should_load = false;
 
-		if ( is_singular( 'post' ) ) {
+		if ( $this->is_cap_singular() ) {
 			$post_id   = get_the_ID();
 			$coauthors = $post_id ? get_coauthors( $post_id ) : [];
 			$should_load = count( $coauthors ) > 1;
@@ -359,5 +376,28 @@ class CoAuthorsPlus {
 				\Aegis\Plugin\VERSION
 			);
 		}
+	}
+
+	/**
+	 * Whether the current singular view is a Co-Authors Plus-supported type.
+	 */
+	private function is_cap_singular(): bool {
+		if ( ! is_singular() ) {
+			return false;
+		}
+
+		$post_type = get_post_type();
+
+		if ( ! is_string( $post_type ) || $post_type === '' ) {
+			return false;
+		}
+
+		$supported = apply_filters( 'coauthors_supported_post_types', array( 'post', 'page' ) );
+
+		if ( is_array( $supported ) && $supported !== [] ) {
+			return in_array( $post_type, $supported, true );
+		}
+
+		return post_type_supports( $post_type, 'author' );
 	}
 }

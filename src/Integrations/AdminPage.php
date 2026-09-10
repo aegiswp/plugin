@@ -10,7 +10,6 @@ declare( strict_types=1 );
 
 namespace Aegis\Plugin\Integrations;
 
-use Aegis\Plugin\Map\Settings as MapSettings;
 use function __;
 use function add_action;
 use function add_filter;
@@ -123,17 +122,8 @@ final class AdminPage {
 			]
 		);
 
-		register_setting(
-			'aegis_integrations_group',
-			MapSettings::OPTION_KEY,
-			[
-				'type'              => 'array',
-				'sanitize_callback' => [ MapSettings::class, 'sanitize' ],
-				'default'           => MapSettings::DEFAULTS,
-			]
-		);
-
 		Settings::migrate_legacy_bunnycdn_option();
+		\Aegis\Plugin\Map\Settings::migrate_legacy_options();
 	}
 
 	public function render(): void {

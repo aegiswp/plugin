@@ -51,8 +51,9 @@ On load, the plugin verifies the Aegis theme is active. Without it, bootstrap st
 | `General/` | General settings admin (SVG upload) |
 | `Hooks/` | Hook patterns admin (instance list) |
 | `VisibilityPresets/` | Visibility presets admin (library list; CRUD requires Pro) |
-| `Injection/` | LocationRegistry, Preview, IntegrationInjector |
-| `Integrations/` | Registry, AdminPage, Settings, Notices |
+| `Injection/` | LocationRegistry, Preview, IntegrationInjector (including Co-Authors Plus wrap of `core/post-author` and `co-authors/block`) |
+| `CoAuthors/` | Multi-author `core/post-author*` replace, optional Author Schema extra |
+| `Integrations/` | Registry, AdminPage, Settings, Notices, WPFusion (catalog pickers, list membership, CRM login, plugin detection), ACF (plugin detection and parent gating, including Secure Custom Fields), MetaBox (`RWMB_Loader` / `rwmb_meta()`, including AIO), CodeBlockPro (`CBPRouter` / `kevinbatdorf/code-block-pro` detection), SyntaxHighlighting (`Syntax_Highlighting_Code_Block\PLUGIN_VERSION` / `boot()`), AffiliateWP (`Affiliate_WP` / `affiliate_wp()` / `AFFILIATEWP_VERSION`), EasyDigitalDownloads (`Easy_Digital_Downloads` / `EDD()` / `EDD_VERSION`), FluentBooking (`FluentBooking.php` helper: `FLUENT_BOOKING_VERSION` / `FluentBooking\App\App`, plus `is_enabled()`), FluentForms (`FluentForms.php` helper: `FLUENTFORM` / `FLUENTFORM_VERSION` / `FluentForm\App\Modules\Form\Form`, plus `is_enabled()`), GravityForms (`GravityForms.php` helper: `GFForms` / `GFAPI` / `GF_MIN_WP_VERSION` / `gravity_form()`, plus `is_enabled()`), NinjaForms (`NinjaForms.php` helper: `Ninja_Forms` / `NF_PLUGIN_VERSION` / `NF_VERSION`, plus `is_enabled()`), LearnDash (`LearnDash.php` helper: `LEARNDASH_VERSION` / `SFWD_LMS` / `LEARNDASH_LMS_PLUGIN_DIR` / `learndash_init()`, plus `is_enabled()`), WooCommerce (`WooCommerce.php` helper: `WooCommerce` / `WC()` / `WC_VERSION`, plus `is_enabled()`), `WooCommerce\MultiStepCheckout` (assets on the multi-step template when the integration is on) |
 | `Map/` | Map block, Google Maps connectors panel, Static Maps style encoding |
 | `Modal/` | Modal block, instance scanner, Modals admin |
 | `Seo/` | SEO Manager and plugin adapters |
