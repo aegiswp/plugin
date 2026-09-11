@@ -122,7 +122,7 @@ WooCommerce block patterns register from `patterns/woocommerce/` only when **Woo
 
 ### Where are performance settings?
 
-**Aegis → Performance** — oEmbed, dashicons, heartbeat, embed facades, Query Loop Pro gate, and emoji scripts (Pro).
+**Aegis → Performance** — oEmbed, dashicons, heartbeat, XML-RPC, RSD/shortlink/generator/REST discovery/adjacent-posts cleanup, embed facades, Query Loop Pro gate, WooCommerce cuts (classic cart fragments / assets / password meter), and emoji scripts (Pro).
 
 Slider lazy-load stays at **Aegis → Blocks → Slider**. BunnyCDN is at **Aegis → Connectors → BunnyCDN**.
 
@@ -130,7 +130,7 @@ See [[../features/performance|Performance]] for details. Pro per-block Query Loo
 
 ### Are performance toggles included in export?
 
-Yes. They are stored in the `blocks` group of the global export bundle — see [[../features/general-settings|General Settings]].
+Yes. They are stored in the `blocks` group of the global export bundle — see [[../features/general-settings|General Settings]]. When Pro is inactive, `perf_remove_emoji` and `query_loop_performance` export as off (same Pro gates as reads/saves).
 
 ## Data and Privacy
 

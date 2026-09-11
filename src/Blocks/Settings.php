@@ -63,8 +63,14 @@ final class Settings {
 		'embed_facades' => false,
 		'perf_disable_wp_embed' => false,
 		'perf_disable_dashicons' => false,
-		'perf_reduce_heartbeat' => false,
+		'perf_disable_frontend_heartbeat' => false,
 		'perf_remove_emoji' => false,
+		'perf_disable_xmlrpc' => false,
+		'perf_remove_rsd_link' => false,
+		'perf_remove_shortlink' => false,
+		'perf_remove_generator' => false,
+		'perf_remove_rest_api_links' => false,
+		'perf_remove_adjacent_posts' => false,
 		'perf_woo_disable_cart_fragments' => false,
 		'perf_woo_disable_assets_elsewhere' => false,
 		'perf_woo_disable_password_strength' => false,
@@ -226,8 +232,14 @@ final class Settings {
 		'embed_facades',
 		'perf_disable_wp_embed',
 		'perf_disable_dashicons',
-		'perf_reduce_heartbeat',
+		'perf_disable_frontend_heartbeat',
 		'perf_remove_emoji',
+		'perf_disable_xmlrpc',
+		'perf_remove_rsd_link',
+		'perf_remove_shortlink',
+		'perf_remove_generator',
+		'perf_remove_rest_api_links',
+		'perf_remove_adjacent_posts',
 		'perf_woo_disable_cart_fragments',
 		'perf_woo_disable_assets_elsewhere',
 		'perf_woo_disable_password_strength',
@@ -270,7 +282,7 @@ final class Settings {
 			$merged[ $key ] = isset( $options[ $key ] ) ? (bool) $options[ $key ] : $default;
 		}
 
-		self::$cache = $merged;
+		self::$cache = self::apply_pro_performance_gates( $merged );
 
 		return self::$cache;
 	}
@@ -286,9 +298,16 @@ final class Settings {
 			$prefix = $key . '_';
 
 			foreach ( $settings as $child => $enabled ) {
-				if ( $enabled && str_starts_with( (string) $child, $prefix ) ) {
-					return true;
+				if ( ! $enabled || ! str_starts_with( (string) $child, $prefix ) ) {
+					continue;
 				}
+
+				// Performance-page keys must not imply Blocks parent modules.
+				if ( in_array( (string) $child, self::PERFORMANCE_KEYS, true ) ) {
+					continue;
+				}
+
+				return true;
 			}
 		}
 
@@ -323,7 +342,7 @@ final class Settings {
 			$sanitized[ $key ] = self::to_bool( $input[ $key ] ?? false );
 		}
 
-		return $sanitized;
+		return self::apply_pro_performance_gates( $sanitized );
 	}
 
 	/**
@@ -338,6 +357,8 @@ final class Settings {
 		foreach ( self::PERFORMANCE_KEYS as $key ) {
 			$stored[ $key ] = self::to_bool( $input[ $key ] ?? false );
 		}
+
+		$stored = self::apply_pro_performance_gates( $stored );
 
 		update_option( self::OPTION, $stored );
 		self::flush_cache();
@@ -370,6 +391,8 @@ final class Settings {
 			$kept[ $key ] = isset( $stored[ $key ] ) ? self::to_bool( $stored[ $key ] ) : false;
 		}
 
+		$kept = self::apply_pro_performance_gates( $kept );
+
 		update_option( self::OPTION, $kept );
 		self::flush_cache();
 	}
@@ -381,6 +404,30 @@ final class Settings {
 	 */
 	private static function to_bool( $value ): bool {
 		return filter_var( $value, FILTER_VALIDATE_BOOLEAN );
+	}
+
+	/**
+	 * Force Pro-only Performance keys off when Pro is inactive.
+	 *
+	 * @param array<string, bool> $settings Sanitized settings.
+	 * @return array<string, bool>
+	 */
+	/**
+	 * Whether Aegis Pro is available (constant or known class).
+	 */
+	private static function is_pro_active(): bool {
+		return defined( 'AEGIS_PRO_VERSION' )
+			|| class_exists( 'Aegis_Pro', false )
+			|| class_exists( 'AegisPro\\Plugin', false );
+	}
+
+	private static function apply_pro_performance_gates( array $settings ): array {
+		if ( ! self::is_pro_active() ) {
+			$settings['perf_remove_emoji']      = false;
+			$settings['query_loop_performance'] = false;
+		}
+
+		return $settings;
 	}
 }
 

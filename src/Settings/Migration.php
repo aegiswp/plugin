@@ -163,6 +163,7 @@ final class Migration {
 		$this->migrate_modal_pro_toggles_v1();
 		$this->migrate_image_compare_toggles_v1();
 		$this->migrate_legacy_emoji_option();
+		$this->migrate_heartbeat_key_v1();
 		IntegrationsSettings::migrate_legacy_bunnycdn_option();
 		IntegrationsSettings::persist_inactive_plugin_toggles();
 		$this->migrate_matomo_privacy_mode_v1();
@@ -334,7 +335,8 @@ final class Migration {
 	/**
 	 * Copy Pro Fieldify emoji removal into aegis_blocks.
 	 *
-	 * Legacy Pro treated an unset Fieldify key as on.
+	 * Legacy Pro treated an unset Fieldify key as on for existing sites.
+	 * Fresh installs leave the key unset so Blocks\Settings defaults (off) apply.
 	 */
 	private function migrate_legacy_emoji_option(): void {
 		if ( get_option( 'aegis_emoji_perf_migrated_v1' ) ) {
@@ -358,6 +360,30 @@ final class Migration {
 		}
 
 		update_option( 'aegis_emoji_perf_migrated_v1', true, false );
+	}
+
+	/**
+	 * Rename perf_reduce_heartbeat to perf_disable_frontend_heartbeat.
+	 */
+	private function migrate_heartbeat_key_v1(): void {
+		if ( get_option( 'aegis_perf_heartbeat_key_v1' ) ) {
+			return;
+		}
+
+		$blocks = get_option( BlocksSettings::OPTION, array() );
+		$blocks = is_array( $blocks ) ? $blocks : array();
+
+		if ( array_key_exists( 'perf_reduce_heartbeat', $blocks ) ) {
+			if ( ! array_key_exists( 'perf_disable_frontend_heartbeat', $blocks ) ) {
+				$blocks['perf_disable_frontend_heartbeat'] = (bool) $blocks['perf_reduce_heartbeat'];
+			}
+
+			unset( $blocks['perf_reduce_heartbeat'] );
+			update_option( BlocksSettings::OPTION, $blocks );
+			BlocksSettings::flush_cache();
+		}
+
+		update_option( 'aegis_perf_heartbeat_key_v1', true, false );
 	}
 
 	/**

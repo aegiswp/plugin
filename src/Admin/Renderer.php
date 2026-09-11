@@ -1161,20 +1161,21 @@ class Renderer {
 	/**
 	 * Render section header with bulk actions.
 	 *
-	 * @param string $title       Section title.
-	 * @param string $description Section description.
-	 * @param bool   $show_bulk_actions Whether to show bulk action buttons.
-	 * @param string $icon             Optional dashicon name for the title.
-	 * @param string $plugin_check     Optional Integrations Registry key for a plugin-gated section.
-	 * @param string $brand            Optional brand SVG slug for the title icon.
+	 * @param string $title                 Section title.
+	 * @param string $description           Section description.
+	 * @param bool   $show_bulk_actions     Whether to show bulk action buttons.
+	 * @param string $icon                  Optional dashicon name for the title.
+	 * @param string $plugin_check          Optional Integrations Registry key for a plugin-gated section.
+	 * @param string $brand                 Optional brand SVG slug for the title icon.
+	 * @param bool   $append_inactive_notice When plugin_check is set and inactive, append the install/activate sentence.
 	 * @return void
 	 */
-	public function render_section_header( string $title, string $description, bool $show_bulk_actions = true, string $icon = '', string $plugin_check = '', string $brand = '' ): void {
+	public function render_section_header( string $title, string $description, bool $show_bulk_actions = true, string $icon = '', string $plugin_check = '', string $brand = '', bool $append_inactive_notice = true ): void {
 		$pro_installed = $this->is_aegis_pro_active() ? 'true' : 'false';
 		$plugin_status = $plugin_check !== '' ? $this->get_plugin_status( $plugin_check ) : array( 'class' => '', 'label' => '' );
 		$plugin_active = $plugin_check === '' || $plugin_status['class'] === 'active';
 
-		if ( ! $plugin_active ) {
+		if ( ! $plugin_active && $append_inactive_notice ) {
 			$plugin_label = '';
 			if ( class_exists( \Aegis\Plugin\Integrations\Registry::class ) ) {
 				$integration  = \Aegis\Plugin\Integrations\Registry::get( $plugin_check )
@@ -1185,7 +1186,7 @@ class Renderer {
 			if ( $plugin_label !== '' ) {
 				$description .= ' ' . sprintf(
 					/* translators: %s: plugin name */
-					__( '%s must be installed and active to enable these conditions.', 'aegis' ),
+					__( '%s must be installed and active to enable these options.', 'aegis' ),
 					$plugin_label
 				);
 			}

@@ -8,7 +8,7 @@ Global plugin settings and settings export/import are available at **Aegis → S
 |---------------|-------------|
 | Media / SVG uploads | SVG upload enable and sanitization options — see [[svg-upload]] |
 
-Performance toggles (oEmbed, dashicons, heartbeat, embed facades, Query Loop Pro gate) are **not** on this page. Configure them at **Aegis → Performance** — see [[performance]].
+Performance toggles (oEmbed, dashicons, heartbeat, XML-RPC/head cleanup, emoji with Pro, embed facades, Query Loop Pro gate, WooCommerce cuts) are **not** on this page. Configure them at **Aegis → Performance** — see [[performance]].
 
 ## Export / Import / Reset
 
@@ -43,7 +43,7 @@ Export/import snippets separately through their respective admin pages where ava
 
 ### Reset
 
-Reset actions are scoped per group: `conditionals`, `integrations`, `connectors`, `blocks`, `performance`, `general`. Reset restores **all-off** defaults (features are opt-in). The `integrations` group is used on **Integrations** and also clears `aegis_pattern_control`. **Connectors** uses `connectors`: BunnyCDN/Maps toggles + extras, BunnyCDN/Maps credentials, and `aegis_analytics` (plus local script proxy cleanup). Blocks reset leaves Performance keys unchanged.
+Reset actions are scoped per group: `conditionals`, `integrations`, `connectors`, `blocks`, `performance`, `general`. Reset restores **all-off** defaults (features are opt-in). The `integrations` group is used on **Integrations** and also clears `aegis_pattern_control`. **Connectors** uses `connectors`: BunnyCDN/Maps toggles + extras, BunnyCDN/Maps credentials, and `aegis_analytics` (plus local script proxy cleanup). Blocks reset leaves Performance keys unchanged (and still applies Pro gates so `perf_remove_emoji` / `query_loop_performance` cannot remain on without Pro). The `blocks` export payload uses the same gated settings as the admin UI.
 
 ## Data / Uninstall
 

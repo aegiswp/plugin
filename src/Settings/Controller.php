@@ -74,7 +74,7 @@ final class Controller {
 			array(
 				'conditional_logic' => Repository::get_settings(),
 				'integrations'      => Repository::get_integration_settings(),
-				'blocks'            => get_option( BlocksSettings::OPTION, BlocksSettings::DEFAULTS ),
+				'blocks'            => Repository::get_block_settings(),
 				'general'           => Repository::get_general_settings(),
 				'analytics'         => AnalyticsSettings::get_settings(),
 				'version'           => '1.0.0',

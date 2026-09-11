@@ -108,6 +108,7 @@ final class Uninstall {
 			'aegis_modal_pro_toggles_v1',
 			'aegis_image_compare_toggles_v1',
 			'aegis_emoji_perf_migrated_v1',
+			'aegis_perf_heartbeat_key_v1',
 			'aegis_matomo_privacy_mode_v1',
 			self::REMOVE_DATA_OPTION,
 		);
