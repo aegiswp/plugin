@@ -20,6 +20,15 @@ This directory is the local install path in WordPress Studio; the GitHub repo is
   - [Custom blocks](#custom-blocks)
   - [Admin dashboard](#admin-dashboard)
   - [Integrations](#integrations)
+    - [E-commerce](#e-commerce)
+    - [LMS](#lms)
+    - [Forms](#forms)
+    - [Community](#community)
+    - [Content](#content)
+    - [CRM](#crm)
+    - [SEO](#seo)
+    - [Developer](#developer)
+    - [Connectors (related)](#connectors-related)
   - [Code snippets](#code-snippets)
   - [Hooks](#hooks)
   - [Conditionals](#conditionals)
@@ -47,64 +56,198 @@ For WordPress.org-style packaging notes and external-service disclosures, see [r
 
 ### Block ownership
 
-| Layer | Registers |
-|-------|-----------|
-| **Theme** | Countdown, Slider, Slide, Toggle, Toggle Content, Related Posts |
-| **Plugin** (this repo) | Map (`aegis/map`), Modal (`aegis/modal`), Modal starter patterns (`aegis/modal-*`), admin dashboard, `core/video` editor extensions, WooCommerce / TI Wishlist patterns when dependencies are active |
-| **Pro** | Tabs, tab, image-compare; extends `core/video` and `core/query`; hook pattern CPT render |
+The Aegis stack splits registration across three layers. This plugin does **not** re-register theme blocks for use on other themes.
 
-Video uses WordPress **`core/video`** (theme framework + plugin editor scripts), not a separate `aegis/video` block.
+#### Theme (`aegiswp/theme`)
+
+| Block | Name | Notes |
+|-------|------|-------|
+| Countdown | `aegis/countdown` | Theme-owned; extras gated at **Aegis → Blocks → Countdown** |
+| Slider | `aegis/slider` | Theme-owned; pair with `aegis/slide` |
+| Slide | `aegis/slide` | Child of Slider |
+| Toggle | `aegis/toggle` | Theme-owned disclosure |
+| Toggle Content | `aegis/toggle-content` | Toggle panel content |
+| Related Posts | `aegis/related-posts` | Theme-owned; extras at **Aegis → Blocks → Related Posts** |
+
+Theme docs: [Custom blocks](../themes/aegis/docs/blocks/custom-blocks.md)
+
+#### Plugin (this repository)
+
+| Capability | Name / location | Notes |
+|------------|-----------------|-------|
+| Map block | `aegis/map` | Google Maps + OpenStreetMap fallback |
+| Modal block | `aegis/modal` | Popup / off-canvas / sheet dialogs |
+| Modal starters | `aegis/modal-*` | Register when Modal is enabled |
+| Modals admin | **Aegis → Modals** | Instance list, shortcode copy, starter drafts |
+| Modal shortcode | `[aegis_modal id="…"]` | Render a Modal from its host (including drafts) |
+| Admin dashboard | **Aegis** menu | Blocks, Integrations, Snippets, Hooks, Connectors, … |
+| Video editor | `core/video` | Editor extensions (not a separate `aegis/video` block) |
+| Commerce patterns | WooCommerce / TI Wishlist | Gated when those plugins and toggles allow |
+
+#### Pro (`aegiswp/pro`)
+
+| Capability | Name / notes |
+|------------|--------------|
+| Tabs | `aegis/tabs`, `aegis/tab` |
+| Image Compare | `aegis/image-compare` (Compare extras on **Blocks**) |
+| Video / query | Extends `core/video` (BunnyCDN Stream) and `core/query` conditions |
+| Hook patterns | CPT create + frontend render (`aegis_hook_pattern`) |
+| Visibility presets | Saved rule sets under **Aegis → License** / Presets when Pro is active |
+
+#### Core (WordPress)
+
+| Block | Role |
+|-------|------|
+| `core/video` | Enhanced by theme framework + this plugin’s editor scripts |
+| `core/query` | Query Loop extras from this plugin; advanced conditions in Pro |
+| `core/icon`, `core/image`, `core/list`, `core/group`, … | Variations and extras toggled under **Aegis → Blocks** |
 
 ### Custom blocks
 
-Enable or disable parent blocks and per-block features from **Aegis → Blocks**:
+Parent sections and sub-feature toggles live at **Aegis → Blocks** (`admin.php?page=aegis-blocks`). Features are **off by default** on new installs. Items marked **Pro** need Aegis Pro.
 
-| Block / feature | Notes |
-|-----------------|-------|
-| Map | `aegis/map` — Google Maps with OpenStreetMap fallback when no API key is set |
-| Modal | `aegis/modal` — dialog block, Modals admin tab, `[aegis_modal id="…"]` shortcode |
-| Accordion, Counter, Icon, Lightbox, Compare, Marquee, Newsletter, Query Loop, Related Posts, Slider, SVG, Toggle, Countdown | Feature toggles for theme / core enhancements |
-| Video | Editor extensions for `core/video` |
-| Schema | FAQ, Event, Local Business, and Video JSON-LD where supported |
+#### Registered by this plugin
 
-Documentation: [Custom blocks](docs/blocks/custom-blocks.md) · [Map](docs/blocks/map.md) · [Modal](docs/blocks/modal.md) · [Modals tab](docs/blocks/modals.md)
+| Block | Name | What you get |
+|-------|------|--------------|
+| **Map** | `aegis/map` | Interactive Google Maps; Static Maps facade; optional OSM provider; OSM fallback when Google has no key; Local Business schema when that extra is on. Keys: **Aegis → Connectors → Google Maps**. Docs: [Map](docs/blocks/map.md) |
+| **Modal** | `aegis/modal` | Popup, off-canvas, bottom sheet, fullscreen (sheet/fullscreen fall back to popup when those extras are off). Click triggers; Pro exit intent / scroll / time delay. Instance list at **Aegis → Modals**; shortcode `[aegis_modal id="…"]`. Docs: [Modal](docs/blocks/modal.md) · [Modals tab](docs/blocks/modals.md) |
+
+#### Theme blocks (extras gated here)
+
+| Block | Name | Extras (summary) |
+|-------|------|------------------|
+| **Countdown** | `aegis/countdown` | Theme block; enable extras under **Blocks → Countdown** |
+| **Slider** | `aegis/slider` + `aegis/slide` | Free: slide/fade, arrows, dots, loop, keyboard, responsive. Pro: autoplay, thumbnails, lightbox, mousewheel, aspect ratio, lazy load, arrow/dot styles. Docs: [Theme Slider](../themes/aegis/docs/blocks/slider.md) |
+| **Toggle** | `aegis/toggle` + `aegis/toggle-content` | Theme disclosure; extras under **Blocks → Toggle** |
+| **Related Posts** | `aegis/related-posts` | Related By, Order By, Fallback, style variants. Docs: [Theme Related Posts](../themes/aegis/docs/blocks/related-posts.md) |
+
+#### Core variations and enhancements (toggles here)
+
+| Section | Base | Description |
+|---------|------|-------------|
+| **Accordion** | `core/list` | List → interactive accordion |
+| **Counter** | `core/paragraph` | Animated number counter |
+| **Icon** | `core/icon` | Aegis collections on the WordPress Icon library (WP 7.1+). No Image Icon variation |
+| **Lightbox** | `core/image` | Grouped nav, zoom, thumbnails, swipe (theme lightbox extras) |
+| **Compare** | Pro `aegis/image-compare` | Before/after slider; extras at **Blocks → Compare** |
+| **Marquee** | `core/group` | Continuous horizontal ticker (Group variation). Docs: [Marquee](docs/blocks/marquee.md) |
+| **Newsletter** | `core/group` / search variation | Newsletter signup layout. Docs: [Newsletter](docs/blocks/newsletter.md) |
+| **Query Loop** | `core/query` | Query shape, layout, AJAX, field pickers, WooCommerce sub-features. Docs: [Query Loop](docs/blocks/query-loop.md) |
+| **SVG** | `core/image` (`is-style-svg`) | Inline SVG with sanitization; paste markup in **SVG Settings**. Decorative icons use Icon, not this variation |
+| **Video** | `core/video` | Editor extensions; Stream / advanced hosting in Pro |
+
+#### Schema extras
+
+Where supported on Map / video / related blocks, optional JSON-LD for **FAQ**, **Event**, **Local Business**, and **Video**. SEO plugin integrations can **delegate** those outputs when enabled (see [SEO](#seo)).
+
+Full Blocks tab reference: [Custom blocks](docs/blocks/custom-blocks.md) · [Block variations](docs/blocks/block-variations.md)
 
 ### Admin dashboard
 
-Open **Aegis** in the WordPress admin for:
+Top-level **Aegis** menu (capability `manage_options`, position 59) when the Aegis theme is active. Base URL: `/wp-admin/admin.php?page={slug}`.
 
-| Screen | Purpose |
-|--------|---------|
-| **Dashboard** | Overview and entry points |
-| **Blocks** | Per-block and variation feature toggles |
-| **Integrations** | Third-party plugin compatibility (off by default) |
-| **Conditionals** | Visibility extras available to blocks and Smart Logic |
-| **Code Snippets** | CSS, JS, HTML, and PHP at hook locations |
-| **Hooks** | Location catalog and instance list (pattern CPT create/render needs Pro) |
-| **Connectors** | Google Maps, analytics providers, BunnyCDN credentials |
-| **Performance** | Site-wide frontend optimizations |
-| **Settings** | Export, import, reset, SVG upload, uninstall data |
+In-admin links between Aegis screens load via AJAX (`aegis_load_admin_page`) and swap `#wpbody-content` without a full reload. Snippet edit screens and non-Aegis URLs still do a full load. On activation, a welcome redirect opens **Dashboard**.
 
-See [Dashboard overview](docs/admin/dashboard-overview.md).
+| Screen | Menu label | Page slug | Purpose |
+|--------|------------|-----------|---------|
+| **Dashboard** | Dashboard | `aegis-dashboard` | Product home: at-a-glance stats (blocks, conditionals, integrations, hook patterns, snippets), Site Editor shortcuts, Getting Started (dismissible), system footer + Pro CTA |
+| **Blocks** | Blocks | `aegis-blocks` | Per-block / variation feature toggles (off by default). Export / Import / Reset toolbar |
+| **Modals** | Modals | `aegis-modals` | Lists `aegis/modal` instances; starter drafts; shortcode copy. Feature toggles stay on **Blocks → Modal**. No export toolbar |
+| **Hooks** | Hooks | `aegis-hook-patterns` | Location catalog + instance table. Pattern CPT create/render needs Pro (**Add New** → License). No export toolbar |
+| **Code Snippets** | Code Snippets | `aegis-snippets` | CSS / JS / HTML / PHP at hook locations; location catalog under Settings tab. Export / Import / Reset |
+| **Presets** | Presets | `aegis-visibility-presets` | Saved visibility rule sets (**Pro**). Free UI may redirect toward License. No export toolbar |
+| **Conditionals** | Conditionals | `aegis-settings` | Which condition types are available to blocks, Smart Logic, and hook patterns. Export / Import / Reset |
+| **Integrations** | Integrations | `aegis-integrations` | Third-party toggles by category (off by default). Export / Import / Reset |
+| **Connectors** | Connectors | `aegis-connectors` | Google Maps keys, analytics providers, BunnyCDN credentials. Reset clears Connectors-owned data only |
+| **Performance** | Performance | `aegis-performance` | Site-wide frontend optimizations and Query Loop Pro gating. Export / Import / Reset |
+| **Settings** | Settings | `aegis-general-settings` | Global export / import / reset, SVG upload, delete-data-on-uninstall |
+| **License** | License | `aegis-license` | Get Pro upsell when Pro is inactive; license activation when Pro is active |
+
+See [Dashboard overview](docs/admin/dashboard-overview.md) · [General settings](docs/features/general-settings.md)
 
 ### Integrations
 
-Manage compatibility from **Aegis → Integrations**. Toggles stay off until the target plugin is active. Admin notices remind you when a supported plugin is installed but its integration is disabled.
+Manage compatibility from **Aegis → Integrations** (`admin.php?page=aegis-integrations`).
 
-| Category | Plugins |
-|----------|---------|
-| **E-commerce** | WooCommerce, Easy Digital Downloads, AffiliateWP |
-| **LMS** | LearnDash, LifterLMS, Sensei LMS |
-| **Forms** | Gravity Forms, Ninja Forms, Fluent Forms, Fluent Booking |
-| **Community** | bbPress (forum styling, Page template wrap, breadcrumbs, snippet locations) |
-| **Content** | Co-Authors Plus (multi-author blocks, optional Author Schema) |
-| **CRM** | FluentCRM, WP Fusion |
-| **SEO** | Rank Math, Yoast SEO, All in One SEO, SEOPress (per-plugin schema delegation and breadcrumb styling) |
-| **Developer** | Advanced Custom Fields, Meta Box, Code Block Pro, Syntax Highlighting Code Block |
+**Behavior (all stacks):**
 
-When an SEO integration is on, FAQ / Event / Local Business / Video schema (and Pro video sitemaps) can be delegated to that plugin. Each SEO stack has its own description on the Integrations screen.
+- Integrations are **off by default** on new installs.
+- A toggle can only turn on when that plugin is **installed and active**.
+- Admin notices remind you when a supported plugin is present but its integration is disabled.
+- Stack headers and rows use brand marks when available; otherwise dashicons.
+- Categories and plugins in each category are listed alphabetically in the UI.
+- Full toggle / CSS / location details: [Integrations dashboard](docs/features/integrations-dashboard.md) · Theme CSS: [Plugin integrations](../themes/aegis/docs/features/plugin-integrations.md)
 
-Full toggle behavior: [Integrations dashboard](docs/features/integrations-dashboard.md) · Theme CSS notes: [Theme plugin integrations](../themes/aegis/docs/features/plugin-integrations.md)
+#### E-commerce
+
+| Plugin | What enabling does |
+|--------|--------------------|
+| **WooCommerce** | Framework shop / cart / checkout CSS; breadcrumb CSS and `.aegis-breadcrumb-separator` wrappers; unregisters WooCommerce plugin patterns unless **WooCommerce Patterns** is on; snippet locations (`aegis_before/after_woocommerce_checkout`, cart pair); multi-step checkout assets on the multi-step template. Pro: cart, customer, and product conditions |
+| **Easy Digital Downloads** | Framework download / checkout / cart CSS when EDD markup is present; snippet locations (`aegis_before/after_edd_download`). Pro: cart, customer, and download conditions |
+| **AffiliateWP** | Framework Affiliate Area + login/register CSS; skips bundled `affwp-forms` on the frontend; snippet locations (`aegis_before/after_affwp_dashboard`). Pro: referral visit, affiliate account, earnings |
+
+#### LMS
+
+| Plugin | What enabling does |
+|--------|--------------------|
+| **LearnDash** | Framework course / lesson / topic / quiz / profile CSS; Focus Mode logo from theme custom logo; `aegis-learndash-page` body class; snippet locations (course, lesson, topic, quiz, focus header/footer). Pro: pattern control, video progression |
+| **LifterLMS** | Framework course / lesson / syllabus CSS (tokens + dark mode); theme support; suppresses default sidebars; `aegis-lifterlms-page` body class; snippet locations (course, lesson). Pro: enrollment, completion, progress %, membership extras; pattern control; video progression |
+| **Sensei LMS** | Framework course / lesson / quiz / progress CSS; theme support; disables default Sensei styles; `aegis-sensei-page` body class; snippet locations (course, lesson, quiz). Pro: enrollment / completion extras; pattern control |
+
+#### Forms
+
+| Plugin | What enabling does |
+|--------|--------------------|
+| **Fluent Forms** | Framework form CSS; deactivates default public form styles; snippet locations (`aegis_before/after_fluentform`). Pro: submitted / count / field conditions; **Fluent Forms Patterns** control |
+| **Fluent Booking** | Framework calendar / booking CSS when Fluent Booking markup is present. Pro: booking status / upcoming / past extras; **Fluent Booking Patterns** control |
+| **Gravity Forms** | Framework form CSS; disables GF theme CSS; snippet locations (`aegis_before/after_gform` via `gform_get_form_filter`) |
+| **Ninja Forms** | Framework form CSS; dequeues opinionated NF display styles; snippet locations (`aegis_before/after_nf_form`) |
+
+#### Community
+
+| Plugin | What enabling does |
+|--------|--------------------|
+| **bbPress** | Framework forum CSS (`plugins/bbpress.css`: avatars, typography, forms, topic rows, posts, My Account–style member layout); dequeues `bbp-default` / `bbp-default-rtl`; wraps forum views in the theme **Page** template (`locate_block_template` → `page.html`); breadcrumb styling; snippet locations (`aegis_before/after_bbpress_forum`, topic pair). No block-condition extras |
+
+#### Content
+
+| Plugin | What enabling does |
+|--------|--------------------|
+| **Co-Authors Plus** | Multi-author block rendering; optional **Author Schema** extra (JSON-LD Person, off by default — leave off if Yoast/Rank Math already output author schema); snippet locations around post-author / Co-Authors markup. Pro: **Co-Authors Plus Patterns** control |
+
+#### CRM
+
+| Plugin | What enabling does |
+|--------|--------------------|
+| **FluentCRM** | Email marketing CRM bridge. Pro: video funnels, tags, and lists |
+| **WP Fusion** | **CRM Tags** and **CRM Lists** extras (separate toggles). Either extra also enables **Is logged in (CRM)** / Smart Logic **WP Fusion Logged-in (CRM)** (WP Fusion auto-login, not WordPress User Logged-in). Tag/list pickers use the CRM catalog |
+
+#### SEO
+
+Each SEO plugin has its **own** stack description on the Integrations screen. Enabling one can delegate FAQ, Event, Local Business, and Video schema (and Pro video sitemaps) away from built-in block markup.
+
+| Plugin | What enabling does |
+|--------|--------------------|
+| **Rank Math** | Delegates FAQ / Event / Local Business / Video schema to Rank Math; styles Rank Math breadcrumbs; Pro video sitemaps |
+| **Yoast SEO** | Delegates the same schema set to Yoast; styles Yoast breadcrumbs (`#breadcrumbs` / `.yoast-breadcrumbs`); Pro Video SEO sitemaps |
+| **All in One SEO** | Delegates the same schema set to AIOSEO; Pro video sitemaps |
+| **SEOPress** | Delegates the same schema set to SEOPress; styles SEOPress breadcrumbs; Pro video sitemaps |
+
+See also [SEO schema delegation](docs/features/seo-schema-delegation.md).
+
+#### Developer
+
+| Plugin | What enabling does |
+|--------|--------------------|
+| **Advanced Custom Fields** | Field visibility (Pro inspector + hook-pattern conditions); Query Loop field pickers (needs **Blocks → Query Loop → Field Picker**); featured-image **ACF Image Field** also requires this toggle. Covers Secure Custom Fields on WordPress.org. No framework CSS. Pro video Dynamic Source offers ACF when on |
+| **Meta Box** | Same field extras as ACF for Meta Box / Meta Box AIO; framework form CSS (`plugins/meta-box.css`); theme palette on Meta Box colour pickers; `aegis/metabox` bindings. Pro video Dynamic Source when on |
+| **Code Block Pro** | Theme radius / gap / monospace overlay (`plugins/code-block-pro.css`) when Kevin Batdorf’s block markup is present. No extras |
+| **Syntax Highlighting Code Block** | Theme code-color / radius / padding / line-number overlay (`plugins/syntax-highlighting-code-block.css`) when `hljs` / `shcb-` markup is present. No extras |
+
+#### Connectors (related)
+
+BunnyCDN and Google Maps are configured under **Aegis → Connectors** (not the Integrations category list above). BunnyCDN Stream API calls require Pro; credentials can be stored from the free plugin’s Connectors screen.
 
 ### Code snippets
 
