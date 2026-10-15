@@ -2,25 +2,25 @@
 Contributors: atmostfear
 Tags: blocks, gutenberg, integrations, woocommerce, seo
 Requires at least: 6.9
-Tested up to: 7.0
+Tested up to: 7.1.3
 Requires PHP: 7.4
 Stable tag: 1.0.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Custom Gutenberg blocks, integrations dashboard, conditionals, hooks, and analytics. Works with any block theme; best with Aegis.
+Custom Gutenberg blocks, integrations dashboard, conditionals, code snippets, and analytics. Requires the Aegis block theme.
 
 == Description ==
 
-Aegis is the companion plugin for the [Aegis block theme](https://www.atmostfear-entertainment.com/aegis/). It adds custom blocks, a unified settings dashboard, third-party integrations, display conditionals, custom hooks, and privacy-friendly analytics.
+Aegis is the companion plugin for the [Aegis block theme](https://www.atmostfear-entertainment.com/aegis/). It adds custom blocks, a unified settings dashboard, third-party integrations, display conditionals, code snippets, a hook location catalog, and privacy-friendly analytics.
 
-The plugin works with any block theme. For the full design system, integration styling, and pattern library, use it with the Aegis theme.
+The plugin requires the Aegis theme. Activate the theme before the plugin.
 
 = Custom blocks =
 
 Enable or disable parent blocks and per-block features from **Aegis → Blocks**:
 
-* Accordion, Counter, Icon, Image Lightbox, Map, Marquee, Modal, Newsletter, Query Loop, Related Posts, Slider, SVG, Toggle, Countdown, and Video enhancements
+* Accordion, Counter, Icon, Lightbox, Compare, Map, Marquee, Modal, Newsletter, Query Loop, Related Posts, Slider, SVG, Toggle, Countdown, and Video enhancements
 * Schema.org output for FAQ, Event, Local Business, and Video where supported
 * Google Maps with OpenStreetMap fallback when no API key is configured
 
@@ -33,20 +33,22 @@ Supported integrations include:
 * **E-commerce:** WooCommerce, Easy Digital Downloads, AffiliateWP (dashboard CSS, snippet locations, Pro conditions)
 * **LMS:** LearnDash, LifterLMS, Sensei LMS
 * **Forms:** Gravity Forms, Ninja Forms, Fluent Forms, Fluent Booking
-* **Content:** Co-Authors Plus, bbPress
+* **Community:** bbPress (forum styling, Page template wrapper, breadcrumbs, snippet locations)
+* **Content:** Co-Authors Plus (multi-author blocks, optional Author Schema)
 * **CRM:** FluentCRM (Pro video events), WP Fusion (tags, lists, conditions)
-* **SEO:** Rank Math, Yoast SEO, All in One SEO, SEOPress
+* **SEO:** Rank Math, Yoast SEO, All in One SEO, SEOPress (per-plugin schema delegation and breadcrumb styling; Pro video sitemaps)
 * **Developer:** Advanced Custom Fields, Meta Box (field extras, form CSS, bindings), Code Block Pro (theme overlay; no extras), Syntax Highlighting Code Block (theme overlay; no extras)
-* **Performance & maps:** Google Maps API settings (browser and server keys)
+* **Performance & maps:** Google Maps API settings (browser and server keys) under **Aegis → Connectors**
 
-When an SEO plugin integration is enabled, you can delegate FAQ, Event, Local Business, Video schema, and (with Aegis Pro) video sitemap handling to that plugin instead of the built-in block markup.
+When an SEO plugin integration is enabled, you can delegate FAQ, Event, Local Business, Video schema, and (with Aegis Pro) video sitemap handling to that plugin instead of the built-in block markup. Each SEO plugin has its own stack description on the Integrations screen.
 
 = Other features =
 
 * **Code Snippets** — Add CSS, JavaScript, HTML, or PHP at theme and integration hook locations (stored in uploads/aegis-snippets/). PHP snippets require an explicit admin opt-in and auto-disable on fatal errors.
 * **Conditionals** — Show or hide blocks by user role, capability, device, date, URL, and more
-* **Hooks** — Inject block patterns at theme and integration hook points without editing templates
+* **Hooks** — Location catalog and instance list for injection points; creating and rendering hook patterns (block CPT) requires **Aegis Pro**
 * **Analytics** — Optional, opt-in analytics tags (Google Analytics 4, Google Tag Manager, Plausible, Fathom, Microsoft Clarity, Matomo, Meta Pixel)
+* **Modal** — `aegis/modal` block, starter patterns (`aegis/modal-*`), Modals admin tab, and `[aegis_modal id="…"]` shortcode
 * **Co-Authors Plus** — Multi-author block rendering when Co-Authors Plus is active. Optional Author Schema extra (off by default) for JSON-LD Person markup.
 * **WooCommerce** — Checkout enhancements when WooCommerce is active
 
@@ -58,18 +60,18 @@ Some integration sub-features (Co-Authors Plus pattern control, BunnyCDN video h
 
 1. Upload the `aegis` folder to `/wp-content/plugins/`.
 2. Activate the plugin through the **Plugins** menu in WordPress.
-3. Open **Aegis** in the admin menu to configure blocks, integrations, conditionals, hooks, and analytics.
-4. For the best experience, activate the Aegis block theme. The plugin also works with other block themes.
+3. Open **Aegis** in the admin menu to configure blocks, integrations, conditionals, snippets, and analytics.
+4. Activate the Aegis block theme first — the plugin will not load without it.
 
 == Frequently Asked Questions ==
 
 = Do I need the Aegis theme? =
 
-No. Blocks and settings work with any block theme. The Aegis theme adds matching styles, framework integrations, and patterns.
+Yes. The companion plugin requires the Aegis theme and will not bootstrap on other themes.
 
 = Do I need Aegis Pro? =
 
-No. The free plugin includes blocks, integrations toggles, code snippets, conditionals, hooks, analytics, and SEO schema delegation. Pro adds advanced video, query, and pattern features.
+No. The free plugin includes blocks, integrations toggles, code snippets, conditionals, the Hooks location catalog, analytics, and SEO schema delegation. Pro adds hook pattern CPT rendering, advanced video, query conditions, and pattern control.
 
 = Where do I enter Google Maps or analytics credentials? =
 
@@ -118,13 +120,13 @@ BunnyCDN Stream settings can be stored in this plugin’s integrations screen, b
 
 == Changelog ==
 
-= 1.0.0 =
-* Initial WordPress.org release.
-* Custom Gutenberg blocks with per-feature toggles.
-* Unified integrations dashboard with admin notices for pending integrations.
-* Multi-SEO support (Rank Math, Yoast SEO, All in One SEO, SEOPress) with schema delegation.
-* Google Maps integration with separate browser and server API keys.
-* Conditionals, hooks, analytics, Co-Authors Plus, and WooCommerce features.
+= 1.0.0 - 2026-10-14 =
+* Initial release.
+* Integrations: bbPress under **Community**; Co-Authors Plus under **Content**.
+* Integrations: distinct SEO stack descriptions for Rank Math, Yoast, All in One SEO, and SEOPress.
+* Modal Modals tab, `[aegis_modal]` shortcode, and `aegis/modal-*` starter patterns.
+* Hooks location catalog; hook pattern CPT create/render requires Aegis Pro.
+* Repository tooling: Composer/PHPCS, GitHub Actions (CI, release, spelling, stale), `.distignore` release packaging.
 
 == Upgrade Notice ==
 

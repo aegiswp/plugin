@@ -6,12 +6,13 @@ The Aegis plugin builds Map and Modal blocks, admin dashboard assets, and `core/
 
 ```bash
 cd wp-content/plugins/aegis
-npm install
+npm ci
+composer install          # PHPCS / WPCS (dev only)
 npm run build             # Admin + video editor (does not compile Map/Modal)
 npm run build:admin       # assets/admin/build
 npm run build:editor      # assets/editor/build/video-editor.js
+composer lint             # PHPCS
 ```
-
 `npm run build:blocks` still exists but **overwrites** the hand-maintained Map and Modal `index.js` / `view.js` IIFEs. Do not run it unless you intend to replace those sources with a webpack bundle.
 
 Development watch:
@@ -48,6 +49,16 @@ Compiled assets are committed for environments without Node. Re-run `npm run bui
 
 In this Studio checkout, admin CSS/JS load from `assets/admin/src` when `assets/admin/build/index.asset.php` exists (`Menu.php` uses the asset file for dependencies/version, then the source files). `.distignore` excludes `assets/admin/src`, so a release zip must ship a current `assets/admin/build` **and** enqueue it. After changing `admin-settings.js` or the admin CSS, run `npm run build:admin` before packaging.
 
+## Release packaging
+
+GitHub Releases (tag `v*`) run `.github/workflows/release.yml`: build assets, run PHPCS, then `rsync` with `.distignore` into an `aegis/` folder and attach `aegis.zip` + SHA256.
+
+| Included in zip | Excluded |
+|-----------------|----------|
+| `aegis.php`, `src/`, `config/`, `patterns/`, `templates/`, `languages/`, `public/`, compiled assets | `.github/`, `docs/`, Node/Composer manifests, `vendor/`, admin/editor **sources**, tests/tools |
+
+`.gitattributes` `export-ignore` mirrors `.distignore` for `git archive`. Details: `.github/WORKFLOWS.md` and root [[../../CONTRIBUTING|CONTRIBUTING.md]].
+
 ## Translations
 
 The free plugin ships `languages/aegis.pot` (text domain `aegis`). Do not put plugin strings in the theme POT.
@@ -58,7 +69,7 @@ npm run translate             # Requires `wp` on PATH
 npm run translate:studio      # WordPress Studio (Windows)
 ```
 
-`wp i18n make-pot` scans PHP and JavaScript (`--skip-block-json`, same as the theme). Integration labels and descriptions live in `src/Integrations/Registry.php` (including Code Block Pro overlay copy, Syntax Highlighting overlay copy, AffiliateWP dashboard and login/register form copy, Easy Digital Downloads download/checkout copy, Fluent Forms form styling and Pro conditions copy, Fluent Booking calendar/appointment styling and Pro conditions copy, Gravity Forms form styling and snippet locations copy, Ninja Forms form styling and snippet locations copy, WooCommerce shop styling / snippet locations / commerce patterns / Pro cart-customer-product conditions copy, and Meta Box form-styling copy). Multi-step checkout button copy lives in `src/Integrations/WooCommerce/MultiStepCheckout.php`. Admin Smart Logic strings live in `assets/admin/smart-conditions.js` (including WP Fusion tag/list/CRM-logged-in labels). The post/hook-pattern extras UI (`assets/admin/hook-patterns-conditions.js`) is scanned for wrapped `wp.i18n` strings. It does not scan TypeScript, so run `npm run build:editor` first if you changed `assets/editor/video-editor.tsx` — those strings come from `assets/editor/build/video-editor.tsx.js`. Docs are excluded from the scan.
+`wp i18n make-pot` scans PHP and JavaScript (`--skip-block-json`, same as the theme). Integration category labels, stack descriptions, and toggles live in `src/Integrations/Registry.php` — including the **Community** (bbPress) and **Content** (Co-Authors Plus) sections, per-plugin SEO stack copy (Rank Math, Yoast, All in One SEO, SEOPress), Code Block Pro / Syntax Highlighting overlays, AffiliateWP, Easy Digital Downloads, Fluent Forms / Booking, Gravity Forms, Ninja Forms, WooCommerce, and Meta Box. Multi-step checkout button copy lives in `src/Integrations/WooCommerce/MultiStepCheckout.php`. Admin Smart Logic strings live in `assets/admin/smart-conditions.js` (including WP Fusion tag/list/CRM-logged-in labels). The post/hook-pattern extras UI (`assets/admin/hook-patterns-conditions.js`) is scanned for wrapped `wp.i18n` strings. It does not scan TypeScript, so run `npm run build:editor` first if you changed `assets/editor/video-editor.tsx` — those strings come from `assets/editor/build/video-editor.tsx.js`. Docs are excluded from the scan.
 
 Theme strings: `wp-content/themes/aegis/languages/aegis.pot`. Pro strings: `wp-content/plugins/aegis-pro/languages/aegis-pro.pot`.
 

@@ -25,8 +25,8 @@ Parent block sections:
 | Countdown | Countdown block (theme) |
 | Counter | Paragraph variation |
 | Icon | Core Icon block (`core/icon`). Aegis collections register on the WordPress Icon library (WP 7.1+). There is no Image Icon variation. |
-| Image Lightbox | Core Image lightbox extras (grouped nav, zoom, thumbnails, swipe) — [Theme Image Lightbox](../../themes/aegis/docs/features/image-lightbox.md) |
-| Image Compare | Pro `aegis/image-compare` before/after slider — extras at **Aegis → Blocks → Image Compare**; see [Pro Blocks](../../aegis-pro/docs/features/pro-blocks.md) |
+| Lightbox | Core Image lightbox extras (grouped nav, zoom, thumbnails, swipe) — [Theme Lightbox](../../themes/aegis/docs/features/image-lightbox.md) |
+| Compare | Pro `aegis/image-compare` before/after slider — extras at **Aegis → Blocks → Compare**; see [Pro Blocks](../../aegis-pro/docs/features/pro-blocks.md) |
 | Map | Map block (plugin) |
 | Marquee | Group variation — [[marquee]] |
 | Modal | Modal block (plugin) |
@@ -93,9 +93,9 @@ Free extras: segment toggles, custom labels, separator, layout, expiry message, 
 
 The datetime picker stays available when the block is registered. Full attributes: [Theme Countdown](../../themes/aegis/docs/blocks/countdown.md).
 
-## Image Compare Block
+## Compare Block
 
-Pro-only (`aegis/image-compare`). There is no parent Image Compare toggle: enabling any extra at **Aegis → Blocks → Image Compare** implies the block in the inserter. Saved blocks still render when extras are off.
+Pro-only (`aegis/image-compare`). There is no parent Compare toggle: enabling any extra at **Aegis → Blocks → Compare** implies the block in the inserter. Saved blocks still render when extras are off.
 
 All extras are Pro: orientation, before/after labels (including show-on-hover), starting position, slide on hover, circle handle, smooth motion, fluid clip. Smooth Motion extra off leaves the library default (smooth, 100ms). Aspect ratio, height, object-fit, and object-position stay on the theme Image inspector (not Blocks extras); height applies CSS custom properties on the wrapper. Pick two images on the block; extras only expose those inspector controls.
 
@@ -122,5 +122,5 @@ Pill and button styles follow Aegis light/dark tokens (page surface and theme bu
 - [Theme Toggle](../../themes/aegis/docs/blocks/toggle.md) — Toggle extras
 - [[modals]] — Modals admin tab
 - [[integrations-dashboard]] — Google Maps API keys
-- [Pro Blocks](../../aegis-pro/docs/features/pro-blocks.md) — Image Compare extras
+- [Pro Blocks](../../aegis-pro/docs/features/pro-blocks.md) — Compare extras
 - [[../../themes/aegis/docs/blocks/custom-blocks|Theme Custom Blocks]]

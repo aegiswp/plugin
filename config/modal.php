@@ -11,6 +11,7 @@ declare( strict_types=1 );
 use Aegis\Plugin\Modal\AdminPage;
 use Aegis\Plugin\Modal\Block;
 use Aegis\Plugin\Modal\InstanceRepository;
+use Aegis\Plugin\Modal\Shortcode;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -19,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $modal_block = new Block();
 $modal_block->init();
 InstanceRepository::init();
+Shortcode::init();
 
 add_action(
 	'after_setup_theme',

@@ -6,18 +6,24 @@ Directory layout of the Aegis companion plugin repository.
 
 ```
 aegis/
-├── assets/                  # Admin CSS/JS, video editor sources, WooCommerce multi-step checkout CSS/JS
+├── .github/                 # CI, release, issue/PR templates (excluded from release zip)
+├── assets/                  # Admin CSS/JS sources + build/, video editor, WooCommerce multi-step
 ├── config/                  # Bootstrap PHP configs (blocks, patterns, integrations, …)
-├── docs/                    # Plugin documentation
+├── docs/                    # Plugin documentation (excluded from release zip)
 ├── languages/               # aegis.pot (plugin text domain; not the theme catalog)
 ├── patterns/                # Block patterns (gated and always-on)
-├── src/                     # PSR-4 PHP (namespace Aegis\Plugin\)
+├── src/                     # PSR-4 PHP (namespace Aegis\Plugin\) + custom autoload
 ├── templates/               # Admin page templates
 ├── aegis.php                # Plugin bootstrap + theme gate + textdomain
+├── composer.json            # Dev: PHPCS / WPCS (not shipped)
+├── phpcs.xml
 ├── package.json
+├── .distignore              # Release zip excludes (paired with .gitattributes export-ignore)
+├── CONTRIBUTING.md
 └── readme.txt
 ```
 
+Runtime PHP uses `src/autoload.php` — there is no production Composer `vendor/` in free-plugin release zips. See [[building-assets]] and `.github/WORKFLOWS.md`.
 ## patterns/
 
 | Directory | When registered |
@@ -46,7 +52,8 @@ Commerce patterns use theme slug convention (`template-page-cart`, etc.) via `\A
 | `Injection/` | Hook injection, preview (including Co-Authors Plus wrap of `core/post-author` and `co-authors/block`) |
 | `CoAuthors/` | Multi-author `core/post-author*` replace, optional Author Schema extra |
 | `Integrations/` | Third-party toggles, `WPFusion.php`, `ACF.php`, `MetaBox.php`, `CodeBlockPro.php`, `SyntaxHighlighting.php`, `AffiliateWP.php`, `EasyDigitalDownloads.php`, `FluentBooking.php`, `FluentForms.php`, `GravityForms.php`, `NinjaForms.php`, `LearnDash.php`, `LifterLMS.php`, `SenseiLMS.php`, `AllInOneSEO.php`, `RankMath.php`, `SEOPress.php`, `Yoast.php`, `BunnyCDN.php` (Connectors SaaS helper), `WooCommerce.php` (`is_plugin_active()` / `is_enabled()`), and `WooCommerce/MultiStepCheckout.php` |
-| `Map/` / `Modal/` | Map/Modal blocks; Static Maps style encoding (`Map/Styles.php`); Modals instance dashboard |
+| `Map/` / `Modal/` | Map/Modal blocks; Static Maps style encoding (`Map/Styles.php`); Modals instance dashboard; `[aegis_modal]` shortcode (`Modal/Shortcode.php`) |
+| `License/` | Free Get Pro / License upsell page (`aegis-license`) when Pro is inactive |
 | `Patterns/` | `CommercePatternRegistrar` |
 | `Performance/` | Frontend optimizations, Performance admin page |
 | `Seo/` | Schema delegation manager, video schema, and `Adapters/` (`AioseoAdapter`, `RankMathAdapter`, `YoastAdapter`, `SeopressAdapter`, `TsfAdapter`) |

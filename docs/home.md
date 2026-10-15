@@ -2,6 +2,12 @@
 
 Welcome to the documentation for the **Aegis** companion plugin. The plugin requires the [Aegis theme](../../themes/aegis/docs/home.md) and adds Map and Modal blocks, a unified admin dashboard, integrations, conditionals, code snippets, hook references, and privacy-friendly analytics.
 
+**Canonical sources**
+
+- [Plugin Wiki](https://github.com/aegiswp/plugin/wiki)
+- [Plugin docs on GitHub](https://github.com/aegiswp/plugin/tree/main/docs)
+- Pro: [Wiki](https://github.com/aegiswp/pro/wiki) · [docs](https://github.com/aegiswp/pro/tree/main/docs)
+
 ## About the Plugin
 
 The Aegis plugin is a **companion** to the Aegis theme. It will not bootstrap without the Aegis theme active — it is not designed for other block themes.
@@ -11,7 +17,7 @@ The Aegis plugin is a **companion** to the Aegis theme. It will not bootstrap wi
 | Layer | Registers |
 |-------|-----------|
 | **Theme** | Six custom blocks: countdown, slider, slide, toggle, toggle-content, related-posts |
-| **Plugin** | Map (`aegis/map`), Modal (`aegis/modal`), admin dashboard, `core/video` editor extensions, **WooCommerce/TI Wishlist patterns** (when dependencies active) |
+| **Plugin** | Map (`aegis/map`), Modal (`aegis/modal`), Modal starter patterns (`aegis/modal-*`), admin dashboard, `core/video` editor extensions, **WooCommerce/TI Wishlist patterns** (when dependencies active) |
 | **Pro** | Tabs, tab, image-compare; extends `core/video` and `core/query` |
 
 Video is the WordPress **`core/video`** block (enhanced by the theme framework and plugin editor scripts), not a separate `aegis/video` block. The plugin does **not** register portable copies of theme blocks on non-Aegis themes.
@@ -54,9 +60,11 @@ Video is the WordPress **`core/video`** block (enhanced by the theme framework a
 
 ### Development
 
-- [[building-assets]] — Build commands and `languages/aegis.pot`
-- [[file-structure]] — Directory layout
+- [[building-assets]] — Build commands, release packaging (`.distignore`), and `languages/aegis.pot`
+- [[file-structure]] — Directory layout (including `.github/` tooling)
 - [[architecture]] — Plugin architecture
+- [CONTRIBUTING.md](../CONTRIBUTING.md) — Local setup, PHPCS, branch strategy
+- [.github/WORKFLOWS.md](../.github/WORKFLOWS.md) — CI and GitHub Release zip contents
 
 ### Help
 
@@ -69,4 +77,5 @@ Video is the WordPress **`core/video`** block (enhanced by the theme framework a
 **Requires PHP:** 7.4 or later  
 **Requires Theme:** Aegis theme (required)  
 **License:** GPL-2.0-or-later  
-**Theme docs:** [Aegis Theme Documentation](../../themes/aegis/docs/home.md)
+**Theme docs:** [Aegis Theme Documentation](../../themes/aegis/docs/home.md)  
+**Pro docs:** [Aegis Pro](../../aegis-pro/docs/home.md) · [Pro Wiki](https://github.com/aegiswp/pro/wiki)

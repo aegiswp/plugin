@@ -2066,13 +2066,6 @@
 	white-space: nowrap;
 }
 
-.aegis-hooks-header-actions .aegis-pro-badge,
-.aegis-hooks-actions .aegis-pro-badge,
-.aegis-hooks-page .aegis-toolbar .aegis-pro-badge,
-.aegis-hooks-empty-action .aegis-pro-badge {
-	margin-left: 4px;
-}
-
 .aegis-hooks-conditionals-hint {
 	margin: 12px 0 0;
 }

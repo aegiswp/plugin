@@ -201,6 +201,51 @@ final class InstanceRepository {
 	}
 
 	/**
+	 * Locate a Modal block by its modalId attribute (any non-trash host).
+	 *
+	 * @return array{post_id: int, block: array<string, mixed>, enabled: bool}|null
+	 */
+	public static function find_block_by_modal_id( string $modal_id ): ?array {
+		$modal_id = trim( $modal_id );
+
+		if ( $modal_id === '' ) {
+			return null;
+		}
+
+		foreach ( self::get_instances() as $instance ) {
+			if ( (string) ( $instance['modal_id'] ?? '' ) !== $modal_id ) {
+				continue;
+			}
+
+			$post_id = (int) ( $instance['post_id'] ?? 0 );
+			$index   = (int) ( $instance['block_index'] ?? 0 );
+			$post    = get_post( $post_id );
+
+			if ( ! $post || (string) $post->post_status === 'trash' ) {
+				continue;
+			}
+
+			$block = self::extract_modal_block(
+				parse_blocks( (string) $post->post_content ),
+				$modal_id,
+				$index
+			);
+
+			if ( $block === null ) {
+				continue;
+			}
+
+			return array(
+				'post_id' => $post_id,
+				'block'   => $block,
+				'enabled' => ! isset( $instance['enabled'] ) || ! empty( $instance['enabled'] ),
+			);
+		}
+
+		return null;
+	}
+
+	/**
 	 * @return array<int, array<string, mixed>>
 	 */
 	private static function scan(): array {
@@ -415,6 +460,49 @@ final class InstanceRepository {
 		self::flush();
 
 		return true;
+	}
+
+	/**
+	 * @param array<int, array<string, mixed>> $blocks Parsed blocks.
+	 * @return array<string, mixed>|null
+	 */
+	private static function extract_modal_block( array $blocks, string $modal_id, int $index ): ?array {
+		$seen = 0;
+
+		return self::extract_modal_block_walk( $blocks, $modal_id, $index, $seen );
+	}
+
+	/**
+	 * @param array<int, array<string, mixed>> $blocks Parsed blocks.
+	 * @return array<string, mixed>|null
+	 */
+	private static function extract_modal_block_walk( array $blocks, string $modal_id, int $index, int &$seen ): ?array {
+		foreach ( $blocks as $block ) {
+			$name = (string) ( $block['blockName'] ?? '' );
+
+			if ( $name === 'aegis/modal' ) {
+				$attrs   = is_array( $block['attrs'] ?? null ) ? $block['attrs'] : array();
+				$id      = (string) ( $attrs['modalId'] ?? '' );
+				$matches = $modal_id !== '' ? $id === $modal_id : $seen === $index;
+				++$seen;
+
+				if ( $matches ) {
+					return $block;
+				}
+			}
+
+			$inner = $block['innerBlocks'] ?? array();
+
+			if ( is_array( $inner ) && $inner !== array() ) {
+				$found = self::extract_modal_block_walk( $inner, $modal_id, $index, $seen );
+
+				if ( $found !== null ) {
+					return $found;
+				}
+			}
+		}
+
+		return null;
 	}
 
 	/**

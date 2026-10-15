@@ -1,9 +1,47 @@
+# Dependencies
 node_modules/
 vendor/
-*.log
+
+# IDE / agents
+.vscode/
+.idea/
+.claude/
+.cursor/
+.fleet/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Secrets / local env
+.env
+.env.*
+auth.json
+
+# Caches and coverage
 .phpunit.result.cache
 .phpunit.cache/
-assets/admin/src/
-assets/editor/src/
-AGENTS.md
-BUILD.md
+.phpcs.cache
+.eslintcache
+.stylelintcache
+.nyc_output/
+coverage/
+coverage.xml
+*.log
+
+# Ephemeral
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Local packaging output
+aegis/
+aegis.zip
+aegis.zip.sha256

@@ -1,0 +1,184 @@
+/**
+ * Aegis admin page wrapper — standard WordPress admin layout.
+ *
+ * @package Aegis
+ * @since   1.0.0
+ */
+
+body.aegis-plugin-admin,
+.aegis-admin-page {
+	--aegis-accent: var(--wpds-color-background-interactive-brand-strong, var(--wp-admin-theme-color, #3858e9));
+	--aegis-accent-hover: var(--wpds-color-background-interactive-brand-strong-active, var(--wp-admin-theme-color-darker-10, #2c4bdb));
+	--aegis-accent-soft: var(--wpds-color-background-surface-brand, #ecf0fa);
+	--aegis-accent-ring: var(--wpds-color-stroke-focus, var(--wp-admin-theme-color, #3858e9));
+	--aegis-accent-dim-10: var(--wpds-color-background-surface-brand, #ecf0fa);
+	--aegis-accent-dim-20: var(--wpds-color-background-interactive-brand-weak-active, #e6eaf4);
+	--aegis-on-accent: var(--wpds-color-foreground-interactive-brand-strong, #fff);
+	--aegis-text: var(--wpds-color-foreground-content-neutral, #1e1e1e);
+	--aegis-text-secondary: var(--wpds-color-foreground-content-neutral-weak, #707070);
+	--aegis-text-muted: var(--wpds-color-foreground-content-neutral-weak, #707070);
+	--aegis-border: var(--wpds-color-stroke-surface-neutral, #dbdbdb);
+	--aegis-border-subtle: var(--wpds-color-stroke-surface-neutral-weak, #f0f0f0);
+	--aegis-surface: var(--wpds-color-background-surface-neutral-strong, #fff);
+	--aegis-page: var(--wpds-color-background-surface-neutral, #fcfcfc);
+	--aegis-surface-muted: var(--wpds-color-background-surface-neutral-weak, #f4f4f4);
+	--aegis-success-bg: var(--wpds-color-background-surface-success, #c6f7cd);
+	--aegis-success-text: var(--wpds-color-foreground-content-success, #002900);
+	--aegis-success-border: var(--wpds-color-stroke-surface-success, #94d29e);
+	--aegis-error-bg: var(--wpds-color-background-surface-error, #f6e6e3);
+	--aegis-error-text: var(--wpds-color-foreground-content-error, #470000);
+	--aegis-error-border: var(--wpds-color-stroke-surface-error, #dab1aa);
+	--aegis-warning-bg: var(--wpds-color-background-surface-warning, #fde6be);
+	--aegis-warning-text: var(--wpds-color-foreground-content-warning, #2e1900);
+	--aegis-warning-border: var(--wpds-color-stroke-surface-warning, #e1bc7c);
+	--aegis-info-bg: var(--wpds-color-background-surface-info, #deebfa);
+	--aegis-info-text: var(--wpds-color-foreground-content-info, #001b4f);
+	--aegis-info-border: var(--wpds-color-stroke-surface-info-strong, #006bd7);
+	--aegis-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+	--aegis-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+	--aegis-radius-sm: var(--wpds-border-radius-md, 4px);
+	--aegis-radius-md: var(--wpds-border-radius-lg, 8px);
+	--aegis-radius-lg: var(--wpds-border-radius-xl, 12px);
+}
+
+.aegis-admin-page {
+	max-width: none;
+}
+
+/*
+ * The live top bar is injected on `in_admin_header` (outside .wrap).
+ * Hide any leftover nested copies, and keep page-tabs hidden (WP submenu replaces them).
+ */
+.aegis-admin-page .aegis-top-bar,
+.aegis-admin-page .aegis-page-tabs {
+	display: none !important;
+}
+
+.aegis-admin-page .aegis-settings-wrap {
+	max-width: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* Page titles — plain, no card chrome; top spacing from .wrap h1 rules. */
+.aegis-admin-page .aegis-settings-header {
+	background: none;
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
+	padding: 0;
+	margin: 0 0 12px;
+}
+
+.aegis-admin-page .aegis-dashboard-hero-card,
+.aegis-admin-page .aegis-dashboard-system-card,
+.aegis-admin-page .aegis-stat-card,
+.aegis-admin-page .aegis-action-card,
+.aegis-admin-page .aegis-license-feature-card,
+.aegis-admin-page .aegis-block-card {
+	border-radius: var(--aegis-radius-lg);
+	box-shadow: var(--aegis-shadow-xs);
+}
+
+.aegis-admin-page .aegis-settings-layout {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: var(--aegis-radius-lg);
+	box-shadow: var(--aegis-shadow-xs);
+}
+
+.aegis-admin-page .aegis-toggle-card {
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.aegis-admin-page .aegis-dashboard-hero-card,
+.aegis-admin-page .aegis-dashboard-system-card {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+}
+
+.aegis-admin-page .aegis-settings-nav {
+	background: var(--aegis-sidenav-bg, #1d2327);
+	border-right: none;
+}
+
+.aegis-admin-page .aegis-nav-item {
+	border-left-width: 4px;
+	border-radius: 0;
+	font-size: 13px;
+	color: var(--aegis-sidenav-fg, #f0f0f1);
+}
+
+.aegis-admin-page .aegis-nav-item:hover,
+.aegis-admin-page .aegis-nav-item:focus {
+	color: var(--aegis-sidenav-hover-fg, #72aee6);
+	background: var(--aegis-sidenav-hover-bg, #2c3338);
+}
+
+.aegis-admin-page .aegis-nav-item.active {
+	background: var(--aegis-sidenav-current-bg, var(--wp-admin-theme-color, #2271b1));
+	color: var(--aegis-sidenav-current-fg, #fff);
+}
+
+.aegis-admin-page .aegis-settings-section > h2,
+.aegis-admin-page .aegis-dashboard-section > h2,
+.aegis-admin-page .aegis-dashboard-hero-card-body h1 {
+	color: var(--aegis-text);
+	font-weight: 600;
+}
+
+.aegis-admin-page .aegis-settings-header h1 {
+	color: var(--aegis-text);
+	font-weight: 400;
+}
+
+.aegis-admin-page .aegis-settings-header p,
+.aegis-admin-page .aegis-settings-section > .description,
+.aegis-admin-page .aegis-dashboard-hero-card-body p,
+.aegis-admin-page .aegis-toggle-text p {
+	color: var(--aegis-text-muted);
+}
+
+.aegis-admin-page .aegis-notice-success,
+.aegis-admin-page .aegis-notice-error {
+	border-radius: var(--aegis-radius-md);
+	font-size: 13px;
+}
+
+.aegis-admin-page .aegis-stat-card,
+.aegis-admin-page .aegis-action-card {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+}
+
+.aegis-admin-page .aegis-toolbar {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 8px;
+	box-shadow: none;
+}
+
+.aegis-settings-notice {
+	margin-top: var(--wpds-dimension-padding-lg, 16px);
+	padding: var(--wpds-dimension-padding-md, 12px);
+	background: var(--aegis-info-bg);
+	border-left: var(--wpds-border-width-md, 4px) solid var(--aegis-info-border);
+	border-radius: var(--aegis-radius-sm);
+}
+
+.aegis-settings-notice p {
+	margin: 0;
+}
+
+.aegis-toggle-subcard.aegis-toggle-subcard-accent {
+	border-left: 3px solid var(--aegis-accent);
+}
+
+.aegis-status-enabled {
+	color: var(--aegis-success-text);
+}
+
+.aegis-status-disabled {
+	color: var(--aegis-text-muted);
+}

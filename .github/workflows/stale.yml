@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow
+
+name: Mark Stale Issues and Pull Requests
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mark stale issues and PRs
+        uses: actions/stale@v9
+        with:
+          days-before-issue-stale: 90
+          days-before-issue-close: 30
+          stale-issue-label: 'status: stale'
+          stale-issue-message: |
+            This issue has been inactive for 90 days and will close in 30 days without activity.
+            Comment, label, or update the issue to keep it open.
+          close-issue-label: 'status: closed-stale'
+          close-issue-message: |
+            Closing due to inactivity. Reopen or file a new issue if this is still relevant.
+          days-before-pr-stale: 60
+          days-before-pr-close: 14
+          stale-pr-label: 'status: stale'
+          stale-pr-message: |
+            This pull request has been inactive for 60 days and will close in 14 days without activity.
+          close-pr-label: 'status: closed-stale'
+          close-pr-message: |
+            Closing due to inactivity. Reopen after updating the branch if you want to continue.
+          exempt-issue-labels: 'pinned,roadmap,epic'
+          exempt-pr-labels: 'pinned,work-in-progress'
+          operations-per-run: 100

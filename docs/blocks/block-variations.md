@@ -34,11 +34,11 @@ See [[../../themes/aegis/docs/blocks/block-variations|Theme Block Variations]] f
 Each parent block has many sub-feature toggles (~150 total). Examples:
 
 - **Icon (`core/icon`):** Core Icon library collections, custom SVG, gallery, gradients — [Theme SVG Icons](../../themes/aegis/docs/features/svg-icons.md)
-- **Image Lightbox (`core/image`):** grouped navigation, zoom, thumbnails, swipe — [Theme Image Lightbox](../../themes/aegis/docs/features/image-lightbox.md)
-- **Query Loop (`core/query`):** post types, taxonomy, include/exclude, meta, layout, no results — [[query-loop]]. Query Loop **Performance** gating is at [[../features/performance|Aegis → Performance]]
+- **Lightbox (`core/image`):** grouped navigation, zoom, thumbnails, swipe — [Theme Lightbox](../../themes/aegis/docs/features/image-lightbox.md)
+- **Query Loop (`core/query`):** post types, taxonomy, include/exclude, meta, layout, no results, Field Picker, Product Query — [[query-loop]]. Query Loop **Performance** gating is at [[../features/performance|Aegis → Performance]]
 - **Related Posts (`aegis/related-posts`):** Related By, Order By, Fallback, Style Variants, Excerpt Length, Image Aspect Ratio — [Theme Related Posts](../../themes/aegis/docs/blocks/related-posts.md). Not Query Loop’s `aegisProRelatedPosts` mode.
 - **Slider (`aegis/slider`):** Fade, Navigation, Pagination, Loop, Keyboard, Responsive, Autoplay — [Theme Slider](../../themes/aegis/docs/blocks/slider.md). Default **Slides Per Page** is 1 (saved blocks keep their stored value). Pro: thumbnails, lightbox, mousewheel, aspect ratio, lazy load, arrow/dot styles.
-- **Map (`aegis/map`):** markers, style presets (including the Static Maps facade), controls, OSM fallback, schema; Pro: clustering, directions, store locator, geolocation, heatmap, drawing, KML/GeoJSON, dynamic markers, custom icons, custom styles
+- **Map (`aegis/map`):** Google Maps style presets (including the Static Maps facade), controls, and Pro extras; OpenStreetMap fallback; Shared markers and schema — [Map](map.md)
 - **Marquee (`core/group`):** pause on hover, direction, loop duration, repeat clones; Pro: responsive desktop duration from 782px — [[marquee]]
 - **Newsletter (`core/search`):** email validation, success message, custom placeholder; signup vs decorative fields — [[newsletter]]
 - **SVG (`core/image`):** Paste Markup, Mask Mode, Onclick, Inline SVG in text, Inline SVG files — [Theme SVG](../../themes/aegis/docs/blocks/block-variations.md#svg). Empty SVG shows the Aegis placeholder (preview-only) until markup is pasted in **SVG Settings**. No Optimize SVG control. Not the Icon block.

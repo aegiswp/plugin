@@ -7,7 +7,7 @@ The Aegis plugin registers block patterns from `patterns/` when loaded. Always-o
 | Directory | Patterns | When registered |
 |-----------|----------|-----------------|
 | `patterns/slider/` | Slider demonstration patterns | Slider block implied on |
-| `patterns/modal/` | Modal demonstration patterns | Modal block enabled |
+| `patterns/modal/` | Modal starters (`modal-video`, `modal-newsletter`, `modal-contact`, `modal-cookie-consent`) | Modal block enabled (`config/patterns.php`) |
 | `patterns/contact/` | Contact form layouts (includes Map block) | Plugin + theme active |
 | `patterns/author/` | Co-authors layout patterns | Co-Authors Plus active **and** the integration on |
 | `patterns/woocommerce/` | Shop templates, product layouts, WC headers, checkout/cart patterns | **WooCommerce active** |
@@ -54,6 +54,8 @@ Marketing and premium layout patterns live in **Aegis Pro**. See [[../../aegis-p
 Do not duplicate Pro pattern slugs in the theme or free plugin.
 
 Contact form+map layouts (`form-map`, `form-map-overlay`) live in this plugin and register only when the Map block is enabled. Do not copy them into the theme.
+
+Modal starters live **only** in this plugin (`patterns/modal/`, names `aegis/modal-*`). They register when **Aegis → Blocks → Modal** is enabled. Do not ship or draft them under the theme `patterns/modal/` folder.
 
 Related Posts grid, list, cards, and minimal layouts live in the **theme** (`patterns/blog/related-posts-*.php`, slugs `blog-related-posts-*`). They unregister when **Aegis → Blocks → Related Posts** is implied off. Do not copy them into this plugin.
 

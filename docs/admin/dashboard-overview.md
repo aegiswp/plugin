@@ -19,7 +19,7 @@ Base URL pattern: `/wp-admin/admin.php?page={slug}`
 | Connectors | Connectors | `aegis-connectors` |
 | Performance | Performance | `aegis-performance` |
 | Settings | Settings | `aegis-general-settings` |
-| License | License | `aegis-license` *(Pro only)* |
+| License | License | `aegis-license` *(Get Pro upsell when Pro is inactive; Pro replaces this with license activation)* |
 
 > **Note:** The Conditionals tab uses the label "Conditionals" but the page slug is `aegis-settings`.
 

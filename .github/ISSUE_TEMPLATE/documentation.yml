@@ -1,0 +1,56 @@
+name: Documentation Issue
+description: Report missing, unclear, or outdated plugin documentation.
+labels:
+  - "[Type] Docs"
+  - triage
+body:
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Documentation issue type
+      options:
+        - Missing documentation
+        - Unclear or confusing explanation
+        - Outdated information
+        - Broken or dead links
+        - Missing code examples
+        - Typos or grammar issues
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: doc-location
+    attributes:
+      label: Where is the documentation issue?
+      options:
+        - docs/ (in-repo)
+        - README.md
+        - CONTRIBUTING.md
+        - Wiki
+        - Inline code comments
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: doc-page
+    attributes:
+      label: Documentation page or file
+      placeholder: "docs/features/integrations-dashboard.md"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Why is this an issue?
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested improvement
+    validations:
+      required: true

@@ -121,11 +121,18 @@
 	flex-wrap: wrap;
 }
 
-.aegis-modals-id {
+.aegis-modals-placement {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 2px;
+	margin-top: 4px;
+}
+
+.aegis-modals-copy {
 	display: inline-flex;
 	align-items: center;
 	gap: 4px;
-	margin-top: 4px;
 	padding: 0;
 	border: 0;
 	background: none;
@@ -134,9 +141,17 @@
 	line-height: 1.4;
 	color: var(--aegis-text-muted, #707070);
 	max-width: 100%;
+	text-align: left;
 }
 
-.aegis-modals-id code {
+.aegis-modals-copy-kind {
+	flex-shrink: 0;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+}
+
+.aegis-modals-copy code {
 	font-size: inherit;
 	background: none;
 	padding: 0;
@@ -144,19 +159,19 @@
 	word-break: break-all;
 }
 
-.aegis-modals-id .dashicons {
+.aegis-modals-copy .dashicons {
 	font-size: 14px;
 	width: 14px;
 	height: 14px;
 	flex-shrink: 0;
 }
 
-.aegis-modals-id:hover,
-.aegis-modals-id:focus-visible {
+.aegis-modals-copy:hover,
+.aegis-modals-copy:focus-visible {
 	color: var(--aegis-text, #1e1e1e);
 }
 
-.aegis-modals-id.is-copied {
+.aegis-modals-copy.is-copied {
 	color: var(--aegis-accent, #3858e9);
 }
 

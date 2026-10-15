@@ -1,0 +1,118 @@
+name: Bug Report
+description: Report a bug in the Aegis free WordPress plugin.
+labels:
+  - "[Type] Bug"
+  - triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Thank you for helping improve the Aegis plugin.**
+        Theme-only bugs belong in [aegiswp/theme](https://github.com/aegiswp/theme). Pro-only bugs belong in [aegiswp/pro](https://github.com/aegiswp/pro).
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: location
+    attributes:
+      label: Where does this occur?
+      options:
+        - Frontend (Live Site)
+        - Block Editor
+        - Aegis admin (wp-admin)
+        - Both frontend and editor
+        - REST / background only
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Plugin area
+      options:
+        - Map block
+        - Modal block
+        - Admin dashboard / settings
+        - Integrations
+        - Conditionals / hooks / snippets
+        - Analytics / SEO
+        - Patterns
+        - Other / unsure
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console / PHP logs
+      render: shell
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: "### Environment"
+
+  - type: input
+    id: wp-version
+    attributes:
+      label: WordPress Version
+      description: e.g., 6.9
+    validations:
+      required: true
+
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Aegis Plugin Version
+      description: e.g., 1.0.0
+    validations:
+      required: true
+
+  - type: input
+    id: theme-version
+    attributes:
+      label: Aegis Theme Version
+      description: e.g., 1.0.0
+    validations:
+      required: true
+
+  - type: input
+    id: php-version
+    attributes:
+      label: PHP Version
+      description: e.g., 8.2.10
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, stack traces, or other details.
+    validations:
+      required: false

@@ -36,7 +36,7 @@ Popup layout, close behavior, focus trap, and size controls stay available while
 
 | Option | Where the control sits |
 |--------|------------------------|
-| **Top right of screen** (default) | Overlay corner (`position: fixed`), same as Image lightbox |
+| **Top right of screen** (default) | Overlay corner (`position: fixed`), same as Lightbox |
 | **On dialog** | Top-right of the panel for every layout, including popup and fullscreen |
 
 An icon trigger with no custom HTML uses a default SVG. An image trigger with no selected image falls back to the trigger text button.
@@ -63,6 +63,7 @@ Pro inspector panels and stacking triggers follow these toggles. Exclusive Pro t
 1. Enable the Modal extras you need at **Aegis → Blocks → Modal**.
 2. Insert **Modal** (or start from **Aegis → Modals**).
 3. Choose a layout and trigger, then add inner blocks as the dialog body.
+4. Optional: place `[aegis_modal id="your-modal-id"]` on another page to render the same instance (see [[modals#shortcode]]).
 
 Saved attributes are not deleted when an extra is turned off. Render falls back: disabled trigger types use the first enabled click trigger (or none), off-canvas/fullscreen become popup, animations become none, and Pro behaviors are omitted from the frontend data attributes. The editor Select controls show that same fallback without rewriting the saved block.
 
@@ -75,7 +76,7 @@ Saved attributes are not deleted when an extra is turned off. Render falls back:
 
 ## Patterns
 
-Plugin patterns `aegis/modal-video`, `aegis/modal-contact`, `aegis/modal-newsletter`, and `aegis/modal-cookie-consent` register only while the Modal block is enabled.
+Plugin patterns `aegis/modal-video`, `aegis/modal-contact`, `aegis/modal-newsletter`, and `aegis/modal-cookie-consent` live in `patterns/modal/` and register from `config/patterns.php` only while the Modal block is enabled. The theme does **not** ship modal patterns — do not re-add drafts under `themes/aegis/patterns/modal/`.
 
 Creating a starter from **Aegis → Modals** turns on the extras that pattern needs:
 

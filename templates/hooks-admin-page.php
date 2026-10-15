@@ -43,9 +43,6 @@ $snippets_url = admin_url( 'admin.php?page=aegis-snippets' );
 						<a href="<?php echo esc_url( $create_url ); ?>" class="button button-primary">
 							<span class="dashicons dashicons-plus-alt2"></span>
 							<?php esc_html_e( 'Add New', 'aegis' ); ?>
-							<?php if ( ! $pro_active ) : ?>
-								<span class="aegis-pro-badge"><?php esc_html_e( 'Pro', 'aegis' ); ?></span>
-							<?php endif; ?>
 						</a>
 						<button type="button" class="button aegis-export-btn">
 							<?php esc_html_e( 'Export', 'aegis' ); ?>
@@ -68,18 +65,15 @@ $snippets_url = admin_url( 'admin.php?page=aegis-snippets' );
 						<h2><?php esc_html_e( 'No hook patterns yet', 'aegis' ); ?></h2>
 						<?php if ( $cpt_ready ) : ?>
 							<p><?php esc_html_e( 'Click Add New to create a pattern, pick a hook location, add blocks, and publish.', 'aegis' ); ?></p>
+							<p class="aegis-hooks-empty-action">
+								<a href="<?php echo esc_url( $create_url ); ?>" class="button button-primary">
+									<span class="dashicons dashicons-plus-alt2"></span>
+									<?php esc_html_e( 'Add New', 'aegis' ); ?>
+								</a>
+							</p>
 						<?php else : ?>
 							<p><?php esc_html_e( 'Install Aegis Pro to inject block patterns at hook locations.', 'aegis' ); ?></p>
 						<?php endif; ?>
-						<p class="aegis-hooks-empty-action">
-							<a href="<?php echo esc_url( $create_url ); ?>" class="button button-primary">
-								<span class="dashicons dashicons-plus-alt2"></span>
-								<?php esc_html_e( 'Add New', 'aegis' ); ?>
-								<?php if ( ! $pro_active ) : ?>
-									<span class="aegis-pro-badge"><?php esc_html_e( 'Pro', 'aegis' ); ?></span>
-								<?php endif; ?>
-							</a>
-						</p>
 					</div>
 				<?php else : ?>
 					<div class="aegis-hooks-reference aegis-hooks-list">

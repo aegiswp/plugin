@@ -2,7 +2,7 @@
 /**
  * Title: Product Landing Page (Dynamic)
  * Slug: product-landing-dynamic
- * Categories: page
+ * Categories: pages
  * Keywords: product, landing, dynamic, woocommerce, collection
  * Description: A dynamic product landing page using WooCommerce product collections, featured products, on-sale grid, and category browsing.
  * Viewport Width: 1280
@@ -11,7 +11,7 @@
  */
 ?>
 
-<!-- wp:group {"metadata":{"categories":["page"],"patternName":"product-landing-dynamic","name":"Product Landing Page (Dynamic)"},"align":"full","layout":{"type":"default"}} -->
+<!-- wp:group {"metadata":{"categories":["pages"],"patternName":"product-landing-dynamic","name":"Product Landing Page (Dynamic)"},"align":"full","layout":{"type":"default"}} -->
 <div class="wp-block-group alignfull">
 
 	<!-- wp:pattern {"slug":"header-store-default"} /-->
@@ -29,7 +29,7 @@
 		<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|sm"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
 		<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--sm)">
 			<!-- wp:button {"backgroundColor":"white","textColor":"primary-900","fontSize":"16"} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button has-white-background-color has-background has-primary-900-color" href="#"><?php echo esc_html__( 'Shop All Products', 'aegis' ); ?></a></div>
+<div class="wp-block-button"><a class="wp-block-button__link has-primary-900-color has-white-background-color has-text-color has-background has-16-font-size has-custom-font-size wp-element-button" href="#"><?php echo esc_html__( 'Shop All Products', 'aegis' ); ?></a></div>
 <!-- /wp:button -->
 		</div>
 		<!-- /wp:buttons -->

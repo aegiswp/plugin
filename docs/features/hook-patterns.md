@@ -7,7 +7,7 @@
 **Patterns** (default tab):
 
 - Full-width table of instances: title, location (click-to-copy hook name), priority, **Always / Conditional**, status, **Enable/Disable**, **Edit**, **Delete**
-- **Add pattern** — opens the hook pattern editor (Pro). Without Pro it links to License
+- **Add New** — opens the hook pattern editor (Pro). Without Pro it links to **Aegis → License** (Get Pro upsell); the lock banner explains Pro (no in-button Pro badge)
 - Quiet link to **Code Snippets** for PHP/CSS/HTML
 
 **Locations** (`&tab=locations`): collapsed catalog of attach points; click a name to copy it. Enabling locations for snippets is on **Code Snippets → Settings**.
@@ -72,7 +72,7 @@ Both actions receive `$form_id`. Catalog labels: **Before Ninja Form**, **After 
 
 ## bbPress Integration Hooks
 
-When **Aegis → Integrations → Content → bbPress** is on, `IntegrationInjector` bridges:
+When **Aegis → Integrations → Community → bbPress** is on, `IntegrationInjector` bridges:
 
 - `aegis_before_bbpress_forum` / `aegis_after_bbpress_forum` (`bbp_template_before_forums_loop` / `bbp_template_after_forums_loop`)
 - `aegis_before_bbpress_topic` / `aegis_after_bbpress_topic` (`bbp_template_before_single_topic` / `bbp_template_after_single_topic`)

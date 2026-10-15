@@ -1,27 +1,96 @@
-# Exclude from WordPress.org release zip (wp dist-archive / manual packaging).
-.git
-.github
+# Installable plugin zip (WordPress) — not the full dev repository.
+# Consumed by: .github/workflows/release.yml (rsync --exclude-from=.distignore).
+# Keep: aegis.php, uninstall.php, src/, config/, patterns/, templates/,
+# languages/, public/, compiled assets under assets/*/build and src/Blocks.
+# After changes here, align export-ignore in .gitattributes for `git archive` parity.
+
+# Git / VCS
+.git/
+.gitattributes
 .gitignore
 .distignore
-.editorconfig
-.eslintrc.js
-.prettierrc
-BUILD.md
-scripts
-node_modules
+
+# GitHub / editor metadata — not shipped in the installable zip
+.github/
+.vscode/
+
+# Node.js / build tooling
+node_modules/
 package.json
 package-lock.json
+tsconfig.json
+eslint.config.cjs
+.nvmrc
+*.code-workspace
+
+# Composer (free plugin has no runtime vendor; PHPCS is dev-only)
 composer.json
 composer.lock
+vendor/
+
+# Editor, lint, env
+.editorconfig
+.prettierrc
+.stylelintignore
+.stylelintrc.json
+.typos.toml
+.wp-env.json
+.wp-env.override.json
+.env
+.env.*
+auth.json
+docker-compose*.yml
+docker-compose*.yaml
+
+# Documentation and community files
+README.md
+BUILD.md
+CHANGELOG.md
+CONTRIBUTING.md
+CONTRIBUTORS.md
+CODE_OF_CONDUCT.md
+AGENTS.md
+CLAUDE.md
+STUDIO.md
+docs/
+
+# Development / test tooling
+Makefile
 phpcs.xml
 phpcs.xml.dist
-.phpunit.result.cache
 phpunit.xml
 phpunit.xml.dist
-tests
-vendor
-*.md
-!readme.txt
-assets/admin/src
-assets/editor/src
+tests/
+tools/
+scripts/
+bin/
+.nyc_output/
+coverage/
+coverage.xml
+.phpunit.result.cache
+.phpunit.cache/
+.phpcs.cache
+*.log
+
+# Source maps and admin/editor sources (compiled output ships)
 *.map
+assets/admin/src/
+assets/editor/src/
+src/Blocks/*/*.js.map
+src/Blocks/*/*.css.map
+src/Blocks/*/index.tsx
+src/Blocks/*/edit.tsx
+src/Blocks/*/save.tsx
+src/Blocks/*/view.ts
+src/Blocks/*/style.scss
+
+# Local packaging scratch
+aegis/
+aegis.zip
+aegis.zip.sha256
+
+# Stray temp files
+*.tmp
+*.temp
+*.bak
+*.backup

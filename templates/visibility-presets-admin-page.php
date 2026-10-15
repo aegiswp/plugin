@@ -49,7 +49,6 @@ $conditionals_url = admin_url( 'admin.php?page=aegis-settings' );
 							<a href="<?php echo esc_url( $create_url ); ?>" class="button button-primary">
 								<span class="dashicons dashicons-plus-alt2"></span>
 								<?php esc_html_e( 'Add New', 'aegis' ); ?>
-								<span class="aegis-pro-badge"><?php esc_html_e( 'Pro', 'aegis' ); ?></span>
 							</a>
 						<?php endif; ?>
 					</div>
@@ -65,23 +64,15 @@ $conditionals_url = admin_url( 'admin.php?page=aegis-settings' );
 					<h2><?php esc_html_e( 'No presets yet', 'aegis' ); ?></h2>
 					<?php if ( $pro_active ) : ?>
 						<p><?php esc_html_e( 'Click Add New to create a reusable visibility rule set, then apply it from any block in the editor.', 'aegis' ); ?></p>
-					<?php else : ?>
-						<p><?php esc_html_e( 'Install Aegis Pro to save reusable visibility rule sets for the block editor.', 'aegis' ); ?></p>
-					<?php endif; ?>
-					<p class="aegis-hooks-empty-action">
-						<?php if ( $pro_active ) : ?>
+						<p class="aegis-hooks-empty-action">
 							<button type="button" class="button button-primary aegis-preset-add-new">
 								<span class="dashicons dashicons-plus-alt2"></span>
 								<?php esc_html_e( 'Add New', 'aegis' ); ?>
 							</button>
-						<?php else : ?>
-							<a href="<?php echo esc_url( $create_url ); ?>" class="button button-primary">
-								<span class="dashicons dashicons-plus-alt2"></span>
-								<?php esc_html_e( 'Add New', 'aegis' ); ?>
-								<span class="aegis-pro-badge"><?php esc_html_e( 'Pro', 'aegis' ); ?></span>
-							</a>
-						<?php endif; ?>
-					</p>
+						</p>
+					<?php else : ?>
+						<p><?php esc_html_e( 'Install Aegis Pro to save reusable visibility rule sets for the block editor.', 'aegis' ); ?></p>
+					<?php endif; ?>
 				</div>
 
 				<div class="aegis-hooks-reference aegis-presets-list" <?php echo $empty ? 'hidden' : ''; ?>>

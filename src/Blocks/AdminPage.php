@@ -127,11 +127,11 @@ final class AdminPage {
 									</a>
 									<a href="#image-compare" class="aegis-nav-item">
 										<span class="dashicons dashicons-image-flip-horizontal"></span>
-										<?php esc_html_e('Image Compare', 'aegis'); ?>
+										<?php esc_html_e('Compare', 'aegis'); ?>
 									</a>
 									<a href="#image-lightbox" class="aegis-nav-item">
 										<span class="dashicons dashicons-format-image"></span>
-										<?php esc_html_e('Image Lightbox', 'aegis'); ?>
+										<?php esc_html_e('Lightbox', 'aegis'); ?>
 									</a>
 									<a href="#map" class="aegis-nav-item">
 										<span class="dashicons dashicons-location"></span>
@@ -259,9 +259,9 @@ final class AdminPage {
 										</div>
 									</section>
 		
-									<!-- Image Compare Section -->
+									<!-- Compare Section -->
 									<section id="image-compare" class="aegis-settings-section">
-										<?php $this->renderer()->render_section_header(__('Image Compare Block', 'aegis'), __('Pro before/after image slider. Enabling any extra implies the block in the inserter. Saved blocks still render when extras are off.', 'aegis'), true, 'image-flip-horizontal'); ?>
+										<?php $this->renderer()->render_section_header(__('Compare Block', 'aegis'), __('Pro before/after image slider. Enabling any extra implies the block in the inserter. Saved blocks still render when extras are off.', 'aegis'), true, 'image-flip-horizontal'); ?>
 										<div class="aegis-settings-section__content">
 											<div class="aegis-settings-grid aegis-settings-grid--features">
 												<?php $this->renderer()->render_block_feature_toggle('image_compare_orientation', __('Orientation', 'aegis'), __('Horizontal or vertical slider direction in the inspector.', 'aegis'), $options, 'image-flip-vertical', true); ?>
@@ -275,9 +275,9 @@ final class AdminPage {
 										</div>
 									</section>
 
-									<!-- Image Lightbox Section -->
+									<!-- Lightbox Section -->
 									<section id="image-lightbox" class="aegis-settings-section">
-										<?php $this->renderer()->render_section_header(__('Image Lightbox', 'aegis'), __('Enhances the native WordPress Image lightbox (Expand on click). Enable extras for grouped navigation, pinch/wheel zoom, thumbnail strips, and swipe.', 'aegis'), true, 'format-image'); ?>
+										<?php $this->renderer()->render_section_header(__('Lightbox', 'aegis'), __('Enhances the native WordPress Image lightbox (Expand on click). Enable extras for grouped navigation, pinch/wheel zoom, thumbnail strips, and swipe.', 'aegis'), true, 'format-image'); ?>
 										<div class="aegis-settings-section__content">
 											<div class="aegis-settings-grid aegis-settings-grid--features">
 												<?php $this->renderer()->render_block_feature_toggle('image_lightbox_gallery_nav', __('Gallery Navigation', 'aegis'), __('Navigate between images in the same group with prev/next arrows and keyboard.', 'aegis'), $options, 'arrow-left-alt2'); ?>
@@ -291,41 +291,61 @@ final class AdminPage {
 									<!-- Map Section -->
 									<section id="map" class="aegis-settings-section">
 										<?php $this->renderer()->render_section_header(__('Map Block', 'aegis'), __('Google Maps and OpenStreetMap block with markers, styles, and interactive controls.', 'aegis'), true, 'location'); ?>
-										<div class="aegis-settings-section__content">
-											<div class="aegis-settings-grid aegis-settings-grid--features">
-												<?php $this->renderer()->render_block_feature_toggle('map_markers', __('Multiple Markers', 'aegis'), __('Add multiple markers with title and description info windows.', 'aegis'), $options, 'location-alt'); ?>
-												<?php $this->renderer()->render_block_feature_toggle('map_styles', __('Map Style Presets', 'aegis'), __('Silver, Dark, Retro, Night, and Aubergine styles, including the click-to-load preview.', 'aegis'), $options, 'art'); ?>
-												<?php $this->renderer()->render_block_feature_toggle('map_controls', __('Map Controls', 'aegis'), __('Zoom, map type, street view, fullscreen, scroll-wheel, and drag controls.', 'aegis'), $options, 'admin-settings'); ?>
-												<?php $this->renderer()->render_block_feature_toggle('map_osm_fallback', __('OpenStreetMap Fallback', 'aegis'), __('Use OpenStreetMap when no Google Maps API key is configured.', 'aegis'), $options, 'admin-site-alt3'); ?>
-												<?php $this->renderer()->render_block_feature_toggle('map_directions', __('Directions', 'aegis'), __('Route directions with travel mode selector.', 'aegis'), $options, 'randomize', true); ?>
-												<?php $this->renderer()->render_block_feature_toggle('map_store_locator', __('Store Locator', 'aegis'), __('Search box and radius circle for nearby locations.', 'aegis'), $options, 'store', true); ?>
-												<?php $this->renderer()->render_block_feature_toggle('map_geolocation', __('Geolocation', 'aegis'), __('Show user current position on the map.', 'aegis'), $options, 'location', true); ?>
-												<?php $this->renderer()->render_block_feature_toggle('map_heatmap', __('Heatmap Layer', 'aegis'), __('Visualize density data on the map.', 'aegis'), $options, 'chart-area', true); ?>
-												<?php $this->renderer()->render_block_feature_toggle('map_drawing', __('Drawing Tools', 'aegis'), __('Polygon, circle, rectangle, and polyline overlays.', 'aegis'), $options, 'edit', true); ?>
-												<?php $this->renderer()->render_block_feature_toggle('map_kml_geojson', __('KML/GeoJSON Import', 'aegis'), __('Load external geographic data layers.', 'aegis'), $options, 'upload', true); ?>
-												<?php
-												$seo_local = \Aegis\Plugin\Settings\Repository::is_schema_delegated_to_seo( 'local_business' );
-												$local_desc = $seo_local
-													? $this->seo_delegation_description( 'local_business' )
-													: __( 'Auto-generate LocalBusiness structured data.', 'aegis' );
-												$this->renderer()->render_block_feature_toggle( 'map_schema', __( 'Schema.org Markup', 'aegis' ), $local_desc, $options, 'admin-site-alt3', false, $seo_local );
-												?>
-												<?php $this->renderer()->render_block_feature_toggle('map_dynamic_markers', __('Dynamic CPT Markers', 'aegis'), __('Pull markers from custom post types with lat/lng fields.', 'aegis'), $options, 'database', true); ?>
-												<?php $this->renderer()->render_block_feature_toggle('map_custom_styles', __('Custom Style JSON', 'aegis'), __('Paste a Google Maps style JSON array. Overrides presets, including the click-to-load preview.', 'aegis'), $options, 'editor-code', true); ?>
-												<?php $this->renderer()->render_block_feature_toggle('map_custom_icons', __('Custom Marker Icons', 'aegis'), __('Upload custom marker icons from the media library.', 'aegis'), $options, 'format-image', true); ?>
-												<?php $this->renderer()->render_block_feature_toggle('map_clustering', __('Marker Clustering', 'aegis'), __('Group nearby markers at lower zoom levels.', 'aegis'), $options, 'networking', true); ?>
+
+										<div class="aegis-plugin-stack" id="map-google">
+											<?php $this->renderer()->render_stack_header(__('Google Maps', 'aegis'), __('Styles, controls, and Pro map features for the Google Maps provider.', 'aegis'), 'location'); ?>
+											<div class="aegis-settings-section__content">
+												<div class="aegis-settings-grid aegis-settings-grid--features">
+													<?php $this->renderer()->render_block_feature_toggle('map_styles', __('Map Style Presets', 'aegis'), __('Silver, Dark, Retro, Night, and Aubergine styles, including the click-to-load preview.', 'aegis'), $options, 'art'); ?>
+													<?php $this->renderer()->render_block_feature_toggle('map_controls', __('Map Controls', 'aegis'), __('Zoom, map type, street view, fullscreen, scroll-wheel, and drag controls.', 'aegis'), $options, 'admin-settings'); ?>
+													<?php $this->renderer()->render_block_feature_toggle('map_directions', __('Directions', 'aegis'), __('Route directions with travel mode selector.', 'aegis'), $options, 'randomize', true); ?>
+													<?php $this->renderer()->render_block_feature_toggle('map_store_locator', __('Store Locator', 'aegis'), __('Search box and radius circle for nearby locations.', 'aegis'), $options, 'store', true); ?>
+													<?php $this->renderer()->render_block_feature_toggle('map_geolocation', __('Geolocation', 'aegis'), __('Show user current position on the map.', 'aegis'), $options, 'location', true); ?>
+													<?php $this->renderer()->render_block_feature_toggle('map_heatmap', __('Heatmap Layer', 'aegis'), __('Visualize density data on the map.', 'aegis'), $options, 'chart-area', true); ?>
+													<?php $this->renderer()->render_block_feature_toggle('map_drawing', __('Drawing Tools', 'aegis'), __('Polygon, circle, rectangle, and polyline overlays.', 'aegis'), $options, 'edit', true); ?>
+													<?php $this->renderer()->render_block_feature_toggle('map_kml_geojson', __('KML/GeoJSON Import', 'aegis'), __('Load external geographic data layers.', 'aegis'), $options, 'upload', true); ?>
+													<?php $this->renderer()->render_block_feature_toggle('map_dynamic_markers', __('Dynamic CPT Markers', 'aegis'), __('Pull markers from custom post types with lat/lng fields.', 'aegis'), $options, 'database', true); ?>
+													<?php $this->renderer()->render_block_feature_toggle('map_custom_styles', __('Custom Style JSON', 'aegis'), __('Paste a Google Maps style JSON array. Overrides presets, including the click-to-load preview.', 'aegis'), $options, 'editor-code', true); ?>
+													<?php $this->renderer()->render_block_feature_toggle('map_custom_icons', __('Custom Marker Icons', 'aegis'), __('Upload custom marker icons from the media library.', 'aegis'), $options, 'format-image', true); ?>
+													<?php $this->renderer()->render_block_feature_toggle('map_clustering', __('Marker Clustering', 'aegis'), __('Group nearby markers at lower zoom levels.', 'aegis'), $options, 'networking', true); ?>
+												</div>
+												<div class="aegis-settings-notice">
+													<p>
+														<strong><?php esc_html_e('Google Maps API', 'aegis'); ?></strong><br>
+														<?php
+														printf(
+															/* translators: %s: link to Connectors page */
+															esc_html__('Configure your Google Maps API key in %s.', 'aegis'),
+															'<a href="' . esc_url(admin_url('admin.php?page=aegis-connectors#maps')) . '">' . esc_html__('Connectors → Google Maps', 'aegis') . '</a>'
+														);
+														?>
+													</p>
+												</div>
 											</div>
-											<div class="aegis-settings-notice">
-												<p>
-													<strong><?php esc_html_e('Google Maps API', 'aegis'); ?></strong><br>
-													<?php 
-													printf(
-														/* translators: %s: link to Connectors page */
-														esc_html__('Configure your Google Maps API key in %s.', 'aegis'),
-														'<a href="' . esc_url(admin_url('admin.php?page=aegis-connectors#maps')) . '">' . esc_html__('Connectors → Google Maps', 'aegis') . '</a>'
-													);
+										</div>
+
+										<div class="aegis-plugin-stack" id="map-openstreetmap">
+											<?php $this->renderer()->render_stack_header(__('OpenStreetMap', 'aegis'), __('Fallback when a Google Maps block has no API key. You can also set the block provider to OpenStreetMap directly.', 'aegis'), 'admin-site-alt3'); ?>
+											<div class="aegis-settings-section__content">
+												<div class="aegis-settings-grid aegis-settings-grid--features">
+													<?php $this->renderer()->render_block_feature_toggle('map_osm_fallback', __('OpenStreetMap Fallback', 'aegis'), __('Use OpenStreetMap when no Google Maps API key is configured.', 'aegis'), $options, 'admin-site-alt3'); ?>
+												</div>
+											</div>
+										</div>
+
+										<div class="aegis-plugin-stack" id="map-shared">
+											<?php $this->renderer()->render_stack_header(__('Shared', 'aegis'), __('Extras that apply regardless of map provider.', 'aegis'), 'admin-generic'); ?>
+											<div class="aegis-settings-section__content">
+												<div class="aegis-settings-grid aegis-settings-grid--features">
+													<?php $this->renderer()->render_block_feature_toggle('map_markers', __('Multiple Markers', 'aegis'), __('Add multiple markers with title and description info windows.', 'aegis'), $options, 'location-alt'); ?>
+													<?php
+													$seo_local = \Aegis\Plugin\Settings\Repository::is_schema_delegated_to_seo( 'local_business' );
+													$local_desc = $seo_local
+														? $this->seo_delegation_description( 'local_business' )
+														: __( 'Auto-generate LocalBusiness structured data.', 'aegis' );
+													$this->renderer()->render_block_feature_toggle( 'map_schema', __( 'Schema.org Markup', 'aegis' ), $local_desc, $options, 'admin-site-alt3', false, $seo_local );
 													?>
-												</p>
+												</div>
 											</div>
 										</div>
 									</section>
@@ -397,12 +417,12 @@ final class AdminPage {
 												<?php $this->renderer()->render_block_feature_toggle('query_loop_advanced_meta', __('Advanced Meta Query', 'aegis'), __('Multiple meta queries with AND/OR relation.', 'aegis'), $options, 'filter', true); ?>
 												<?php $this->renderer()->render_block_feature_toggle('query_loop_date_query', __('Date Query', 'aegis'), __('Filter by date ranges and relative dates.', 'aegis'), $options, 'calendar-alt', true); ?>
 												<?php $this->renderer()->render_block_feature_toggle('query_loop_parent_child', __('Parent/Child Posts', 'aegis'), __('Query child pages of current or specific post.', 'aegis'), $options, 'networking', true); ?>
-												<?php $this->renderer()->render_block_feature_toggle('query_loop_acf_integration', __('ACF/MetaBox Integration', 'aegis'), __('Field picker for ACF and Meta Box plugins.', 'aegis'), $options, 'admin-plugins', true); ?>
+												<?php $this->renderer()->render_block_feature_toggle('query_loop_acf_integration', __('Field Picker', 'aegis'), __('Field picker for ACF and Meta Box plugins. Requires the matching Aegis → Integrations toggle.', 'aegis'), $options, 'admin-plugins', true); ?>
 												<?php $this->renderer()->render_block_feature_toggle('query_loop_ajax_pagination', __('AJAX Pagination', 'aegis'), __('Load more, infinite scroll, AJAX page nav.', 'aegis'), $options, 'update', true); ?>
 												<?php $this->renderer()->render_block_feature_toggle('query_loop_frontend_filters', __('Frontend Filters', 'aegis'), __('Taxonomy, search, and sort filters.', 'aegis'), $options, 'filter', true); ?>
 												<?php $this->renderer()->render_block_feature_toggle('query_loop_masonry_layout', __('Masonry Layout', 'aegis'), __('CSS and JS masonry grid with animations.', 'aegis'), $options, 'grid-view', true); ?>
 												<?php $this->renderer()->render_block_feature_toggle('query_loop_carousel_layout', __('Carousel Layout', 'aegis'), __('Slider with navigation, pagination, autoplay.', 'aegis'), $options, 'slides', true); ?>
-												<?php $this->renderer()->render_block_feature_toggle('query_loop_woocommerce', __('WooCommerce Integration', 'aegis'), __('Product filtering, sorting, and display options.', 'aegis'), $options, 'cart', true); ?>
+												<?php $this->renderer()->render_block_feature_toggle('query_loop_woocommerce', __('Product Query', 'aegis'), __('Product filtering, sorting, and display options. Requires Aegis → Integrations → WooCommerce.', 'aegis'), $options, 'cart', true); ?>
 											</div>
 										</div>
 									</section>

@@ -1,0 +1,131 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow
+
+name: Release Aegis Plugin
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build & Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Validate Release Tag Format
+        run: |
+          TAG="${{ github.ref }}"
+          TAG="${TAG#refs/tags/}"
+
+          if ! [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$ ]]; then
+            echo "::error::Invalid tag format: $TAG. Expected semantic versioning like v1.2.3 or v1.2.3-rc1"
+            exit 1
+          fi
+          echo "RELEASE_TAG=$TAG" >> $GITHUB_ENV
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install System Dependencies
+        run: sudo apt-get update && sudo apt-get install gettext rsync -y
+
+      - name: Install Node Dependencies
+        run: npm ci
+
+      - name: Build Plugin Assets
+        run: npm run build
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer
+
+      - name: Install Composer Dependencies (dev, for validation)
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Run Pre-Release Validation
+        run: |
+          vendor/bin/phpcs
+          composer validate --no-check-publish --no-interaction
+
+      - name: Remove Composer vendor (not shipped; free plugin uses src/autoload.php)
+        run: rm -rf vendor
+
+      - name: Compile Translations
+        run: |
+          mkdir -p languages
+          for po in languages/*.po; do
+            if [ -f "$po" ]; then
+              msgfmt "$po" -o "${po%.po}.mo"
+            fi
+          done
+
+      - name: Package plugin (installable build only)
+        id: package_plugin
+        run: |
+          PLUGIN_SLUG="aegis"
+          rm -rf "$PLUGIN_SLUG" "${PLUGIN_SLUG}.zip" "${PLUGIN_SLUG}.zip.sha256"
+
+          mkdir -p "$PLUGIN_SLUG"
+          # Excludes: .distignore (dev deps, tests, sources, Node, CI, docs, etc.).
+          # Includes: PHP runtime, patterns, templates, languages, compiled assets.
+          rsync -am ./ "$PLUGIN_SLUG"/ --exclude-from='.distignore'
+
+          test -f "$PLUGIN_SLUG/aegis.php"
+          test -f "$PLUGIN_SLUG/uninstall.php"
+          test -f "$PLUGIN_SLUG/index.php"
+          test -f "$PLUGIN_SLUG/src/autoload.php"
+          test ! -e "$PLUGIN_SLUG/vendor"
+          test ! -e "$PLUGIN_SLUG/.github"
+          test ! -e "$PLUGIN_SLUG/docs"
+          test ! -e "$PLUGIN_SLUG/node_modules"
+          test ! -e "$PLUGIN_SLUG/composer.json"
+          test ! -e "$PLUGIN_SLUG/package.json"
+
+          echo "Files in dist: $(find "$PLUGIN_SLUG" -type f | wc -l)"
+          zip -r "${PLUGIN_SLUG}.zip" "$PLUGIN_SLUG"
+          unzip -l "${PLUGIN_SLUG}.zip" | head -n 20 | grep -q "aegis/aegis.php"
+
+          sha256sum "${PLUGIN_SLUG}.zip" > "${PLUGIN_SLUG}.zip.sha256"
+          cat "${PLUGIN_SLUG}.zip.sha256"
+
+          echo "zip_path=${PLUGIN_SLUG}.zip" >> $GITHUB_OUTPUT
+          echo "checksum_path=${PLUGIN_SLUG}.zip.sha256" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release (Draft)
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            aegis.zip
+            aegis.zip.sha256
+          draft: true
+          generate_release_notes: true
+          body: |
+            ## Release Information
+            **Tag**: ${{ env.RELEASE_TAG }}
+            **Status**: Draft (awaiting review)
+
+            ### Install
+            Download `aegis.zip`, upload via **Plugins → Add New → Upload Plugin**, or unzip to `wp-content/plugins/aegis/`.
+            Requires the [Aegis theme](https://github.com/aegiswp/theme).
+
+            ### Package notes
+            - Zip root folder is `aegis/`
+            - Dev files excluded via `.distignore` (GitHub, docs, Node, Composer, sources)
+            - SHA256 checksum attached
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

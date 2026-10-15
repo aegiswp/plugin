@@ -1,5 +1,5 @@
 /**
- * Modals admin list: enable/disable, delete, copy ID.
+ * Modals admin list: enable/disable, delete, copy ID / shortcode.
  *
  * @package Aegis
  * @since   1.0.0
@@ -64,9 +64,10 @@
 		);
 	}
 
-	$( document ).on( 'click', '.aegis-modals-id', function () {
+	$( document ).on( 'click', '.aegis-modals-copy', function () {
 		var $button = $( this );
 		var text = $button.attr( 'data-copy' ) || '';
+		var defaultLabel = $button.attr( 'data-copy-label' ) || '';
 		var strings = config();
 
 		if ( ! text ) {
@@ -85,14 +86,17 @@
 				window.clearTimeout( copyTimer );
 				copyTimer = window.setTimeout( function () {
 					$button.removeClass( 'is-copied' );
-					$button.attr( 'title', strings.copyId || 'Copy modal ID' );
+					$button.attr(
+						'title',
+						defaultLabel || strings.copyId || 'Copy modal ID'
+					);
 					$icon
 						.removeClass( 'dashicons-yes' )
 						.addClass( 'dashicons-clipboard' );
 				}, 2000 );
 			} )
 			.catch( function () {
-				/* Clipboard may be blocked; leave the ID visible to copy manually. */
+				/* Clipboard may be blocked; leave the value visible to copy manually. */
 			} );
 	} );
 

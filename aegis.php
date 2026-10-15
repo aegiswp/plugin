@@ -9,6 +9,7 @@
  * License:      GPL-2.0-or-later
  * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
  * Requires WP:  6.9
+ * Tested up to: 7.1.3
  * Requires PHP: 7.4
  * Text Domain:  aegis
  * Domain Path:  /languages
@@ -93,7 +94,9 @@ add_action(
 	require_once DIR . 'config/hooks.php';
 	require_once DIR . 'config/snippets.php';
 	require_once DIR . 'config/visibility-presets.php';
+	require_once DIR . 'config/license.php';
 	require_once DIR . 'config/conditionals.php';
+
 	require_once DIR . 'config/conditionals-renderer.php';
 	require_once DIR . 'config/integrations.php';
 	require_once DIR . 'config/connectors.php';

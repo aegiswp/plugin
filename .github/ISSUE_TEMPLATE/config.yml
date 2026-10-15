@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/aegiswp/plugin/security/advisories/new
+    about: Report a vulnerability privately. Do not open a public issue.
+  - name: Documentation
+    url: https://github.com/aegiswp/plugin/wiki
+    about: Consult the plugin wiki before opening a new issue.
+  - name: Discussions
+    url: https://github.com/aegiswp/plugin/discussions
+    about: General questions and open discussion.
+  - name: Theme repository
+    url: https://github.com/aegiswp/theme
+    about: Issues that belong to the Aegis block theme, not this plugin.
+  - name: Pro repository
+    url: https://github.com/aegiswp/pro
+    about: Issues that belong to Aegis Pro.

@@ -37,7 +37,7 @@ All features are **off by default** on a fresh install. Enable only what you nee
 
 1. Open **Aegis → Dashboard** in the admin menu.
 2. Enable block features at **Aegis → Blocks**.
-3. Enable integrations at **Aegis → Integrations**.
+3. Enable integrations at **Aegis → Integrations** (forums under **Community → bbPress**; SEO plugins under **SEO**; bylines under **Content → Co-Authors Plus**).
 4. Optionally configure conditionals, snippets, analytics, **Aegis → Performance**, and **Aegis → Settings**.
 
 Existing sites keep previously implicit-on features enabled. Uninstall does not delete data unless **Delete data on uninstall** is enabled under **Aegis → Settings**.
@@ -47,3 +47,5 @@ Existing sites keep previously implicit-on features enabled. Uninstall does not 
 - [[dashboard-overview]] — Admin menu tour
 - [[../../themes/aegis/docs/getting-started/installation|Theme Installation]]
 - [[../../aegis-pro/docs/getting-started/installation|Pro Installation]]
+
+For contributors: [CONTRIBUTING.md](../../CONTRIBUTING.md) · [[../development/building-assets|Building Assets]] · [.github/WORKFLOWS.md](../../.github/WORKFLOWS.md).

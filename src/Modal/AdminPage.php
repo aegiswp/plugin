@@ -157,6 +157,7 @@ final class AdminPage {
 				'confirmDelete'   => __( 'Delete this modal from the page? If the page only contains this modal, the draft will also be moved to Trash.', 'aegis' ),
 				'copied'          => __( 'Copied', 'aegis' ),
 				'copyId'          => __( 'Copy modal ID', 'aegis' ),
+				'copyShortcode'   => __( 'Copy shortcode', 'aegis' ),
 				'disabledLabel'   => __( 'Disabled', 'aegis' ),
 				'triggerOffLabel' => __( 'Trigger off', 'aegis' ),
 			)
@@ -404,7 +405,7 @@ final class AdminPage {
 		if ( $starter === 'blank' ) {
 			$attrs = wp_json_encode(
 				array(
-					'modalId'     => 'modal-' . wp_generate_uuid4(),
+					'modalId'     => 'modal-' . substr( wp_generate_uuid4(), 0, 8 ),
 					'triggerType' => 'button',
 					'modalTitle'  => __( 'New Modal', 'aegis' ),
 				)
@@ -470,10 +471,8 @@ final class AdminPage {
 	private function replace_modal_ids( array &$blocks ): void {
 		foreach ( $blocks as &$block ) {
 			if ( ( $block['blockName'] ?? '' ) === 'aegis/modal' ) {
-				$attrs   = is_array( $block['attrs'] ?? null ) ? $block['attrs'] : array();
-				$base    = sanitize_key( (string) ( $attrs['modalId'] ?? 'modal' ) );
-				$base    = $base !== '' ? $base : 'modal';
-				$attrs['modalId'] = $base . '-' . substr( wp_generate_uuid4(), 0, 8 );
+				$attrs            = is_array( $block['attrs'] ?? null ) ? $block['attrs'] : array();
+				$attrs['modalId'] = 'modal-' . substr( wp_generate_uuid4(), 0, 8 );
 				$block['attrs']   = $attrs;
 			}
 

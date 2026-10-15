@@ -19,7 +19,7 @@
 			style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--xs)">
 			<!-- wp:column {"verticalAlignment":"center","width":"50%"} -->
 			<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:50%">
-				<!-- wp:social-links {"iconColor":"inherit","size":"has-small-icon-size","className":"is-style-logos-only","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|xs"}}},"layout":{"type":"flex","justifyContent":"left","orientation":"horizontal"}} -->
+				<!-- wp:social-links {"iconColor":"inherit","size":"has-small-icon-size","className":"is-style-logos-only","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|xs"}}},"layout":{"type":"flex","justifyContent":"left","orientation":"horizontal"},"iconColorValue":"#525252"} -->
 				<ul class="wp-block-social-links has-small-icon-size has-icon-color is-style-logos-only">
 					<!-- wp:social-link {"url":"#","service":"facebook"} /-->
 
@@ -37,7 +37,7 @@
 			<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:33%">
 				<!-- wp:group {"style":{"spacing":{"blockGap":"4px"},"zIndex":{"all":"0"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"},"onclick":""} -->
 				<div class="wp-block-group">
-					<!-- wp:icon {"icon":"social/aegis","iconSvgString":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" role=\"img\" aria-labelledby=\"icon-6a2cc03b37e88\" data-icon=\"social-aegis\" style=\"min-width:50px;height:50px\" fill=\"currentColor\"><title id=\"icon-6a2cc03b37e88\">Aegis Icon</title><path d=\"M10.06 7.75 L12.02 3.87 L13.95 7.72 L16.65 9.29 L12.03 0 L7.34 9.3 L10.06 7.75 Z M18.37 12.72 L18.2 12.36 L15.5 10.79 L17.02 13.68 L20.05 18.61 L12.02 15.17 L3.98 18.62 L6.96 13.68 L8.39 10.81 L5.67 12.39 L5.5 12.71 L0 22.87 L12.01 16.87 L24 22.94 L18.37 12.72 Z\" stroke=\"none\" fill-rule=\"evenodd\"></path></svg>","style":{"dimensions":{"width":"50px"}}} /-->
+					<!-- wp:icon {"icon":"social/aegis","url":"<?php echo esc_url( home_url( '/' ) ); ?>","iconSvgString":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" role=\"img\" aria-labelledby=\"icon-6a2cc03b37e88\" data-icon=\"social-aegis\" style=\"min-width:50px;height:50px\" fill=\"currentColor\"><title id=\"icon-6a2cc03b37e88\">Aegis Icon</title><path d=\"M10.06 7.75 L12.02 3.87 L13.95 7.72 L16.65 9.29 L12.03 0 L7.34 9.3 L10.06 7.75 Z M18.37 12.72 L18.2 12.36 L15.5 10.79 L17.02 13.68 L20.05 18.61 L12.02 15.17 L3.98 18.62 L6.96 13.68 L8.39 10.81 L5.67 12.39 L5.5 12.71 L0 22.87 L12.01 16.87 L24 22.94 L18.37 12.72 Z\" stroke=\"none\" fill-rule=\"evenodd\"></path></svg>","style":{"dimensions":{"width":"50px"}}} /-->
 </div>
 				<!-- /wp:group -->
 			</div>

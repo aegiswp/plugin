@@ -1,0 +1,2702 @@
+/**
+ * Aegis Admin Settings Styles
+ *
+ * @package Aegis
+ * @since   1.0.0
+ */
+
+/* Top bar — full-bleed chrome matching #wpadminbar; scrolls with the page. */
+body.aegis-plugin-admin .aegis-top-bar {
+	--aegis-topbar-bg: #1d2327;
+	--aegis-topbar-fg: #f0f0f1;
+	--aegis-topbar-fg-muted: #c3c4c7;
+	--aegis-topbar-hover: rgba(255, 255, 255, 0.08);
+	--aegis-topbar-border: rgba(255, 255, 255, 0.12);
+	position: relative;
+	z-index: 10;
+	margin-inline-start: -20px;
+	width: calc(100% + 20px);
+	color: var(--aegis-topbar-fg);
+	background: var(--aegis-topbar-bg);
+	border-bottom: 1px solid var(--aegis-topbar-border);
+	box-sizing: border-box;
+}
+
+body.admin-color-light.aegis-plugin-admin .aegis-top-bar {
+	--aegis-topbar-bg: #e5e5e5;
+	--aegis-topbar-fg: #1d2327;
+	--aegis-topbar-fg-muted: #50575e;
+	--aegis-topbar-hover: rgba(0, 0, 0, 0.06);
+	--aegis-topbar-border: rgba(0, 0, 0, 0.12);
+}
+
+body.admin-color-modern.aegis-plugin-admin .aegis-top-bar {
+	--aegis-topbar-bg: #1e1e1e;
+}
+
+body.admin-color-blue.aegis-plugin-admin .aegis-top-bar {
+	--aegis-topbar-bg: #245278;
+}
+
+body.admin-color-coffee.aegis-plugin-admin .aegis-top-bar {
+	--aegis-topbar-bg: #5c4c40;
+}
+
+body.admin-color-ectoplasm.aegis-plugin-admin .aegis-top-bar {
+	--aegis-topbar-bg: #4a3369;
+}
+
+body.admin-color-midnight.aegis-plugin-admin .aegis-top-bar {
+	--aegis-topbar-bg: #333c42;
+}
+
+body.admin-color-ocean.aegis-plugin-admin .aegis-top-bar {
+	--aegis-topbar-bg: #39535a;
+}
+
+body.admin-color-sunrise.aegis-plugin-admin .aegis-top-bar {
+	--aegis-topbar-bg: #8a312d;
+}
+
+.aegis-top-bar-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	flex-wrap: wrap;
+	min-height: 48px;
+	padding: 6px 20px;
+	box-sizing: border-box;
+}
+
+.aegis-top-bar-left {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	min-width: 0;
+}
+
+.aegis-top-bar-brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	color: var(--aegis-topbar-fg);
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.aegis-top-bar-brand:hover,
+.aegis-top-bar-brand:focus {
+	color: var(--aegis-topbar-fg);
+}
+
+.aegis-top-bar-brand:focus-visible {
+	outline: 1px solid transparent;
+	box-shadow: 0 0 0 var(--wp-admin-border-width-focus, 1.5px) var(--wp-admin-theme-color, #3858e9);
+	border-radius: 2px;
+}
+
+.aegis-top-bar .aegis-brand-icon {
+	color: currentColor;
+}
+
+.aegis-brand-icon {
+	display: inline-flex;
+	align-items: center;
+	flex-shrink: 0;
+	color: var(--aegis-accent);
+	line-height: 0;
+}
+
+.aegis-brand-icon svg {
+	display: block;
+}
+
+.aegis-top-bar-product {
+	white-space: nowrap;
+}
+
+.aegis-top-bar-version {
+	font-size: 11px;
+	font-weight: 400;
+	color: var(--aegis-topbar-fg-muted);
+	white-space: nowrap;
+}
+
+.aegis-top-bar-divider {
+	width: 1px;
+	height: 16px;
+	background: var(--aegis-topbar-border);
+	flex-shrink: 0;
+}
+
+.aegis-top-bar-screen {
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--aegis-topbar-fg-muted);
+	white-space: nowrap;
+}
+
+.aegis-top-bar-badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 1px 6px;
+	border-radius: 2px;
+	background: var(--wp-admin-theme-color, #3858e9);
+	color: #fff;
+	font-size: 10px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	line-height: 1.4;
+}
+
+.aegis-top-bar-right {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	flex-wrap: wrap;
+}
+
+body.aegis-plugin-admin {
+	--aegis-lede-bg: #2c3338;
+	--aegis-lede-fg: #c3c4c7;
+	--aegis-lede-heading: #f0f0f1;
+	--aegis-lede-accent: #72aee6;
+}
+
+body.admin-color-light.aegis-plugin-admin {
+	--aegis-lede-bg: #fff;
+	--aegis-lede-fg: #50575e;
+	--aegis-lede-heading: #1d2327;
+	--aegis-lede-accent: #2271b1;
+}
+
+body.admin-color-modern.aegis-plugin-admin {
+	--aegis-lede-bg: #0c0c0c;
+}
+
+body.admin-color-blue.aegis-plugin-admin {
+	--aegis-lede-bg: #1c3f5d;
+}
+
+body.admin-color-coffee.aegis-plugin-admin {
+	--aegis-lede-bg: #473a31;
+}
+
+body.admin-color-ectoplasm.aegis-plugin-admin {
+	--aegis-lede-bg: #392751;
+}
+
+body.admin-color-midnight.aegis-plugin-admin {
+	--aegis-lede-bg: #23292e;
+}
+
+body.admin-color-ocean.aegis-plugin-admin {
+	--aegis-lede-bg: #2b3f44;
+}
+
+body.admin-color-sunrise.aegis-plugin-admin {
+	--aegis-lede-bg: #6f2724;
+}
+
+.aegis-page-lede {
+	padding: 10px 20px;
+	color: var(--aegis-lede-fg);
+	background: var(--aegis-lede-bg);
+	border-top: 1px solid rgba(255, 255, 255, 0.06);
+	box-sizing: border-box;
+}
+
+body.admin-color-light.aegis-plugin-admin .aegis-page-lede {
+	border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+body.admin-color-light.aegis-plugin-admin .aegis-page-lede a {
+	color: #2271b1;
+}
+
+body.admin-color-light.aegis-plugin-admin .aegis-page-lede a:hover,
+body.admin-color-light.aegis-plugin-admin .aegis-page-lede a:focus {
+	color: #135e96;
+}
+
+.aegis-page-lede p {
+	margin: 0;
+	font-size: 13px;
+	line-height: 1.5;
+	color: inherit;
+}
+
+.aegis-page-lede a {
+	color: var(--aegis-lede-accent);
+	text-decoration: underline;
+}
+
+.aegis-page-lede a:hover,
+.aegis-page-lede a:focus {
+	color: #9ec2f4;
+}
+
+.aegis-page-actions {
+	display: flex;
+	justify-content: flex-end;
+	margin: 0 0 16px;
+}
+
+.aegis-top-bar .button {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+/* WP 7.1 uses line-height to optically center 20px dashicons in 40px buttons.
+   Flex alignment needs a 1em icon box instead. */
+body.aegis-plugin-admin .aegis-top-bar .button .dashicons,
+body.aegis-plugin-admin .aegis-top-bar .button .dashicons::before {
+	display: block;
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+}
+
+.aegis-top-bar-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 6px 10px;
+	color: var(--aegis-topbar-fg);
+	text-decoration: none;
+	font-size: 13px;
+	border-radius: 2px;
+}
+
+.aegis-top-bar-link:hover,
+.aegis-top-bar-link:focus {
+	color: var(--aegis-topbar-fg);
+	background: var(--aegis-topbar-hover);
+}
+
+.aegis-top-bar-link:focus-visible {
+	outline: 1px solid transparent;
+	box-shadow: 0 0 0 var(--wp-admin-border-width-focus, 1.5px) var(--wp-admin-theme-color, #3858e9);
+}
+
+.aegis-top-bar-resources {
+	position: relative;
+}
+
+.aegis-top-bar-resources > summary {
+	list-style: none;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 6px 10px;
+	border-radius: 2px;
+	color: var(--aegis-topbar-fg);
+	font-size: 13px;
+	line-height: 1.4;
+}
+
+.aegis-top-bar-resources > summary::-webkit-details-marker {
+	display: none;
+}
+
+.aegis-top-bar-resources > summary::marker {
+	content: "";
+}
+
+.aegis-top-bar-resources > summary:hover,
+.aegis-top-bar-resources[open] > summary {
+	background: var(--aegis-topbar-hover);
+}
+
+.aegis-top-bar-resources > summary:focus-visible {
+	outline: 1px solid transparent;
+	box-shadow: 0 0 0 var(--wp-admin-border-width-focus, 1.5px) var(--wp-admin-theme-color, #3858e9);
+}
+
+.aegis-top-bar-link .dashicons,
+.aegis-top-bar-link .dashicons::before,
+.aegis-top-bar-resources > summary .dashicons,
+.aegis-top-bar-resources > summary .dashicons::before {
+	display: block;
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+}
+
+.aegis-top-bar-resources-menu {
+	position: absolute;
+	inset-inline-end: 0;
+	top: calc(100% + 4px);
+	min-width: 180px;
+	padding: 4px 0;
+	background: color-mix(in srgb, var(--aegis-topbar-bg) 88%, #fff);
+	border: 1px solid var(--aegis-topbar-border);
+	border-radius: 2px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.24);
+	z-index: 102;
+}
+
+.aegis-top-bar-resources-menu a {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 12px;
+	color: var(--aegis-topbar-fg);
+	text-decoration: none;
+	font-size: 13px;
+}
+
+.aegis-top-bar-resources-menu a:hover,
+.aegis-top-bar-resources-menu a:focus {
+	background: var(--aegis-topbar-hover);
+	color: var(--aegis-topbar-fg);
+}
+
+.aegis-top-bar-resources-menu a .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+@media screen and (max-width: 782px) {
+	body.aegis-plugin-admin .aegis-top-bar {
+		margin-inline-start: -10px;
+		width: calc(100% + 10px);
+	}
+
+	.aegis-top-bar-inner {
+		padding: 6px 12px;
+	}
+}
+
+/* Page tabs (nav-tab style) */
+.aegis-page-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 0;
+	padding: 9px 20px 0;
+	background: var(--aegis-page);
+	border-bottom: 1px solid var(--aegis-border);
+}
+
+.aegis-page-tab {
+	display: inline-flex;
+	align-items: center;
+	margin: 0 4px -1px 0;
+	padding: 5px 14px;
+	color: var(--aegis-accent);
+	text-decoration: none;
+	font-size: 13px;
+	line-height: 1.71428571;
+	font-weight: 400;
+	background: var(--aegis-border);
+	border: 1px solid var(--aegis-border);
+	border-bottom: none;
+	border-radius: 0;
+}
+
+.aegis-page-tab:hover,
+.aegis-page-tab:focus {
+	background: var(--aegis-surface);
+	color: var(--aegis-text-secondary);
+}
+
+.aegis-page-tab.active,
+.aegis-page-tab.active:hover,
+.aegis-page-tab.active:focus {
+	margin-bottom: -1px;
+	color: var(--aegis-text);
+	background: var(--aegis-page);
+	border-bottom: 1px solid var(--aegis-page);
+}
+
+.aegis-page-tab:focus-visible {
+	box-shadow: 0 0 0 var(--wp-admin-border-width-focus, 1.5px) var(--aegis-accent);
+	outline: 1px solid transparent;
+}
+
+/* Settings Wrap — spacing comes from the outer .wrap container. */
+.aegis-settings-wrap {
+	max-width: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* Gap between SubBar (.aegis-page-lede) and page content. */
+body.aegis-plugin-admin .wrap.aegis-admin-page {
+	margin-top: 36px;
+}
+
+/* Header */
+.aegis-settings-header {
+	margin: 0 0 16px;
+	background: none;
+	padding: 0 0 12px;
+	border: none;
+	border-radius: 0;
+}
+
+.aegis-settings-header h1 {
+	font-size: 23px;
+	font-weight: 400;
+	margin: 0;
+	padding: 9px 0 4px;
+	color: var(--aegis-text);
+	line-height: 1.3;
+}
+
+.aegis-settings-header p {
+	font-size: 14px;
+	color: var(--aegis-text-muted);
+	margin: 0;
+}
+
+/* Notice Messages */
+.aegis-notice {
+	padding: 12px 16px;
+	border-radius: 6px;
+	margin-bottom: 20px;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.aegis-notice-success {
+	background: var(--aegis-success-bg);
+	color: var(--aegis-success-text);
+	border: 1px solid var(--aegis-success-border);
+}
+
+.aegis-notice-warning {
+	background: var(--aegis-warning-bg);
+	color: var(--aegis-warning-text);
+	border: 1px solid var(--aegis-warning-border);
+}
+
+.aegis-notice-error {
+	background: var(--aegis-error-bg);
+	color: var(--aegis-error-text);
+	border: 1px solid var(--aegis-error-border);
+}
+
+/* Layout */
+.aegis-settings-layout {
+	display: grid;
+	grid-template-columns: 220px 1fr;
+	gap: 0;
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: var(--aegis-radius-lg, 12px);
+	overflow: hidden;
+}
+
+/* Layout without sidebar nav */
+.aegis-settings-layout--no-nav {
+	display: block;
+}
+
+/* Navigation — same dark treatment as #adminmenu. Stretch with the card; do not nest-scroll items. */
+.aegis-settings-nav {
+	--aegis-sidenav-bg: #1d2327;
+	--aegis-sidenav-fg: #f0f0f1;
+	--aegis-sidenav-hover-bg: #2c3338;
+	--aegis-sidenav-hover-fg: #72aee6;
+	--aegis-sidenav-current-bg: var(--wp-admin-theme-color, #2271b1);
+	--aegis-sidenav-current-fg: #fff;
+	background: var(--aegis-sidenav-bg);
+	padding: 12px 0;
+	border-right: none;
+	min-height: 100%;
+	overflow: visible;
+}
+
+body.admin-color-light .aegis-settings-nav {
+	--aegis-sidenav-bg: #e5e5e5;
+	--aegis-sidenav-fg: #1d2327;
+	--aegis-sidenav-hover-bg: #fff;
+	--aegis-sidenav-hover-fg: #0073aa;
+}
+
+body.admin-color-modern .aegis-settings-nav {
+	--aegis-sidenav-bg: #1e1e1e;
+	--aegis-sidenav-hover-bg: #0c0c0c;
+}
+
+body.admin-color-blue .aegis-settings-nav {
+	--aegis-sidenav-bg: #52accc;
+	--aegis-sidenav-hover-bg: #4796b3;
+	--aegis-sidenav-hover-fg: #fff;
+}
+
+body.admin-color-coffee .aegis-settings-nav {
+	--aegis-sidenav-bg: #59524c;
+	--aegis-sidenav-hover-bg: #46403c;
+}
+
+body.admin-color-ectoplasm .aegis-settings-nav {
+	--aegis-sidenav-bg: #523f6d;
+	--aegis-sidenav-hover-bg: #413256;
+}
+
+body.admin-color-midnight .aegis-settings-nav {
+	--aegis-sidenav-bg: #363b3f;
+	--aegis-sidenav-hover-bg: #26292c;
+}
+
+body.admin-color-ocean .aegis-settings-nav {
+	--aegis-sidenav-bg: #738e96;
+	--aegis-sidenav-hover-bg: #627c83;
+	--aegis-sidenav-hover-fg: #fff;
+}
+
+body.admin-color-sunrise .aegis-settings-nav {
+	--aegis-sidenav-bg: #cf4944;
+	--aegis-sidenav-hover-bg: #be3631;
+	--aegis-sidenav-hover-fg: #fff;
+}
+
+.aegis-nav-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 16px;
+	color: var(--aegis-sidenav-fg, #f0f0f1);
+	text-decoration: none;
+	font-size: 13px;
+	font-weight: 400;
+	border-left: 4px solid transparent;
+}
+
+.aegis-nav-item:hover,
+.aegis-nav-item:focus {
+	color: var(--aegis-sidenav-hover-fg, #72aee6);
+	background: var(--aegis-sidenav-hover-bg, #2c3338);
+}
+
+.aegis-nav-item.active {
+	color: var(--aegis-sidenav-current-fg, #fff);
+	background: var(--aegis-sidenav-current-bg, var(--wp-admin-theme-color, #2271b1));
+	border-left-color: transparent;
+	font-weight: 600;
+}
+
+.aegis-nav-item:focus-visible {
+	box-shadow: inset 0 0 0 var(--wp-admin-border-width-focus, 1.5px) var(--aegis-sidenav-hover-fg, #72aee6);
+	outline: 1px solid transparent;
+}
+
+.aegis-nav-item .dashicons,
+.aegis-nav-item .aegis-plugin-icon {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+	color: inherit;
+}
+
+/* Third-party plugin brand marks (mask + currentColor). */
+.aegis-plugin-icon {
+	display: inline-block;
+	flex-shrink: 0;
+	vertical-align: middle;
+	background-color: currentColor;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	-webkit-mask-size: contain;
+	mask-repeat: no-repeat;
+	mask-position: center;
+	mask-size: contain;
+}
+
+.aegis-section-title h2 .aegis-plugin-icon {
+	margin-right: 6px;
+	position: relative;
+	top: -1px;
+	width: 20px;
+	height: 20px;
+	color: var(--aegis-lede-accent, #72aee6);
+}
+
+.aegis-api-config-heading .aegis-plugin-icon {
+	width: 20px;
+	height: 20px;
+}
+
+.aegis-toggle-icon .aegis-plugin-icon {
+	width: 20px;
+	height: 20px;
+	color: var(--aegis-accent);
+}
+
+/* Content */
+.aegis-settings-content {
+	padding: 30px;
+}
+
+/* Sections */
+.aegis-settings-section {
+	display: none;
+}
+
+.aegis-settings-section.active {
+	display: block;
+}
+
+.aegis-settings-layout--no-nav .aegis-settings-section {
+	display: block;
+}
+
+.aegis-settings-layout--no-nav .aegis-settings-section + .aegis-settings-section {
+	margin-top: 40px;
+	padding-top: 32px;
+	border-top: 1px solid var(--aegis-border);
+}
+
+/* Analytics provider blocks (legacy nested layout). */
+.aegis-analytics-provider {
+	display: block;
+	margin-bottom: 32px;
+}
+
+.aegis-settings-section h2 {
+	font-size: 20px;
+	font-weight: 600;
+	margin: 0 0 8px;
+	color: var(--aegis-text);
+}
+
+.aegis-settings-section > .description {
+	font-size: 14px;
+	color: var(--aegis-text-muted);
+	margin: 0 0 24px;
+}
+
+/* Settings Grid - Ollie Pro Style */
+.aegis-settings-grid {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	background: transparent;
+	margin-bottom: 0;
+}
+
+.aegis-plugin-stack + .aegis-plugin-stack {
+	margin-top: 32px;
+}
+
+.aegis-settings-section > .aegis-plugin-stack:first-of-type > .aegis-api-section-header {
+	margin-top: 0;
+}
+
+.aegis-plugin-stack > .aegis-api-section-header {
+	margin-bottom: 0;
+}
+
+.aegis-plugin-stack > .aegis-settings-section__content .aegis-settings-grid > .aegis-toggle-card:last-child,
+.aegis-plugin-stack > .aegis-settings-section__content .aegis-settings-grid > .aegis-toggle-subcard:last-child {
+	border-bottom: none;
+}
+
+/* Toggle Row - Ollie Pro Style */
+.aegis-toggle-card {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16px 20px;
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid var(--aegis-border);
+	border-radius: 0;
+	transition: background-color 0.12s ease;
+}
+
+.aegis-settings-grid > .aegis-toggle-card:last-child {
+	border-bottom: none;
+}
+
+.aegis-toggle-card:hover {
+	background-color: var(--aegis-surface-muted);
+}
+
+.aegis-toggle-card.aegis-toggle-active {
+	background-color: var(--aegis-accent-soft);
+}
+
+/* Toggle Info with Icon */
+.aegis-toggle-info {
+	display: flex;
+	align-items: flex-start;
+	gap: 16px;
+	flex: 1;
+}
+
+.aegis-toggle-icon {
+	width: 40px;
+	height: 40px;
+	background: var(--aegis-accent-soft);
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.aegis-toggle-icon .dashicons {
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
+	color: var(--aegis-accent);
+}
+
+.aegis-toggle-text h3 {
+	font-size: 14px;
+	font-weight: 500;
+	margin: 0 0 2px;
+	color: var(--aegis-text);
+}
+
+.aegis-toggle-text p {
+	font-size: 13px;
+	color: var(--aegis-text-muted);
+	margin: 0;
+	line-height: 1.4;
+}
+
+/* Toggle Switch */
+.aegis-toggle {
+	position: relative;
+	display: inline-block;
+	width: 48px;
+	height: 28px;
+	flex-shrink: 0;
+}
+
+.aegis-toggle input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.aegis-toggle-slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: var(--aegis-border);
+	transition: 0.3s;
+	border-radius: 28px;
+}
+
+.aegis-toggle-slider:before {
+	position: absolute;
+	content: "";
+	height: 20px;
+	width: 20px;
+	left: 4px;
+	bottom: 4px;
+	background-color: var(--aegis-surface);
+	transition: 0.3s;
+	border-radius: 50%;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.aegis-toggle input:checked + .aegis-toggle-slider {
+	background-color: var(--aegis-accent);
+}
+
+.aegis-toggle input:checked + .aegis-toggle-slider:before {
+	transform: translateX(20px);
+}
+
+.aegis-toggle input:focus + .aegis-toggle-slider {
+	box-shadow: 0 0 0 var(--wp-admin-border-width-focus, 1.5px) var(--aegis-accent);
+}
+
+/* Footer */
+.aegis-settings-footer {
+	margin-top: 0;
+	padding-top: 20px;
+	border-top: 1px solid var(--aegis-border);
+}
+
+.aegis-settings-footer .submit {
+	margin: 0;
+	padding: 0;
+}
+
+/* Toolbar — same surface and corners as .aegis-hooks-overview. */
+.aegis-admin-page .aegis-toolbar.wp-filter,
+.aegis-toolbar.wp-filter {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px;
+	box-sizing: border-box;
+	width: 100%;
+	min-height: 0;
+	margin: 16px 0 24px;
+	padding: 20px 24px;
+	background: var(--aegis-surface);
+	color: var(--aegis-text-muted, #50575e);
+	font-size: 13px;
+	border: 1px solid var(--aegis-border);
+	border-radius: 8px;
+	box-shadow: none;
+}
+
+.aegis-toolbar-left,
+.aegis-toolbar .filter-items {
+	display: flex;
+	align-items: center;
+	float: none;
+	gap: 8px;
+	margin: 0;
+}
+
+.aegis-toolbar .button {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+body.aegis-plugin-admin .aegis-toolbar .button .dashicons,
+body.aegis-plugin-admin .aegis-toolbar .button .dashicons::before {
+	display: block;
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+}
+
+.aegis-toolbar .aegis-pro-badge {
+	margin-left: 0;
+}
+
+.aegis-toolbar-right,
+.aegis-toolbar .search-form {
+	display: flex;
+	align-items: center;
+	float: none;
+	margin: 0;
+}
+
+.aegis-toolbar .search-box {
+	display: flex;
+	align-items: center;
+	float: none;
+	margin: 0;
+	column-gap: 0.5rem;
+}
+
+.aegis-toolbar .search-box label {
+	margin: 0;
+	font-size: 13px;
+	line-height: 1.4;
+	color: #2c3338;
+	white-space: nowrap;
+}
+
+.aegis-search-input {
+	width: 280px;
+	max-width: 100%;
+	min-height: 32px;
+	margin: 0;
+	padding: 0 8px;
+	vertical-align: middle;
+}
+
+.aegis-admin-page .button {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+body.aegis-plugin-admin .aegis-admin-page .button .dashicons,
+body.aegis-plugin-admin .aegis-admin-page .button .dashicons::before,
+body.aegis-plugin-admin.wp-core-ui .aegis-admin-page .button .dashicons,
+body.aegis-plugin-admin.wp-core-ui .aegis-admin-page .button .dashicons::before {
+	display: block;
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+}
+
+/* Section header — same colors as the SubBar. */
+.aegis-section-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 16px;
+	margin-bottom: 24px;
+	padding: 16px 20px;
+	color: var(--aegis-lede-fg, #c3c4c7);
+	background: var(--aegis-lede-bg, #2c3338);
+	border: none;
+	border-radius: 8px;
+}
+
+.aegis-section-title {
+	flex: 1;
+	min-width: 0;
+}
+
+.aegis-admin-page .aegis-section-header .aegis-section-title h2,
+.aegis-section-title h2 {
+	margin: 0 0 8px 0;
+	font-size: 20px;
+	font-weight: 600;
+	color: var(--aegis-lede-heading, #f0f0f1);
+}
+
+.aegis-section-title h2 .dashicons {
+	color: var(--aegis-lede-accent, #72aee6);
+}
+
+.aegis-section-title .description {
+	margin: 0;
+	color: var(--aegis-lede-fg, #c3c4c7);
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.aegis-settings-section-header {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-bottom: 24px;
+	padding: 16px 20px;
+	color: var(--aegis-lede-fg, #c3c4c7);
+	background: var(--aegis-lede-bg, #2c3338);
+	border: none;
+	border-radius: 8px;
+}
+
+.aegis-admin-page .aegis-settings-section-header h2,
+.aegis-settings-section-header h2 {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+	font-size: 20px;
+	font-weight: 600;
+	color: var(--aegis-lede-heading, #f0f0f1);
+}
+
+.aegis-settings-section-header h2 .dashicons,
+.aegis-settings-section-header h2 .aegis-plugin-icon {
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+	color: var(--aegis-lede-accent, #72aee6);
+}
+
+.aegis-settings-section-header p {
+	margin: 0;
+	color: var(--aegis-lede-fg, #c3c4c7);
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.aegis-bulk-actions {
+	display: flex;
+	flex-shrink: 0;
+	gap: 8px;
+}
+
+/* Outline buttons on dark SubBar-colored headers. */
+body.aegis-plugin-admin .aegis-section-header .button,
+body.aegis-plugin-admin .aegis-settings-section-header .button,
+body.aegis-plugin-admin .aegis-hooks-reference-header .button,
+.wp-core-ui .aegis-section-header .button,
+.wp-core-ui .aegis-settings-section-header .button,
+.wp-core-ui .aegis-hooks-reference-header .button {
+	color: var(--aegis-lede-heading, #f0f0f1);
+	background: transparent;
+	border-color: var(--aegis-lede-fg, #c3c4c7);
+	box-shadow: none;
+}
+
+body.aegis-plugin-admin .aegis-section-header .button:hover,
+body.aegis-plugin-admin .aegis-section-header .button:focus,
+body.aegis-plugin-admin .aegis-settings-section-header .button:hover,
+body.aegis-plugin-admin .aegis-settings-section-header .button:focus,
+body.aegis-plugin-admin .aegis-hooks-reference-header .button:hover,
+body.aegis-plugin-admin .aegis-hooks-reference-header .button:focus,
+.wp-core-ui .aegis-section-header .button:hover,
+.wp-core-ui .aegis-section-header .button:focus,
+.wp-core-ui .aegis-settings-section-header .button:hover,
+.wp-core-ui .aegis-settings-section-header .button:focus,
+.wp-core-ui .aegis-hooks-reference-header .button:hover,
+.wp-core-ui .aegis-hooks-reference-header .button:focus {
+	color: #fff;
+	background: rgba(255, 255, 255, 0.08);
+	border-color: #fff;
+}
+
+body.aegis-plugin-admin .aegis-api-config-header .button,
+.wp-core-ui .aegis-api-config-header .button {
+	color: var(--aegis-text, #1d2327);
+	background: var(--aegis-surface, #fff);
+	border-color: var(--aegis-border);
+	box-shadow: none;
+}
+
+body.aegis-plugin-admin .aegis-api-config-header .button:hover,
+body.aegis-plugin-admin .aegis-api-config-header .button:focus,
+.wp-core-ui .aegis-api-config-header .button:hover,
+.wp-core-ui .aegis-api-config-header .button:focus {
+	color: var(--aegis-accent, #2271b1);
+	background: var(--aegis-surface, #fff);
+	border-color: var(--aegis-accent, #2271b1);
+}
+
+body.admin-color-light.aegis-plugin-admin .aegis-section-header .button,
+body.admin-color-light.aegis-plugin-admin .aegis-settings-section-header .button,
+body.admin-color-light.aegis-plugin-admin .aegis-hooks-reference-header .button,
+body.admin-color-light.aegis-plugin-admin .wp-core-ui .aegis-section-header .button {
+	color: var(--wp-admin-theme-color, #3858e9);
+	background: transparent;
+	border-color: var(--wp-admin-theme-color, #3858e9);
+}
+
+body.admin-color-light.aegis-plugin-admin .aegis-section-header .button:hover,
+body.admin-color-light.aegis-plugin-admin .aegis-section-header .button:focus,
+body.admin-color-light.aegis-plugin-admin .aegis-settings-section-header .button:hover,
+body.admin-color-light.aegis-plugin-admin .aegis-settings-section-header .button:focus {
+	color: var(--wp-admin-theme-color-darker-20, #183ad6);
+	background: rgba(var(--wp-admin-theme-color--rgb, 56, 88, 233), 0.04);
+	border-color: var(--wp-admin-theme-color-darker-20, #183ad6);
+}
+
+/* Subsection titles */
+.aegis-subsection-title {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	margin: 24px 0 12px 0;
+	padding-bottom: 8px;
+	border-bottom: 1px solid var(--aegis-border-subtle);
+}
+
+.aegis-subsection-title:first-of-type {
+	margin-top: 20px;
+}
+
+/* Nav item search states */
+.aegis-nav-item.has-results {
+	background: var(--aegis-sidenav-hover-bg, #2c3338);
+	color: var(--aegis-sidenav-hover-fg, #72aee6);
+}
+
+.aegis-nav-item.no-results {
+	opacity: 0.5;
+}
+
+.aegis-section-title h2 .aegis-plugin-status {
+	vertical-align: middle;
+}
+
+/* Plugin status badge */
+.aegis-plugin-status {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 11px;
+	padding: 2px 8px;
+	border-radius: 10px;
+	margin-left: 8px;
+}
+
+.aegis-plugin-status.active {
+	background: var(--aegis-success-bg);
+	color: var(--aegis-success-text);
+}
+
+.aegis-plugin-status.inactive {
+	background: var(--aegis-error-bg);
+	color: var(--aegis-error-text);
+}
+
+.aegis-plugin-status.not-installed {
+	background: var(--aegis-surface-muted);
+	color: var(--aegis-text-muted);
+}
+
+/* Disabled toggle card */
+.aegis-toggle-card.aegis-toggle-disabled {
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+.aegis-toggle-card.aegis-toggle-disabled .aegis-toggle-slider,
+.aegis-toggle-card.aegis-toggle-disabled .aegis-toggle input:checked + .aegis-toggle-slider {
+	background-color: var(--aegis-border);
+	cursor: not-allowed;
+}
+
+.aegis-toggle-card.aegis-toggle-disabled .aegis-toggle input:checked + .aegis-toggle-slider:before {
+	transform: none;
+}
+
+/* Suboptions for integrations and blocks */
+.aegis-toggle-suboptions {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.aegis-toggle-subcard {
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid var(--aegis-border);
+	padding: 16px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.aegis-settings-grid > .aegis-toggle-subcard:last-child,
+.aegis-toggle-suboptions > .aegis-toggle-subcard:last-child {
+	border-bottom: none;
+}
+
+/* Pro feature styling */
+.aegis-toggle-subcard.aegis-pro-feature,
+.aegis-toggle-card.aegis-pro-feature {
+	background: var(--aegis-warning-bg);
+}
+
+.aegis-toggle-subcard.aegis-pro-feature .aegis-toggle-icon,
+.aegis-toggle-card.aegis-pro-feature .aegis-toggle-icon {
+	background: var(--aegis-warning-bg);
+}
+
+.aegis-toggle-subcard.aegis-pro-feature .aegis-toggle-icon .dashicons,
+.aegis-toggle-card.aegis-pro-feature .aegis-toggle-icon .dashicons {
+	color: var(--aegis-warning-text);
+}
+
+.aegis-toggle-subcard.aegis-pro-feature.aegis-toggle-disabled,
+.aegis-toggle-card.aegis-pro-feature.aegis-toggle-disabled {
+	opacity: 0.7;
+}
+
+.aegis-toggle-subcard.aegis-pro-feature.aegis-toggle-disabled .aegis-toggle-slider,
+.aegis-toggle-card.aegis-pro-feature.aegis-toggle-disabled .aegis-toggle-slider {
+	background-color: var(--aegis-border);
+	cursor: not-allowed;
+}
+
+.aegis-pro-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 3px;
+	padding: 2px 6px;
+	background: var(--aegis-warning-bg);
+	color: var(--aegis-warning-text);
+	border: 1px solid var(--aegis-warning-border);
+	font-size: 9px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	border-radius: 0;
+	margin-left: 8px;
+	white-space: nowrap;
+}
+
+.aegis-pro-badge .dashicons {
+	font-size: 10px;
+	width: 10px;
+	height: 10px;
+	line-height: 10px;
+}
+
+.aegis-toggle-subcard .aegis-toggle-info {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	flex: 1;
+}
+
+.aegis-toggle-subcard .aegis-toggle-icon {
+	width: 40px;
+	height: 40px;
+	min-width: 40px;
+	background: var(--aegis-info-bg);
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.aegis-toggle-subcard .aegis-toggle-icon .dashicons {
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
+	color: var(--aegis-accent);
+}
+
+.aegis-toggle-subcard .aegis-toggle-text {
+	flex: 1;
+}
+
+.aegis-toggle-subcard h3 {
+	font-size: 14px;
+	margin: 0;
+	font-weight: 500;
+	color: var(--aegis-text);
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.aegis-toggle-subcard p {
+	font-size: 13px;
+	margin: 4px 0 0 0;
+	color: var(--aegis-text-muted);
+	line-height: 1.4;
+}
+
+/* Main block toggle styling */
+.aegis-toggle-main {
+	background: transparent;
+	border-radius: 0;
+	margin-bottom: 0;
+	border-bottom: 1px solid var(--aegis-border);
+}
+
+.aegis-toggle-main h3 {
+	font-size: 14px;
+	font-weight: 500;
+}
+
+/* Dashboard Styles - WordPress Editor Colors */
+.aegis-dashboard-wrap {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 40px 24px;
+	background: var(--aegis-surface);
+}
+
+.aegis-dashboard-hero {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 60px;
+	align-items: center;
+	margin-bottom: 60px;
+	padding: 40px;
+	background: var(--aegis-surface-muted);
+	border-radius: 4px;
+	border: 1px solid var(--aegis-border);
+}
+
+.aegis-dashboard-label {
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	margin-bottom: 16px;
+}
+
+.aegis-dashboard-hero-content h1 {
+	font-size: 32px;
+	font-weight: 700;
+	line-height: 1.2;
+	color: var(--aegis-text);
+	margin: 0 0 16px;
+}
+
+.aegis-dashboard-hero-content p {
+	font-size: 15px;
+	line-height: 1.6;
+	color: var(--aegis-text-muted);
+	margin: 0 0 24px;
+}
+
+.aegis-dashboard-hero-actions {
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.aegis-dashboard-hero-image {
+	display: flex;
+	justify-content: center;
+}
+
+.aegis-dashboard-preview {
+	width: 100%;
+	max-width: 400px;
+	background: var(--aegis-surface);
+	border-radius: 12px;
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+}
+
+.aegis-preview-header {
+	height: 40px;
+	background: var(--aegis-accent);
+}
+
+.aegis-preview-content {
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.aegis-preview-block {
+	height: 24px;
+	background: var(--aegis-border);
+	border-radius: 4px;
+	width: 60%;
+}
+
+.aegis-preview-block-wide {
+	width: 100%;
+	height: 80px;
+}
+
+/* Dashboard Section */
+.aegis-dashboard-section {
+	margin-bottom: 40px;
+}
+
+.aegis-dashboard-section-header {
+	margin-bottom: 24px;
+}
+
+.aegis-dashboard-section-header h2 {
+	font-size: 24px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	margin: 0 0 8px;
+}
+
+.aegis-dashboard-section-header p {
+	font-size: 14px;
+	color: var(--aegis-text-muted);
+	margin: 0;
+}
+
+/* Dashboard Cards */
+.aegis-dashboard-cards {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+}
+
+.aegis-dashboard-card {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 12px;
+	padding: 24px;
+	transition: all 0.2s ease;
+}
+
+.aegis-dashboard-card:hover {
+	border-color: var(--aegis-border);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.aegis-dashboard-card h3 {
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	margin: 0 0 8px;
+}
+
+.aegis-dashboard-card p {
+	font-size: 13px;
+	line-height: 1.5;
+	color: var(--aegis-text-muted);
+	margin: 0 0 16px;
+}
+
+.aegis-card-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--aegis-accent);
+	text-decoration: none;
+}
+
+.aegis-card-link:hover {
+	color: var(--aegis-accent-hover);
+}
+
+/* Responsive - must be last */
+@media (max-width: 782px) {
+	.aegis-settings-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.aegis-settings-nav {
+		display: flex;
+		flex-wrap: wrap;
+		padding: 10px;
+		gap: 5px;
+		max-height: none;
+		overflow: visible;
+	}
+
+	.aegis-nav-item {
+		padding: 10px 15px;
+		border-left: none;
+		border-radius: 4px;
+	}
+
+	.aegis-nav-item.active {
+		border-left: none;
+		background: var(--aegis-sidenav-current-bg, var(--wp-admin-theme-color, #2271b1));
+		color: var(--aegis-sidenav-current-fg, #fff);
+	}
+
+	.aegis-admin-page .aegis-toolbar.wp-filter,
+	.aegis-toolbar.wp-filter {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 10px;
+	}
+
+	.aegis-toolbar-left,
+	.aegis-toolbar-right,
+	.aegis-toolbar .search-form,
+	.aegis-toolbar .search-box {
+		width: 100%;
+	}
+
+	.aegis-toolbar .search-box {
+		flex-wrap: nowrap;
+	}
+
+	.aegis-search-input {
+		width: 100%;
+	}
+
+	.aegis-section-header {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+	}
+
+	.aegis-dashboard-hero {
+		grid-template-columns: 1fr;
+		gap: 30px;
+		padding: 24px;
+	}
+
+	.aegis-dashboard-hero-content h1 {
+		font-size: 24px;
+	}
+
+	.aegis-dashboard-hero-actions {
+		flex-direction: column;
+	}
+
+	.aegis-dashboard-cards {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ==========================================================================
+   API Configuration Form - Sleek Design
+   ========================================================================== */
+
+.aegis-api-config {
+	margin-top: 24px;
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	overflow: visible;
+}
+
+.aegis-api-config-disabled {
+	opacity: 0.7;
+}
+
+.aegis-api-config-disabled .aegis-api-field-input input,
+.aegis-api-config-disabled .aegis-api-field-input select {
+	background: var(--aegis-surface-muted);
+	cursor: not-allowed;
+}
+
+/* Secondary stack / API group headers — lighter than .aegis-section-header */
+.aegis-api-config-header,
+.aegis-api-section-header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 12px;
+	margin: 24px 0 8px;
+	padding: 12px 16px;
+	color: var(--aegis-text-muted, #646970);
+	background: var(--aegis-surface-muted, #f6f7f7);
+	border: 1px solid var(--aegis-border);
+	border-inline-start: 3px solid var(--aegis-accent, #2271b1);
+	border-radius: 8px;
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+.aegis-api-config > .aegis-api-config-header:first-child {
+	margin-top: 0;
+}
+
+.aegis-api-config-title {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	min-width: 0;
+	color: var(--aegis-text, #1d2327);
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.aegis-api-config-title .dashicons,
+.aegis-api-config-title .aegis-plugin-icon {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+	color: var(--aegis-accent, #2271b1);
+}
+
+.aegis-api-config-heading {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.aegis-api-config-title p,
+.aegis-api-section-header p {
+	margin: 0;
+	color: var(--aegis-text-muted, #646970);
+	font-size: 13px;
+	font-weight: 400;
+	letter-spacing: 0;
+	line-height: 1.5;
+	text-transform: none;
+}
+
+.aegis-api-section-header .dashicons {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+	color: var(--aegis-accent, #2271b1);
+}
+
+.aegis-api-config-body {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.aegis-api-config.aegis-pro-feature .aegis-api-config-header {
+	background: var(--aegis-surface-muted, #f6f7f7);
+}
+
+.aegis-api-field-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16px 20px;
+	border-bottom: 1px solid var(--aegis-surface-muted);
+	transition: background-color 0.2s ease;
+}
+
+.aegis-api-field-row:hover {
+	background-color: var(--aegis-surface-muted);
+}
+
+.aegis-api-field-row:last-of-type {
+	border-bottom: 1px solid var(--aegis-border);
+}
+
+.aegis-api-field-info {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	flex: 1;
+	min-width: 0;
+}
+
+.aegis-api-field-icon {
+	width: 36px;
+	height: 36px;
+	min-width: 36px;
+	background: var(--aegis-info-bg);
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.aegis-api-field-icon .dashicons {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+	color: var(--aegis-accent);
+}
+
+.aegis-api-field-text {
+	flex: 1;
+	min-width: 0;
+}
+
+.aegis-api-field-text label {
+	display: block;
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--aegis-text);
+	margin: 0 0 2px 0;
+}
+
+.aegis-api-field-text p {
+	font-size: 12px;
+	color: var(--aegis-text-muted);
+	margin: 0;
+	line-height: 1.4;
+}
+
+.aegis-api-field-input {
+	flex: 0 0 280px;
+	max-width: 280px;
+}
+
+.aegis-api-field-input input,
+.aegis-api-field-input select {
+	width: 100%;
+	padding: 10px 14px;
+	font-size: 13px;
+	border: 1px solid var(--aegis-border);
+	border-radius: 6px;
+	background: var(--aegis-surface);
+	color: var(--aegis-text);
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	box-sizing: border-box;
+}
+
+.aegis-api-field-input input:focus,
+.aegis-api-field-input select:focus {
+	outline: none;
+	border-color: var(--aegis-accent);
+	box-shadow: 0 0 0 var(--wp-admin-border-width-focus, 1.5px) var(--aegis-accent);
+}
+
+.aegis-api-field-input input::placeholder {
+	color: var(--aegis-text-muted);
+}
+
+.aegis-api-field-input input:disabled,
+.aegis-api-field-input select:disabled {
+	background: var(--aegis-surface-muted);
+	color: var(--aegis-text-muted);
+	cursor: not-allowed;
+}
+
+.aegis-api-config-footer {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 16px 20px;
+	background: var(--aegis-surface);
+	border-top: 1px solid var(--aegis-border);
+}
+
+.aegis-api-config-footer .button {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.aegis-api-config-footer .button .dashicons,
+.aegis-api-config-footer .button .dashicons::before {
+	display: block;
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+}
+
+.aegis-api-config-footer .button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	pointer-events: none;
+}
+
+.aegis-api-pro-notice {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 16px;
+	background: var(--aegis-warning-bg);
+	border: 1px solid var(--aegis-warning-border);
+	border-radius: 0;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--aegis-warning-text);
+}
+
+.aegis-api-pro-notice .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	color: var(--aegis-warning-text);
+}
+
+/* Responsive API Config */
+@media (max-width: 782px) {
+	.aegis-api-field-row {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 12px;
+	}
+
+	.aegis-api-field-input {
+		flex: none;
+		max-width: none;
+		width: 100%;
+	}
+
+	.aegis-api-config-footer {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.aegis-api-config-footer .button {
+		justify-content: center;
+	}
+}
+
+/* ==========================================================================
+   Dashboard Overview
+   ========================================================================== */
+
+/* Hero Welcome Card */
+.aegis-dashboard-hero-card {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: var(--aegis-radius-lg, 12px);
+	overflow: hidden;
+	margin-bottom: 24px;
+}
+
+.aegis-dashboard-hero-card-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 20px;
+	background: var(--aegis-surface-muted);
+	border-bottom: 1px solid var(--aegis-border);
+	color: var(--aegis-text);
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.aegis-dashboard-hero-card-header .aegis-brand-icon {
+	color: var(--aegis-accent);
+}
+
+.aegis-dashboard-hero-card-body {
+	padding: 32px 28px;
+}
+
+.aegis-dashboard-hero-card-body h1 {
+	font-size: 24px;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+	color: var(--aegis-text);
+	margin: 0 0 8px;
+	line-height: 1.25;
+}
+
+.aegis-dashboard-hero-card-body p {
+	font-size: 14px;
+	color: var(--aegis-text-muted);
+	margin: 0 0 20px;
+	line-height: 1.5;
+}
+
+.aegis-dashboard-hero-card-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+/* At-a-Glance Stat Cards */
+.aegis-dashboard-stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 16px;
+	margin-bottom: 24px;
+}
+
+.aegis-stat-card {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 18px;
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 12px;
+	text-decoration: none;
+	transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.aegis-stat-card:hover,
+.aegis-stat-card:focus {
+	border-color: color-mix(in srgb, var(--aegis-accent) 30%, var(--aegis-border));
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+	outline: none;
+}
+
+.aegis-stat-icon {
+	width: 44px;
+	height: 44px;
+	min-width: 44px;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.aegis-stat-icon .dashicons {
+	font-size: 22px;
+	width: 22px;
+	height: 22px;
+}
+
+.aegis-stat-icon--blue,
+.aegis-stat-icon--purple,
+.aegis-stat-icon--green,
+.aegis-stat-icon--amber,
+.aegis-stat-icon--teal {
+	background: var(--aegis-accent-soft);
+}
+
+.aegis-stat-icon--blue .dashicons,
+.aegis-stat-icon--purple .dashicons,
+.aegis-stat-icon--green .dashicons,
+.aegis-stat-icon--amber .dashicons,
+.aegis-stat-icon--teal .dashicons {
+	color: var(--aegis-accent);
+}
+
+.aegis-stat-content {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.aegis-stat-value {
+	font-size: 28px;
+	font-weight: 700;
+	color: var(--aegis-text);
+	line-height: 1;
+}
+
+.aegis-stat-label {
+	font-size: 12px;
+	font-weight: 500;
+	color: var(--aegis-text-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+/* Dashboard Sections */
+.aegis-dashboard-section {
+	margin-bottom: 24px;
+}
+
+.aegis-dashboard-section h2 {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	margin: 0 0 12px 0;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+/* Quick Actions Grid */
+.aegis-dashboard-actions {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 12px;
+}
+
+.aegis-action-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	padding: 24px 12px 20px;
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: var(--aegis-radius-lg, 12px);
+	text-decoration: none;
+	color: var(--aegis-text);
+	text-align: center;
+}
+
+.aegis-action-card:hover,
+.aegis-action-card:focus {
+	border-color: var(--aegis-accent);
+	box-shadow: 0 0 0 var(--wp-admin-border-width-focus, 1.5px) var(--aegis-accent);
+	color: var(--aegis-text);
+}
+
+.aegis-action-card-icon {
+	width: 44px;
+	height: 44px;
+	background: var(--aegis-accent-soft);
+	border-radius: var(--aegis-radius-md, 8px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 4px;
+}
+
+.aegis-action-card-icon .dashicons {
+	font-size: 22px;
+	width: 22px;
+	height: 22px;
+	color: var(--aegis-accent);
+}
+
+.aegis-action-card-title {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--aegis-text);
+}
+
+.aegis-action-card-desc {
+	font-size: 12px;
+	color: var(--aegis-text-muted);
+	line-height: 1.3;
+}
+
+/* Getting Started Cards */
+.aegis-dashboard-getting-started-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 12px;
+}
+
+.aegis-dashboard-getting-started-header h2 {
+	margin: 0;
+}
+
+.aegis-dismiss-getting-started {
+	flex-shrink: 0;
+	font-size: 13px;
+	text-decoration: none;
+	color: var(--aegis-text-muted);
+}
+
+.aegis-dismiss-getting-started:hover,
+.aegis-dismiss-getting-started:focus {
+	color: var(--aegis-text);
+}
+
+.aegis-dashboard-getting-started {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 16px;
+}
+
+.aegis-dashboard-getting-started .aegis-license-feature-card {
+	text-decoration: none;
+	display: block;
+}
+
+/* Two-Column Layout */
+.aegis-dashboard-columns {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px;
+}
+
+.aegis-dashboard-footer {
+	margin-top: 8px;
+}
+
+.aegis-dashboard-footer .aegis-dashboard-section {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 0;
+	min-width: 0;
+}
+
+.aegis-dashboard-pro-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
+/* System / Pro cards */
+.aegis-dashboard-system-card {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: var(--aegis-radius-lg, 12px);
+	overflow: hidden;
+	text-align: start;
+}
+
+.aegis-dashboard-system-card-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 16px;
+	background: var(--aegis-surface-muted);
+	border-bottom: 1px solid var(--aegis-border);
+	color: var(--aegis-text);
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.aegis-dashboard-system-card-header .dashicons {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+	color: var(--aegis-accent);
+}
+
+.aegis-dashboard-system-card-body {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 16px;
+	padding: 16px 20px;
+	flex: 1;
+}
+
+.aegis-dashboard-pro-desc {
+	font-size: 13px;
+	color: var(--aegis-text-muted);
+	margin: 0;
+	line-height: 1.5;
+	text-align: start;
+}
+
+/* System Table (inside system card) */
+.aegis-system-table {
+	overflow: hidden;
+}
+
+.aegis-system-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 20px;
+	border-bottom: 1px solid var(--aegis-surface-muted);
+}
+
+.aegis-system-row:last-child {
+	border-bottom: none;
+}
+
+.aegis-system-label {
+	font-size: 13px;
+	color: var(--aegis-text-muted);
+}
+
+.aegis-system-value {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--aegis-text);
+}
+
+.aegis-pro-status {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 16px;
+	border-radius: 8px;
+	border: 1px solid;
+}
+
+.aegis-pro-status--active {
+	background: var(--aegis-success-bg);
+	border-color: var(--aegis-success-border);
+}
+
+.aegis-pro-status--active .dashicons {
+	color: var(--aegis-success-text);
+}
+
+.aegis-pro-status--inactive {
+	background: var(--aegis-warning-bg);
+	border-color: var(--aegis-warning-border);
+}
+
+.aegis-pro-status--inactive .dashicons {
+	color: var(--aegis-warning-text);
+}
+
+.aegis-pro-status .dashicons {
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
+	margin-top: 1px;
+}
+
+.aegis-pro-status strong {
+	display: block;
+	font-size: 13px;
+	color: var(--aegis-text);
+	margin-bottom: 2px;
+}
+
+.aegis-pro-status p {
+	font-size: 12px;
+	color: var(--aegis-text-muted);
+	margin: 0;
+}
+
+.aegis-license-key {
+	font-family: monospace;
+	font-size: 12px !important;
+}
+
+.aegis-pro-upsell {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 8px;
+	padding: 16px;
+}
+
+.aegis-pro-upsell p {
+	font-size: 13px;
+	color: var(--aegis-text);
+	margin: 0 0 8px 0;
+}
+
+.aegis-pro-upsell ul {
+	margin: 0 0 12px 0;
+	padding: 0 0 0 16px;
+}
+
+.aegis-pro-upsell li {
+	font-size: 12px;
+	color: var(--aegis-text-muted);
+	line-height: 1.6;
+}
+
+@media (max-width: 960px) {
+	.aegis-dashboard-stats {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.aegis-dashboard-actions {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.aegis-dashboard-getting-started {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.aegis-dashboard-columns {
+		grid-template-columns: 1fr;
+	}
+
+	.aegis-license-links {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 600px) {
+	.aegis-dashboard-stats {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.aegis-dashboard-actions {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.aegis-dashboard-getting-started {
+		grid-template-columns: 1fr;
+	}
+
+	.aegis-dashboard-hero-card-actions {
+		flex-direction: column;
+	}
+
+	.aegis-dashboard-hero-card-body h1 {
+		font-size: 22px;
+	}
+
+	.aegis-license-links {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+/* ==========================================================================
+   License Page
+   ========================================================================== */
+
+/* Section spacing */
+.aegis-license-section {
+	margin-bottom: 32px;
+}
+
+.aegis-license-section h2 {
+	font-size: 20px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	margin: 0 0 8px;
+}
+
+.aegis-license-section-desc {
+	font-size: 14px;
+	color: var(--aegis-text-muted);
+	margin: 0 0 20px;
+	line-height: 1.5;
+}
+
+/* License Activation Card */
+.aegis-license-activation {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.aegis-license-activation-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 16px;
+	background: var(--aegis-surface-muted);
+	border-bottom: 1px solid var(--aegis-border);
+	color: var(--aegis-text);
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.aegis-license-activation-header .dashicons {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+	color: var(--aegis-accent);
+}
+
+.aegis-license-activation-body {
+	padding: 24px 20px;
+}
+
+.aegis-license-status-row {
+	margin-bottom: 24px;
+}
+
+.aegis-license-form-row {
+	max-width: 560px;
+}
+
+.aegis-license-label {
+	display: block;
+	font-weight: 600;
+	font-size: 13px;
+	margin-bottom: 8px;
+	color: var(--aegis-text);
+}
+
+.aegis-license-input-group {
+	display: flex;
+	gap: 8px;
+}
+
+.aegis-license-input {
+	flex: 1;
+	padding: 10px 14px;
+	border: 1px solid var(--aegis-border);
+	border-radius: 6px;
+	font-size: 14px;
+	background: var(--aegis-surface);
+	color: var(--aegis-text);
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.aegis-license-input:focus {
+	outline: none;
+	border-color: var(--aegis-accent);
+	box-shadow: 0 0 0 var(--wp-admin-border-width-focus, 1.5px) var(--aegis-accent);
+}
+
+.aegis-license-input:disabled {
+	background: var(--aegis-surface-muted);
+	color: var(--aegis-text-muted);
+	cursor: not-allowed;
+}
+
+.aegis-license-help {
+	margin-top: 12px;
+	font-size: 13px;
+	color: var(--aegis-text-muted);
+	line-height: 1.5;
+}
+
+/* Feature Cards Grid */
+.aegis-license-features {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 16px;
+	margin-bottom: 24px;
+}
+
+.aegis-license-feature-card {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 8px;
+	padding: 24px;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.aegis-license-feature-card:hover {
+	border-color: var(--aegis-border);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.aegis-license-feature-icon {
+	width: 44px;
+	height: 44px;
+	background: var(--aegis-warning-bg);
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 14px;
+}
+
+.aegis-license-feature-icon .dashicons {
+	font-size: 22px;
+	width: 22px;
+	height: 22px;
+	color: var(--aegis-warning-text);
+}
+
+.aegis-license-feature-card h3 {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	margin: 0 0 6px;
+}
+
+.aegis-license-feature-card p {
+	font-size: 13px;
+	color: var(--aegis-text-muted);
+	line-height: 1.5;
+	margin: 0;
+}
+
+/* Purchase CTA */
+.aegis-license-purchase-cta {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.aegis-license-purchase-note {
+	font-size: 13px;
+	color: var(--aegis-text-muted);
+}
+
+/* Donation Card */
+.aegis-license-donate-card {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+	padding: 24px;
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 8px;
+}
+
+.aegis-license-donate-icon {
+	width: 48px;
+	height: 48px;
+	min-width: 48px;
+	background: var(--aegis-accent-soft);
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.aegis-license-donate-icon .dashicons {
+	font-size: 24px;
+	width: 24px;
+	height: 24px;
+	color: var(--aegis-accent);
+}
+
+.aegis-license-donate-content h3 {
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	margin: 0 0 8px;
+}
+
+.aegis-license-donate-content p {
+	font-size: 14px;
+	color: var(--aegis-text-muted);
+	line-height: 1.6;
+	margin: 0 0 16px;
+}
+
+/* Comparison Table */
+.aegis-license-comparison {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.aegis-license-comparison-header {
+	display: grid;
+	grid-template-columns: 1fr 80px 80px;
+	gap: 0;
+	padding: 12px 20px;
+	background: var(--aegis-surface-muted);
+	border-bottom: 1px solid var(--aegis-border);
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.aegis-license-comparison-row {
+	display: grid;
+	grid-template-columns: 1fr 80px 80px;
+	gap: 0;
+	padding: 12px 20px;
+	border-bottom: 1px solid var(--aegis-surface-muted);
+	transition: background-color 0.2s ease;
+}
+
+.aegis-license-comparison-row:last-child {
+	border-bottom: none;
+}
+
+.aegis-license-comparison-row:hover {
+	background-color: var(--aegis-surface-muted);
+}
+
+.aegis-license-comparison-feature {
+	font-size: 13px;
+	color: var(--aegis-text);
+}
+
+.aegis-license-comparison-header .aegis-license-comparison-feature {
+	color: var(--aegis-text);
+}
+
+.aegis-license-comparison-free,
+.aegis-license-comparison-pro {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.aegis-comparison-yes {
+	color: var(--aegis-success-text);
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+}
+
+.aegis-comparison-no {
+	color: var(--aegis-border);
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+}
+
+/* Quick Links - override grid for 4 columns */
+.aegis-license-links {
+	grid-template-columns: repeat(4, 1fr);
+}
+
+/* FAQ */
+.aegis-license-faq {
+	background: var(--aegis-surface);
+	border: 1px solid var(--aegis-border);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.aegis-license-faq-item {
+	border-bottom: 1px solid var(--aegis-surface-muted);
+}
+
+.aegis-license-faq-item:last-child {
+	border-bottom: none;
+}
+
+.aegis-license-faq-item summary {
+	padding: 16px 20px;
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--aegis-text);
+	cursor: pointer;
+	list-style: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	transition: background-color 0.2s ease;
+}
+
+.aegis-license-faq-item summary:hover {
+	background-color: var(--aegis-surface-muted);
+}
+
+.aegis-license-faq-item summary::-webkit-details-marker {
+	display: none;
+}
+
+.aegis-license-faq-item summary::after {
+	content: "\f140";
+	font-family: dashicons;
+	font-size: 20px;
+	color: var(--aegis-text-muted);
+	transition: transform 0.2s ease;
+}
+
+.aegis-license-faq-item[open] summary::after {
+	transform: rotate(180deg);
+}
+
+.aegis-license-faq-answer {
+	padding: 0 20px 16px;
+}
+
+.aegis-license-faq-answer p {
+	font-size: 13px;
+	color: var(--aegis-text-muted);
+	line-height: 1.6;
+	margin: 0;
+}
+
+/* License Page Responsive */
+@media (max-width: 960px) {
+	.aegis-license-features {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.aegis-license-links {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.aegis-license-comparison-header,
+	.aegis-license-comparison-row {
+		grid-template-columns: 1fr 60px 60px;
+	}
+}
+
+@media (max-width: 600px) {
+	.aegis-license-features {
+		grid-template-columns: 1fr;
+	}
+
+	.aegis-license-links {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.aegis-license-input-group {
+		flex-direction: column;
+	}
+
+	.aegis-license-purchase-cta {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.aegis-license-donate-card {
+		flex-direction: column;
+	}
+
+	.aegis-license-comparison-header,
+	.aegis-license-comparison-row {
+		grid-template-columns: 1fr 50px 50px;
+		padding: 12px 12px;
+	}
+
+	.aegis-license-comparison-feature {
+		font-size: 12px;
+	}
+}
+
+/* Dashboard-wide title bars — same SubBar colors as .aegis-section-header. */
+.aegis-hooks-reference-header,
+.aegis-dashboard-hero-card-header,
+.aegis-dashboard-system-card-header,
+.aegis-license-activation-header,
+.aegis-hooks-group-header {
+	color: var(--aegis-lede-heading, #f0f0f1);
+	background: var(--aegis-lede-bg, #2c3338);
+	border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.aegis-hooks-reference-header .dashicons,
+.aegis-dashboard-hero-card-header .aegis-brand-icon,
+.aegis-dashboard-system-card-header .dashicons,
+.aegis-license-activation-header .dashicons,
+.aegis-hooks-group-header .dashicons {
+	color: var(--aegis-lede-accent, #72aee6);
+}
+
+.aegis-hooks-group-count {
+	background: rgba(255, 255, 255, 0.12);
+	color: var(--aegis-lede-heading, #f0f0f1);
+}
+
+#wpcontent.aegis-admin-navigating .aegis-top-bar,
+#wpcontent.aegis-admin-navigating #wpbody-content {
+	opacity: 0.45;
+	pointer-events: none;
+	transition: opacity 0.12s ease;
+}

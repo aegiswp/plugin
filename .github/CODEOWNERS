@@ -1,0 +1,18 @@
+# Default reviewers for the Aegis free plugin
+* @aegiswp/core-team
+
+.github/ @aegiswp/core-team
+composer.json @aegiswp/core-team
+composer.lock @aegiswp/core-team
+package.json @aegiswp/core-team
+package-lock.json @aegiswp/core-team
+phpcs.xml @aegiswp/core-team
+aegis.php @aegiswp/core-team
+src/ @aegiswp/core-team
+config/ @aegiswp/core-team
+patterns/ @aegiswp/core-team
+docs/ @aegiswp/core-team
+README.md @aegiswp/core-team
+CONTRIBUTING.md @aegiswp/core-team
+CHANGELOG.md @aegiswp/core-team
+CODE_OF_CONDUCT.md @aegiswp/core-team

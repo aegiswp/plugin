@@ -2,7 +2,7 @@
 /**
  * Title: Shop Full Width
  * Slug: shop-full-width
- * Categories: page
+ * Categories: pages
  * Keywords: shop, full width, products, store, grid, filters
  * Description: A full-width shop page with top-bar filters and a wide product grid without sidebar.
  * Viewport Width: 1280
@@ -10,7 +10,7 @@
  */
 ?>
 
-<!-- wp:group {"metadata":{"categories":["page"],"patternName":"shop-full-width","name":"Shop Full Width"},"align":"full","layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"categories":["pages"],"patternName":"shop-full-width","name":"Shop Full Width"},"align":"full","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull">
 	<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|lg","bottom":"var:preset|spacing|sm"}}},"layout":{"type":"constrained","contentSize":"720px"}} -->
 	<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--lg);padding-bottom:var(--wp--preset--spacing--sm)">
@@ -74,7 +74,7 @@
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|sm"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|sm"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 		<div class="wp-block-group">
 			<!-- wp:woocommerce/product-results-count /-->
 			<!-- wp:woocommerce/catalog-sorting /-->

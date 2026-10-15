@@ -1216,9 +1216,10 @@ class Renderer {
 	}
 
 	/**
-	 * Dark stacked subheading used to split groups inside one settings tab.
+	 * Secondary stacked subheading used to split groups inside one settings tab.
 	 *
-	 * Matches Connectors → BunnyCDN API / CDN / Stream headers.
+	 * Lighter than the category `.aegis-section-header`; matches Connectors
+	 * → BunnyCDN API / CDN / Stream group headers.
 	 *
 	 * @param string $title       Heading text.
 	 * @param string $description Supporting copy.

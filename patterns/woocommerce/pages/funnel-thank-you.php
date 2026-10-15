@@ -2,7 +2,7 @@
 /**
  * Title: Funnel Thank You Page
  * Slug: funnel-thank-you
- * Categories: page
+ * Categories: pages
  * Keywords: funnel, thank you, confirmation, upsell, woocommerce
  * Description: A post-purchase thank you page with order confirmation message, next steps, upsell product grid, and social sharing — uses minimal header/footer.
  * Viewport Width: 1280
@@ -11,7 +11,7 @@
  */
 ?>
 
-<!-- wp:group {"metadata":{"categories":["page"],"patternName":"funnel-thank-you","name":"Funnel Thank You Page"},"align":"full","layout":{"type":"default"}} -->
+<!-- wp:group {"metadata":{"categories":["pages"],"patternName":"funnel-thank-you","name":"Funnel Thank You Page"},"align":"full","layout":{"type":"default"}} -->
 <div class="wp-block-group alignfull">
 
 	<!-- wp:pattern {"slug":"header-store-minimal"} /-->
@@ -20,7 +20,7 @@
 	<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--xxl);padding-bottom:var(--wp--preset--spacing--lg)">
 		<!-- wp:group {"layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
 		<div class="wp-block-group">
-			<!-- wp:icon {"icon":"wordpress/yes","style":{"dimensions":{"width":"64px"}}} /-->
+			<!-- wp:image {"className":"is-style-icon","iconSet":"wordpress","iconName":"yes","iconSize":"64px"} --><figure class="wp-block-image is-style-icon"><img alt="" /></figure><!-- /wp:image -->
 <!-- wp:heading {"textAlign":"center","level":1,"fontSize":"36"} -->
 			<h1 class="wp-block-heading has-text-align-center has-36-font-size"><?php echo esc_html__( 'Thank You for Your Purchase!', 'aegis' ); ?></h1>
 			<!-- /wp:heading -->
@@ -56,11 +56,11 @@
 			<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|sm"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
 			<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--sm)">
 				<!-- wp:button {"fontSize":"16"} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#"><?php echo esc_html__( 'View My Orders', 'aegis' ); ?></a></div>
+<div class="wp-block-button"><a class="wp-block-button__link has-16-font-size has-custom-font-size wp-element-button" href="#"><?php echo esc_html__( 'View My Orders', 'aegis' ); ?></a></div>
 <!-- /wp:button -->
 
 				<!-- wp:button {"className":"is-style-outline","fontSize":"16"} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#"><?php echo esc_html__( 'Continue Shopping', 'aegis' ); ?></a></div>
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-16-font-size has-custom-font-size wp-element-button" href="#"><?php echo esc_html__( 'Continue Shopping', 'aegis' ); ?></a></div>
 <!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->
@@ -109,7 +109,7 @@
 		<h4 class="wp-block-heading has-text-align-center has-18-font-size" style="margin-bottom:var(--wp--preset--spacing--xs)"><?php echo esc_html__( 'Share Your Purchase', 'aegis' ); ?></h4>
 		<!-- /wp:heading -->
 
-		<!-- wp:social-links {"iconColor":"neutral-500","size":"has-normal-icon-size","className":"is-style-logos-only","style":{"spacing":{"blockGap":{"left":"20px"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
+		<!-- wp:social-links {"iconColor":"neutral-500","size":"has-normal-icon-size","className":"is-style-logos-only","style":{"spacing":{"blockGap":{"left":"20px"}}},"layout":{"type":"flex","justifyContent":"center"},"iconColorValue":"#525252"} -->
 		<ul class="wp-block-social-links has-normal-icon-size has-icon-color is-style-logos-only">
 			<!-- wp:social-link {"url":"#","service":"facebook"} /-->
 			<!-- wp:social-link {"url":"#","service":"x"} /-->

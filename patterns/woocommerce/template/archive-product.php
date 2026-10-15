@@ -20,7 +20,7 @@
 	<div class="wp-block-group alignwide" style="margin-bottom:var(--wp--preset--spacing--sm)">
 		<!-- wp:query-title {"type":"archive","showPrefix":false} /-->
 
-		<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 		<div class="wp-block-group">
 			<!-- wp:woocommerce/product-results-count /-->
 			<!-- wp:woocommerce/catalog-sorting /-->

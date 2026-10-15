@@ -169,7 +169,7 @@ final class Registry {
 			'bbpress' => [
 				'key'              => 'bbpress',
 				'label'            => __( 'bbPress', 'aegis' ),
-				'section'          => 'content',
+				'section'          => 'community',
 				'plugin_check'     => 'bbpress',
 				'plugin_files'     => [ 'bbpress/bbpress.php' ],
 				'is_plugin_active' => static fn(): bool => class_exists( 'bbPress' ),
@@ -321,8 +321,15 @@ final class Registry {
 				'id'          => 'content',
 				'label'       => __( 'Content', 'aegis' ),
 				'icon'        => 'admin-post',
-				'description' => __( 'bbPress and Co-Authors Plus.', 'aegis' ),
-				'keys'        => array( 'co_authors_plus', 'bbpress' ),
+				'description' => __( 'Co-Authors Plus.', 'aegis' ),
+				'keys'        => array( 'co_authors_plus' ),
+			),
+			array(
+				'id'          => 'community',
+				'label'       => __( 'Community', 'aegis' ),
+				'icon'        => 'buddicons-forums',
+				'description' => __( 'bbPress.', 'aegis' ),
+				'keys'        => array( 'bbpress' ),
 			),
 			array(
 				'id'          => 'seo',
@@ -480,19 +487,19 @@ final class Registry {
 			'rank_math'              => array(
 				'icon'        => 'chart-line',
 				'brand'       => 'rankmath',
-				'description' => __( 'FAQ, Event, Local Business, and Video schema delegation, plus Pro video sitemaps.', 'aegis' ),
+				'description' => __( 'Delegates FAQ, Event, Local Business, and Video schema to Rank Math; styles Rank Math breadcrumbs; Pro video sitemaps.', 'aegis' ),
 			),
 			'yoast_seo'              => array(
 				'icon'        => 'chart-line',
-				'description' => __( 'FAQ, Event, Local Business, and Video schema delegation, plus Pro video sitemaps.', 'aegis' ),
+				'description' => __( 'Delegates FAQ, Event, Local Business, and Video schema to Yoast; styles Yoast breadcrumbs; Pro Video SEO sitemaps.', 'aegis' ),
 			),
 			'aioseo'                 => array(
 				'icon'        => 'chart-line',
-				'description' => __( 'FAQ, Event, Local Business, and Video schema delegation, plus Pro video sitemaps.', 'aegis' ),
+				'description' => __( 'Delegates FAQ, Event, Local Business, and Video schema to All in One SEO; Pro video sitemaps.', 'aegis' ),
 			),
 			'seopress'               => array(
 				'icon'        => 'chart-line',
-				'description' => __( 'FAQ, Event, Local Business, and Video schema delegation, plus Pro video sitemaps.', 'aegis' ),
+				'description' => __( 'Delegates FAQ, Event, Local Business, and Video schema to SEOPress; styles SEOPress breadcrumbs; Pro video sitemaps.', 'aegis' ),
 			),
 			'advanced_custom_fields' => array(
 				'icon'        => 'admin-generic',

@@ -12,6 +12,8 @@
 
 declare( strict_types=1 );
 
+use Aegis\Plugin\Modal\Shortcode;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -144,16 +146,35 @@ $create_url = static function ( string $starter ): string {
 												<?php echo esc_html( $host ); ?>
 												<span class="aegis-hooks-meta"><?php echo esc_html( (string) ( $instance['post_type_label'] ?? '' ) ); ?></span>
 												<?php if ( $modal_id !== '' ) : ?>
-													<button
-														type="button"
-														class="aegis-modals-id"
-														data-copy="<?php echo esc_attr( $modal_id ); ?>"
-														title="<?php esc_attr_e( 'Copy modal ID', 'aegis' ); ?>"
-													>
-														<code><?php echo esc_html( $modal_id ); ?></code>
-														<span class="dashicons dashicons-clipboard" aria-hidden="true"></span>
-														<span class="screen-reader-text"><?php esc_html_e( 'Copy modal ID', 'aegis' ); ?></span>
-													</button>
+													<?php
+													$shortcode = Shortcode::markup( $modal_id );
+													?>
+													<div class="aegis-modals-placement">
+														<button
+															type="button"
+															class="aegis-modals-copy"
+															data-copy="<?php echo esc_attr( $modal_id ); ?>"
+															data-copy-label="<?php esc_attr_e( 'Copy modal ID', 'aegis' ); ?>"
+															title="<?php esc_attr_e( 'Copy modal ID', 'aegis' ); ?>"
+														>
+															<span class="aegis-modals-copy-kind"><?php esc_html_e( 'ID', 'aegis' ); ?></span>
+															<code><?php echo esc_html( $modal_id ); ?></code>
+															<span class="dashicons dashicons-clipboard" aria-hidden="true"></span>
+															<span class="screen-reader-text"><?php esc_html_e( 'Copy modal ID', 'aegis' ); ?></span>
+														</button>
+														<button
+															type="button"
+															class="aegis-modals-copy"
+															data-copy="<?php echo esc_attr( $shortcode ); ?>"
+															data-copy-label="<?php esc_attr_e( 'Copy shortcode', 'aegis' ); ?>"
+															title="<?php esc_attr_e( 'Copy shortcode', 'aegis' ); ?>"
+														>
+															<span class="aegis-modals-copy-kind"><?php esc_html_e( 'Shortcode', 'aegis' ); ?></span>
+															<code><?php echo esc_html( $shortcode ); ?></code>
+															<span class="dashicons dashicons-clipboard" aria-hidden="true"></span>
+															<span class="screen-reader-text"><?php esc_html_e( 'Copy shortcode', 'aegis' ); ?></span>
+														</button>
+													</div>
 												<?php endif; ?>
 											</td>
 											<td><?php echo esc_html( (string) ( $instance['trigger_label'] ?? '' ) ); ?></td>

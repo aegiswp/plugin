@@ -33,32 +33,37 @@ You can set the block provider to OpenStreetMap at any time (no API key). **Open
 
 ## Feature Toggles
 
-Enable extras at **Aegis → Blocks → Map**. They are off on new installs. Existing sites keep previously implicit-on extras.
+Enable extras at **Aegis → Blocks → Map**. They are grouped by provider. They are off on new installs. Existing sites keep previously implicit-on extras.
 
-### Free plugin
+### Google Maps
+
+| Toggle | What it does |
+|--------|----------------|
+| Map Style Presets | Silver, Dark, Retro, Night, and Aubergine Google Maps styles (also applied to the Static Maps facade). |
+| Map Controls | Zoom, map type, street view, fullscreen, scroll-wheel, and drag controls. |
+| Directions | **Pro.** Route between origin and destination (addresses resolved with the server Geocoding key; frontend receives coordinates only). |
+| Store Locator | **Pro.** Search box matches marker titles or `lat,lng`, then draws a radius circle. |
+| Geolocation | **Pro.** Button to show the visitor’s location. |
+| Heatmap Layer | **Pro.** Density overlay (loads the Google visualization library). |
+| Drawing Tools | **Pro.** Polygon, circle, rectangle, and polyline overlays. |
+| KML/GeoJSON Import | **Pro.** External geographic data layers. |
+| Dynamic CPT Markers | **Pro.** Markers from a custom post type’s lat/lng meta. |
+| Custom Style JSON | **Pro.** Raw Google Maps style array (overrides presets, including the Static Maps facade). |
+| Custom Marker Icons | **Pro.** Media-library marker icons (interactive map and editor preview; not the static facade). |
+| Marker Clustering | **Pro.** Groups nearby markers at lower zoom levels (vendored MarkerClusterer, no CDN). Editor preview included. |
+
+### OpenStreetMap
+
+| Toggle | What it does |
+|--------|----------------|
+| OpenStreetMap Fallback | Use OSM when a Google Maps block has no API key. You can also set the block provider to OpenStreetMap directly. |
+
+### Shared
 
 | Toggle | What it does |
 |--------|----------------|
 | Multiple Markers | Extra markers with title/description info windows. The primary location pin always remains. |
-| Map Style Presets | Silver, Dark, Retro, Night, and Aubergine Google Maps styles (also applied to the Static Maps facade). |
-| Map Controls | Zoom, map type, street view, fullscreen, scroll-wheel, and drag controls. |
-| OpenStreetMap Fallback | Use OSM when a Google Maps block has no API key. |
 | Schema.org Markup | LocalBusiness JSON-LD from the block’s schema fields (skipped when an SEO plugin owns local business schema). |
-
-### Pro
-
-| Toggle | What it does |
-|--------|----------------|
-| Directions | Route between origin and destination (addresses resolved with the server Geocoding key; frontend receives coordinates only). |
-| Store Locator | Search box matches marker titles or `lat,lng`, then draws a radius circle. |
-| Geolocation | Button to show the visitor’s location. |
-| Heatmap Layer | Density overlay (loads the Google visualization library). |
-| Drawing Tools | Polygon, circle, rectangle, and polyline overlays. |
-| KML/GeoJSON Import | External geographic data layers. |
-| Dynamic CPT Markers | Markers from a custom post type’s lat/lng meta. |
-| Custom Style JSON | Raw Google Maps style array (overrides presets, including the Static Maps facade). |
-| Custom Marker Icons | Media-library marker icons (interactive map and editor preview; not the static facade). |
-| Marker Clustering | Groups nearby markers at lower zoom levels (vendored MarkerClusterer, no CDN). Editor preview included. |
 
 Pro inspector panels and frontend output follow these toggles. Schema markup is a free feature, not a Pro panel.
 

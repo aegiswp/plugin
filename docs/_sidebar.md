@@ -40,7 +40,16 @@
 - [[building-assets|Building Assets]]
 - [[file-structure|File Structure]]
 - [[architecture|Architecture]]
+- [Contributing](../CONTRIBUTING.md)
+- [GitHub Workflows](../.github/WORKFLOWS.md)
 
 ## Help
 
 - [[faq|FAQ]]
+
+## External
+
+- [Plugin Wiki](https://github.com/aegiswp/plugin/wiki)
+- [Pro Wiki](https://github.com/aegiswp/pro/wiki)
+- [Theme docs](../../themes/aegis/docs/home.md)
+- [Pro docs](../../aegis-pro/docs/home.md)

@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<ruleset name="Aegis Plugin">
+	<description>WordPress Coding Standards for the Aegis free plugin</description>
+
+	<arg name="extensions" value="php"/>
+	<arg name="cache"/>
+	<arg name="basepath" value="./"/>
+	<arg name="parallel" value="20"/>
+	<arg value="ps"/>
+	<arg name="colors"/>
+
+	<ini name="memory_limit" value="512M"/>
+
+	<file>./aegis.php</file>
+	<file>./uninstall.php</file>
+	<file>./index.php</file>
+	<file>./src</file>
+	<file>./config</file>
+	<file>./patterns</file>
+	<file>./templates</file>
+
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/assets/admin/build/*</exclude-pattern>
+	<exclude-pattern>*/assets/editor/build/*</exclude-pattern>
+	<exclude-pattern>*/src/Blocks/*/index.js</exclude-pattern>
+	<exclude-pattern>*/src/Blocks/*/view.js</exclude-pattern>
+	<exclude-pattern>*/src/Blocks/*/style.js</exclude-pattern>
+
+	<!-- Generated webpack / wp-scripts sidecar files. -->
+	<exclude-pattern>*.asset.php</exclude-pattern>
+	<exclude-pattern>*/src/Blocks/blocks-manifest.php</exclude-pattern>
+
+	<!-- Gate CI on errors only; warnings stay visible in reports. -->
+	<config name="ignore_warnings_on_exit" value="1"/>
+	<config name="minimum_wp_version" value="6.9"/>
+
+	<rule ref="WordPress-Core"/>
+	<rule ref="WordPress-Docs"/>
+	<rule ref="WordPress-Extra"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="aegis"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="aegis"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Patterns and block render templates are included inside function scope. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
+		<exclude-pattern>*/patterns/*</exclude-pattern>
+		<exclude-pattern>*/src/Blocks/*/render.php</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.WP.GlobalVariablesOverride.Prohibited">
+		<exclude-pattern>*/patterns/*</exclude-pattern>
+		<exclude-pattern>*/src/Blocks/*/render.php</exclude-pattern>
+	</rule>
+
+	<rule ref="Squiz.Commenting.FileComment">
+		<exclude-pattern>*/patterns/*</exclude-pattern>
+	</rule>
+
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent">
+		<exclude-pattern>*/patterns/*</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.PHP.YodaConditions.NotYoda">
+		<type>warning</type>
+	</rule>
+	<rule ref="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase">
+		<type>warning</type>
+	</rule>
+
+	<rule ref="WordPress.Files.FileName">
+		<exclude-pattern>*/src/*</exclude-pattern>
+		<exclude-pattern>*/patterns/woocommerce/template/taxonomy-*.php</exclude-pattern>
+	</rule>
+</ruleset>

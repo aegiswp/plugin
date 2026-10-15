@@ -1,0 +1,49 @@
+{
+	"name": "aegiswp/plugin",
+	"version": "1.0.0",
+	"description": "Aegis — companion WordPress plugin for the Aegis block theme",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"homepage": "https://github.com/aegiswp/plugin",
+	"support": {
+		"issues": "https://github.com/aegiswp/plugin/issues",
+		"source": "https://github.com/aegiswp/plugin"
+	},
+	"keywords": [
+		"wordpress",
+		"plugin",
+		"blocks",
+		"aegis"
+	],
+	"authors": [
+		{
+			"name": "Atmostfear Entertainment",
+			"homepage": "https://www.atmostfear-entertainment.com/"
+		}
+	],
+	"require": {
+		"php": ">=7.4"
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"squizlabs/php_codesniffer": "^3.12",
+		"wp-coding-standards/wpcs": "^3.2"
+	},
+	"autoload": {
+		"psr-4": {
+			"Aegis\\Plugin\\": "src/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		},
+		"optimize-autoloader": true,
+		"sort-packages": true
+	},
+	"scripts": {
+		"standards:check": "phpcs",
+		"standards:fix": "phpcbf",
+		"lint": "@standards:check"
+	}
+}

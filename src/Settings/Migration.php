@@ -263,7 +263,7 @@ final class Migration {
 	}
 
 	/**
-	 * Enable Image Compare extras that previously had no admin toggles.
+	 * Enable Compare extras that previously had no admin toggles.
 	 *
 	 * The block always registered when Pro was active. Keep extras on for
 	 * existing sites so the inserter and inspector controls stay available.

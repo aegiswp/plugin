@@ -1,0 +1,42 @@
+# Typos configuration for the Aegis free plugin
+# https://github.com/crate-ci/typos
+
+[files]
+extend-exclude = [
+    "vendor/",
+    "node_modules/",
+    "tools/",
+    "docs/",
+    "patterns/",
+    "assets/admin/build/",
+    "assets/editor/build/",
+    "src/Blocks/*/index.js",
+    "src/Blocks/*/view.js",
+    "src/Blocks/*/style.js",
+    "*.min.js",
+    "*.min.css",
+    "*.asset.php",
+    "*.js.map",
+    "*.css.map",
+    "*.lock",
+    "languages/*.po",
+    "languages/*.mo",
+    "languages/*.pot",
+]
+
+[default]
+extend-ignore-identifiers-re = [
+    "wpdb",
+    "wptrt",
+    "phpcs",
+    "WPCS",
+    "bbpress",
+    "bbp",
+]
+extend-ignore-re = [
+    "icon-[0-9a-f]+",
+]
+
+[default.extend-words]
+colour = "colour"
+colours = "colours"
