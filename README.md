@@ -2,6 +2,8 @@
 
 Welcome to the Aegis companion plugin development repository.
 
+![Aegis](https://github.com/aegiswp/plugin/blob/main/_wordpress-org/screenshot-1.png)
+
 **Canonical repository:** [github.com/aegiswp/plugin](https://github.com/aegiswp/plugin)
 
 This directory is the local install path in WordPress Studio; the GitHub repo is the source of truth.
